@@ -7,25 +7,32 @@
 //
 
 import UIKit
-import FacebookLogin
+import FBSDKLoginKit
 import FacebookCore
+import FacebookLogin
+
 
 class ViewController: UIViewController, FBSDKLoginButtonDelegate {
+    
 
     override func viewDidLoad() {
-//        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
   
-        let loginButton = LoginButton(readPermissions: [ .publicProfile ])
-        loginButton.center = view.center
+        //going to need to add this: 
+        //let logButton = FBSDKLoginButton(readPermissions: [ .publicProfile, .Email, .UserFriends ])
+
+        let logButton : FBSDKLoginButton = FBSDKLoginButton()
+
+        logButton.center = view.center
         
-        view.addSubview(loginButton)
+        logButton.delegate = self
+        
+        view.addSubview(logButton)
+        
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        
-        AccessToken.current = nil
         
         if let accessToken = AccessToken.current {
             
@@ -34,12 +41,18 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
             print("this is the token: \(accessToken)")
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
+        //keep them on the same page
+        print("logged out")
     }
+    
+    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+       
+            // User is logged in, use 'accessToken' here.
+            performSegue(withIdentifier: "detailSegue", sender: self)
+            print("next VC")
 
-
+}
 }
 
