@@ -16,6 +16,10 @@
 		D2CF57941E83398C00090788 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2CF57921E83398C00090788 /* LaunchScreen.storyboard */; };
 		D2CF579F1E83398D00090788 /* FacebookAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CF579E1E83398D00090788 /* FacebookAPITests.swift */; };
 		D2CF57AA1E83430D00090788 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CF57A91E83430D00090788 /* DetailViewController.swift */; };
+		D2CF57AC1E844BB600090788 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CF57AB1E844BB600090788 /* User.swift */; };
+		D2CF57AE1E844BC300090788 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CF57AD1E844BC300090788 /* Event.swift */; };
+		D2CF57B01E844BCE00090788 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CF57AF1E844BCE00090788 /* DataManager.swift */; };
+		D2CF57B21E848C1E00090788 /* MasterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CF57B11E848C1E00090788 /* MasterTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +50,10 @@
 		D2CF579E1E83398D00090788 /* FacebookAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookAPITests.swift; sourceTree = "<group>"; };
 		D2CF57A01E83398D00090788 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2CF57A91E83430D00090788 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		D2CF57AB1E844BB600090788 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		D2CF57AD1E844BC300090788 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		D2CF57AF1E844BCE00090788 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		D2CF57B11E848C1E00090788 /* MasterTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,7 +125,11 @@
 				D2CF57901E83398C00090788 /* Assets.xcassets */,
 				D2CF57921E83398C00090788 /* LaunchScreen.storyboard */,
 				D2CF57951E83398C00090788 /* Info.plist */,
+				D2CF57B11E848C1E00090788 /* MasterTableViewController.swift */,
 				D2CF57A91E83430D00090788 /* DetailViewController.swift */,
+				D2CF57AB1E844BB600090788 /* User.swift */,
+				D2CF57AD1E844BC300090788 /* Event.swift */,
+				D2CF57AF1E844BCE00090788 /* DataManager.swift */,
 			);
 			path = FacebookAPI;
 			sourceTree = "<group>";
@@ -335,9 +347,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2CF57AC1E844BB600090788 /* User.swift in Sources */,
+				D2CF57B01E844BCE00090788 /* DataManager.swift in Sources */,
 				D2CF57AA1E83430D00090788 /* DetailViewController.swift in Sources */,
 				D2CF578C1E83398C00090788 /* ViewController.swift in Sources */,
 				D2CF578A1E83398C00090788 /* AppDelegate.swift in Sources */,
+				D2CF57AE1E844BC300090788 /* Event.swift in Sources */,
+				D2CF57B21E848C1E00090788 /* MasterTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

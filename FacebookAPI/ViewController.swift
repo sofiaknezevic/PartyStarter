@@ -15,12 +15,13 @@ import FacebookLogin
 class ViewController: UIViewController, FBSDKLoginButtonDelegate {
     
 
+    var id:String?
+    
     override func viewDidLoad() {
   
-        //going to need to add this: 
-        //let logButton = FBSDKLoginButton(readPermissions: [ .publicProfile, .Email, .UserFriends ])
-
         let logButton : FBSDKLoginButton = FBSDKLoginButton()
+        
+        logButton.readPermissions = ["email", "public_profile", "user_friends", "user_events"]
 
         logButton.center = view.center
         
@@ -28,17 +29,21 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
         
         view.addSubview(logButton)
         
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+        
+//        AccessToken.current = nil
         
         if let accessToken = AccessToken.current {
             
             // User is logged in, use 'accessToken' here.
             performSegue(withIdentifier: "detailSegue", sender: self)
             print("this is the token: \(accessToken)")
+            id = accessToken.userId
+            print("this is user id: \(id!)")
+            
         }
     }
     
@@ -54,5 +59,10 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
             print("next VC")
 
 }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "detailSegue") {
+            //pass on the userID to the next screen
+        }
+    }
 }
 
