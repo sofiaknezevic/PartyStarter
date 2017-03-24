@@ -34,7 +34,7 @@ class DataManager: NSObject {
         }
         connection.start()
     }
-    
+    //this gets the events for the table view cell
     class func getEvents(completion:@escaping ([Event])->()) {
         
         var eventArray = [Event]()
@@ -52,15 +52,13 @@ class DataManager: NSObject {
                 //make new events from every event in the json
                 for event: [String: Any] in data! {
                     
-                    let newEvent = Event.parseDataFromJSON(event)
+                    let newEvent = Event.parseDataForTableViewFromJSON(event)
                     
                     //need to append this new event into an array that we can pass to table view controller
 //                    DataManager().eventArray?.append(newEvent)
                     eventArray.append(newEvent)
                    
                     
-                    //prints the name of the future events
-//                    print(newEvent.eventName!)
                 }
                 print("data manager: \(eventArray)")
                 completion(eventArray)
@@ -71,5 +69,28 @@ class DataManager: NSObject {
         }
         connection.start()
 
+    }
+    
+    class func getEventDetails(eventID: String, completion:@escaping (Event) -> ()) {
+        
+        //need to pass in the event ID, use fake id 2
+        let connection = GraphRequestConnection()
+        connection.add(GraphRequest(graphPath: "/\(eventID)")) { httpResponse, result in
+            
+            switch result {
+            case .success(let response):
+                let data = response.dictionaryValue!
+                
+                let selectedEvent = Event.parseDataFromJSON(data)
+                
+                print(selectedEvent.eventName!)
+            
+            completion(selectedEvent)
+            
+            case .failed(let error):
+                print("Graph Request Failed: \(error)")
+        }
+        }
+        connection.start()
     }
 }

@@ -33,6 +33,20 @@ class Event: NSObject {
     //want to get names of who is attending
     
     
+    //this will be the information that is visible to the user on the table view
+    class func parseDataForTableViewFromJSON(_ json: [String:Any]) -> Event {
+        
+        let tableViewEvent = Event()
+        
+        tableViewEvent.eventName = json["name"] as? String
+        tableViewEvent.eventID = json["id"] as? String
+        
+        return tableViewEvent
+        
+    }
+    
+    
+    //this is the info that is visible to the user when the detail view is selected
     class func parseDataFromJSON( _ json: [String: Any]) -> Event {
 
         let newEvent = Event()

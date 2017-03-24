@@ -31,7 +31,7 @@ class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -45,6 +45,7 @@ class DetailViewController: UIViewController {
         eventDescriptionLabel.text = detailEvent?.eventDescription
         eventNameLabel.text = detailEvent?.eventName
         placeNameLabel.text = detailEvent?.placeName
+        eventIDLabel.text = detailEvent?.eventID
         
         //what more do we need?
     }

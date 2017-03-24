@@ -13,6 +13,7 @@ class MasterTableViewController: UITableViewController {
     
     var eventsArray:[Event]?
     var userID:String?
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +42,11 @@ class MasterTableViewController: UITableViewController {
                     self.tableView.reloadData()
                 }
         }
+        
+//        DataManager.getEventDetails { (Event) in
+//            
+//            //code
+//        }
         
     }
 
@@ -111,7 +117,16 @@ class MasterTableViewController: UITableViewController {
             let indexPath:IndexPath = tableView.indexPathForSelectedRow!
             let detailVC:DetailViewController = segue.destination as! DetailViewController
             
-            detailVC.detailEvent = self.eventsArray?[indexPath.row]
+            //need to call the thing here. The event that we pass in is equal to this indexpath.row's event
+            let eventThatWasSelected = self.eventsArray?[indexPath.row].eventID
+            
+            //pass this event id into the function, set the detailVC.detailEvent equal to that
+                    DataManager.getEventDetails(eventID: eventThatWasSelected!) { event in
+            
+                        //code
+                        detailVC.detailEvent = event
+    
+                    }
         }
     }
     
