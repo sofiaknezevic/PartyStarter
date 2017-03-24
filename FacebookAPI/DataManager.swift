@@ -9,10 +9,10 @@
 import UIKit
 import FacebookCore
 
+
 class DataManager: NSObject {
     
-    var eventArray:Array<Any>?
-        
+    
     class func getUserInfo(completion:@escaping (User)->()) {
         
         let user = User()
@@ -35,14 +35,12 @@ class DataManager: NSObject {
         connection.start()
     }
     
-    class func getEvents(completion:@escaping (Event)->()) {
+    class func getEvents(completion:@escaping ([Event])->()) {
+        
+        var eventArray = [Event]()
         
         let currentDateInSeconds = Int(Date().timeIntervalSince1970)
         
-        //print((int)currentDateInSeconds)
-        
-        //1417508443
-                
         let connection = GraphRequestConnection()
         connection.add(GraphRequest(graphPath: "/me/events?since=\(currentDateInSeconds)")) { httpResponse, result in
         
@@ -51,30 +49,27 @@ class DataManager: NSObject {
                 
                 let data = response.dictionaryValue?["data"] as? [[String: Any]]
                 
-                //this works, printing it out
-//                print(data!)
-                
-                //need to get the index of the event 
+                //make new events from every event in the json
                 for event: [String: Any] in data! {
                     
                     let newEvent = Event.parseDataFromJSON(event)
                     
-                    DataManager().eventArray?.append(newEvent)
-                    print(newEvent.eventName!)
+                    //need to append this new event into an array that we can pass to table view controller
+//                    DataManager().eventArray?.append(newEvent)
+                    eventArray.append(newEvent)
+                   
                     
+                    //prints the name of the future events
+//                    print(newEvent.eventName!)
                 }
-                
-//                let arrayOfEvents = DataManager().eventArray
-                
-//                print("this is the first item in the array: \(arrayOfEvents?.first)")
+                print("data manager: \(eventArray)")
+                completion(eventArray)
                 
             case .failed(let error):
                 print("Graph Request Failed: \(error)")
             }
         }
         connection.start()
+
+    }
 }
-}
-
-
-

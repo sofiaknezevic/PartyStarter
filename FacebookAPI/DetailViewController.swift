@@ -9,29 +9,11 @@
 import UIKit
 import FacebookCore
 
-//probably change this to a table view for the next view
 class DetailViewController: UIViewController {
     
 
-    var userID:String?
-
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
-        //print name
-        DataManager.getUserInfo
-        { user in
-            print(user.name!)
-            
-            self.userID = user.userID
-            print(self.userID!)
-        }
-        
-        //print out the events
-        DataManager.getEvents { event in }
-    
-}
+    }
 }

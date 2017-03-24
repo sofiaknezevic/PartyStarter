@@ -7,50 +7,41 @@
 //
 
 import UIKit
+import FacebookCore
 
 class MasterTableViewController: UITableViewController {
     
-    
-    
-    
-//    var userID:String?
-//    
-//    
-//    
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        
-//        
-//        //print name
-//        DataManager.getUserInfo
-//            { user in
-//                print(user.name!)
-//                
-//                self.userID = user.userID
-//                print(self.userID!)
-//        }
-//    
-//        //print out the events
-//        DataManager.getEvents { event in }
-    
-    
-    var events:Array<Any>?
+    var eventsArray:[Event]?
+    var userID:String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
+        //print name
+        DataManager.getUserInfo
+        { user in
+            print(user.name!)
+                
+            self.userID = user.userID
+            print(self.userID!)
+        }
         
+        //do I need to event pass anything in then?
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        DataManager.getEvents
+            { events in
+                if events.count > 0
+                {
+                    self.eventsArray = events
+                    print("table view: \(self.eventsArray!)")
+                    self.tableView.reloadData()
+                }
+        }
+        
     }
 
     // MARK: - Table view data source
@@ -60,18 +51,21 @@ class MasterTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        //return self.events.count
+        return self.eventsArray?.count ?? 0
+        
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
-        // Configure the cell...
+
+        //just use the basic cell to display the title of the event
+        cell.textLabel?.text = self.eventsArray?[indexPath.row].eventName
 
         return cell
     }
-    */
+ 
 
     /*
     // Override to support conditional editing of the table view.

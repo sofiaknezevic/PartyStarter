@@ -11,7 +11,7 @@ import UIKit
 class Event: NSObject {
     
     var eventDescription: String?
-    var endTime: Date?
+    var endTime: String?
     var eventName: String?
     var placeName: String?
     var cityName: String?
@@ -23,7 +23,7 @@ class Event: NSObject {
     var zipCode: String?
     var eventID: String?
     var placeID: String?
-    var startTime: Date?
+    var startTime: String?
     var rsvpStatus: String?
         
     //what more I need
@@ -39,9 +39,9 @@ class Event: NSObject {
         
         //ones that are not nested
         newEvent.eventDescription = json["description"] as? String
-        newEvent.endTime = json["end_time"] as? Date
+        newEvent.endTime = json["end_time"] as? String
         newEvent.eventName = json["name"] as? String
-        newEvent.startTime = json["start_time"] as? Date
+        newEvent.startTime = json["start_time"] as? String
         newEvent.eventID = json["id"] as? String
         newEvent.rsvpStatus = json["rsvp_status"] as? String
         
@@ -59,6 +59,7 @@ class Event: NSObject {
                 newEvent.latitute = location["latitude"] as? Double
                 newEvent.longitude = location["longitude"] as? Double
                 newEvent.state = location["state"] as? String
+                newEvent.street = location["street"] as? String
                 newEvent.zipCode = location["zip"] as? String
             }
         }
