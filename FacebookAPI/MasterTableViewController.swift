@@ -102,14 +102,21 @@ class MasterTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if (segue.identifier == "detailSegue") {
+            //pass on the userID to the next screen
+            let indexPath:IndexPath = tableView.indexPathForSelectedRow!
+            let detailVC:DetailViewController = segue.destination as! DetailViewController
+            
+            detailVC.detailEvent = self.eventsArray?[indexPath.row]
+        }
     }
-    */
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "detailSegue", sender: self)
+    }
 
 }

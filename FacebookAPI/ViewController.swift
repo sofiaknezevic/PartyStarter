@@ -52,17 +52,15 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
         print("logged out")
     }
     
+    
+    //this needs to be changed
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
        
             // User is logged in, use 'accessToken' here.
-            performSegue(withIdentifier: "detailSegue", sender: self)
+            performSegue(withIdentifier: "tableViewSegue", sender: self)
             print("next VC")
 
 }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "detailSegue") {
-            //pass on the userID to the next screen
-        }
-    }
+
 }
 
