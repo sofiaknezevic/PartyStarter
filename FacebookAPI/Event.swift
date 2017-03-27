@@ -28,7 +28,7 @@ class Event: NSObject {
         
     //detailed json requests
     var coverPhoto: UIImage?
-    var coverPhotoURL: String?
+//    var coverPhotoURL: String?
     
     //try this out
     var admins: Array<Admins>?
@@ -74,7 +74,7 @@ class Event: NSObject {
         let eventImage = Event()
         
         //have the URL here
-        eventImage.coverPhotoURL = json["url"] as? String
+//        eventImage.coverPhotoURL = json["url"] as? String
 //        eventImage.coverPhoto = json["url"] as? UIImage
         
         return eventImage

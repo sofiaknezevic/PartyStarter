@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3CB986E78BA17C23FC655D39 /* Pods_FacebookAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E0E3DB7D652A0F501D4E82D /* Pods_FacebookAPI.framework */; };
 		70B253E3E678AC86C25BD6D5 /* Pods_FacebookAPITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3959D20BE097ED1583CA80A9 /* Pods_FacebookAPITests.framework */; };
+		D283C5D31E88B60000A40FBC /* CoverPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = D283C5D21E88B60000A40FBC /* CoverPhoto.swift */; };
 		D2CF578A1E83398C00090788 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CF57891E83398C00090788 /* AppDelegate.swift */; };
 		D2CF578C1E83398C00090788 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CF578B1E83398C00090788 /* ViewController.swift */; };
 		D2CF57911E83398C00090788 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2CF57901E83398C00090788 /* Assets.xcassets */; };
@@ -41,6 +42,7 @@
 		37926D5429B7C1CEEAB3A942 /* Pods-FacebookAPITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FacebookAPITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FacebookAPITests/Pods-FacebookAPITests.release.xcconfig"; sourceTree = "<group>"; };
 		3959D20BE097ED1583CA80A9 /* Pods_FacebookAPITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FacebookAPITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA0C0CDA7F39768C6F6BC99B /* Pods-FacebookAPI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FacebookAPI.release.xcconfig"; path = "Pods/Target Support Files/Pods-FacebookAPI/Pods-FacebookAPI.release.xcconfig"; sourceTree = "<group>"; };
+		D283C5D21E88B60000A40FBC /* CoverPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoverPhoto.swift; sourceTree = "<group>"; };
 		D2CF57861E83398C00090788 /* FacebookAPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FacebookAPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2CF57891E83398C00090788 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2CF578B1E83398C00090788 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				D2CF57A91E83430D00090788 /* DetailViewController.swift */,
 				D2D0F1861E8894DE000F2205 /* Attendees.swift */,
 				D2D0F1881E8894ED000F2205 /* Admins.swift */,
+				D283C5D21E88B60000A40FBC /* CoverPhoto.swift */,
 			);
 			path = FacebookAPI;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				D2CF578C1E83398C00090788 /* ViewController.swift in Sources */,
 				D2CF578A1E83398C00090788 /* AppDelegate.swift in Sources */,
 				D2CF57AE1E844BC300090788 /* Event.swift in Sources */,
+				D283C5D31E88B60000A40FBC /* CoverPhoto.swift in Sources */,
 				D2D0F1891E8894ED000F2205 /* Admins.swift in Sources */,
 				D2CF57B21E848C1E00090788 /* MasterTableViewController.swift in Sources */,
 				D2D0F1871E8894DE000F2205 /* Attendees.swift in Sources */,

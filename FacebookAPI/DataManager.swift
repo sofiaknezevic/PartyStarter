@@ -136,9 +136,10 @@ class DataManager: NSObject {
     
     //picture
     //doesn't go to the success result even when I put other graphPaths in there.
-    class func getEventImage(eventID: String, completion:@escaping (Event)->()) {
+    class func getEventImage(eventID: String, completion:@escaping (CoverPhoto)->()) {
         
-        let event = Event()
+
+        let coverPhoto = CoverPhoto()
         
         let connection = GraphRequestConnection()
         connection.add(GraphRequest(graphPath: "/\(eventID)/picture")) { httpResponse, result in
@@ -146,11 +147,14 @@ class DataManager: NSObject {
             switch result {
             case .success(let response):
                 
-                event.coverPhotoURL = response.dictionaryValue?["url"] as? String
                 
-                print(event.coverPhotoURL!)
+                let data = response.dictionaryValue?["data"] as? [String: Any]
                 
-                let url = URL(string: event.coverPhotoURL!)
+                print(data!)
+                
+                coverPhoto.photoURL = data?["url"] as? String
+                
+                let url = URL(string: coverPhoto.photoURL!)
                 
                 //then call the downloader task, have it return an image
                 let task = URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
@@ -160,9 +164,9 @@ class DataManager: NSObject {
                         do {
                             let image = UIImage(data: data!)
                             
-                            event.coverPhoto = image
+                            coverPhoto.photo = image
                             
-                            completion(event)
+                            completion(coverPhoto)
                         }
                     }
                 })

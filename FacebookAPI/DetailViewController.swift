@@ -17,15 +17,8 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var endTimeLabel: UILabel!
     @IBOutlet weak var eventNameLabel: UILabel!
     @IBOutlet weak var placeNameLabel: UILabel!
-    @IBOutlet weak var cityNameLabel: UILabel!
-    @IBOutlet weak var countryNameLabel: UILabel!
-    @IBOutlet weak var latitudeLabel: UILabel!
-    @IBOutlet weak var longitudeLabel: UILabel!
-    @IBOutlet weak var stateLabel: UILabel!
-    @IBOutlet weak var streetLabel: UILabel!
-    @IBOutlet weak var zipCodeLabel: UILabel!
     @IBOutlet weak var eventIDLabel: UILabel!
-    @IBOutlet weak var placeIDLabel: UILabel!
+    @IBOutlet weak var addresslabel: UILabel!
     @IBOutlet weak var startTimeLabel: UILabel!
     @IBOutlet weak var rsvpStatusLabel: UILabel!
     @IBOutlet weak var eventImageView: UIImageView!
@@ -52,11 +45,37 @@ class DetailViewController: UIViewController {
         eventDescriptionLabel.text = detailEvent?.eventDescription
         eventNameLabel.text = detailEvent?.eventName
         placeNameLabel.text = detailEvent?.placeName
-        eventIDLabel.text = detailEvent?.eventID
+        
+        let eventID = detailEvent?.eventID
+        eventIDLabel.text = "Event ID: \(eventID!)"
+        
+        let rsvpStatus = detailEvent?.rsvpStatus
+        rsvpStatusLabel.text = "RSVP Status: \(rsvpStatus!)"
+        
+        //need to convert this to a readable date
+        let startTime = detailEvent?.startTime
+        startTimeLabel.text = "Start time: \(startTime!)"
+        
+        let endTime = detailEvent?.endTime
+        endTimeLabel.text = "End time: \(endTime!)"
+        
+        //will this crash if any are nil? Need to do safe unwrap
+        let street = detailEvent?.street ?? ""
+        let cityName = detailEvent?.cityName ?? ""
+        let state = detailEvent?.state ?? ""
+        let zipCode = detailEvent?.zipCode ?? ""
+        addresslabel.text = "\(street), \(cityName) \(state), \(zipCode)"
+        
+        print(addresslabel.text!)
+        
+        //how to get this to work?
         eventImageView.image = detailEvent?.coverPhoto
         
         //want to show who the name of the attendees for the event
         attendeesLabel.text = detailEvent?.attendees?.description
+        adminsLabel.text = detailEvent?.admins?.description
+        
+        //if your user id is in the array of admins, then there needs to be something to tell you that you are the hose
         
         
     }
