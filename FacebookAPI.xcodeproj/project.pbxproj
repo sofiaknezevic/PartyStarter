@@ -102,6 +102,38 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		5D3264D21E899D920045B126 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D2CF57AB1E844BB600090788 /* User.swift */,
+				D2CF57AD1E844BC300090788 /* Event.swift */,
+				D2CF57AF1E844BCE00090788 /* DataManager.swift */,
+				D2CF57A91E83430D00090788 /* DetailViewController.swift */,
+				D2D0F1861E8894DE000F2205 /* Attendees.swift */,
+				D2D0F1881E8894ED000F2205 /* Admins.swift */,
+				D283C5D21E88B60000A40FBC /* CoverPhoto.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		5D3264D31E899DA90045B126 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D2CF578B1E83398C00090788 /* ViewController.swift */,
+				D2CF57B11E848C1E00090788 /* MasterTableViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		5D3264D41E899DB60045B126 /* StoryBoards */ = {
+			isa = PBXGroup;
+			children = (
+				D2CF57B31E84929600090788 /* Main.storyboard */,
+				D2CF57921E83398C00090788 /* LaunchScreen.storyboard */,
+			);
+			name = StoryBoards;
+			sourceTree = "<group>";
+		};
 		D2CF577D1E83398C00090788 = {
 			isa = PBXGroup;
 			children = (
@@ -126,19 +158,11 @@
 			isa = PBXGroup;
 			children = (
 				D2CF57891E83398C00090788 /* AppDelegate.swift */,
-				D2CF578B1E83398C00090788 /* ViewController.swift */,
-				D2CF57B31E84929600090788 /* Main.storyboard */,
 				D2CF57901E83398C00090788 /* Assets.xcassets */,
-				D2CF57921E83398C00090788 /* LaunchScreen.storyboard */,
 				D2CF57951E83398C00090788 /* Info.plist */,
-				D2CF57B11E848C1E00090788 /* MasterTableViewController.swift */,
-				D2CF57AB1E844BB600090788 /* User.swift */,
-				D2CF57AD1E844BC300090788 /* Event.swift */,
-				D2CF57AF1E844BCE00090788 /* DataManager.swift */,
-				D2CF57A91E83430D00090788 /* DetailViewController.swift */,
-				D2D0F1861E8894DE000F2205 /* Attendees.swift */,
-				D2D0F1881E8894ED000F2205 /* Admins.swift */,
-				D283C5D21E88B60000A40FBC /* CoverPhoto.swift */,
+				5D3264D41E899DB60045B126 /* StoryBoards */,
+				5D3264D31E899DA90045B126 /* Controllers */,
+				5D3264D21E899D920045B126 /* Models */,
 			);
 			path = FacebookAPI;
 			sourceTree = "<group>";

@@ -146,6 +146,24 @@
             </objects>
             <point key="canvasLocation" x="2556" y="121"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="2zt-j5-jk1">
+            <objects>
+                <viewController id="oHG-GZ-WmZ" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="95I-Xg-juZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="9CN-i1-E2K"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6jK-fW-aJs">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="itL-IW-wIF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1697" y="1012"/>
+        </scene>
         <!--Master Table View Controller-->
         <scene sceneID="bWy-MX-e9R">
             <objects>
@@ -181,6 +199,7 @@
                     <navigationItem key="navigationItem" id="MLJ-ZR-IYI"/>
                     <connections>
                         <segue destination="QeG-m6-pAw" kind="show" identifier="detailSegue" id="sLE-GT-coW"/>
+                        <segue destination="oHG-GZ-WmZ" kind="show" identifier="showHostView" id="vnZ-Bi-7pc"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g6p-7J-ioj" userLabel="First Responder" sceneMemberID="firstResponder"/>
