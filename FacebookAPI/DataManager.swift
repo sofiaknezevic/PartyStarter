@@ -68,7 +68,6 @@ class DataManager: NSObject {
     }
     
     //admins - array of admins, pass in eventID
-    //create an array of admins, then add them to the event that was selected
     class func getEventAdmins(eventID: String, completion:@escaping ([Admins]) -> ()) {
         
         var adminArray = [Admins]()
@@ -102,7 +101,7 @@ class DataManager: NSObject {
     }
     
     
-    //attending - array of attendees
+    //attending - array of attendees, pass in eventID
     class func getEventAttendees(eventID: String, completion:@escaping ([Attendees]) -> ()) {
     
         var attendeeArray = [Attendees]()

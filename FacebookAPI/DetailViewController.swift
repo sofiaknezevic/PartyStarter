@@ -41,6 +41,9 @@ class DetailViewController: UIViewController {
     
     
     func setup() -> Void {
+        
+        //will need to make sure that if one of these are nil, program does not crash.
+        
         //set the labels equal to what you pass in
         eventDescriptionLabel.text = detailEvent?.eventDescription
         eventNameLabel.text = detailEvent?.eventName
@@ -56,8 +59,9 @@ class DetailViewController: UIViewController {
         let startTime = detailEvent?.startTime
         startTimeLabel.text = "Start time: \(startTime!)"
         
-        let endTime = detailEvent?.endTime
-        endTimeLabel.text = "End time: \(endTime!)"
+        //need to convert this to a readable date
+        let endTime = detailEvent?.endTime ?? ""
+        endTimeLabel.text = "End time: \(endTime)"
         
         //will this crash if any are nil? Need to do safe unwrap
         let street = detailEvent?.street ?? ""
@@ -74,8 +78,6 @@ class DetailViewController: UIViewController {
         //want to show who the name of the attendees for the event
         attendeesLabel.text = detailEvent?.attendees?.description
         adminsLabel.text = detailEvent?.admins?.description
-        
-        //if your user id is in the array of admins, then there needs to be something to tell you that you are the hose
         
         
     }

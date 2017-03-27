@@ -26,11 +26,10 @@ class Event: NSObject {
     var startTime: String?
     var rsvpStatus: String?
         
-    //detailed json requests
+    //cover photo for event from facebook
     var coverPhoto: UIImage?
-//    var coverPhotoURL: String?
     
-    //try this out
+    //array of admin and attendee objects
     var admins: Array<Admins>?
     var attendees: Array<Attendees>?
 
@@ -68,17 +67,6 @@ class Event: NSObject {
         
         return newEvent
     }
-    
-    //this parse is to get the JSON of the photo for the event
-    class func parseEventImageFromJSON( _ json: [String: Any]) -> Event {
-        let eventImage = Event()
         
-        //have the URL here
-//        eventImage.coverPhotoURL = json["url"] as? String
-//        eventImage.coverPhoto = json["url"] as? UIImage
-        
-        return eventImage
-}
-    
 }
 

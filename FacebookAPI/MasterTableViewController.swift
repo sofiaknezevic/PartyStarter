@@ -71,7 +71,7 @@ class MasterTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         
-        //need to check if the user is a host of the event, then move them 
+        //need to check if the user is a host of the event, then move them to the target view controller
         
         if (segue.identifier == "detailSegue") {
             //pass on the userID to the next screen
