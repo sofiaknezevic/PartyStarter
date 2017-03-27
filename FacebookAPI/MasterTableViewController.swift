@@ -8,6 +8,7 @@
 
 import UIKit
 import FacebookCore
+import FirebaseAuth
 
 class MasterTableViewController: UITableViewController {
     
@@ -25,6 +26,19 @@ class MasterTableViewController: UITableViewController {
             self.userID = user.userID
             print(self.userID!)
         }
+        
+        
+        FIRAuth.auth()!.addStateDidChangeListener() { auth, user in
+            if user != nil {
+                // User is signed in.
+                print("start login success: " + (user?.email)! )
+                //self.performSegue(withIdentifier: loginToList, sender: nil)
+            } else {
+                // No user is signed in.
+                print("No user is signed in.")
+            }
+        }
+        
         
         //do I need to event pass anything in then?
     }
