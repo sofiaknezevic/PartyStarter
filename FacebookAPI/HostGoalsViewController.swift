@@ -9,6 +9,9 @@
 import UIKit
 
 class HostGoalsViewController: UIViewController {
+    
+    //pass forward the information from the selected event. Will use some info and pass forward to detail view controller
+    var hostEvent:Event?
 
     override func viewDidLoad() {
         super.viewDidLoad()
