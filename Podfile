@@ -12,8 +12,8 @@ target 'FacebookAPI' do
 
 #Pods for FireBase & Stripe
 pod ‘Stripe’
-pod ‘Firebase’
-
+pod 'Firebase/Auth'
+pod 'Firebase/Core'
   
 
   target 'FacebookAPITests' do

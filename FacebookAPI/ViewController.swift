@@ -10,16 +10,18 @@ import UIKit
 import FBSDKLoginKit
 import FacebookCore
 import FacebookLogin
+import FirebaseAuth
 
 
 class ViewController: UIViewController, FBSDKLoginButtonDelegate {
     
 
     var id:String?
-    
+    var logButton : FBSDKLoginButton = FBSDKLoginButton()
+
     override func viewDidLoad() {
   
-        let logButton : FBSDKLoginButton = FBSDKLoginButton()
+
         
         logButton.readPermissions = ["email", "public_profile", "user_friends", "user_events"]
 
@@ -55,12 +57,48 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     //this needs to be changed
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+        
        
-            // User is logged in, use 'accessToken' here.
-            performSegue(withIdentifier: "tableViewSegue", sender: self)
-            print("next VC")
 
-}
+        // User is logged in, use 'accessToken' here.
+//        performSegue(withIdentifier: "tableViewSegue", sender: self)
+//        print("next VC")
+
+        print("User Logged In")
+        
+        
+        self.logButton.isHidden = true
+//        loadingSpinner.startAnimating()
+        
+        if(error != nil) {
+            
+            // handle errors here
+            self.logButton.isHidden = false
+//            loadingSpinner.stopAnimating()
+            
+        }
+        else if (result.isCancelled) {
+            //handle the cancel event
+            self.logButton.isHidden = false
+//            loadingSpinner.stopAnimating()
+            
+        }
+            
+        else  {
+            let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+            
+            FIRAuth.auth()?.signIn(with: credential) { (user, error) in
+                // ...
+                
+                //UserDefaults.standard.set(FIRAuth.auth()!.currentUser!.uid, forKey: "uid")
+                
+                //UserDefaults.standard.synchronize()
+                print("User logged in to Firebase App!")
+                
+            }
+            
+        }
+    }
 
 }
 
