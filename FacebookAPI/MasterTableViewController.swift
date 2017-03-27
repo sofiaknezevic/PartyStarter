@@ -85,21 +85,27 @@ class MasterTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         //this is for the attendee page
-        if (segue.identifier == "detailSegue") {
+        if (segue.identifier == "showAttendingGoals") {
             //pass on the userID to the next screen
             let indexPath:IndexPath = tableView.indexPathForSelectedRow!
-            let detailVC:DetailViewController = segue.destination as! DetailViewController
             
-            detailVC.detailEvent = self.eventsArray?[indexPath.row]
+            let attendingGoalsVC:AttendingGoalsViewController = segue.destination as! AttendingGoalsViewController
+            attendingGoalsVC.attendingEvent = self.eventsArray?[indexPath.row]
+            
+            print("attending goals")
         }
         
         //perform this segue to the host view
-        if (segue.identifier == "showHostView") {
+        if (segue.identifier == "showHostGoals") {
             let indexPath:IndexPath = tableView.indexPathForSelectedRow!
-            let detailVC:DetailViewController = segue.destination as! DetailViewController
             
-            detailVC.detailEvent = self.eventsArray?[indexPath.row]
+            let hostGoalsVC:HostGoalsViewController = segue.destination as! HostGoalsViewController
+            hostGoalsVC.hostEvent = self.eventsArray?[indexPath.row]
+            
+            print("host goals")
+            
         }
+        
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -108,27 +114,41 @@ class MasterTableViewController: UITableViewController {
         
         let eventThatWasSelected = self.eventsArray?[indexPath.row].eventID
         
-        DataManager.getEventImage(eventID: eventThatWasSelected!) { image in
-            
-            self.eventsArray?[indexPath.row].coverPhoto = image.photo
-        }
+        //not configured yet
+//        DataManager.getEventImage(eventID: eventThatWasSelected!) { image in
+//            
+//            self.eventsArray?[indexPath.row].coverPhoto = image.photo
+//        }
         
         DataManager.getEventAttendees(eventID: eventThatWasSelected!) { attendees in
             
             self.eventsArray?[indexPath.row].attendees = attendees
-        }
+        
         
         DataManager.getEventAdmins(eventID: eventThatWasSelected!) { admins in
             
             self.eventsArray?[indexPath.row].admins = admins
             
+            var isAdmin:Bool = false
+            
+            //check to see if the user is an admin
+            for admin in admins {
+                
+                if (admin.adminID == self.userID) {
+                    isAdmin = true
+                }
+            }
+            
+            if (isAdmin == true) {
+                self.performSegue(withIdentifier: "showHostGoals", sender: self)
+            } else {
+                self.performSegue(withIdentifier: "showAttendingGoals", sender: self)
+
+            }
+            
+        }
         }
         
-        //if userID is equal to a adminID, perform host segue, else perform other segue
-        
-        //check to see if user ID is is equal to one of the admin IDs. Need to do a for loop to check for it.
-        
-        performSegue(withIdentifier: "detailSegue", sender: self)
     }
 
 }
