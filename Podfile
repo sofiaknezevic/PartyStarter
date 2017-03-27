@@ -10,6 +10,10 @@ target 'FacebookAPI' do
   pod 'FacebookLogin'
   pod 'FacebookShare'
 
+#Pods for FireBase & Stripe
+pod ‘Stripe’
+pod ‘Firebase’
+
   
 
   target 'FacebookAPITests' do
