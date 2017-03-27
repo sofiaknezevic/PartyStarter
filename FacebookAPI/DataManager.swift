@@ -23,8 +23,8 @@ class DataManager: NSObject {
             
             switch result {
             case .success(let response):
-                user.name = response.dictionaryValue?["id"] as? String
-                user.userID = response.dictionaryValue?["name"] as? String
+                user.userID = response.dictionaryValue?["id"] as? String
+                user.name = response.dictionaryValue?["name"] as? String
                 completion(user)
                 
             case .failed(let error):
