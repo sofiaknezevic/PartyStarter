@@ -11,6 +11,7 @@ import FacebookCore
 
 class MasterTableViewController: UITableViewController {
     
+    @IBOutlet weak var eventSegmentedDisplay: UISegmentedControl!
     var eventsArray:[Event]?
     var userID:String?
     
@@ -119,16 +120,30 @@ class MasterTableViewController: UITableViewController {
             
             //need to call the thing here. The event that we pass in is equal to this indexpath.row's event
             let eventThatWasSelected = self.eventsArray?[indexPath.row].eventID
+//            print(eventThatWasSelected)
             
-            //pass this event id into the function, set the detailVC.detailEvent equal to that
-                    DataManager.getEventDetails(eventID: eventThatWasSelected!) { event in
             
-                        //code
-                        detailVC.detailEvent = event
-    
-                    }
+//            DataManager.getEventImage { event in
+//             
+////                detailVC.detailEvent?.coverPhoto = event.coverPhoto
+//            }
+            
+            DataManager.getEventAdmins(eventID: eventThatWasSelected!) { admins in
+                //need to set the admins for the event to the admins that you got
+                self.eventsArray?[indexPath.row].admins = admins
+                
+            }
+            
+            DataManager.getEventAttendees(eventID: eventThatWasSelected!) { attendees in
+                //what do I do in this block here?
+                self.eventsArray?[indexPath.row].attendees = attendees
+            }
+            
+            detailVC.detailEvent = self.eventsArray?[indexPath.row]
+
         }
     }
+    
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "detailSegue", sender: self)

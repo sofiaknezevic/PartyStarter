@@ -147,15 +147,36 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Hy-RK-d0M">
+                                <rect key="frame" x="0.0" y="64" width="148" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9BU-JJ-Zow">
+                                <rect key="frame" x="16" y="574" width="343" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XGY-S5-lPX">
+                                <rect key="frame" x="16" y="603" width="343" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="adminsLabel" destination="XGY-S5-lPX" id="1GB-Wh-fRC"/>
+                        <outlet property="attendeesLabel" destination="9BU-JJ-Zow" id="0ie-4I-GvI"/>
                         <outlet property="cityNameLabel" destination="lm6-Tt-y7N" id="Hmb-La-ZeL"/>
                         <outlet property="countryNameLabel" destination="F2O-n2-NHx" id="HTb-nv-Hxx"/>
                         <outlet property="endTimeLabel" destination="B88-gk-AP7" id="eIg-pQ-e82"/>
                         <outlet property="eventDescriptionLabel" destination="BLl-W2-jey" id="nDt-rn-M9C"/>
                         <outlet property="eventIDLabel" destination="HDt-P9-9EL" id="oLx-dT-AGX"/>
+                        <outlet property="eventImageView" destination="0Hy-RK-d0M" id="sxL-9h-6nV"/>
                         <outlet property="eventNameLabel" destination="jhX-sY-cIj" id="dHQ-Ah-HNc"/>
                         <outlet property="latitudeLabel" destination="7rb-i2-QSg" id="q3w-wV-b68"/>
                         <outlet property="longitudeLabel" destination="GAg-9U-BqW" id="zPs-pT-7gn"/>
@@ -180,9 +201,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <segmentedControl key="tableHeaderView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="Dxa-yQ-3lc">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Attending"/>
+                                <segment title="Hosting"/>
+                            </segments>
+                        </segmentedControl>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="L2m-lY-lvh" style="IBUITableViewCellStyleDefault" id="eSq-Ls-Mke">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="58" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eSq-Ls-Mke" id="SzC-30-abp">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -206,12 +235,13 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="MLJ-ZR-IYI"/>
                     <connections>
+                        <outlet property="eventSegmentedDisplay" destination="Dxa-yQ-3lc" id="Aer-gu-Lcn"/>
                         <segue destination="QeG-m6-pAw" kind="show" identifier="detailSegue" id="sLE-GT-coW"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g6p-7J-ioj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1788" y="120.98950524737631"/>
+            <point key="canvasLocation" x="1698" y="121"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Kdy-vb-drw">

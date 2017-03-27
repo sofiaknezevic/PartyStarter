@@ -28,7 +28,10 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var placeIDLabel: UILabel!
     @IBOutlet weak var startTimeLabel: UILabel!
     @IBOutlet weak var rsvpStatusLabel: UILabel!
-
+    @IBOutlet weak var eventImageView: UIImageView!
+    @IBOutlet weak var attendeesLabel: UILabel!
+    @IBOutlet weak var adminsLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
                 
@@ -37,6 +40,10 @@ class DetailViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         setup()
+        
+        print("this are the admins: \(detailEvent?.admins)")
+        print("this are the attendees: \(detailEvent?.attendees)")
+
     }
     
     
@@ -46,7 +53,11 @@ class DetailViewController: UIViewController {
         eventNameLabel.text = detailEvent?.eventName
         placeNameLabel.text = detailEvent?.placeName
         eventIDLabel.text = detailEvent?.eventID
+        eventImageView.image = detailEvent?.coverPhoto
         
-        //what more do we need?
+        //want to show who the name of the attendees for the event
+        attendeesLabel.text = detailEvent?.attendees?.description
+        
+        
     }
 }

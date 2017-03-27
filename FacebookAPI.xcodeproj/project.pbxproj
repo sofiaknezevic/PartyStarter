@@ -20,6 +20,8 @@
 		D2CF57B01E844BCE00090788 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CF57AF1E844BCE00090788 /* DataManager.swift */; };
 		D2CF57B21E848C1E00090788 /* MasterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CF57B11E848C1E00090788 /* MasterTableViewController.swift */; };
 		D2CF57B41E84929600090788 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2CF57B31E84929600090788 /* Main.storyboard */; };
+		D2D0F1871E8894DE000F2205 /* Attendees.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D0F1861E8894DE000F2205 /* Attendees.swift */; };
+		D2D0F1891E8894ED000F2205 /* Admins.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D0F1881E8894ED000F2205 /* Admins.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,8 @@
 		D2CF57AF1E844BCE00090788 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		D2CF57B11E848C1E00090788 /* MasterTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterTableViewController.swift; sourceTree = "<group>"; };
 		D2CF57B31E84929600090788 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		D2D0F1861E8894DE000F2205 /* Attendees.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attendees.swift; sourceTree = "<group>"; };
+		D2D0F1881E8894ED000F2205 /* Admins.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Admins.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +134,8 @@
 				D2CF57AD1E844BC300090788 /* Event.swift */,
 				D2CF57AF1E844BCE00090788 /* DataManager.swift */,
 				D2CF57A91E83430D00090788 /* DetailViewController.swift */,
+				D2D0F1861E8894DE000F2205 /* Attendees.swift */,
+				D2D0F1881E8894ED000F2205 /* Admins.swift */,
 			);
 			path = FacebookAPI;
 			sourceTree = "<group>";
@@ -353,7 +359,9 @@
 				D2CF578C1E83398C00090788 /* ViewController.swift in Sources */,
 				D2CF578A1E83398C00090788 /* AppDelegate.swift in Sources */,
 				D2CF57AE1E844BC300090788 /* Event.swift in Sources */,
+				D2D0F1891E8894ED000F2205 /* Admins.swift in Sources */,
 				D2CF57B21E848C1E00090788 /* MasterTableViewController.swift in Sources */,
+				D2D0F1871E8894DE000F2205 /* Attendees.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

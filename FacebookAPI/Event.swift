@@ -26,27 +26,15 @@ class Event: NSObject {
     var startTime: String?
     var rsvpStatus: String?
         
-    //what more I need
-//    var hostID: String?
-//    var coverPhoto: UIImage?
-//    var attendingCount: Int?
-    //want to get names of who is attending
+    //detailed json requests
+    var coverPhoto: UIImage?
+    var coverPhotoURL: String?
     
-    
-    //this will be the information that is visible to the user on the table view
-    class func parseDataForTableViewFromJSON(_ json: [String:Any]) -> Event {
-        
-        let tableViewEvent = Event()
-        
-        tableViewEvent.eventName = json["name"] as? String
-        tableViewEvent.eventID = json["id"] as? String
-        
-        return tableViewEvent
-        
-    }
-    
-    
-    //this is the info that is visible to the user when the detail view is selected
+    //try this out
+    var admins: Array<Admins>?
+    var attendees: Array<Attendees>?
+
+    //this parse is used to get most of the data for the event
     class func parseDataFromJSON( _ json: [String: Any]) -> Event {
 
         let newEvent = Event()
@@ -80,5 +68,17 @@ class Event: NSObject {
         
         return newEvent
     }
+    
+    //this parse is to get the JSON of the photo for the event
+    class func parseEventImageFromJSON( _ json: [String: Any]) -> Event {
+        let eventImage = Event()
+        
+        //have the URL here
+        eventImage.coverPhotoURL = json["url"] as? String
+//        eventImage.coverPhoto = json["url"] as? UIImage
+        
+        return eventImage
+}
+    
 }
 
