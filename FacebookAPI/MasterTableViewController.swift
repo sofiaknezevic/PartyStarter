@@ -70,40 +70,50 @@ class MasterTableViewController: UITableViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        
-        //need to check if the user is a host of the event, then move them to the target view controller
-        
+        //this is for the attendee page
         if (segue.identifier == "detailSegue") {
             //pass on the userID to the next screen
             let indexPath:IndexPath = tableView.indexPathForSelectedRow!
             let detailVC:DetailViewController = segue.destination as! DetailViewController
             
-            //need to call the thing here. The event that we pass in is equal to this indexpath.row's event
-            let eventThatWasSelected = self.eventsArray?[indexPath.row].eventID            
-            
-            DataManager.getEventImage(eventID: eventThatWasSelected!) { image in
-             
-                    self.eventsArray?[indexPath.row].coverPhoto = image.photo
-            }
-            
-            DataManager.getEventAdmins(eventID: eventThatWasSelected!) { admins in
-                //need to set the admins for the event to the admins that you got
-                self.eventsArray?[indexPath.row].admins = admins
-                
-            }
-            
-            DataManager.getEventAttendees(eventID: eventThatWasSelected!) { attendees in
-                //what do I do in this block here?
-                self.eventsArray?[indexPath.row].attendees = attendees
-            }
+            detailVC.detailEvent = self.eventsArray?[indexPath.row]
+        }
+        
+        //perform this segue to the host view
+        if (segue.identifier == "showHostView") {
+            let indexPath:IndexPath = tableView.indexPathForSelectedRow!
+            let detailVC:DetailViewController = segue.destination as! DetailViewController
             
             detailVC.detailEvent = self.eventsArray?[indexPath.row]
-
         }
     }
     
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        //need to do the requests here when the cell is selected. Refactor to move network requests to the target view controller
+        
+        let eventThatWasSelected = self.eventsArray?[indexPath.row].eventID
+        
+        DataManager.getEventImage(eventID: eventThatWasSelected!) { image in
+            
+            self.eventsArray?[indexPath.row].coverPhoto = image.photo
+        }
+        
+        DataManager.getEventAttendees(eventID: eventThatWasSelected!) { attendees in
+            
+            self.eventsArray?[indexPath.row].attendees = attendees
+        }
+        
+        DataManager.getEventAdmins(eventID: eventThatWasSelected!) { admins in
+            
+            self.eventsArray?[indexPath.row].admins = admins
+            
+        }
+        
+        //if userID is equal to a adminID, perform host segue, else perform other segue
+        
+        //check to see if user ID is is equal to one of the admin IDs. Need to do a for loop to check for it.
+        
         performSegue(withIdentifier: "detailSegue", sender: self)
     }
 
