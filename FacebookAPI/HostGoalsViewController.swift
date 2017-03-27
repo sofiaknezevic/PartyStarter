@@ -20,8 +20,16 @@ class HostGoalsViewController: UIViewController {
     }
 
     @IBAction func eventDetailsPushed(_ sender: UIButton) {
-        
+
         performSegue(withIdentifier: "showEventDetail", sender: self)
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "showEventDetail") {
+            let detailVC:DetailViewController = segue.destination as! DetailViewController
+            detailVC.detailEvent = hostEvent
+            
+        }
     }
 }
