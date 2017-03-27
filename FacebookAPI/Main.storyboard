@@ -111,7 +111,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jhX-sY-cIj">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jhX-sY-cIj">
                                 <rect key="frame" x="14" y="177" width="347" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -144,25 +144,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OaS-fh-Sk6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2556" y="121"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="2zt-j5-jk1">
-            <objects>
-                <viewController id="oHG-GZ-WmZ" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="95I-Xg-juZ"/>
-                        <viewControllerLayoutGuide type="bottom" id="9CN-i1-E2K"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="6jK-fW-aJs">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="itL-IW-wIF" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1697" y="1012"/>
+            <point key="canvasLocation" x="2662" y="488"/>
         </scene>
         <!--Master Table View Controller-->
         <scene sceneID="bWy-MX-e9R">
@@ -199,12 +181,29 @@
                     <navigationItem key="navigationItem" id="MLJ-ZR-IYI"/>
                     <connections>
                         <segue destination="QeG-m6-pAw" kind="show" identifier="detailSegue" id="sLE-GT-coW"/>
-                        <segue destination="oHG-GZ-WmZ" kind="show" identifier="showHostView" id="vnZ-Bi-7pc"/>
+                        <segue destination="xtY-rn-xOa" kind="show" identifier="showHostGoals" id="k16-yF-2Bo"/>
+                        <segue destination="0nA-Ac-PUg" kind="show" identifier="showAttendingGoals" id="8gN-jB-Jn8"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g6p-7J-ioj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1698" y="121"/>
+        </scene>
+        <!--HostGoals-->
+        <scene sceneID="n9a-aE-SNg">
+            <objects>
+                <viewControllerPlaceholder storyboardName="HostGoals" id="xtY-rn-xOa" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XxR-AP-GSo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2362" y="-456"/>
+        </scene>
+        <!--AttendingGoals-->
+        <scene sceneID="BPo-5u-TAa">
+            <objects>
+                <viewControllerPlaceholder storyboardName="AttendingGoals" id="0nA-Ac-PUg" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sQA-7Y-UED" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2776" y="-73"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Kdy-vb-drw">

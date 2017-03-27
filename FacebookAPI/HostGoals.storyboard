@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VNq-5o-ai5">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Host Goals View Controller-->
+        <scene sceneID="Phd-Gn-ie8">
+            <objects>
+                <viewController id="VNq-5o-ai5" customClass="HostGoalsViewController" customModule="FacebookAPI" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="OkQ-BO-nOs"/>
+                        <viewControllerLayoutGuide type="bottom" id="xw0-2Z-p1r"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6XA-xR-8yJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6QQ-fO-EQw">
+                                <rect key="frame" x="122" y="318" width="131" height="30"/>
+                                <state key="normal" title="Show Event Details"/>
+                                <connections>
+                                    <action selector="eventDetailsPushed:" destination="VNq-5o-ai5" eventType="touchUpInside" id="rlA-Bz-0Kz"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6QQ-fO-EQw" firstAttribute="centerY" secondItem="6XA-xR-8yJ" secondAttribute="centerY" id="5aB-YF-Ks1"/>
+                            <constraint firstItem="6QQ-fO-EQw" firstAttribute="centerX" secondItem="6XA-xR-8yJ" secondAttribute="centerX" id="ueb-xq-Qdj"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <segue destination="ZvS-FE-wWX" kind="show" identifier="connectToStripe" id="QZl-0X-9e0"/>
+                        <segue destination="wu1-iD-kKF" kind="show" identifier="showEventDetail" id="4tL-bw-DIU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bmx-a5-XPD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="76" y="81"/>
+        </scene>
+        <!--Stripe-->
+        <scene sceneID="ApG-lt-TbH">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Stripe" id="ZvS-FE-wWX" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qxs-Fv-oG5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="774" y="-207"/>
+        </scene>
+        <!--EventDetail-->
+        <scene sceneID="pnt-Bd-r87">
+            <objects>
+                <viewControllerPlaceholder storyboardName="EventDetail" id="wu1-iD-kKF" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iol-v0-UxV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="773" y="304"/>
+        </scene>
+    </scenes>
+</document>
