@@ -28,6 +28,14 @@
                                     <action selector="eventDetailsPushed:" destination="VNq-5o-ai5" eventType="touchUpInside" id="rlA-Bz-0Kz"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ieb-6B-G5E">
+                                <rect key="frame" x="167" y="356" width="41" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Stripe"/>
+                                <connections>
+                                    <action selector="connectToStripePushed:" destination="VNq-5o-ai5" eventType="touchUpInside" id="f70-hf-5VZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -36,7 +44,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <segue destination="ZvS-FE-wWX" kind="show" identifier="connectToStripe" id="QZl-0X-9e0"/>
+                        <segue destination="ZvS-FE-wWX" kind="presentation" identifier="connectToStripe" id="QZl-0X-9e0"/>
                         <segue destination="wu1-iD-kKF" kind="show" identifier="showEventDetail" id="4tL-bw-DIU"/>
                     </connections>
                 </viewController>

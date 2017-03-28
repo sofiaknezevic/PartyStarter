@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AttendingGoalsViewController: UIViewController {
+class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     //information for the event that the user is attending
     var attendingEvent:Event?
@@ -16,23 +16,59 @@ class AttendingGoalsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        setUpAttendingGoalsVCWith(event: attendingEvent!)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func setUpAttendingGoalsVCWith(event:Event) -> Void {
+        
+        self.navigationItem.title = event.eventName
+        let detailInfoButton = UIBarButtonItem(image: #imageLiteral(resourceName: "infoVector"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(detailInformationButtonPushed))
+        
+        self.navigationItem.rightBarButtonItem = detailInfoButton
+        
+        
+    }
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        
+        return 1
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if attendingEvent?.partyItems?.count == nil || attendingEvent?.partyItems?.count == 0 {
+            
+            return 1
+            
+        }
+        
+        return (attendingEvent?.partyItems!.count)!
+        
     }
-    */
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "attendingGoalsCell", for: indexPath) as! AttendingGoalsTableViewCell
+        cell.configureCellWith(event: attendingEvent!, indexPath:indexPath.row)
+        return cell
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "showEventDetail") {
+            let detailVC:DetailViewController = segue.destination as! DetailViewController
+            detailVC.detailEvent = attendingEvent
+            
+        }
+    }
+    
+    func detailInformationButtonPushed() -> Void
+    {
+        performSegue(withIdentifier: "showEventDetail", sender: self)
+        
+    }
+
 
 }

@@ -15,6 +15,13 @@
 		5D3264E01E89B0340045B126 /* AttendingGoals.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D3264DF1E89B0340045B126 /* AttendingGoals.storyboard */; };
 		5D3264E21E89B0D90045B126 /* AttendingGoalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3264E11E89B0D90045B126 /* AttendingGoalsViewController.swift */; };
 		5D3264E61E89B12D0045B126 /* EventDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D3264E51E89B12D0045B126 /* EventDetail.storyboard */; };
+		5D5EC3011E8A2541000D9ADC /* AttendingGoalsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5EC3001E8A2541000D9ADC /* AttendingGoalsTableViewCell.swift */; };
+		5D5EC3031E8A27AD000D9ADC /* PartyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5EC3021E8A27AD000D9ADC /* PartyItem.swift */; };
+		5DB4B16F1E89D21700D7EF66 /* StripeAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB4B16E1E89D21700D7EF66 /* StripeAPIClient.swift */; };
+		5DB4B1711E89D4AD00D7EF66 /* ConnectToStripeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB4B1701E89D4AD00D7EF66 /* ConnectToStripeViewController.swift */; };
+		5DB4B1731E89D76F00D7EF66 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB4B1721E89D76F00D7EF66 /* NetworkManager.swift */; };
+		5DB4B1751E89D91E00D7EF66 /* StripeConnectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB4B1741E89D91E00D7EF66 /* StripeConnectManager.swift */; };
+		5DD151441E8B02C100BB07DF /* ContributeToGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD151431E8B02C100BB07DF /* ContributeToGoalViewController.swift */; };
 		70B253E3E678AC86C25BD6D5 /* Pods_FacebookAPITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3959D20BE097ED1583CA80A9 /* Pods_FacebookAPITests.framework */; };
 		D283C5D31E88B60000A40FBC /* CoverPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = D283C5D21E88B60000A40FBC /* CoverPhoto.swift */; };
 		D2CF578A1E83398C00090788 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CF57891E83398C00090788 /* AppDelegate.swift */; };
@@ -31,6 +38,7 @@
 		D2D0F1871E8894DE000F2205 /* Attendees.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D0F1861E8894DE000F2205 /* Attendees.swift */; };
 		D2D0F1891E8894ED000F2205 /* Admins.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D0F1881E8894ED000F2205 /* Admins.swift */; };
 		DAF105E91E89B498008F0FD6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DAF105E81E89B498008F0FD6 /* GoogleService-Info.plist */; };
+		DAF105ED1E89C4F3008F0FD6 /* FirebaseUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF105EC1E89C4F3008F0FD6 /* FirebaseUser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +64,13 @@
 		5D3264DF1E89B0340045B126 /* AttendingGoals.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AttendingGoals.storyboard; sourceTree = "<group>"; };
 		5D3264E11E89B0D90045B126 /* AttendingGoalsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttendingGoalsViewController.swift; sourceTree = "<group>"; };
 		5D3264E51E89B12D0045B126 /* EventDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EventDetail.storyboard; sourceTree = "<group>"; };
+		5D5EC3001E8A2541000D9ADC /* AttendingGoalsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttendingGoalsTableViewCell.swift; sourceTree = "<group>"; };
+		5D5EC3021E8A27AD000D9ADC /* PartyItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyItem.swift; sourceTree = "<group>"; };
+		5DB4B16E1E89D21700D7EF66 /* StripeAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StripeAPIClient.swift; sourceTree = "<group>"; };
+		5DB4B1701E89D4AD00D7EF66 /* ConnectToStripeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectToStripeViewController.swift; sourceTree = "<group>"; };
+		5DB4B1721E89D76F00D7EF66 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		5DB4B1741E89D91E00D7EF66 /* StripeConnectManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StripeConnectManager.swift; sourceTree = "<group>"; };
+		5DD151431E8B02C100BB07DF /* ContributeToGoalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContributeToGoalViewController.swift; sourceTree = "<group>"; };
 		CA0C0CDA7F39768C6F6BC99B /* Pods-FacebookAPI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FacebookAPI.release.xcconfig"; path = "Pods/Target Support Files/Pods-FacebookAPI/Pods-FacebookAPI.release.xcconfig"; sourceTree = "<group>"; };
 		D283C5D21E88B60000A40FBC /* CoverPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoverPhoto.swift; sourceTree = "<group>"; };
 		D2CF57861E83398C00090788 /* FacebookAPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FacebookAPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,6 +91,7 @@
 		D2D0F1861E8894DE000F2205 /* Attendees.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attendees.swift; sourceTree = "<group>"; };
 		D2D0F1881E8894ED000F2205 /* Admins.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Admins.swift; sourceTree = "<group>"; };
 		DAF105E81E89B498008F0FD6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DAF105EC1E89C4F3008F0FD6 /* FirebaseUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseUser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,12 +137,18 @@
 		5D3264D21E899D920045B126 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D2CF57891E83398C00090788 /* AppDelegate.swift */,
 				D2CF57AB1E844BB600090788 /* User.swift */,
 				D2CF57AD1E844BC300090788 /* Event.swift */,
 				D2CF57AF1E844BCE00090788 /* DataManager.swift */,
 				D2D0F1861E8894DE000F2205 /* Attendees.swift */,
 				D2D0F1881E8894ED000F2205 /* Admins.swift */,
 				D283C5D21E88B60000A40FBC /* CoverPhoto.swift */,
+				DAF105EC1E89C4F3008F0FD6 /* FirebaseUser.swift */,
+				5DB4B16E1E89D21700D7EF66 /* StripeAPIClient.swift */,
+				5DB4B1721E89D76F00D7EF66 /* NetworkManager.swift */,
+				5DB4B1741E89D91E00D7EF66 /* StripeConnectManager.swift */,
+				5D5EC3021E8A27AD000D9ADC /* PartyItem.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -137,9 +159,11 @@
 				D2CF578B1E83398C00090788 /* ViewController.swift */,
 				D2CF57A91E83430D00090788 /* DetailViewController.swift */,
 				D2CF57B11E848C1E00090788 /* MasterTableViewController.swift */,
-				5D3264D71E89A6EA0045B126 /* StripeAuthorizationViewController.swift */,
 				5D3264DB1E89AF5A0045B126 /* HostGoalsViewController.swift */,
 				5D3264E11E89B0D90045B126 /* AttendingGoalsViewController.swift */,
+				5D3264D71E89A6EA0045B126 /* StripeAuthorizationViewController.swift */,
+				5DB4B1701E89D4AD00D7EF66 /* ConnectToStripeViewController.swift */,
+				5DD151431E8B02C100BB07DF /* ContributeToGoalViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -155,6 +179,14 @@
 				5D3264E51E89B12D0045B126 /* EventDetail.storyboard */,
 			);
 			name = StoryBoards;
+			sourceTree = "<group>";
+		};
+		5D5EC2FF1E8A2522000D9ADC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5D5EC3001E8A2541000D9ADC /* AttendingGoalsTableViewCell.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		D2CF577D1E83398C00090788 = {
@@ -180,10 +212,10 @@
 		D2CF57881E83398C00090788 /* FacebookAPI */ = {
 			isa = PBXGroup;
 			children = (
-				D2CF57891E83398C00090788 /* AppDelegate.swift */,
 				D2CF57901E83398C00090788 /* Assets.xcassets */,
 				D2CF57951E83398C00090788 /* Info.plist */,
 				DAF105E81E89B498008F0FD6 /* GoogleService-Info.plist */,
+				5D5EC2FF1E8A2522000D9ADC /* Views */,
 				5D3264D41E899DB60045B126 /* StoryBoards */,
 				5D3264D31E899DA90045B126 /* Controllers */,
 				5D3264D21E899D920045B126 /* Models */,
@@ -409,19 +441,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DD151441E8B02C100BB07DF /* ContributeToGoalViewController.swift in Sources */,
 				D2CF57AC1E844BB600090788 /* User.swift in Sources */,
 				5D3264D81E89A6EA0045B126 /* StripeAuthorizationViewController.swift in Sources */,
 				D2CF57B01E844BCE00090788 /* DataManager.swift in Sources */,
+				DAF105ED1E89C4F3008F0FD6 /* FirebaseUser.swift in Sources */,
+				5DB4B1751E89D91E00D7EF66 /* StripeConnectManager.swift in Sources */,
 				D2CF57AA1E83430D00090788 /* DetailViewController.swift in Sources */,
+				5DB4B1731E89D76F00D7EF66 /* NetworkManager.swift in Sources */,
+				5DB4B16F1E89D21700D7EF66 /* StripeAPIClient.swift in Sources */,
 				D2CF578C1E83398C00090788 /* ViewController.swift in Sources */,
 				D2CF578A1E83398C00090788 /* AppDelegate.swift in Sources */,
+				5D5EC3031E8A27AD000D9ADC /* PartyItem.swift in Sources */,
 				D2CF57AE1E844BC300090788 /* Event.swift in Sources */,
 				5D3264DC1E89AF5A0045B126 /* HostGoalsViewController.swift in Sources */,
 				D283C5D31E88B60000A40FBC /* CoverPhoto.swift in Sources */,
 				5D3264E21E89B0D90045B126 /* AttendingGoalsViewController.swift in Sources */,
 				D2D0F1891E8894ED000F2205 /* Admins.swift in Sources */,
+				5DB4B1711E89D4AD00D7EF66 /* ConnectToStripeViewController.swift in Sources */,
 				D2CF57B21E848C1E00090788 /* MasterTableViewController.swift in Sources */,
 				D2D0F1871E8894DE000F2205 /* Attendees.swift in Sources */,
+				5D5EC3011E8A2541000D9ADC /* AttendingGoalsTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
