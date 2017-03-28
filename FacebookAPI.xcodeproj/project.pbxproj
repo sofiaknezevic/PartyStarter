@@ -21,6 +21,7 @@
 		5DB4B1711E89D4AD00D7EF66 /* ConnectToStripeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB4B1701E89D4AD00D7EF66 /* ConnectToStripeViewController.swift */; };
 		5DB4B1731E89D76F00D7EF66 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB4B1721E89D76F00D7EF66 /* NetworkManager.swift */; };
 		5DB4B1751E89D91E00D7EF66 /* StripeConnectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB4B1741E89D91E00D7EF66 /* StripeConnectManager.swift */; };
+		5DD151441E8B02C100BB07DF /* ContributeToGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD151431E8B02C100BB07DF /* ContributeToGoalViewController.swift */; };
 		70B253E3E678AC86C25BD6D5 /* Pods_FacebookAPITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3959D20BE097ED1583CA80A9 /* Pods_FacebookAPITests.framework */; };
 		D283C5D31E88B60000A40FBC /* CoverPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = D283C5D21E88B60000A40FBC /* CoverPhoto.swift */; };
 		D2CF578A1E83398C00090788 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CF57891E83398C00090788 /* AppDelegate.swift */; };
@@ -69,6 +70,7 @@
 		5DB4B1701E89D4AD00D7EF66 /* ConnectToStripeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectToStripeViewController.swift; sourceTree = "<group>"; };
 		5DB4B1721E89D76F00D7EF66 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		5DB4B1741E89D91E00D7EF66 /* StripeConnectManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StripeConnectManager.swift; sourceTree = "<group>"; };
+		5DD151431E8B02C100BB07DF /* ContributeToGoalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContributeToGoalViewController.swift; sourceTree = "<group>"; };
 		CA0C0CDA7F39768C6F6BC99B /* Pods-FacebookAPI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FacebookAPI.release.xcconfig"; path = "Pods/Target Support Files/Pods-FacebookAPI/Pods-FacebookAPI.release.xcconfig"; sourceTree = "<group>"; };
 		D283C5D21E88B60000A40FBC /* CoverPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoverPhoto.swift; sourceTree = "<group>"; };
 		D2CF57861E83398C00090788 /* FacebookAPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FacebookAPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -135,6 +137,7 @@
 		5D3264D21E899D920045B126 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D2CF57891E83398C00090788 /* AppDelegate.swift */,
 				D2CF57AB1E844BB600090788 /* User.swift */,
 				D2CF57AD1E844BC300090788 /* Event.swift */,
 				D2CF57AF1E844BCE00090788 /* DataManager.swift */,
@@ -160,6 +163,7 @@
 				5D3264E11E89B0D90045B126 /* AttendingGoalsViewController.swift */,
 				5D3264D71E89A6EA0045B126 /* StripeAuthorizationViewController.swift */,
 				5DB4B1701E89D4AD00D7EF66 /* ConnectToStripeViewController.swift */,
+				5DD151431E8B02C100BB07DF /* ContributeToGoalViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -208,7 +212,6 @@
 		D2CF57881E83398C00090788 /* FacebookAPI */ = {
 			isa = PBXGroup;
 			children = (
-				D2CF57891E83398C00090788 /* AppDelegate.swift */,
 				D2CF57901E83398C00090788 /* Assets.xcassets */,
 				D2CF57951E83398C00090788 /* Info.plist */,
 				DAF105E81E89B498008F0FD6 /* GoogleService-Info.plist */,
@@ -438,6 +441,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DD151441E8B02C100BB07DF /* ContributeToGoalViewController.swift in Sources */,
 				D2CF57AC1E844BB600090788 /* User.swift in Sources */,
 				5D3264D81E89A6EA0045B126 /* StripeAuthorizationViewController.swift in Sources */,
 				D2CF57B01E844BCE00090788 /* DataManager.swift in Sources */,
