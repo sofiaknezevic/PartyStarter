@@ -135,6 +135,7 @@
 		5D3264D21E899D920045B126 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D2CF57891E83398C00090788 /* AppDelegate.swift */,
 				D2CF57AB1E844BB600090788 /* User.swift */,
 				D2CF57AD1E844BC300090788 /* Event.swift */,
 				D2CF57AF1E844BCE00090788 /* DataManager.swift */,
@@ -208,7 +209,6 @@
 		D2CF57881E83398C00090788 /* FacebookAPI */ = {
 			isa = PBXGroup;
 			children = (
-				D2CF57891E83398C00090788 /* AppDelegate.swift */,
 				D2CF57901E83398C00090788 /* Assets.xcassets */,
 				D2CF57951E83398C00090788 /* Info.plist */,
 				DAF105E81E89B498008F0FD6 /* GoogleService-Info.plist */,

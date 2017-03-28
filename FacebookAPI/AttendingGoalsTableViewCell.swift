@@ -10,31 +10,43 @@ import UIKit
 
 class AttendingGoalsTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var imageContainerView: UIView!
-    @IBOutlet weak var attendingGoalsImageView: UIImageView!
-
-    @IBOutlet weak var attendingGoalsLabel: UILabel!
-    @IBOutlet weak var attendingGoalsProgressBar: UIProgressView!
-    @IBOutlet weak var attendingGoalsPercentFundedLabel: UILabel!
-    @IBOutlet weak var attendingGoalsContributorsLabel: UILabel!
+    @IBOutlet weak var attendingGoalNameLabel: UILabel!
+    
+    @IBOutlet weak var attendingGoalProgressView: UIProgressView!
+    @IBOutlet weak var attendingGoalAmountFundedLabel: UILabel!
+    
+    @IBOutlet weak var attendingGoalImageContainerView: UIView!
+    @IBOutlet weak var attendingGoalImageView: UIImageView!
+    
+    var cellPartyItem:PartyItem?
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        setImageView()
+        
         
         
     }
 
 
-    func configureCellWith(event:Event?, partyItem:PartyItem) -> Void
+    func configureCellWith(event:Event?, indexPath:Int) -> Void
     {
-        if event != nil{
+
+        if event?.partyItems?.count != nil && event?.partyItems?.count != 0 {
             
-            attendingGoalsImageView.image = event?.coverPhoto
-            attendingGoalsLabel.text = event?.eventName
+            cellPartyItem = event?.partyItems?[indexPath]
+            attendingGoalNameLabel.text = cellPartyItem?.itemName
+            
+            let fundedString = "\(cellPartyItem?.itemAmountFunded)% there!"
+            
+            attendingGoalAmountFundedLabel.text = fundedString
+            
+            setUpProgressBarWith(partyItem:cellPartyItem!)
             
         }else{
             
-            attendingGoalsLabel.text = "Sorry there are no PartyItems you can contribute to for this event!"
+            self.attendingGoalNameLabel.text = "Sorry, there are no PartyItems to contribute to for this event!"
             
         }
         
@@ -47,13 +59,19 @@ class AttendingGoalsTableViewCell: UITableViewCell {
     func setImageView() -> Void
     {
         
-        
+        attendingGoalImageContainerView.layer.borderWidth = 1
+        attendingGoalImageContainerView.layer.masksToBounds = false
+        attendingGoalImageContainerView.layer.borderColor = UIColor.black.cgColor
+        attendingGoalImageContainerView.layer.cornerRadius = attendingGoalImageView.frame.width/2
+        attendingGoalImageContainerView.clipsToBounds = true
         
     }
 
-    func setUpProgressBar() -> Void
+    func setUpProgressBarWith(partyItem:PartyItem) -> Void
     {
+        let currentProgress = partyItem.itemAmountFunded!/partyItem.itemGoal!
         
+        attendingGoalProgressView.setProgress(Float(currentProgress), animated: true)
         
         
     }

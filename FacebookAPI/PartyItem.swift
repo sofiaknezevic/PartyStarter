@@ -9,5 +9,12 @@
 import UIKit
 
 class PartyItem: NSObject {
+    
+    var itemName:String?
+    var itemGoal:Double?
+    var itemContributors:[String]?
+    var itemImage:UIImage?
+    var itemAmountFunded:Double?
+    
 
 }

@@ -25,6 +25,12 @@ class HostGoalsViewController: UIViewController {
         
     }
     
+    @IBAction func connectToStripePushed(_ sender: UIButton) {
+        
+        performSegue(withIdentifier: "connectToStripe", sender: self)
+        
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "showEventDetail") {
             let detailVC:DetailViewController = segue.destination as! DetailViewController

@@ -33,7 +33,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Stripe"/>
                                 <connections>
-                                    <action selector="stripeConnect:" destination="VNq-5o-ai5" eventType="touchUpInside" id="zUl-jF-syN"/>
+                                    <action selector="connectToStripePushed:" destination="VNq-5o-ai5" eventType="touchUpInside" id="f70-hf-5VZ"/>
                                 </connections>
                             </button>
                         </subviews>
