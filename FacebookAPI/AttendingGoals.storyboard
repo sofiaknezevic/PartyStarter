@@ -29,10 +29,10 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="attendingGoalsCell" rowHeight="100" id="V3b-Ha-MsW">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="attendingGoalsCell" rowHeight="100" id="V3b-Ha-MsW" customClass="AttendingGoalsTableViewCell" customModule="FacebookAPI" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="V3b-Ha-MsW" id="SoN-Ke-ZKI">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="V3b-Ha-MsW" id="SoN-Ke-ZKI" userLabel="Cell View">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -98,8 +98,21 @@
                                                 <constraint firstAttribute="trailing" secondItem="gp6-fv-JSO" secondAttribute="trailing" constant="8" id="ylg-zv-ILJ"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="attendingGoalsContributorsLabel" destination="M0O-av-kNT" id="7g9-0v-RrD"/>
+                                            <outlet property="attendingGoalsImageView" destination="945-Ft-fpT" id="puW-mm-CgS"/>
+                                            <outlet property="attendingGoalsLabel" destination="gp6-fv-JSO" id="axX-Hq-pTT"/>
+                                            <outlet property="attendingGoalsPercentFundedLabel" destination="DwE-xQ-MVh" id="RAP-0k-n98"/>
+                                            <outlet property="attendingGoalsProgressBar" destination="qMc-Je-zTA" id="5x7-Kz-Drk"/>
+                                            <outlet property="imageContainerView" destination="twR-uI-ezb" id="BEZ-CZ-F8K"/>
+                                            <outlet property="imageView" destination="945-Ft-fpT" id="ZQN-Qs-UgS"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="SPG-AQ-6oK" id="BkI-Kx-E8K"/>
+                                    <outlet property="delegate" destination="SPG-AQ-6oK" id="fND-Bf-a8o"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
