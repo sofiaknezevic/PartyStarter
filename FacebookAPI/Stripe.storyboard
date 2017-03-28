@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,12 +19,57 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="piP-Xk-hO9" kind="relationship" relationship="rootViewController" id="7I4-2G-Lub"/>
+                        <segue destination="Ecg-OJ-O0r" kind="relationship" relationship="rootViewController" id="m1S-CF-tAq"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c1c-Rj-cVA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3263" y="-1043"/>
+            <point key="canvasLocation" x="-3767" y="-1043"/>
+        </scene>
+        <!--Connect To Stripe View Controller-->
+        <scene sceneID="ZCv-vJ-SEZ">
+            <objects>
+                <viewController id="Ecg-OJ-O0r" customClass="ConnectToStripeViewController" customModule="FacebookAPI" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y6g-h3-Gh8"/>
+                        <viewControllerLayoutGuide type="bottom" id="0Nq-WP-KWu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Xq3-eW-fAU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n7h-ZC-xJt">
+                                <rect key="frame" x="92" y="317" width="190" height="33"/>
+                                <state key="normal" image="light-on-light"/>
+                                <connections>
+                                    <action selector="connectToStripePushed:" destination="Ecg-OJ-O0r" eventType="touchUpInside" id="Z0r-0j-IQQ"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In order to receive payments from other users you must connect with Stripe. Tap the button below and get your partyON! 🎉 " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ioj-nt-I8X">
+                                <rect key="frame" x="49" y="186.5" width="277" height="95.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ioj-nt-I8X" secondAttribute="trailing" constant="33" id="9mI-mI-qam"/>
+                            <constraint firstItem="Ioj-nt-I8X" firstAttribute="leading" secondItem="Xq3-eW-fAU" secondAttribute="leadingMargin" constant="33" id="MiQ-nB-AUn"/>
+                            <constraint firstItem="Ioj-nt-I8X" firstAttribute="centerX" secondItem="Xq3-eW-fAU" secondAttribute="centerX" id="Q63-j7-LAr"/>
+                            <constraint firstItem="n7h-ZC-xJt" firstAttribute="centerY" secondItem="Xq3-eW-fAU" secondAttribute="centerY" id="f1s-VC-PaV"/>
+                            <constraint firstItem="n7h-ZC-xJt" firstAttribute="centerX" secondItem="Xq3-eW-fAU" secondAttribute="centerX" id="vaa-Zx-7CY"/>
+                            <constraint firstItem="n7h-ZC-xJt" firstAttribute="top" secondItem="Ioj-nt-I8X" secondAttribute="bottom" constant="35" id="xe9-cO-MiJ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="lOH-Tc-IgC"/>
+                    <connections>
+                        <segue destination="piP-Xk-hO9" kind="presentation" identifier="authorizeStripe" id="JJs-6x-6Qr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jAg-bX-ruj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2895.1999999999998" y="-1043.0284857571214"/>
         </scene>
         <!--Stripe Authorization View Controller-->
         <scene sceneID="VJ1-SV-kze">
@@ -51,10 +97,16 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="seo-vb-29d"/>
+                    <connections>
+                        <outlet property="stripeWebView" destination="PUC-Vk-i0e" id="L1q-cR-De2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lVQ-Zv-SG8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2500" y="-1043.0284857571214"/>
+            <point key="canvasLocation" x="-2014" y="-1043"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="light-on-light" width="190" height="33"/>
+    </resources>
 </document>

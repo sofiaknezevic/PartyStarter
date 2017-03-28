@@ -134,29 +134,23 @@ class DataManager: NSObject {
     
     
     //picture
-    //doesn't go to the success result even when I put other graphPaths in there.
     class func getEventImage(eventID: String, completion:@escaping (CoverPhoto)->()) {
         
-
+        //not doing this the 100% correct way that facebook wants us to
         let coverPhoto = CoverPhoto()
+        let parameters: [String: Any]? = ["fields": "data"]
+
+        var request = GraphRequest(graphPath: "/\(eventID)/picture")
+        request.parameters = parameters
         
         let connection = GraphRequestConnection()
-        connection.add(GraphRequest(graphPath: "/\(eventID)/picture")) { httpResponse, result in
+        connection.add(request) { httpResponse, result in
             
-            switch result {
-            case .success(let response):
-                
-                
-                let data = response.dictionaryValue?["data"] as? [String: Any]
-                
-                print(data!)
-                
-                coverPhoto.photoURL = data?["url"] as? String
-                
-                let url = URL(string: coverPhoto.photoURL!)
+            if let url = httpResponse?.url {
+                coverPhoto.photoURL = url
                 
                 //then call the downloader task, have it return an image
-                let task = URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
+                let task = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
                     if error != nil {
                         print("error found")
                     } else {
@@ -170,10 +164,8 @@ class DataManager: NSObject {
                     }
                 })
                 task.resume()
-                
-            case .failed(let error):
-            print("Graph Request Failed: \(error)")
             }
+            
         }
         connection.start()
         

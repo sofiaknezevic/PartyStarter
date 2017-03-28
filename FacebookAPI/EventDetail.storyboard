@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="tMe-pG-AvN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="tMe-pG-AvN">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -95,6 +95,13 @@
                         </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="detailEventNameLabel" destination="aD4-6B-EL3" id="Gci-eh-MpN"/>
+                        <outlet property="detailImageView" destination="jl8-Ls-dWh" id="4o8-8Q-SIi"/>
+                        <outlet property="detailLocationLabel" destination="5Bg-Tp-l7W" id="oWr-jB-xOt"/>
+                        <outlet property="detailTextField" destination="J5a-VQ-hfU" id="dSS-xX-9ia"/>
+                        <outlet property="detailrsvpLabel" destination="sKG-uK-0cl" id="T05-ew-ZhP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zj6-SE-BjW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
