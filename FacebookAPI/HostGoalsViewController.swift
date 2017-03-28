@@ -19,6 +19,11 @@ class HostGoalsViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+    @IBAction func stripeConnect(_ sender: UIButton) {
+        
+        performSegue(withIdentifier: "connectToStripe", sender: self)
+        
+    }
     @IBAction func eventDetailsPushed(_ sender: UIButton) {
         
         performSegue(withIdentifier: "showEventDetail", sender: self)
