@@ -37,6 +37,7 @@
 		D2D0F1871E8894DE000F2205 /* Attendees.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D0F1861E8894DE000F2205 /* Attendees.swift */; };
 		D2D0F1891E8894ED000F2205 /* Admins.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D0F1881E8894ED000F2205 /* Admins.swift */; };
 		DAF105E91E89B498008F0FD6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DAF105E81E89B498008F0FD6 /* GoogleService-Info.plist */; };
+		DAF105ED1E89C4F3008F0FD6 /* FirebaseUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF105EC1E89C4F3008F0FD6 /* FirebaseUser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +89,7 @@
 		D2D0F1861E8894DE000F2205 /* Attendees.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attendees.swift; sourceTree = "<group>"; };
 		D2D0F1881E8894ED000F2205 /* Admins.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Admins.swift; sourceTree = "<group>"; };
 		DAF105E81E89B498008F0FD6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DAF105EC1E89C4F3008F0FD6 /* FirebaseUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseUser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 				D2D0F1861E8894DE000F2205 /* Attendees.swift */,
 				D2D0F1881E8894ED000F2205 /* Admins.swift */,
 				D283C5D21E88B60000A40FBC /* CoverPhoto.swift */,
+				DAF105EC1E89C4F3008F0FD6 /* FirebaseUser.swift */,
 				5DB4B16E1E89D21700D7EF66 /* StripeAPIClient.swift */,
 				5DB4B1721E89D76F00D7EF66 /* NetworkManager.swift */,
 				5DB4B1741E89D91E00D7EF66 /* StripeConnectManager.swift */,
@@ -438,6 +441,7 @@
 				D2CF57AC1E844BB600090788 /* User.swift in Sources */,
 				5D3264D81E89A6EA0045B126 /* StripeAuthorizationViewController.swift in Sources */,
 				D2CF57B01E844BCE00090788 /* DataManager.swift in Sources */,
+				DAF105ED1E89C4F3008F0FD6 /* FirebaseUser.swift in Sources */,
 				5DB4B1751E89D91E00D7EF66 /* StripeConnectManager.swift in Sources */,
 				D2CF57AA1E83430D00090788 /* DetailViewController.swift in Sources */,
 				5DB4B1731E89D76F00D7EF66 /* NetworkManager.swift in Sources */,
