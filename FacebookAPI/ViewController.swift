@@ -58,18 +58,6 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
     //this needs to be changed
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
         
-       
-
-        // User is logged in, use 'accessToken' here.
-        performSegue(withIdentifier: "tableViewSegue", sender: self)
-        print("next VC")
-
-        print("User Logged In")
-        
-        
-        self.logButton.isHidden = true
-//        loadingSpinner.startAnimating()
-        
         if(error != nil) {
             
             // handle errors here
@@ -98,6 +86,19 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
             }
             
         }
+        
+        
+        
+        // User is logged in, use 'accessToken' here.
+        performSegue(withIdentifier: "tableViewSegue", sender: self)
+        print("next VC")
+        
+        print("User Logged In")
+        
+        
+        self.logButton.isHidden = true
+        //        loadingSpinner.startAnimating()
+        
     }
 
 }
