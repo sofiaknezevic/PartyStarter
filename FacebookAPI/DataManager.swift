@@ -140,7 +140,7 @@ class DataManager: NSObject {
         let coverPhoto = CoverPhoto()
         let parameters: [String: Any]? = ["fields": "data"]
 
-        var request = GraphRequest(graphPath: "/\(eventID)/picture")
+        var request = GraphRequest(graphPath: "/\(eventID)/picture?type=large")
         request.parameters = parameters
         
         let connection = GraphRequestConnection()
