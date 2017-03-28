@@ -90,9 +90,9 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
             FIRAuth.auth()?.signIn(with: credential) { (user, error) in
                 // ...
                 
-                //UserDefaults.standard.set(FIRAuth.auth()!.currentUser!.uid, forKey: "uid")
+                UserDefaults.standard.set(FIRAuth.auth()!.currentUser!.uid, forKey: "uid")
                 
-                //UserDefaults.standard.synchronize()
+                UserDefaults.standard.synchronize()
                 print("User logged in to Firebase App!")
                 
             }
