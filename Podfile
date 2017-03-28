@@ -14,7 +14,8 @@ target 'FacebookAPI' do
 pod ‘Stripe’
 pod 'Firebase/Auth'
 pod 'Firebase/Core'
-  
+pod 'Firebase/Database'
+pod 'Firebase/Storage'  
 
   target 'FacebookAPITests' do
     inherit! :search_paths
