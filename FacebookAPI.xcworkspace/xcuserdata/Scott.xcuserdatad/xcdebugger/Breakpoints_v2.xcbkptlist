@@ -2,4 +2,69 @@
 <Bucket
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FacebookAPI/DetailViewController.swift"
+            timestampString = "512428618.210716"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "DetailViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FacebookAPI.DetailViewController.eventDescriptionLabel.setter : weak Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UILabel&gt;"
+                  moduleName = "FacebookAPI"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Scott/Desktop/Lighthouse/PartyStarter/FacebookAPI/DetailViewController.swift"
+                  timestampString = "512429633.522107"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "42">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FacebookAPI.DetailViewController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; FacebookAPI.DetailViewController"
+                  moduleName = "FacebookAPI"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Scott/Desktop/Lighthouse/PartyStarter/FacebookAPI/DetailViewController.swift"
+                  timestampString = "512429633.525787"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "93">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FacebookAPI.DetailViewController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;FacebookAPI.DetailViewController&gt;"
+                  moduleName = "FacebookAPI"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Scott/Desktop/Lighthouse/PartyStarter/FacebookAPI/DetailViewController.swift"
+                  timestampString = "512429633.529493"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "54">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
