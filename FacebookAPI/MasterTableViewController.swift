@@ -9,15 +9,19 @@
 import UIKit
 import FacebookCore
 import FirebaseAuth
+import FirebaseDatabase
 
 class MasterTableViewController: UITableViewController {
     
+
     var eventsArray:[Event]?
     var userID:String?
-    
+    var ref: FIRDatabaseReference!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+       
+
         //print name
         DataManager.getUserInfo
         { user in
@@ -28,6 +32,8 @@ class MasterTableViewController: UITableViewController {
         }
         
         
+        ref = FIRDatabase.database().reference()
+
         FIRAuth.auth()!.addStateDidChangeListener() { auth, user in
             if user != nil {
                 // User is signed in.
@@ -52,6 +58,8 @@ class MasterTableViewController: UITableViewController {
                 {
                     self.eventsArray = events
                     print("table view: \(self.eventsArray!)")
+                    
+                    
                     self.tableView.reloadData()
                 }
         }
@@ -73,13 +81,14 @@ class MasterTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
-
         //just use the basic cell to display the title of the event
         cell.textLabel?.text = self.eventsArray?[indexPath.row].eventName
 
+        writeToFirebaseDB(indexPath: indexPath)
+        
         return cell
     }
-    
+
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -113,7 +122,6 @@ class MasterTableViewController: UITableViewController {
         //need to do the requests here when the cell is selected. Refactor to move network requests to the target view controller
         
         let eventThatWasSelected = self.eventsArray?[indexPath.row].eventID
-        
         //not configured yet
         DataManager.getEventImage(eventID: eventThatWasSelected!) { image in
             
@@ -152,4 +160,20 @@ class MasterTableViewController: UITableViewController {
         
     }
 
+    // Function that writes events id to Firebase DB.
+    func writeToFirebaseDB(indexPath: IndexPath) {
+        
+        if let data = UserDefaults.standard.object(forKey: "uid") as? String {
+            userID = data
+        }
+            
+        else {
+            print("There is an issue")
+        }
+        
+        let listOfEventsID = self.eventsArray?[indexPath.row].eventID
+        
+        // Writing the list of events to firebase database
+        self.ref.child("user_profile").child("\(userID!)").child("\(listOfEventsID!)/event_id").setValue(listOfEventsID!)
+    }
 }
