@@ -16,6 +16,7 @@ class MasterTableViewController: UITableViewController {
 
     var eventsArray:[Event]?
     var userID:String?
+    var firebaseUserID : String?
     var ref: FIRDatabaseReference!
 
     override func viewDidLoad() {
@@ -38,6 +39,8 @@ class MasterTableViewController: UITableViewController {
             if user != nil {
                 // User is signed in.
                 print("start login success: " + (user?.email)! )
+                
+                self.firebaseUserID = user?.uid
                 //self.performSegue(withIdentifier: loginToList, sender: nil)
             } else {
                 // No user is signed in.
@@ -164,7 +167,7 @@ class MasterTableViewController: UITableViewController {
     func writeToFirebaseDB(indexPath: IndexPath) {
         
         if let data = UserDefaults.standard.object(forKey: "uid") as? String {
-            userID = data
+            firebaseUserID = data
         }
             
         else {
@@ -174,6 +177,6 @@ class MasterTableViewController: UITableViewController {
         let listOfEventsID = self.eventsArray?[indexPath.row].eventID
         
         // Writing the list of events to firebase database
-        self.ref.child("user_profile").child("\(userID!)").child("\(listOfEventsID!)/event_id").setValue(listOfEventsID!)
+        self.ref.child("user_profile").child("\(firebaseUserID!)").child("\(listOfEventsID!)/event_id").setValue(listOfEventsID!)
     }
 }
