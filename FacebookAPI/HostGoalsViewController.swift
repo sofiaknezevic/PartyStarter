@@ -9,6 +9,9 @@
 import UIKit
 
 class HostGoalsViewController: UIViewController {
+    
+    //pass forward the information from the selected event. Will use some info and pass forward to detail view controller
+    var hostEvent:Event?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,8 +20,16 @@ class HostGoalsViewController: UIViewController {
     }
 
     @IBAction func eventDetailsPushed(_ sender: UIButton) {
-        
+
         performSegue(withIdentifier: "showEventDetail", sender: self)
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "showEventDetail") {
+            let detailVC:DetailViewController = segue.destination as! DetailViewController
+            detailVC.detailEvent = hostEvent
+            
+        }
     }
 }

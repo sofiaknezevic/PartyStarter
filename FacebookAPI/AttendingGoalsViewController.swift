@@ -9,6 +9,9 @@
 import UIKit
 
 class AttendingGoalsViewController: UIViewController {
+    
+    //information for the event that the user is attending
+    var attendingEvent:Event?
 
     override func viewDidLoad() {
         super.viewDidLoad()

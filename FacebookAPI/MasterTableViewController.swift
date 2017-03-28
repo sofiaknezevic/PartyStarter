@@ -84,41 +84,72 @@ class MasterTableViewController: UITableViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        
-        //need to check if the user is a host of the event, then move them to the target view controller
-        
-        if (segue.identifier == "detailSegue") {
+        //this is for the attendee page
+        if (segue.identifier == "showAttendingGoals") {
             //pass on the userID to the next screen
             let indexPath:IndexPath = tableView.indexPathForSelectedRow!
-            let detailVC:DetailViewController = segue.destination as! DetailViewController
             
-            //need to call the thing here. The event that we pass in is equal to this indexpath.row's event
-            let eventThatWasSelected = self.eventsArray?[indexPath.row].eventID            
+            let attendingGoalsVC:AttendingGoalsViewController = segue.destination as! AttendingGoalsViewController
+            attendingGoalsVC.attendingEvent = self.eventsArray?[indexPath.row]
             
-            DataManager.getEventImage(eventID: eventThatWasSelected!) { image in
-             
-                    self.eventsArray?[indexPath.row].coverPhoto = image.photo
-            }
-            
-            DataManager.getEventAdmins(eventID: eventThatWasSelected!) { admins in
-                //need to set the admins for the event to the admins that you got
-                self.eventsArray?[indexPath.row].admins = admins
-                
-            }
-            
-            DataManager.getEventAttendees(eventID: eventThatWasSelected!) { attendees in
-                //what do I do in this block here?
-                self.eventsArray?[indexPath.row].attendees = attendees
-            }
-            
-            detailVC.detailEvent = self.eventsArray?[indexPath.row]
-
+            print("attending goals")
         }
+        
+        //perform this segue to the host view
+        if (segue.identifier == "showHostGoals") {
+            let indexPath:IndexPath = tableView.indexPathForSelectedRow!
+            
+            let hostGoalsVC:HostGoalsViewController = segue.destination as! HostGoalsViewController
+            hostGoalsVC.hostEvent = self.eventsArray?[indexPath.row]
+            
+            print("host goals")
+            
+        }
+        
     }
     
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "detailSegue", sender: self)
+        
+        //need to do the requests here when the cell is selected. Refactor to move network requests to the target view controller
+        
+        let eventThatWasSelected = self.eventsArray?[indexPath.row].eventID
+        
+        //not configured yet
+        DataManager.getEventImage(eventID: eventThatWasSelected!) { image in
+            
+            self.eventsArray?[indexPath.row].coverPhoto = image.photo
+        
+        
+        DataManager.getEventAttendees(eventID: eventThatWasSelected!) { attendees in
+            
+            self.eventsArray?[indexPath.row].attendees = attendees
+        
+        
+        DataManager.getEventAdmins(eventID: eventThatWasSelected!) { admins in
+            
+            self.eventsArray?[indexPath.row].admins = admins
+            
+            var isAdmin:Bool = false
+            
+            //check to see if the user is an admin
+            for admin in admins {
+                
+                if (admin.adminID == self.userID) {
+                    isAdmin = true
+                }
+            }
+            
+            if (isAdmin == true) {
+                self.performSegue(withIdentifier: "showHostGoals", sender: self)
+            } else {
+                self.performSegue(withIdentifier: "showAttendingGoals", sender: self)
+
+            }
+            }
+            
+        }
+        }
+        
     }
 
 }
