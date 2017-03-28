@@ -11,6 +11,6 @@ import UIKit
 class CoverPhoto: NSObject {
     
     var photo:UIImage?
-    var photoURL:String?
+    var photoURL:URL?
 
 }
