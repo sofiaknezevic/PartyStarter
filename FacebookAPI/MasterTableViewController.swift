@@ -115,10 +115,10 @@ class MasterTableViewController: UITableViewController {
         let eventThatWasSelected = self.eventsArray?[indexPath.row].eventID
         
         //not configured yet
-//        DataManager.getEventImage(eventID: eventThatWasSelected!) { image in
-//            
-//            self.eventsArray?[indexPath.row].coverPhoto = image.photo
-//        }
+        DataManager.getEventImage(eventID: eventThatWasSelected!) { image in
+            
+            self.eventsArray?[indexPath.row].coverPhoto = image.photo
+        
         
         DataManager.getEventAttendees(eventID: eventThatWasSelected!) { attendees in
             
@@ -144,6 +144,7 @@ class MasterTableViewController: UITableViewController {
             } else {
                 self.performSegue(withIdentifier: "showAttendingGoals", sender: self)
 
+            }
             }
             
         }
