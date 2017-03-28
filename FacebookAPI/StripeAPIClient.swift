@@ -9,10 +9,11 @@
 import UIKit
 import Stripe
 
-class StripeAPIClient: NSObject{
+class StripeAPIClient: NSObject, STPBackendAPIAdapter{
     
     static let sharedClient = StripeAPIClient()
     let session: URLSession
+    var baseURLString:String?
     
     override init(){
         
@@ -29,6 +30,24 @@ class StripeAPIClient: NSObject{
         
         
     }
+    
+    func retrieveCustomer(_ completion: @escaping STPCustomerCompletionBlock)
+    {
+        
+        
+    }
+    
+    func attachSource(toCustomer source: STPSourceProtocol, completion: @escaping STPErrorBlock)
+    {
+        
+        
+    }
 
+    
+    func selectDefaultCustomerSource(_ source: STPSourceProtocol, completion: @escaping STPErrorBlock)
+    {
+        
+        
+    }
     
 }
