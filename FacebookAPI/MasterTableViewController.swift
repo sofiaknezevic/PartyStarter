@@ -21,6 +21,7 @@ class MasterTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        
+
         //print name
         DataManager.getUserInfo
         { user in
@@ -31,6 +32,8 @@ class MasterTableViewController: UITableViewController {
         }
         
         
+        ref = FIRDatabase.database().reference()
+
         FIRAuth.auth()!.addStateDidChangeListener() { auth, user in
             if user != nil {
                 // User is signed in.
@@ -56,6 +59,7 @@ class MasterTableViewController: UITableViewController {
                     self.eventsArray = events
                     print("table view: \(self.eventsArray!)")
                     
+                    
                     self.tableView.reloadData()
                 }
         }
@@ -77,7 +81,6 @@ class MasterTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
-
         //just use the basic cell to display the title of the event
         cell.textLabel?.text = self.eventsArray?[indexPath.row].eventName
 
@@ -85,7 +88,7 @@ class MasterTableViewController: UITableViewController {
         
         return cell
     }
-    
+
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -157,6 +160,7 @@ class MasterTableViewController: UITableViewController {
         
     }
 
+    // Function that writes events id to Firebase DB.
     func writeToFirebaseDB(indexPath: IndexPath) {
         
         if let data = UserDefaults.standard.object(forKey: "uid") as? String {
