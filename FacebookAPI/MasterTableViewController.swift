@@ -125,12 +125,7 @@ class MasterTableViewController: UITableViewController {
         //need to do the requests here when the cell is selected. Refactor to move network requests to the target view controller
         
         let eventThatWasSelected = self.eventsArray?[indexPath.row].eventID
-        //not configured yet
-        DataManager.getEventImage(eventID: eventThatWasSelected!) { image in
-            
-            self.eventsArray?[indexPath.row].coverPhoto = image.photo
-        
-        
+
         DataManager.getEventAttendees(eventID: eventThatWasSelected!) { attendees in
             
             self.eventsArray?[indexPath.row].attendees = attendees
@@ -156,7 +151,7 @@ class MasterTableViewController: UITableViewController {
                 self.performSegue(withIdentifier: "showAttendingGoals", sender: self)
 
             }
-            }
+            
             
         }
         }

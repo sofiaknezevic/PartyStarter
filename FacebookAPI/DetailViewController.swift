@@ -33,7 +33,17 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
+        //download image and set it to the imageview
+        DataManager.getEventImage(eventID: (detailEvent?.eventID)!) { image in
+            
+            self.detailEvent?.coverPhoto = image.photo
+            
+            self.detailImageView.image = self.detailEvent?.coverPhoto
+        }
+
+        
+            
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -56,7 +66,7 @@ class DetailViewController: UIViewController {
         detailLocationLabel.text = detailEvent?.placeName
         detailTextField.text = detailEvent?.eventDescription
         detailrsvpLabel.text = detailEvent?.rsvpStatus
-        detailImageView.image = detailEvent?.coverPhoto
+//        detailImageView.image = detailEvent?.coverPhoto
         
 //        eventDescriptionLabel.text = detailEvent?.eventDescription
 //        eventNameLabel.text = detailEvent?.eventName
