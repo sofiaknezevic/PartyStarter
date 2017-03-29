@@ -132,12 +132,13 @@ class MasterTableViewController: UITableViewController {
         
         //need to do the requests here when the cell is selected. Refactor to move network requests to the target view controller
         
+
         guard let eventThatWasSelected = self.eventsArray?[indexPath.row].eventID else {
             return
         }
 
         DataManager.getEventAttendees(eventID: eventThatWasSelected) { attendees in
-            
+                                                                      
             self.eventsArray?[indexPath.row].attendees = attendees
         
         
