@@ -89,7 +89,7 @@ class MasterTableViewController: UITableViewController {
         //just use the basic cell to display the title of the event
         cell.textLabel?.text = self.eventsArray?[indexPath.row].eventName
 
-        writeToFirebaseDB(indexPath: indexPath)
+        //writeToFirebaseDB(indexPath: indexPath)
         
         return cell
     }
@@ -168,15 +168,12 @@ class MasterTableViewController: UITableViewController {
     // Function that writes events id to Firebase DB.
     func writeToFirebaseDB(indexPath: IndexPath) {
         
-        if let data = UserDefaults.standard.object(forKey: "uid") as? String {
-            firebaseUserID = data
-        }
-            
-        else {
+        guard let eventsArray = self.eventsArray, let data = UserDefaults.standard.object(forKey: "uid") as? String else {
             print("There is an issue")
+            return
         }
         
-        let listOfEventsID = self.eventsArray?[indexPath.row].eventID
+        let listOfEventsID = eventsArray[indexPath.row].eventID
         
         let eventCity = self.eventsArray?[indexPath.row].cityName
         let eventCountry = self.eventsArray?[indexPath.row].countryName
@@ -192,19 +189,19 @@ class MasterTableViewController: UITableViewController {
         let eventZipcode = self.eventsArray?[indexPath.row].zipCode
 
         // Writing the list of events to firebase database
-        self.ref.child("user_profile").child("\(firebaseUserID!)").child("\(listOfEventsID!)/event_id").setValue(listOfEventsID!)
-        self.ref.child("user_profile").child("\(firebaseUserID!)").child("\(listOfEventsID!)/event_city").setValue(eventCity!)
-        self.ref.child("user_profile").child("\(firebaseUserID!)").child("\(listOfEventsID!)/event_country").setValue(eventCountry!)
-        self.ref.child("user_profile").child("\(firebaseUserID!)").child("\(listOfEventsID!)/event_description").setValue(eventDescription!)
-        self.ref.child("user_profile").child("\(firebaseUserID!)").child("\(listOfEventsID!)/event_name").setValue(eventName!)
-        self.ref.child("user_profile").child("\(firebaseUserID!)").child("\(listOfEventsID!)/event_latitude").setValue(eventLatitude!)
-        self.ref.child("user_profile").child("\(firebaseUserID!)").child("\(listOfEventsID!)/event_longtitude").setValue(eventLongtitude!)
-        self.ref.child("user_profile").child("\(firebaseUserID!)").child("\(listOfEventsID!)/event_placeID").setValue(eventPlaceID!)
-        self.ref.child("user_profile").child("\(firebaseUserID!)").child("\(listOfEventsID!)/event_placename").setValue(eventPlaceName!)
+        self.ref.child("user_profile").child("\(data)").child("\(listOfEventsID!)/event_id").setValue(listOfEventsID!)
+        self.ref.child("user_profile").child("\(data)").child("\(listOfEventsID!)/event_city").setValue(eventCity!)
+        self.ref.child("user_profile").child("\(data)").child("\(listOfEventsID!)/event_country").setValue(eventCountry!)
+        self.ref.child("user_profile").child("\(data)").child("\(listOfEventsID!)/event_description").setValue(eventDescription!)
+        self.ref.child("user_profile").child("\(data)").child("\(listOfEventsID!)/event_name").setValue(eventName!)
+        self.ref.child("user_profile").child("\(data)").child("\(listOfEventsID!)/event_latitude").setValue(eventLatitude!)
+        self.ref.child("user_profile").child("\(data)").child("\(listOfEventsID!)/event_longtitude").setValue(eventLongtitude!)
+        self.ref.child("user_profile").child("\(data)").child("\(listOfEventsID!)/event_placeID").setValue(eventPlaceID!)
+        self.ref.child("user_profile").child("\(data)").child("\(listOfEventsID!)/event_placename").setValue(eventPlaceName!)
         
-        self.ref.child("user_profile").child("\(firebaseUserID!)").child("\(listOfEventsID!)/event_RSVP_status").setValue(eventRSVPStatus!)
-        self.ref.child("user_profile").child("\(firebaseUserID!)").child("\(listOfEventsID!)/event_start_time").setValue(eventStartTime!)
-        self.ref.child("user_profile").child("\(firebaseUserID!)").child("\(listOfEventsID!)/event_state").setValue(eventState!)
-        self.ref.child("user_profile").child("\(firebaseUserID!)").child("\(listOfEventsID!)/event_zipcode").setValue(eventZipcode!)
+        self.ref.child("user_profile").child("\(data)").child("\(listOfEventsID!)/event_RSVP_status").setValue(eventRSVPStatus!)
+        self.ref.child("user_profile").child("\(data)").child("\(listOfEventsID!)/event_start_time").setValue(eventStartTime!)
+        self.ref.child("user_profile").child("\(data)").child("\(listOfEventsID!)/event_state").setValue(eventState!)
+        self.ref.child("user_profile").child("\(data)").child("\(listOfEventsID!)/event_zipcode").setValue(eventZipcode!)
     }
 }
