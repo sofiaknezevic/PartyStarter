@@ -23,6 +23,7 @@
 		5DB4B1751E89D91E00D7EF66 /* StripeConnectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB4B1741E89D91E00D7EF66 /* StripeConnectManager.swift */; };
 		5DD151441E8B02C100BB07DF /* ContributeToGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD151431E8B02C100BB07DF /* ContributeToGoalViewController.swift */; };
 		70B253E3E678AC86C25BD6D5 /* Pods_FacebookAPITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3959D20BE097ED1583CA80A9 /* Pods_FacebookAPITests.framework */; };
+		D234F45D1E8B2B47008E0BD8 /* AddNewItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D234F45C1E8B2B47008E0BD8 /* AddNewItemViewController.swift */; };
 		D283C5D31E88B60000A40FBC /* CoverPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = D283C5D21E88B60000A40FBC /* CoverPhoto.swift */; };
 		D2CF578A1E83398C00090788 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CF57891E83398C00090788 /* AppDelegate.swift */; };
 		D2CF578C1E83398C00090788 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CF578B1E83398C00090788 /* ViewController.swift */; };
@@ -72,6 +73,7 @@
 		5DB4B1741E89D91E00D7EF66 /* StripeConnectManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StripeConnectManager.swift; sourceTree = "<group>"; };
 		5DD151431E8B02C100BB07DF /* ContributeToGoalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContributeToGoalViewController.swift; sourceTree = "<group>"; };
 		CA0C0CDA7F39768C6F6BC99B /* Pods-FacebookAPI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FacebookAPI.release.xcconfig"; path = "Pods/Target Support Files/Pods-FacebookAPI/Pods-FacebookAPI.release.xcconfig"; sourceTree = "<group>"; };
+		D234F45C1E8B2B47008E0BD8 /* AddNewItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewItemViewController.swift; sourceTree = "<group>"; };
 		D283C5D21E88B60000A40FBC /* CoverPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoverPhoto.swift; sourceTree = "<group>"; };
 		D2CF57861E83398C00090788 /* FacebookAPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FacebookAPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2CF57891E83398C00090788 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				5D3264D71E89A6EA0045B126 /* StripeAuthorizationViewController.swift */,
 				5DB4B1701E89D4AD00D7EF66 /* ConnectToStripeViewController.swift */,
 				5DD151431E8B02C100BB07DF /* ContributeToGoalViewController.swift */,
+				D234F45C1E8B2B47008E0BD8 /* AddNewItemViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -451,6 +454,7 @@
 				5DB4B1731E89D76F00D7EF66 /* NetworkManager.swift in Sources */,
 				5DB4B16F1E89D21700D7EF66 /* StripeAPIClient.swift in Sources */,
 				D2CF578C1E83398C00090788 /* ViewController.swift in Sources */,
+				D234F45D1E8B2B47008E0BD8 /* AddNewItemViewController.swift in Sources */,
 				D2CF578A1E83398C00090788 /* AppDelegate.swift in Sources */,
 				5D5EC3031E8A27AD000D9ADC /* PartyItem.swift in Sources */,
 				D2CF57AE1E844BC300090788 /* Event.swift in Sources */,
