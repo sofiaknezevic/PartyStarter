@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AttendingGoalsTableViewCell: UITableViewCell {
+class GoalsTableViewCell: UITableViewCell {
 
     @IBOutlet weak var attendingGoalNameLabel: UILabel!
     
@@ -32,6 +32,9 @@ class AttendingGoalsTableViewCell: UITableViewCell {
 
     func configureCellWith(event:Event?, indexPath:Int) -> Void
     {
+        
+        print("*********")
+        print(event)
 
         if event?.partyItems?.count != nil && event?.partyItems?.count != 0 {
             

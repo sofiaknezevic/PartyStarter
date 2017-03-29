@@ -12,10 +12,15 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
     
     //information for the event that the user is attending
     var attendingEvent:Event?
-
+    @IBOutlet weak var attendingTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let nib = UINib(nibName: "GoalsTableViewCell", bundle: nil)
+        
+        attendingTableView.register(nib, forCellReuseIdentifier: "GoalsCell")
+        
         setUpAttendingGoalsVCWith(event: attendingEvent!)
     }
 
@@ -48,9 +53,8 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "attendingGoalsCell", for: indexPath) as! AttendingGoalsTableViewCell
+       
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GoalsCell", for: indexPath) as! GoalsTableViewCell
         cell.configureCellWith(event: attendingEvent!, indexPath:indexPath.row)
         return cell
         
