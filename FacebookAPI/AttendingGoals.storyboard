@@ -111,7 +111,7 @@
                     <connections>
                         <outlet property="view" destination="fUP-U5-RiJ" id="zPM-IH-sgp"/>
                         <segue destination="PYf-mF-bgX" kind="show" identifier="showEventDetail" id="UQq-mX-ghj"/>
-                        <segue destination="3Sc-HJ-Wnb" kind="show" identifier="showDetailAttendingGoals" id="z1h-BL-XaW"/>
+                        <segue destination="3Sc-HJ-Wnb" kind="show" identifier="contributeToGoals" id="z1h-BL-XaW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Syh-t8-zZJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -145,7 +145,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PIC-kU-lwR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1154" y="90"/>
+            <point key="canvasLocation" x="1152.8" y="89.505247376311857"/>
         </scene>
     </scenes>
     <resources>

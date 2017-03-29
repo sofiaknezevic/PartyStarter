@@ -10,6 +10,8 @@ import UIKit
 
 class ConnectToStripeViewController: UIViewController, ServerInformationDelegate {
 
+    
+
     override func viewDidLoad() {
    
         super.viewDidLoad()
