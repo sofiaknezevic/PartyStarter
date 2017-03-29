@@ -12,6 +12,11 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
     
     //information for the event that the user is attending
     var attendingEvent:Event?
+    var contributeToGoal:PartyItem?
+    
+    var paymentReceiverJSON:[String:Any]?
+    
+    let stripeConnectManager = StripeConnectManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,12 +61,37 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
         
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        
+        if attendingEvent?.partyItems?.count == nil || attendingEvent?.partyItems?.count == 0 {
+         
+            tableView.deselectRow(at: indexPath, animated: true)
+            
+        }
+        
+        contributeToGoal = attendingEvent?.partyItems?[indexPath.row]
+        
+        performSegue(withIdentifier: "contributeToGoals", sender: self)
+        
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "showEventDetail") {
             let detailVC:DetailViewController = segue.destination as! DetailViewController
             detailVC.detailEvent = attendingEvent
             
         }
+        
+        if (segue.identifier == "contributeToGoals") {
+            
+            var contributeVC = ContributeToGoalViewController(jsonCustomerInformation:stripeConnectManager.currentJSON!)
+            contributeVC.partyItemToContributeTo = contributeToGoal
+            contributeVC = segue.destination as! ContributeToGoalViewController
+            
+            
+        }
+        
     }
     
     func detailInformationButtonPushed() -> Void

@@ -11,7 +11,7 @@ import Stripe
 
 class StripeConnectManager: NSObject {
     
-    var currentJSON:Dictionary<String, Any> = [:]
+    var currentJSON:[String:Any]?
     
     let connectURL = URL(string: "https://connect.stripe.com/oauth/token")
     
@@ -41,7 +41,7 @@ class StripeConnectManager: NSObject {
                 
                 DispatchQueue.main.async {
                     
-                    completion(self.currentJSON)
+                    completion(self.currentJSON!)
                     
                 }
                 

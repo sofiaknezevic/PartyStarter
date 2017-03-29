@@ -30,7 +30,14 @@ class StripeAuthorizationViewController: UIViewController, UIWebViewDelegate {
         let authURL = URL(string: "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_AKvPJVtMwPNyOtjb04bHnsxiQUCamFqV&scope=read_write")
         
         stripeWebView.loadRequest(URLRequest(url: authURL!))
+       
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         
+        stripeWebView.delegate = self
+        
+        super.viewWillAppear(true)
     }
     
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
@@ -57,7 +64,7 @@ class StripeAuthorizationViewController: UIViewController, UIWebViewDelegate {
                 
                 print("\(authorizationToken[1])")
                 
-                self.delegate?.retrieveJSON(newCustomerJSON: self.requestForStripeConnect.currentJSON)
+                self.delegate?.retrieveJSON(newCustomerJSON: self.requestForStripeConnect.currentJSON!)
                 
             }
             
