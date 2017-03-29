@@ -17,13 +17,27 @@ class HostGoalsViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        setUpAttendingGoalsVCWith(event: hostEvent!)
+
     }
-
-    @IBAction func eventDetailsPushed(_ sender: UIButton) {
-
-        performSegue(withIdentifier: "showEventDetail", sender: self)
+    
+    func setUpAttendingGoalsVCWith(event:Event) -> Void {
+        
+        self.navigationItem.title = event.eventName
+        let detailInfoButton = UIBarButtonItem(image: #imageLiteral(resourceName: "infoVector"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(detailInformationButtonPushed))
+        
+        self.navigationItem.rightBarButtonItem = detailInfoButton
+        
         
     }
+
+    @IBAction func addNewItem(_ sender: UIButton) {
+        
+        //when this button is pressed segue to the addNewItem view controller
+        performSegue(withIdentifier: "addNewItem", sender: self)
+        
+    }
+
     
     @IBAction func connectToStripePushed(_ sender: UIButton) {
         
@@ -37,5 +51,17 @@ class HostGoalsViewController: UIViewController {
             detailVC.detailEvent = hostEvent
             
         }
+        
+        if (segue.identifier == "addNewItem") {
+            //need to pass at the event item so that you can get access to the event name and eventID
+            let addNewItemVC:AddNewItemViewController = segue.destination as! AddNewItemViewController
+            addNewItemVC.eventToAddItemTo = hostEvent
+        }
+    }
+    
+    func detailInformationButtonPushed() -> Void
+    {
+        performSegue(withIdentifier: "showEventDetail", sender: self)
+        
     }
 }

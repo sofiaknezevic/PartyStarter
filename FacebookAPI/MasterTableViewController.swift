@@ -55,6 +55,8 @@ class MasterTableViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        self.eventsArray = nil
+        
         DataManager.getEvents
             { events in
                 if events.count > 0
@@ -96,10 +98,13 @@ class MasterTableViewController: UITableViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        guard let indexPath = self.tableView.indexPathForSelectedRow else {
+            return
+        }
+        
         //this is for the attendee page
         if (segue.identifier == "showAttendingGoals") {
             //pass on the userID to the next screen
-            let indexPath:IndexPath = tableView.indexPathForSelectedRow!
             
             let attendingGoalsVC:AttendingGoalsViewController = segue.destination as! AttendingGoalsViewController
             attendingGoalsVC.attendingEvent = self.eventsArray?[indexPath.row]
@@ -109,7 +114,6 @@ class MasterTableViewController: UITableViewController {
         
         //perform this segue to the host view
         if (segue.identifier == "showHostGoals") {
-            let indexPath:IndexPath = tableView.indexPathForSelectedRow!
             
             let hostGoalsVC:HostGoalsViewController = segue.destination as! HostGoalsViewController
             hostGoalsVC.hostEvent = self.eventsArray?[indexPath.row]
@@ -124,14 +128,17 @@ class MasterTableViewController: UITableViewController {
         
         //need to do the requests here when the cell is selected. Refactor to move network requests to the target view controller
         
-        let eventThatWasSelected = self.eventsArray?[indexPath.row].eventID
 
-        DataManager.getEventAttendees(eventID: eventThatWasSelected!) { attendees in
-            
+        guard let eventThatWasSelected = self.eventsArray?[indexPath.row].eventID else {
+            return
+        }
+
+        DataManager.getEventAttendees(eventID: eventThatWasSelected) { attendees in
+                                                                      
             self.eventsArray?[indexPath.row].attendees = attendees
         
         
-        DataManager.getEventAdmins(eventID: eventThatWasSelected!) { admins in
+        DataManager.getEventAdmins(eventID: eventThatWasSelected) { admins in
             
             self.eventsArray?[indexPath.row].admins = admins
             
@@ -146,9 +153,9 @@ class MasterTableViewController: UITableViewController {
             }
             
             if (isAdmin == true) {
-                self.performSegue(withIdentifier: "showHostGoals", sender: self)
+                self.performSegue(withIdentifier: "showHostGoals", sender: nil)
             } else {
-                self.performSegue(withIdentifier: "showAttendingGoals", sender: self)
+                self.performSegue(withIdentifier: "showAttendingGoals", sender: nil)
 
             }
             
