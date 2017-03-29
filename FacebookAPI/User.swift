@@ -13,4 +13,7 @@ class User: NSObject {
     var userID:String?
     var name:String?
     
+    var stripeJSON:[String:Any]?
+    
+    
 }
