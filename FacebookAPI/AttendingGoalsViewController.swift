@@ -8,10 +8,15 @@
 
 import UIKit
 
-class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ServerInformationDelegate {
     
     //information for the event that the user is attending
     var attendingEvent:Event?
+    var partyItemForContribution:PartyItem?
+    
+    var paymentReceiverJSON:[String:Any]?
+    
+    let stripeConnectManager = StripeConnectManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,12 +61,38 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
         
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        
+        if attendingEvent?.partyItems?.count == nil || attendingEvent?.partyItems?.count == 0 {
+         
+            tableView.deselectRow(at: indexPath, animated: true)
+            
+        }
+        
+        partyItemForContribution = attendingEvent?.partyItems?[indexPath.row]
+        let newContributeVC = ContributeToGoalViewController(jsonHostInformation: self.paymentReceiverJSON!)
+        newContributeVC.partyItemToContributeTo = partyItemForContribution
+        self.navigationController?.present(newContributeVC, animated: true, completion: nil)
+        
+        
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "showEventDetail") {
             let detailVC:DetailViewController = segue.destination as! DetailViewController
             detailVC.detailEvent = attendingEvent
             
         }
+        
+    }
+    
+    func retrieveJSON(newCustomerJSON: [String : Any])
+    {
+        self.paymentReceiverJSON = newCustomerJSON
+        
+        performSegue(withIdentifier: "contributeToGoals", sender: self)
+        
     }
     
     func detailInformationButtonPushed() -> Void
