@@ -11,6 +11,8 @@ import UIKit
 class AddNewItemViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     var eventToAddItemTo:Event?
+    var addNewItemHost:User?
+    
     var imagePicker = UIImagePickerController()
 
     @IBOutlet weak var itemGoalLabel: UILabel!
@@ -72,10 +74,16 @@ class AddNewItemViewController: UIViewController, UINavigationControllerDelegate
         
         //POST to firebase and create a new party item on this event
         
+        
         print(itemGoal)
         print(itemNameTextField.text!)
         
-
+        //name and ID of the host who posted it. Not sure if you need both but they are here
+        let hostName = addNewItemHost?.name!
+        let hostID = addNewItemHost?.userID!
+        print(hostName!)
+        print(hostID!)
+        
         //check to see if they are nil or else do not pop back
         _ = self.navigationController?.popViewController(animated: true)
     
