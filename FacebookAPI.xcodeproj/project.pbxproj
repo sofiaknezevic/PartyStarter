@@ -15,7 +15,7 @@
 		5D3264E01E89B0340045B126 /* AttendingGoals.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D3264DF1E89B0340045B126 /* AttendingGoals.storyboard */; };
 		5D3264E21E89B0D90045B126 /* AttendingGoalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3264E11E89B0D90045B126 /* AttendingGoalsViewController.swift */; };
 		5D3264E61E89B12D0045B126 /* EventDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D3264E51E89B12D0045B126 /* EventDetail.storyboard */; };
-		5D5EC3011E8A2541000D9ADC /* AttendingGoalsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5EC3001E8A2541000D9ADC /* AttendingGoalsTableViewCell.swift */; };
+		5D5EC3011E8A2541000D9ADC /* GoalsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5EC3001E8A2541000D9ADC /* GoalsTableViewCell.swift */; };
 		5D5EC3031E8A27AD000D9ADC /* PartyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5EC3021E8A27AD000D9ADC /* PartyItem.swift */; };
 		5DB4B16F1E89D21700D7EF66 /* StripeAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB4B16E1E89D21700D7EF66 /* StripeAPIClient.swift */; };
 		5DB4B1711E89D4AD00D7EF66 /* ConnectToStripeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB4B1701E89D4AD00D7EF66 /* ConnectToStripeViewController.swift */; };
@@ -24,6 +24,7 @@
 		5DD151441E8B02C100BB07DF /* ContributeToGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD151431E8B02C100BB07DF /* ContributeToGoalViewController.swift */; };
 		5DD151461E8B2DF300BB07DF /* ContributeToGoalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DD151451E8B2DF300BB07DF /* ContributeToGoalView.xib */; };
 		70B253E3E678AC86C25BD6D5 /* Pods_FacebookAPITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3959D20BE097ED1583CA80A9 /* Pods_FacebookAPITests.framework */; };
+		D22C8F5B1E8C49B000275437 /* GoalsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D22C8F5A1E8C49B000275437 /* GoalsTableViewCell.xib */; };
 		D234F45D1E8B2B47008E0BD8 /* AddNewItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D234F45C1E8B2B47008E0BD8 /* AddNewItemViewController.swift */; };
 		D283C5D31E88B60000A40FBC /* CoverPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = D283C5D21E88B60000A40FBC /* CoverPhoto.swift */; };
 		D2CF578A1E83398C00090788 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CF57891E83398C00090788 /* AppDelegate.swift */; };
@@ -67,7 +68,7 @@
 		5D3264DF1E89B0340045B126 /* AttendingGoals.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AttendingGoals.storyboard; sourceTree = "<group>"; };
 		5D3264E11E89B0D90045B126 /* AttendingGoalsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttendingGoalsViewController.swift; sourceTree = "<group>"; };
 		5D3264E51E89B12D0045B126 /* EventDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EventDetail.storyboard; sourceTree = "<group>"; };
-		5D5EC3001E8A2541000D9ADC /* AttendingGoalsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttendingGoalsTableViewCell.swift; sourceTree = "<group>"; };
+		5D5EC3001E8A2541000D9ADC /* GoalsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalsTableViewCell.swift; sourceTree = "<group>"; };
 		5D5EC3021E8A27AD000D9ADC /* PartyItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyItem.swift; sourceTree = "<group>"; };
 		5DB4B16E1E89D21700D7EF66 /* StripeAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StripeAPIClient.swift; sourceTree = "<group>"; };
 		5DB4B1701E89D4AD00D7EF66 /* ConnectToStripeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectToStripeViewController.swift; sourceTree = "<group>"; };
@@ -76,6 +77,7 @@
 		5DD151431E8B02C100BB07DF /* ContributeToGoalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContributeToGoalViewController.swift; sourceTree = "<group>"; };
 		5DD151451E8B2DF300BB07DF /* ContributeToGoalView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContributeToGoalView.xib; sourceTree = "<group>"; };
 		CA0C0CDA7F39768C6F6BC99B /* Pods-FacebookAPI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FacebookAPI.release.xcconfig"; path = "Pods/Target Support Files/Pods-FacebookAPI/Pods-FacebookAPI.release.xcconfig"; sourceTree = "<group>"; };
+		D22C8F5A1E8C49B000275437 /* GoalsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoalsTableViewCell.xib; sourceTree = "<group>"; };
 		D234F45C1E8B2B47008E0BD8 /* AddNewItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewItemViewController.swift; sourceTree = "<group>"; };
 		D283C5D21E88B60000A40FBC /* CoverPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoverPhoto.swift; sourceTree = "<group>"; };
 		D2CF57861E83398C00090788 /* FacebookAPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FacebookAPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -192,8 +194,10 @@
 		5D5EC2FF1E8A2522000D9ADC /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5D5EC3001E8A2541000D9ADC /* AttendingGoalsTableViewCell.swift */,
-				5DD151451E8B2DF300BB07DF /* ContributeToGoalView.xib */,
+
+				5D5EC3001E8A2541000D9ADC /* GoalsTableViewCell.swift */,
+				D22C8F5A1E8C49B000275437 /* GoalsTableViewCell.xib */,
+
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -335,6 +339,7 @@
 				5D3264E01E89B0340045B126 /* AttendingGoals.storyboard in Resources */,
 				D2CF57B41E84929600090788 /* Main.storyboard in Resources */,
 				DAF105E91E89B498008F0FD6 /* GoogleService-Info.plist in Resources */,
+				D22C8F5B1E8C49B000275437 /* GoalsTableViewCell.xib in Resources */,
 				5D3264E61E89B12D0045B126 /* EventDetail.storyboard in Resources */,
 				5DD151461E8B2DF300BB07DF /* ContributeToGoalView.xib in Resources */,
 				D2CF57941E83398C00090788 /* LaunchScreen.storyboard in Resources */,
@@ -473,7 +478,7 @@
 				5DB4B1711E89D4AD00D7EF66 /* ConnectToStripeViewController.swift in Sources */,
 				D2CF57B21E848C1E00090788 /* MasterTableViewController.swift in Sources */,
 				D2D0F1871E8894DE000F2205 /* Attendees.swift in Sources */,
-				5D5EC3011E8A2541000D9ADC /* AttendingGoalsTableViewCell.swift in Sources */,
+				5D5EC3011E8A2541000D9ADC /* GoalsTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

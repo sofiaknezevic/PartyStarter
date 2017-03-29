@@ -16,6 +16,7 @@ class MasterTableViewController: UITableViewController {
 
     var eventsArray:[Event]?
     var userID:String?
+    var user:User?
     var firebaseUserID : String?
     var ref: FIRDatabaseReference!
 
@@ -27,7 +28,9 @@ class MasterTableViewController: UITableViewController {
         DataManager.getUserInfo
         { user in
             print(user.name!)
-                
+            
+            self.user = user
+            
             self.userID = user.userID
             print(self.userID!)
         }
@@ -117,6 +120,7 @@ class MasterTableViewController: UITableViewController {
             
             let hostGoalsVC:HostGoalsViewController = segue.destination as! HostGoalsViewController
             hostGoalsVC.hostEvent = self.eventsArray?[indexPath.row]
+            hostGoalsVC.hostUser = self.user
             
             print("host goals")
             
