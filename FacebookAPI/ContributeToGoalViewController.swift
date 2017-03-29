@@ -15,7 +15,9 @@ class ContributeToGoalViewController: UIViewController, STPPaymentContextDelegat
     
     var paymentContext:STPPaymentContext?
     let paymentCurrency = "CAD"
-    var jsonOfContributor:[String:Any]?
+    var jsonOfHost:[String:Any]?
+    
+    let stripePublishableKey:String?
     
     var partyItemToContributeTo:PartyItem?
 
@@ -26,11 +28,17 @@ class ContributeToGoalViewController: UIViewController, STPPaymentContextDelegat
         
     }
     
-    init(jsonCustomerInformation:[String:Any])
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    init(jsonHostInformation:[String:Any])
     {
         StripeAPIClient.sharedClient.baseURLString = backendBaseURL
         
-        let stripePublishableKey = jsonCustomerInformation["stripe_publishable_key"] as! String
+        let stripePublishableKey = jsonHostInformation["stripe_publishable_key"] as! String
+        
+        self.stripePublishableKey = stripePublishableKey
         
         let paymentConfiguration = STPPaymentConfiguration.shared()
         
@@ -54,13 +62,11 @@ class ContributeToGoalViewController: UIViewController, STPPaymentContextDelegat
         
         self.paymentContext?.hostViewController = self
         
-        self.jsonOfContributor = jsonCustomerInformation
+        self.jsonOfHost = jsonHostInformation
         
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+
     
 
 
@@ -76,7 +82,7 @@ class ContributeToGoalViewController: UIViewController, STPPaymentContextDelegat
     func paymentContext(_ paymentContext: STPPaymentContext, didCreatePaymentResult paymentResult: STPPaymentResult, completion: @escaping STPErrorBlock)
     {
         
-        StripeAPIClient.sharedClient.completeCharge(paymentResult, userData:self.jsonOfContributor!, amount: (self.paymentContext?.paymentAmount)!, completion: completion)
+        StripeAPIClient.sharedClient.completeCharge(paymentResult, userData:self.jsonOfHost!, amount: (self.paymentContext?.paymentAmount)!, completion: completion)
         
         
     }

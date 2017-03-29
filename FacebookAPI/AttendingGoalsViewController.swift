@@ -8,11 +8,11 @@
 
 import UIKit
 
-class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ServerInformationDelegate {
     
     //information for the event that the user is attending
     var attendingEvent:Event?
-    var contributeToGoal:PartyItem?
+    var partyItemForContribution:PartyItem?
     
     var paymentReceiverJSON:[String:Any]?
     
@@ -70,9 +70,11 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
             
         }
         
-        contributeToGoal = attendingEvent?.partyItems?[indexPath.row]
+        partyItemForContribution = attendingEvent?.partyItems?[indexPath.row]
+        let newContributeVC = ContributeToGoalViewController(jsonHostInformation: self.paymentReceiverJSON!)
+        newContributeVC.partyItemToContributeTo = partyItemForContribution
+        self.navigationController?.present(newContributeVC, animated: true, completion: nil)
         
-        performSegue(withIdentifier: "contributeToGoals", sender: self)
         
     }
     
@@ -83,14 +85,13 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
             
         }
         
-        if (segue.identifier == "contributeToGoals") {
-            
-            var contributeVC = ContributeToGoalViewController(jsonCustomerInformation:stripeConnectManager.currentJSON!)
-            contributeVC.partyItemToContributeTo = contributeToGoal
-            contributeVC = segue.destination as! ContributeToGoalViewController
-            
-            
-        }
+    }
+    
+    func retrieveJSON(newCustomerJSON: [String : Any])
+    {
+        self.paymentReceiverJSON = newCustomerJSON
+        
+        performSegue(withIdentifier: "contributeToGoals", sender: self)
         
     }
     
