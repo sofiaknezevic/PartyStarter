@@ -14,29 +14,29 @@ class ContributeToGoalViewController: UIViewController, STPPaymentContextDelegat
     let backendBaseURL: String? = "http://localhost:4567/"
     
     var paymentContext:STPPaymentContext?
-    let paymentCurrency = "CAD"
+    let paymentCurrency = "cad"
     var jsonOfHost:[String:Any]?
     
-    let stripePublishableKey:String?
+    var stripePublishableKey:String?
     
     var partyItemToContributeTo:PartyItem?
 
     @IBOutlet weak var paymentAmountSlider: UISlider!
     
     override func viewDidLoad() {
+        
+        self.setUp(hostJSON: jsonOfHost!)
+        
         super.viewDidLoad()
+    
         
     }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    init(jsonHostInformation:[String:Any])
-    {
+
+    func setUp(hostJSON:[String:Any]) -> Void {
+        
         StripeAPIClient.sharedClient.baseURLString = backendBaseURL
         
-        let stripePublishableKey = jsonHostInformation["stripe_publishable_key"] as! String
+        let stripePublishableKey = hostJSON["stripe_publishable_key"] as! String
         
         self.stripePublishableKey = stripePublishableKey
         
@@ -57,18 +57,8 @@ class ContributeToGoalViewController: UIViewController, STPPaymentContextDelegat
         paymentContext.paymentCurrency = self.paymentCurrency
         
         self.paymentContext = paymentContext
-
-        super.init(nibName: "ContributeToGoalView", bundle: nil)
-        
-        self.paymentContext?.hostViewController = self
-        
-        self.jsonOfHost = jsonHostInformation
         
     }
-    
-
-    
-
 
 
     func paymentContextDidChange(_ paymentContext: STPPaymentContext)
