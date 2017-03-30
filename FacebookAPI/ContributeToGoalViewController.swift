@@ -9,130 +9,47 @@
 import UIKit
 import Stripe
 
-class ContributeToGoalViewController: UIViewController, STPPaymentContextDelegate {
+class ContributeToGoalViewController: UIViewController{
+    
+    @IBOutlet weak var goalAmountLabel: UILabel!
+    @IBOutlet weak var goalAmountMinusContributionLabel: UILabel!
+    
+    @IBOutlet weak var amountToContributeSlider: UISlider!
+    
     
     let backendBaseURL: String? = "http://localhost:4567/"
     
-    var paymentContext:STPPaymentContext?
-    let paymentCurrency = "cad"
+    //var paymentContext:STPPaymentContext?
+   // let paymentCurrency = "cad"
     var jsonOfHost:[String:Any]?
     
     var stripePublishableKey:String?
     
     var partyItemToContributeTo:PartyItem?
-
-    @IBOutlet weak var paymentAmountSlider: UISlider!
     
     override func viewDidLoad() {
-        
-        self.setUp(hostJSON: jsonOfHost!)
         
         super.viewDidLoad()
     
         
     }
+    
+    func setUp() -> Void {
+        
+        goalAmountLabel.text = "\(partyItemToContributeTo?.itemGoal)"
+        
+        
+    }
+    
 
-    func setUp(hostJSON:[String:Any]) -> Void {
+    @IBAction func contributionButtonPressed(_ sender: UIButton)
+    {
         
-        StripeAPIClient.sharedClient.baseURLString = backendBaseURL
         
-        let stripePublishableKey = hostJSON["stripe_publishable_key"] as! String
-        
-        self.stripePublishableKey = stripePublishableKey
-        
-        let paymentConfiguration = STPPaymentConfiguration.shared()
-        
-        paymentConfiguration.publishableKey = stripePublishableKey
-        
-        let userInformation = STPUserInformation()
-        
-        let paymentContext = STPPaymentContext(apiAdapter: StripeAPIClient.sharedClient,
-                                               configuration: paymentConfiguration,
-                                               theme: STPTheme.default())
-        
-        paymentContext.prefilledInformation = userInformation
-        
-        paymentContext.paymentAmount = 5000
-        
-        paymentContext.paymentCurrency = self.paymentCurrency
-        
-        self.paymentContext = paymentContext
         
     }
+    
 
-
-    func paymentContextDidChange(_ paymentContext: STPPaymentContext)
-    {
-    
-        self.paymentContext = paymentContext
-        
-        
-    }
-    
-    func paymentContext(_ paymentContext: STPPaymentContext, didCreatePaymentResult paymentResult: STPPaymentResult, completion: @escaping STPErrorBlock)
-    {
-        
-        StripeAPIClient.sharedClient.completeCharge(paymentResult, userData:self.jsonOfHost!, amount: (self.paymentContext?.paymentAmount)!, completion: completion)
-        
-        
-    }
-    
-    func paymentContext(_ paymentContext: STPPaymentContext, didFinishWith status: STPPaymentStatus, error: Error?)
-    {
-        
-        let title: String
-        let message: String
-        switch status {
-        case .error:
-            title = "Error"
-            message = error?.localizedDescription ?? ""
-        case .success:
-            title = "Success"
-            message = "You paid $50 randomly to nothing 🙃"
-        case .userCancellation:
-            return
-            
-        }
-        
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alertController.addAction(action)
-        self.present(alertController, animated: true, completion: nil)
-        
-        
-    }
-    
-    func paymentContext(_ paymentContext: STPPaymentContext, didFailToLoadWithError error: Error)
-    {
-        
-        let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
-        
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { action in
-            
-            _ = self.navigationController?.popViewController(animated: true)
-            
-        }
-        
-        let retry = UIAlertAction(title: "Retry", style: .default) { action in
-            
-            self.paymentContext?.retryLoading()
-        }
-        
-        alertController.addAction(cancel)
-        alertController.addAction(retry)
-        self.present(alertController, animated: true, completion: nil)
-        
-        
-    }
-    
-    @IBAction func payButtonPressed(_ sender: UIButton)
-    {
-        
-        
-        self.paymentContext?.requestPayment()
-        
-        
-    }
 
 
 }
