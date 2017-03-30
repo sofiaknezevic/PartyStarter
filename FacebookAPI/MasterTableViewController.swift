@@ -21,8 +21,8 @@ class MasterTableViewController: UITableViewController {
     var ref: FIRDatabaseReference!
 
     //these two arrays are going to populate the firebase. Maybe make a boolean for hosting on Event class
-    var hostingArray:[Event]?
-    var attendingArray:[Event]?
+    var hostingArray = [Event]()
+    var attendingArray = [Event]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,24 +56,35 @@ class MasterTableViewController: UITableViewController {
             }
         }
         
-        
-        //do I need to event pass anything in then?
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         self.eventsArray = nil
-//        var adminArray = [[Admins]]()
-
         
+        if (self.hostingArray.count == 0 && self.attendingArray.count == 0) {
+
+            refreshTableView()
+
+        }
+    }
+
+    @IBAction func refreshTableViewButton(_ sender: UIBarButtonItem) {
+        
+        refreshTableView()
+    }
+
+    
+    func refreshTableView() {
+        
+        self.hostingArray = []
+        self.attendingArray = []
         
         DataManager.getEvents
             { events in
                 if events.count > 0
                 {
-                    self.eventsArray = events
-                    print("table view: \(self.eventsArray!)")
                     
                     //for loop to go through the events in the array and get an array of admins for each event
                     for event in events {
@@ -84,42 +95,63 @@ class MasterTableViewController: UITableViewController {
                             event.admins = (admins)
                             
                             if admins.contains(where: { $0.adminID == self.userID }) {
-                                self.hostingArray?.append(event)
+                                self.hostingArray.append(event)
                                 print("hosting this event: \(event.eventID)")
-
+                                
+                                
                             } else {
-                                self.attendingArray?.append(event)
+                                self.attendingArray.append(event)
                                 print("attending this event: \(event.eventID)")
+                                
                             }
+                            
+                            DataManager.getEventAttendees(eventID: event.eventID!) { attendees in
+                                event.attendees = (attendees)
+                            }
+                            
+                            self.tableView.reloadData()
+                            print("reloaded")
+                            
                         }
                     }
                     
-                    self.tableView.reloadData()
-
                 }
-
         }
-        
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if (section == 0) {
+            return "Hosting"
+        } else {
+            return "Attending"
+        }
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //return self.events.count
-        return self.eventsArray?.count ?? 0
+        if (section == 0) {
+            return self.hostingArray.count
+        } else {
+            return self.attendingArray.count
+        }
         
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-
-        //just use the basic cell to display the title of the event
-        cell.textLabel?.text = self.eventsArray?[indexPath.row].eventName
-
+        
+        if (indexPath.section == 0) {
+            cell.textLabel?.text = self.hostingArray[indexPath.row].eventName
+        } else {
+            cell.textLabel?.text = self.attendingArray[indexPath.row].eventName
+        }
+        
+        //need to change this to something else since we are not using events array anymore
         FirebaseManager.writeToFirebaseDBAttendingEvents(indexPath: indexPath, eventsArray: self.eventsArray)
         
         return cell
@@ -135,10 +167,10 @@ class MasterTableViewController: UITableViewController {
         
         //this is for the attendee page
         if (segue.identifier == "showAttendingGoals") {
-            //pass on the userID to the next screen
+            //pass on the userID to the next screen?
             
             let attendingGoalsVC:AttendingGoalsViewController = segue.destination as! AttendingGoalsViewController
-            attendingGoalsVC.attendingEvent = self.eventsArray?[indexPath.row]
+            attendingGoalsVC.attendingEvent = self.attendingArray[indexPath.row]
             
             print("attending goals")
         }
@@ -147,9 +179,8 @@ class MasterTableViewController: UITableViewController {
         if (segue.identifier == "showHostGoals") {
             
             let hostGoalsVC:HostGoalsViewController = segue.destination as! HostGoalsViewController
-            hostGoalsVC.hostEvent = self.eventsArray?[indexPath.row]
+            hostGoalsVC.hostEvent = self.hostingArray[indexPath.row]
             hostGoalsVC.hostUser = self.user
-            
             
             print("host goals")
             
@@ -159,42 +190,11 @@ class MasterTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        //need to do the requests here when the cell is selected. Refactor to move network requests to the target view controller
-        
-
-        guard let eventThatWasSelected = self.eventsArray?[indexPath.row].eventID else {
-            return
-        }
-
-        DataManager.getEventAttendees(eventID: eventThatWasSelected) { attendees in
-                                                                      
-            self.eventsArray?[indexPath.row].attendees = attendees
-        
-        
-        DataManager.getEventAdmins(eventID: eventThatWasSelected) { admins in
-            
-            self.eventsArray?[indexPath.row].admins = admins
-            
-            var isAdmin:Bool = false
-            
-            //check to see if the user is an admin
-            for admin in admins {
-                
-                if (admin.adminID == self.userID) {
-                    isAdmin = true
-                }
-            }
-            
-            if (isAdmin == true) {
+            if (indexPath.section == 0) {
                 self.performSegue(withIdentifier: "showHostGoals", sender: nil)
             } else {
                 self.performSegue(withIdentifier: "showAttendingGoals", sender: nil)
-
             }
-            
-            
-        }
-        }
-        
+    
     }
 }
