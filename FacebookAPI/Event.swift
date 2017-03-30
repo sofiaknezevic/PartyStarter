@@ -28,7 +28,7 @@ class Event: NSObject {
     var eventID: String?
     
     //the thing that the host wants to get people to pitch money for! To get the partySTARTED!
-    var partyItems:[PartyItem]?
+    var partyItems = [PartyItem]()
         
     //cover photo for event from facebook
     var coverPhoto: UIImage?

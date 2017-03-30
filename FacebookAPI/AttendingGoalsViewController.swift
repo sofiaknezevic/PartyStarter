@@ -51,13 +51,13 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if attendingEvent?.partyItems?.count == nil || attendingEvent?.partyItems?.count == 0 {
+        if attendingEvent?.partyItems.count == nil || attendingEvent?.partyItems.count == 0 {
             
             return 1
             
         }
         
-        return (attendingEvent?.partyItems!.count)!
+        return (attendingEvent?.partyItems.count)!
         
     }
     
@@ -72,13 +72,13 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         
-        if attendingEvent?.partyItems?.count == nil || attendingEvent?.partyItems?.count == 0 {
+        if attendingEvent?.partyItems.count == nil || attendingEvent?.partyItems.count == 0 {
          
             tableView.deselectRow(at: indexPath, animated: true)
             
         }else{
             
-            partyItemForContribution = attendingEvent?.partyItems?[indexPath.row]
+            partyItemForContribution = attendingEvent?.partyItems[indexPath.row]
             
             stripeConnectManager.readStripeJSON()
             
