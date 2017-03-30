@@ -20,6 +20,10 @@ class MasterTableViewController: UITableViewController {
     //var firebaseUserID : String?
     var ref: FIRDatabaseReference!
 
+    //these two arrays are going to populate the firebase. Maybe make a boolean for hosting on Event class
+    var hostingArray:[Event]?
+    var attendingArray:[Event]?
+
     override func viewDidLoad() {
         super.viewDidLoad()
        
@@ -60,6 +64,9 @@ class MasterTableViewController: UITableViewController {
         super.viewDidAppear(animated)
         
         self.eventsArray = nil
+        var adminArray = [[Admins]]()
+
+        
         
         DataManager.getEvents
             { events in
@@ -68,10 +75,27 @@ class MasterTableViewController: UITableViewController {
                     self.eventsArray = events
                     print("table view: \(self.eventsArray!)")
                     
+                    //for loop to go through the events in the array and get an array of admins for each event
+                    for event in events {
+                        //get the admins for that event
+                        DataManager.getEventAdmins(eventID: event.eventID!) { admins in
+                            //will add an array of admins to an array of event admins
+                            adminArray.append(admins)
+//                            print("this are admins*: \(admins)")
+                            print("this is the array: \(adminArray)")
+
+                        }
+
+                    }
                     
-                    self.tableView.reloadData()
+                    
+//                    self.tableView.reloadData()
+                    //check which events you are an admin in. If you are hosting then put it in the hostingArray else put it in the attending array
                 }
+                
+
         }
+        
         
     }
 
