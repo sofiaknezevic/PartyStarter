@@ -17,64 +17,29 @@ class FirebaseManager: NSObject {
     class func writeToFirebaseDBAttendingEvents(indexPath: IndexPath, eventsArray : Array<Any>?) {
         
         let newFirebaseManager = FirebaseManager()
-
-
+        
         newFirebaseManager.ref = FIRDatabase.database().reference()
 
-        
         guard let eventsArray = eventsArray, let firebaseUserID = UserDefaults.standard.object(forKey: "uid") as? String else {
             print("There is an issue")
             return
         }
         
-        let listOfEventsID = (eventsArray[indexPath.row] as! Event).eventID
+        let getEventsFromArray = (eventsArray[indexPath.row] as? Event)
         
-        guard let eventCity = (eventsArray[indexPath.row] as! Event).cityName else {
-                return
-        }
-        guard let eventCountry = (eventsArray[indexPath.row] as! Event).countryName else {
-            return
-        }
-        guard let eventDescription = (eventsArray[indexPath.row] as! Event).eventDescription else {
-            return
-        }
-
-        guard let eventName = (eventsArray[indexPath.row] as! Event).eventName else {
-            return
-        }
-
-        guard let eventLatitude = (eventsArray[indexPath.row] as! Event).latitute else {
-            return
-        }
-
-        guard let eventLongtitude = (eventsArray[indexPath.row] as! Event).longitude else {
-            return
-        }
-
-        guard let eventPlaceID = (eventsArray[indexPath.row] as! Event).placeID else {
-            return
-        }
-
-        guard let eventPlaceName = (eventsArray[indexPath.row] as! Event).placeName else {
-            return
-        }
-
-        guard let eventRSVPStatus = (eventsArray[indexPath.row] as! Event).rsvpStatus else {
-            return
-        }
-
-        guard let eventStartTime = (eventsArray[indexPath.row] as! Event).startTime else {
-            return
-        }
-
-        guard let eventState = (eventsArray[indexPath.row] as! Event).state else {
-            return
-        }
-
-        guard let eventZipcode = (eventsArray[indexPath.row] as! Event).zipCode else {
-            return
-        }
-
+        let listOfEventsID = getEventsFromArray?.eventID
+        let eventCity = getEventsFromArray?.cityName ?? ""
+        let eventCountry = getEventsFromArray?.countryName ?? ""
+        let eventDescription = getEventsFromArray?.eventDescription ?? ""
+        let eventName = getEventsFromArray?.eventName ?? ""
+        let eventLatitude = getEventsFromArray?.latitute ?? nil
+        let eventLongtitude = getEventsFromArray?.longitude ?? nil
+        let eventPlaceID = getEventsFromArray?.placeID ?? ""
+        let eventPlaceName = getEventsFromArray?.placeName ?? ""
+        let eventRSVPStatus = getEventsFromArray?.rsvpStatus ?? ""
+        let eventStartTime = getEventsFromArray?.startTime ?? ""
+        let eventState = getEventsFromArray?.state ?? ""
+        let eventZipcode = getEventsFromArray?.zipCode ?? ""
         
         // Writing the list of events to firebase database
         let writeToFirebaseDB = newFirebaseManager.ref.child("user_profile").child("\(firebaseUserID)").child("hosting_events_array")
@@ -82,7 +47,6 @@ class FirebaseManager: NSObject {
         writeToFirebaseDB.child("\(listOfEventsID!)/event_id").setValue(listOfEventsID!)
         
         writeToFirebaseDB.child("\(listOfEventsID!)/event_city").setValue(eventCity)
-        
         writeToFirebaseDB.child("\(listOfEventsID!)/event_country").setValue(eventCountry)
         writeToFirebaseDB.child("\(listOfEventsID!)/event_description").setValue(eventDescription)
         writeToFirebaseDB.child("\(listOfEventsID!)/event_name").setValue(eventName)
@@ -109,15 +73,35 @@ class FirebaseManager: NSObject {
         
         // Writing the list of events to firebase database
         let writeToFirebaseDB = newFirebaseManager.ref.child("user_profile").child("\(firebaseUserID)").child("user_name")
-        
 
-
-        
         writeToFirebaseDB.setValue(userName)
+    }
+    
+    class func writeToFirebaseDBPartyItem(partyItemName : String, eventID : String, partyItemsArray : Array<Any>?) {
+    
+        let newFirebaseManager = FirebaseManager()
+        
+        newFirebaseManager.ref = FIRDatabase.database().reference()
+        
+        
+       guard let partyItemsArray = partyItemsArray, let firebaseUserID = UserDefaults.standard.object(forKey: "uid") as? String else {
+            print("There is an issue")
+            return
+        }
+        
+        for i in 0..<partyItemsArray.count {
+            
+            let getEventsFromArray = (partyItemsArray[i] as? PartyItem)
+            let listOfPartyItems = getEventsFromArray?.itemName
 
 
+        // Writing the list of events to firebase database
+        newFirebaseManager.ref.child("party_item").child("\(firebaseUserID)").child("\(eventID)").child("\(listOfPartyItems!)").setValue(listOfPartyItems)
+        }
+    }
+    
+    func getFirebaseUserID(firebaseUserID : String) {
         
         
     }
-    
 }
