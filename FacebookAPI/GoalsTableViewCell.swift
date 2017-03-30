@@ -36,9 +36,9 @@ class GoalsTableViewCell: UITableViewCell {
         print("*********")
         print(event)
 
-        if event?.partyItems?.count != nil && event?.partyItems?.count != 0 {
+        if event?.partyItems.count != nil && event?.partyItems.count != 0 {
             
-            cellPartyItem = event?.partyItems?[indexPath]
+            cellPartyItem = event?.partyItems[indexPath]
             attendingGoalNameLabel.text = cellPartyItem?.itemName
             
             let fundedString = "\(cellPartyItem?.itemAmountFunded)% there!"

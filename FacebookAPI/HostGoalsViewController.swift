@@ -80,13 +80,13 @@ class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if hostEvent?.partyItems?.count == nil || hostEvent?.partyItems?.count == 0 {
+        if hostEvent?.partyItems.count == nil || hostEvent?.partyItems.count == 0 {
             
             return 1
             
         }
         
-        return (hostEvent?.partyItems!.count)!
+        return (hostEvent?.partyItems.count)!
         
     }
     

@@ -84,12 +84,13 @@ class AddNewItemViewController: UIViewController, UINavigationControllerDelegate
         print(itemNameTextField.text!)
         
         //must initialize new partyItem with all things we got, and gotta save to the eventsArray
+        //add error handlers
         let newPartyItem = PartyItem(name: itemNameTextField.text!,
                                      goal: Double(itemGoal),
                                      image: itemImageView.image!,
                                      itemEventID: (eventToAddItemTo?.eventID)!)
         
-        eventToAddItemTo?.partyItems?.append(newPartyItem)
+        eventToAddItemTo?.partyItems.append(newPartyItem)
         
         //name and ID of the host who posted it. Not sure if you need both but they are here
         let hostName = addNewItemHost?.name!
