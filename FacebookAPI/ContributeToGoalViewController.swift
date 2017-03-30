@@ -47,8 +47,16 @@ class ContributeToGoalViewController: UIViewController{
         
         
         
+        
+        
     }
     
+    @IBAction func amountToContributeSlider(_ sender: UISlider)
+    {
+        
+        
+        
+    }
 
 
 

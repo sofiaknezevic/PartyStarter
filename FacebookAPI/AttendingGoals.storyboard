@@ -68,6 +68,9 @@
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Hjb-dw-Meh">
                                 <rect key="frame" x="14" y="256" width="347" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="amountToContributeSlider:" destination="3Sc-HJ-Wnb" eventType="valueChanged" id="XLn-jA-hL2"/>
+                                </connections>
                             </slider>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LjG-Jp-hVC">
                                 <rect key="frame" x="149" y="318" width="78" height="30"/>
@@ -107,6 +110,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="UQq-mX-ghj"/>
+        <segue reference="ofv-Wp-K95"/>
     </inferredMetricsTieBreakers>
 </document>
