@@ -17,16 +17,17 @@ class MasterTableViewController: UITableViewController {
     var eventsArray:[Event]?
     var userID:String?
     var user:User?
-    var firebaseUserID : String?
+    //var firebaseUserID : String?
     var ref: FIRDatabaseReference!
 
     override func viewDidLoad() {
         super.viewDidLoad()
        
-
         //print name
         DataManager.getUserInfo
         { user in
+            
+            FirebaseManager.writeToFirebaseDBUserName(userName: user.name!)
             print(user.name!)
             
             self.user = user
@@ -43,7 +44,7 @@ class MasterTableViewController: UITableViewController {
                 // User is signed in.
                 print("start login success: " + (user?.email)! )
                 
-                self.firebaseUserID = user?.uid
+                //self.firebaseUserID = user?.uid
                 //self.performSegue(withIdentifier: loginToList, sender: nil)
             } else {
                 // No user is signed in.
@@ -92,7 +93,7 @@ class MasterTableViewController: UITableViewController {
         //just use the basic cell to display the title of the event
         cell.textLabel?.text = self.eventsArray?[indexPath.row].eventName
 
-        //writeToFirebaseDB(indexPath: indexPath)
+        FirebaseManager.writeToFirebaseDBAttendingEvents(indexPath: indexPath, eventsArray: self.eventsArray)
         
         return cell
     }
@@ -121,6 +122,7 @@ class MasterTableViewController: UITableViewController {
             let hostGoalsVC:HostGoalsViewController = segue.destination as! HostGoalsViewController
             hostGoalsVC.hostEvent = self.eventsArray?[indexPath.row]
             hostGoalsVC.hostUser = self.user
+            
             
             print("host goals")
             
@@ -167,45 +169,5 @@ class MasterTableViewController: UITableViewController {
         }
         }
         
-    }
-
-    // Function that writes events id to Firebase DB.
-    func writeToFirebaseDB(indexPath: IndexPath) {
-        
-        guard let eventsArray = self.eventsArray, let data = UserDefaults.standard.object(forKey: "uid") as? String else {
-            print("There is an issue")
-            return
-        }
-        
-        let listOfEventsID = eventsArray[indexPath.row].eventID
-        
-        let eventCity = self.eventsArray?[indexPath.row].cityName
-        let eventCountry = self.eventsArray?[indexPath.row].countryName
-        let eventDescription = self.eventsArray?[indexPath.row].eventDescription
-        let eventName = self.eventsArray?[indexPath.row].eventName
-        let eventLatitude = self.eventsArray?[indexPath.row].latitute
-        let eventLongtitude = self.eventsArray?[indexPath.row].longitude
-        let eventPlaceID = self.eventsArray?[indexPath.row].placeID
-        let eventPlaceName = self.eventsArray?[indexPath.row].placeName
-        let eventRSVPStatus = self.eventsArray?[indexPath.row].rsvpStatus
-        let eventStartTime = self.eventsArray?[indexPath.row].startTime
-        let eventState = self.eventsArray?[indexPath.row].state
-        let eventZipcode = self.eventsArray?[indexPath.row].zipCode
-
-        // Writing the list of events to firebase database
-        self.ref.child("user_profile").child("\(data)").child("\(listOfEventsID!)/event_id").setValue(listOfEventsID!)
-        self.ref.child("user_profile").child("\(data)").child("\(listOfEventsID!)/event_city").setValue(eventCity!)
-        self.ref.child("user_profile").child("\(data)").child("\(listOfEventsID!)/event_country").setValue(eventCountry!)
-        self.ref.child("user_profile").child("\(data)").child("\(listOfEventsID!)/event_description").setValue(eventDescription!)
-        self.ref.child("user_profile").child("\(data)").child("\(listOfEventsID!)/event_name").setValue(eventName!)
-        self.ref.child("user_profile").child("\(data)").child("\(listOfEventsID!)/event_latitude").setValue(eventLatitude!)
-        self.ref.child("user_profile").child("\(data)").child("\(listOfEventsID!)/event_longtitude").setValue(eventLongtitude!)
-        self.ref.child("user_profile").child("\(data)").child("\(listOfEventsID!)/event_placeID").setValue(eventPlaceID!)
-        self.ref.child("user_profile").child("\(data)").child("\(listOfEventsID!)/event_placename").setValue(eventPlaceName!)
-        
-        self.ref.child("user_profile").child("\(data)").child("\(listOfEventsID!)/event_RSVP_status").setValue(eventRSVPStatus!)
-        self.ref.child("user_profile").child("\(data)").child("\(listOfEventsID!)/event_start_time").setValue(eventStartTime!)
-        self.ref.child("user_profile").child("\(data)").child("\(listOfEventsID!)/event_state").setValue(eventState!)
-        self.ref.child("user_profile").child("\(data)").child("\(listOfEventsID!)/event_zipcode").setValue(eventZipcode!)
     }
 }
