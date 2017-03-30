@@ -54,10 +54,13 @@ class StripeConnectManager: NSObject {
                     return
                 }
                 
+                UserDefaults.standard.set(stripeUserID, forKey: "stripe_id")
+                UserDefaults.standard.synchronize()
+                                
                 self.ref = FIRDatabase.database().reference()
                 
-                let firebaseUID = UserDefaults.standard.object(forKey: "uid") as? String
-                self.ref.child("user_profile").child(firebaseUID!).child("\(stripeUserID)/").setValue(self.currentJSON)
+                //let firebaseUID = UserDefaults.standard.object(forKey: "uid") as? String
+                self.ref.child("stripe_json").child("\(stripeUserID)/").setValue(self.currentJSON)
             }
             
         }.resume()
@@ -70,7 +73,7 @@ class StripeConnectManager: NSObject {
         ref = FIRDatabase.database().reference()
         
 
-        self.ref.child("user_profile").child((UserDefaults.standard.object(forKey: "uid") as? String!)!).queryOrderedByKey().queryLimited(toFirst: 1).observeSingleEvent(of: .value, with: { snapshot in
+        self.ref.child("stripe_json").child((UserDefaults.standard.object(forKey: "uid") as? String!)!).queryOrderedByKey().queryLimited(toFirst: 1).observeSingleEvent(of: .value, with: { snapshot in
             
         
             

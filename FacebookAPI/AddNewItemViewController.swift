@@ -72,9 +72,7 @@ class AddNewItemViewController: UIViewController, UINavigationControllerDelegate
         //truncate after decimal place
         let itemGoal = Int(itemGoalSlider.value)
         //save to firebase itemGoal -> Double(itemGoal)
-        
-        
-        
+    
         //save to firebase itemImage -> itemImageView.image
         
         //POST to firebase and create a new party item on this event
@@ -92,6 +90,8 @@ class AddNewItemViewController: UIViewController, UINavigationControllerDelegate
         
         eventToAddItemTo?.partyItems.append(newPartyItem)
         
+        FirebaseManager.writeToFirebaseDBEvents(partyItemName: itemNameTextField.text!, eventID: (eventToAddItemTo?.eventID)!, partyItemsArray: eventToAddItemTo?.partyItems)
+        FirebaseManager.writeToFirebaseDBPartyItem(partyItemName: itemNameTextField.text!, eventID: (eventToAddItemTo?.eventID)!, partyItemsArray: eventToAddItemTo?.partyItems)
         //name and ID of the host who posted it. Not sure if you need both but they are here
         let hostName = addNewItemHost?.name!
         let hostID = addNewItemHost?.userID!
