@@ -100,6 +100,32 @@ class FirebaseManager: NSObject {
         }
     }
     
+    class func writeToFirebaseDBEvents(partyItemName : String, eventID : String, partyItemsArray : Array<Any>?) {
+        
+        let newFirebaseManager = FirebaseManager()
+        
+        newFirebaseManager.ref = FIRDatabase.database().reference()
+        
+        
+
+        guard let partyItemsArray = partyItemsArray, let firebaseUserID = UserDefaults.standard.object(forKey: "uid") as? String, let stripeUserID = UserDefaults.standard.object(forKey: "stripe_id") as? String else {
+            print("There is an issue")
+            return
+        }
+        
+        for i in 0..<partyItemsArray.count {
+            
+            let getEventsFromArray = (partyItemsArray[i] as? PartyItem)
+            let listOfPartyItems = getEventsFromArray?.itemName
+            
+            
+            // Writing the list of events to firebase database
+            newFirebaseManager.ref.child("events").child("\(firebaseUserID)").child("\(eventID)").child("stripe_user_id").setValue("\(stripeUserID)")
+            newFirebaseManager.ref.child("events").child("\(firebaseUserID)").child("\(eventID)").child("\(listOfPartyItems!)").setValue(listOfPartyItems)
+        }
+        
+
+    }
     func getFirebaseUserID(firebaseUserID : String) {
         
         
