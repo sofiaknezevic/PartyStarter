@@ -86,7 +86,9 @@ class DataManager: NSObject {
                     
                     let newAdmin = Admins.parseAdminsFromJSON(admin)
                     
-                    print("admins: \(newAdmin.adminName!)")
+                    newAdmin.adminEventID = eventID
+                    
+//                    print("admins: \(newAdmin.adminName!)")
                     
                     adminArray.append(newAdmin)
     

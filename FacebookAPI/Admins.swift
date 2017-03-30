@@ -12,6 +12,7 @@ class Admins: NSObject {
     
     var adminName:String?
     var adminID:String?
+    var adminEventID: String?
     
       class func parseAdminsFromJSON( _ json: [String: Any]) -> Admins {
         
