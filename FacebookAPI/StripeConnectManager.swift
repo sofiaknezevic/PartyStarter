@@ -69,23 +69,28 @@ class StripeConnectManager: NSObject {
         
         ref = FIRDatabase.database().reference()
         
-        // self.ref.child("user_profile").child((UserDefaults.standard.object(forKey: "uid") as? String!)!).child("\(self.currentJSON?["stripe_user_id"] as! String!)/").observeSingleEvent(of: .value, with: { snapshot in
+
         self.ref.child("user_profile").child((UserDefaults.standard.object(forKey: "uid") as? String!)!).queryOrderedByKey().queryLimited(toFirst: 1).observeSingleEvent(of: .value, with: { snapshot in
             
+        
             
             if !snapshot.exists() {
                 print("No snapshot exists")
                 return
             }
             
+            print("\(snapshot)")
+            
             let enumerator = snapshot.children
-            while let jsonData = enumerator.nextObject() as? FIRDataSnapshot {
+            print("\(enumerator)")
+            while (enumerator.nextObject() as? FIRDataSnapshot) != nil {
                 for jsonData in snapshot.children.allObjects as! [FIRDataSnapshot] {
                     guard let restDict = jsonData.value as? [String: AnyObject] else {
                         continue
                     }
                     let getStripeUserID = restDict["stripe_user_id"]
                     print("PRINT STRIPE_USER_ID: ", getStripeUserID!)
+                    
                 }
                 
                 // Print the whole JSON file

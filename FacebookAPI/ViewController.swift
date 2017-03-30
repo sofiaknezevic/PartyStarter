@@ -42,9 +42,9 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
             
             // User is logged in, use 'accessToken' here.
             performSegue(withIdentifier: "tableViewSegue", sender: self)
-            print("this is the token: \(accessToken)")
+            //print("this is the token: \(accessToken)")
             id = accessToken.userId
-            print("this is user id: \(id!)")
+            //print("this is user id: \(id!)")
             
         }
     }

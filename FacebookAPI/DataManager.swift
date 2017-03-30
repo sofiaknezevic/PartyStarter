@@ -16,6 +16,8 @@ class DataManager: NSObject {
     class func getUserInfo(completion:@escaping (User)->()) {
         
         let user = User()
+        
+        //what are we using this for? do we need this?
         var parameters: [String: Any]? = ["fields": "id, name"]
 
         let connection = GraphRequestConnection()
@@ -56,7 +58,7 @@ class DataManager: NSObject {
                     eventArray.append(newEvent)
                    
                 }
-                print("data manager: \(eventArray)")
+                //print("data manager: \(eventArray)")
                 completion(eventArray)
                 
             case .failed(let error):

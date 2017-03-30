@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ServerInformationDelegate {
+class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
     //information for the event that the user is attending
     var attendingEvent:Event?
@@ -76,11 +76,26 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
          
             tableView.deselectRow(at: indexPath, animated: true)
             
+        }else{
+            
+            partyItemForContribution = attendingEvent?.partyItems?[indexPath.row]
+            
+            stripeConnectManager.readStripeJSON()
+            
+            self.prepareForContributionVC()
+            
+            
         }
         
-        partyItemForContribution = attendingEvent?.partyItems?[indexPath.row]
-        let newContributeVC = ContributeToGoalViewController(jsonHostInformation: self.paymentReceiverJSON!)
+
+        
+    }
+    
+    func prepareForContributionVC() -> Void {
+        
+        let newContributeVC = ContributeToGoalViewController()
         newContributeVC.partyItemToContributeTo = partyItemForContribution
+        newContributeVC.jsonOfHost = self.paymentReceiverJSON
         self.navigationController?.present(newContributeVC, animated: true, completion: nil)
         
         
@@ -94,14 +109,7 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
         }
         
     }
-    
-    func retrieveJSON(newCustomerJSON: [String : Any])
-    {
-        self.paymentReceiverJSON = newCustomerJSON
-        
-        performSegue(withIdentifier: "contributeToGoals", sender: self)
-        
-    }
+
     
     func detailInformationButtonPushed() -> Void
     {

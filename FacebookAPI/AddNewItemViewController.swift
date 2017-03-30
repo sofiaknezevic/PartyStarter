@@ -62,6 +62,9 @@ class AddNewItemViewController: UIViewController, UINavigationControllerDelegate
     
     func savePartyItemButton() -> Void
     {
+        
+        
+        
         //pop back to view controller and save it to database
         
         //save to firebase itemName -> itemNameTextField.text
@@ -70,6 +73,8 @@ class AddNewItemViewController: UIViewController, UINavigationControllerDelegate
         let itemGoal = Int(itemGoalSlider.value)
         //save to firebase itemGoal -> Double(itemGoal)
         
+        
+        
         //save to firebase itemImage -> itemImageView.image
         
         //POST to firebase and create a new party item on this event
@@ -77,6 +82,14 @@ class AddNewItemViewController: UIViewController, UINavigationControllerDelegate
         
         print(itemGoal)
         print(itemNameTextField.text!)
+        
+        //must initialize new partyItem with all things we got, and gotta save to the eventsArray
+        let newPartyItem = PartyItem(name: itemNameTextField.text!,
+                                     goal: Double(itemGoal),
+                                     image: itemImageView.image!,
+                                     itemEventID: (eventToAddItemTo?.eventID)!)
+        
+        eventToAddItemTo?.partyItems?.append(newPartyItem)
         
         //name and ID of the host who posted it. Not sure if you need both but they are here
         let hostName = addNewItemHost?.name!

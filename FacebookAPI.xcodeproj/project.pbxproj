@@ -17,7 +17,6 @@
 		5D3264E61E89B12D0045B126 /* EventDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D3264E51E89B12D0045B126 /* EventDetail.storyboard */; };
 		5D5EC3011E8A2541000D9ADC /* GoalsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5EC3001E8A2541000D9ADC /* GoalsTableViewCell.swift */; };
 		5D5EC3031E8A27AD000D9ADC /* PartyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5EC3021E8A27AD000D9ADC /* PartyItem.swift */; };
-		5DB4B16F1E89D21700D7EF66 /* StripeAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB4B16E1E89D21700D7EF66 /* StripeAPIClient.swift */; };
 		5DB4B1711E89D4AD00D7EF66 /* ConnectToStripeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB4B1701E89D4AD00D7EF66 /* ConnectToStripeViewController.swift */; };
 		5DB4B1731E89D76F00D7EF66 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB4B1721E89D76F00D7EF66 /* NetworkManager.swift */; };
 		5DB4B1751E89D91E00D7EF66 /* StripeConnectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB4B1741E89D91E00D7EF66 /* StripeConnectManager.swift */; };
@@ -69,7 +68,6 @@
 		5D3264E51E89B12D0045B126 /* EventDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EventDetail.storyboard; sourceTree = "<group>"; };
 		5D5EC3001E8A2541000D9ADC /* GoalsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalsTableViewCell.swift; sourceTree = "<group>"; };
 		5D5EC3021E8A27AD000D9ADC /* PartyItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyItem.swift; sourceTree = "<group>"; };
-		5DB4B16E1E89D21700D7EF66 /* StripeAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StripeAPIClient.swift; sourceTree = "<group>"; };
 		5DB4B1701E89D4AD00D7EF66 /* ConnectToStripeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectToStripeViewController.swift; sourceTree = "<group>"; };
 		5DB4B1721E89D76F00D7EF66 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		5DB4B1741E89D91E00D7EF66 /* StripeConnectManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StripeConnectManager.swift; sourceTree = "<group>"; };
@@ -151,7 +149,6 @@
 				D2D0F1881E8894ED000F2205 /* Admins.swift */,
 				D283C5D21E88B60000A40FBC /* CoverPhoto.swift */,
 				DAF105EC1E89C4F3008F0FD6 /* FirebaseUser.swift */,
-				5DB4B16E1E89D21700D7EF66 /* StripeAPIClient.swift */,
 				5DB4B1721E89D76F00D7EF66 /* NetworkManager.swift */,
 				5DB4B1741E89D91E00D7EF66 /* StripeConnectManager.swift */,
 				5D5EC3021E8A27AD000D9ADC /* PartyItem.swift */,
@@ -460,7 +457,6 @@
 				5DB4B1751E89D91E00D7EF66 /* StripeConnectManager.swift in Sources */,
 				D2CF57AA1E83430D00090788 /* DetailViewController.swift in Sources */,
 				5DB4B1731E89D76F00D7EF66 /* NetworkManager.swift in Sources */,
-				5DB4B16F1E89D21700D7EF66 /* StripeAPIClient.swift in Sources */,
 				D2CF578C1E83398C00090788 /* ViewController.swift in Sources */,
 				D234F45D1E8B2B47008E0BD8 /* AddNewItemViewController.swift in Sources */,
 				D2CF578A1E83398C00090788 /* AppDelegate.swift in Sources */,

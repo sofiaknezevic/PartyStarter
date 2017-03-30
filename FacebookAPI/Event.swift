@@ -21,10 +21,11 @@ class Event: NSObject {
     var state: String?
     var street: String?
     var zipCode: String?
-    var eventID: String?
     var placeID: String?
     var startTime: String?
     var rsvpStatus: String?
+    
+    var eventID: String?
     
     //the thing that the host wants to get people to pitch money for! To get the partySTARTED!
     var partyItems:[PartyItem]?

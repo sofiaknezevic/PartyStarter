@@ -50,8 +50,8 @@ class DetailViewController: UIViewController {
         super.viewDidAppear(true)
         setup()
         
-        print("this are the admins: \(detailEvent?.admins)")
-        print("this are the attendees: \(detailEvent?.attendees)")
+        //print("this are the admins: \(detailEvent?.admins)")
+        //print("this are the attendees: \(detailEvent?.attendees)")
 
     }
     
@@ -65,7 +65,7 @@ class DetailViewController: UIViewController {
         detailEventNameLabel.text = detailEvent?.eventName
         detailLocationLabel.text = detailEvent?.placeName
         detailTextField.text = detailEvent?.eventDescription
-        detailrsvpLabel.text = detailEvent?.rsvpStatus
+        detailrsvpLabel.text = "RSVP Status: \(detailEvent?.rsvpStatus)"
 //        detailImageView.image = detailEvent?.coverPhoto
         
 //        eventDescriptionLabel.text = detailEvent?.eventDescription
