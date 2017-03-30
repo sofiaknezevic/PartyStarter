@@ -64,7 +64,7 @@ class MasterTableViewController: UITableViewController {
         super.viewDidAppear(animated)
         
         self.eventsArray = nil
-        var adminArray = [[Admins]]()
+//        var adminArray = [[Admins]]()
 
         
         
@@ -79,23 +79,26 @@ class MasterTableViewController: UITableViewController {
                     for event in events {
                         //get the admins for that event
                         DataManager.getEventAdmins(eventID: event.eventID!) { admins in
-                            //will add an array of admins to an array of event admins
-                            adminArray.append(admins)
-//                            print("this are admins*: \(admins)")
-                            print("this is the array: \(adminArray)")
+                            
+                            //add this array of admins to the event object
+                            event.admins = (admins)
+                            
+                            if admins.contains(where: { $0.adminID == self.userID }) {
+                                self.hostingArray?.append(event)
+                                print("hosting this event: \(event.eventID)")
 
+                            } else {
+                                self.attendingArray?.append(event)
+                                print("attending this event: \(event.eventID)")
+                            }
                         }
-
                     }
                     
-                    
-//                    self.tableView.reloadData()
-                    //check which events you are an admin in. If you are hosting then put it in the hostingArray else put it in the attending array
+                    self.tableView.reloadData()
+
                 }
-                
 
         }
-        
         
     }
 
