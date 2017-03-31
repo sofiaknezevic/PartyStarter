@@ -71,6 +71,7 @@ class AddNewItemViewController: UIViewController, UINavigationControllerDelegate
         
         //truncate after decimal place
         let itemGoal = Int(itemGoalSlider.value)
+        let itemImage = String()
         //save to firebase itemGoal -> Double(itemGoal)
     
         //save to firebase itemImage -> itemImageView.image
@@ -85,7 +86,7 @@ class AddNewItemViewController: UIViewController, UINavigationControllerDelegate
         //add error handlers
         let newPartyItem = PartyItem(name: itemNameTextField.text!,
                                      goal: Double(itemGoal),
-                                     image: itemImageView.image!,
+                                     image: String(itemImage),
                                      itemEventID: (eventToAddItemTo?.eventID)!)
         
         eventToAddItemTo?.partyItems.append(newPartyItem)

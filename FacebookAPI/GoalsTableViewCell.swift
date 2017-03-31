@@ -38,6 +38,9 @@ class GoalsTableViewCell: UITableViewCell {
     {
     
         var arrayOfPartyItemNames = [String]()
+        var arrayOfEventIDs = [String]()
+        var arrayOfPartyItemGoals = [NSNumber]()
+        
         
         FirebaseManager.retrievePartyItemsFromFirebase(eventID: event.eventID!) { (partyItemArray) in
             
@@ -45,11 +48,20 @@ class GoalsTableViewCell: UITableViewCell {
             
         }
         
-        print("\(arrayOfPartyItemNames)")
-        
-        
+        FirebaseManager.retrieveEventIDFromFirebase(eventID: event.eventID!)  { (eventIDArray) in
+            
+            arrayOfEventIDs = eventIDArray
+            
+        }
+        FirebaseManager.retrievePartyItemsGoalFromFirebase(eventID: event.eventID!)  { (partyItemGoalArray) in
+            
+            arrayOfPartyItemGoals = partyItemGoalArray
+            
+        }
 
-        
+        print("\(arrayOfPartyItemNames)")
+        print("\(arrayOfEventIDs)")
+        print("\(arrayOfPartyItemGoals)")
 
         if event.partyItems.count != 0 {
             
