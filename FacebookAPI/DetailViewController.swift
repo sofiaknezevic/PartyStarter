@@ -20,12 +20,12 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var placeNameLabel: UILabel!
     @IBOutlet weak var eventIDLabel: UILabel!
     @IBOutlet weak var addresslabel: UILabel!
-    @IBOutlet weak var startTimeLabel: UILabel!
     @IBOutlet weak var rsvpStatusLabel: UILabel!
     @IBOutlet weak var eventImageView: UIImageView!
     @IBOutlet weak var attendeesLabel: UILabel!
     @IBOutlet weak var adminsLabel: UILabel!
     
+    @IBOutlet weak var detailStartTimeLabel: UILabel!
     @IBOutlet weak var detailImageView: UIImageView!
     @IBOutlet weak var detailEventNameLabel: UILabel!
     @IBOutlet weak var detailLocationLabel: UILabel!
@@ -65,14 +65,22 @@ class DetailViewController: UIViewController {
         
         let unwrappedRSVP = (detailEvent?.rsvpStatus)! as String
         
-        
-        
-        
         detailEventNameLabel.text = detailEvent?.eventName
         detailLocationLabel.text = detailEvent?.placeName
         detailTextField.text = detailEvent?.eventDescription
         detailrsvpLabel.text = "RSVP Status: \(unwrappedRSVP)"
-
+        
+        if let startTime = detailEvent?.startTime {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZ"
+        let date = dateFormatter.date(from: startTime)
+        dateFormatter.dateFormat = "HH:mm eee MMM dd yyyy"
+        let dateStr = dateFormatter.string(from: date!)
+        
+        detailStartTimeLabel.text = "Start Time: \(dateStr)"
+        }
+        
     }
     
     @IBAction func mapToEvent(_ sender: UIButton) {
