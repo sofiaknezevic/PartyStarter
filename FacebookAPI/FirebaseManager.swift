@@ -67,7 +67,7 @@ class FirebaseManager: NSObject {
         newFirebaseManager.ref = FIRDatabase.database().reference()
         
         guard let firebaseUserID = UserDefaults.standard.object(forKey: "uid") as? String else {
-            print("There is an issue")
+            //print("There is an issue")
             return
         }
         
@@ -130,4 +130,6 @@ class FirebaseManager: NSObject {
         
         
     }
+    
+
 }

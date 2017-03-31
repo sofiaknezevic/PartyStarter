@@ -20,6 +20,8 @@ class GoalsTableViewCell: UITableViewCell {
     
     var cellPartyItem:PartyItem?
     
+    let fireBaseManager = FirebaseManager()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
