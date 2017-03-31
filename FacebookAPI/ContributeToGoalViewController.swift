@@ -57,9 +57,8 @@ class ContributeToGoalViewController: UIViewController{
         performSegue(withIdentifier: "goToPaymentVC", sender: self)
         
         //set contributors for partyitem and also the amount contributed
-     
+   
         
-        print("You gotta pay now!")
         
         
     }

@@ -25,10 +25,10 @@
             </objects>
             <point key="canvasLocation" x="-961" y="115"/>
         </scene>
-        <!--View Controller-->
+        <!--Payment View Controller-->
         <scene sceneID="OQZ-wm-OX2">
             <objects>
-                <viewController id="9uc-RG-LvI" sceneMemberID="viewController">
+                <viewController id="9uc-RG-LvI" customClass="PaymentViewController" customModule="FacebookAPI" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hqU-2n-bLs"/>
                         <viewControllerLayoutGuide type="bottom" id="em6-0u-63F"/>
