@@ -299,7 +299,7 @@
 					};
 					D2CF57991E83398D00090788 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = F9J4B49FUC;
+						DevelopmentTeam = WV7WWTD5PV;
 						ProvisioningStyle = Automatic;
 						TestTargetID = D2CF57851E83398C00090788;
 					};
@@ -605,7 +605,7 @@
 				INFOPLIST_FILE = FacebookAPI/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = scott847.FacebookAPI;
+				PRODUCT_BUNDLE_IDENTIFIER = scott847.PartyStarter.New;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -620,7 +620,7 @@
 				INFOPLIST_FILE = FacebookAPI/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = scott847.FacebookAPI;
+				PRODUCT_BUNDLE_IDENTIFIER = scott847.PartyStarter.New;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -632,7 +632,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = F9J4B49FUC;
+				DEVELOPMENT_TEAM = WV7WWTD5PV;
 				INFOPLIST_FILE = FacebookAPITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = scott847.FacebookAPITests;
@@ -648,7 +648,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = F9J4B49FUC;
+				DEVELOPMENT_TEAM = WV7WWTD5PV;
 				INFOPLIST_FILE = FacebookAPITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = scott847.FacebookAPITests;
