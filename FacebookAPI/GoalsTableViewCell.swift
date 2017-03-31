@@ -37,7 +37,33 @@ class GoalsTableViewCell: UITableViewCell {
     func configureCellWith(event:Event, indexPath:Int) -> Void
     {
         
-     
+        print(FirebaseManager.retrievePartyItemsFromFirebase(eventID: event.eventID!))
+        //event.partyItems.append(FirebaseManager.retrievePartyItemsFromFirebase(eventID: event.eventID!)) as! [PartyItem]
+
+        //FirebaseManager.retrievePartyItems(eventID: event.eventID!)
+        
+        event.partyItems = FirebaseManager.retrievePartyItemsFromFirebase(eventID: event.eventID!) as Array<Any> as! [PartyItem]
+
+
+        
+        
+        var ref: FIRDatabaseReference!
+        ref = FIRDatabase.database().reference()
+        
+        var postData = [Any]()
+        
+        ref.child("party_item").child((UserDefaults.standard.object(forKey: "uid") as? String)!).child("\(String(describing: event.eventID))").child("party_item_list").observe(.childAdded, with: { (snapshot) in
+            
+            if !snapshot.exists() {
+                print("No snapshot exists")
+                return
+            }
+            
+            postData.append((snapshot.value as? String)!)
+            
+            event.partyItems = postData as! [PartyItem]
+        })
+        
 
         if event.partyItems.count != 0 {
             
