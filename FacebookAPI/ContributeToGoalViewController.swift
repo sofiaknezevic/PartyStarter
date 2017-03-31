@@ -30,6 +30,8 @@ class ContributeToGoalViewController: UIViewController{
     
     var partyItemToContributeTo:PartyItem?
     
+    var arrayOfContributors = [String]()
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -52,7 +54,10 @@ class ContributeToGoalViewController: UIViewController{
     {
         //go to viewcontroller that deals with creditcard information and get it all done, using the stripeuserid from the host and the token from the credit card of the attendee
         
-        //performSegue(withIdentifier: "goToPaymentVC", sender: self)
+        performSegue(withIdentifier: "goToPaymentVC", sender: self)
+        
+        //set contributors for partyitem and also the amount contributed
+     
         
         print("You gotta pay now!")
         

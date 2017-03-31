@@ -12,6 +12,7 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
     
     //information for the event that the user is attending
     var attendingEvent = Event()
+    var attendingUser = User()
 
     @IBOutlet weak var attendingTableView: UITableView!
     
@@ -34,6 +35,7 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
         
         setUpDetailInfoButton()
         
+        //take this out before demo day... this is all fake shtuff
         setUpFakePartyItemForTesting(event: attendingEvent)
     }
 
@@ -69,7 +71,13 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
                                      image:#imageLiteral(resourceName: "choosePartyImage"),
                                      itemEventID: event.eventID!)
         
+        let newPartyItem2 = PartyItem(name: "tables",
+                                     goal: 200.00,
+                                     image:#imageLiteral(resourceName: "choosePartyImage"),
+                                     itemEventID: event.eventID!)
+        
         event.partyItems.append(newPartyItem)
+        event.partyItems.append(newPartyItem2)
         
     }
 
@@ -108,38 +116,29 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
             
         }else{
             
-            //partyItemForContribution = attendingEvent.partyItems[indexPath.row]
-            
-            partyItemForContribution = attendingEvent.partyItems[0]
+            partyItemForContribution = attendingEvent.partyItems[indexPath.row]
             
             //stripeConnectManager.readStripeJSON()
-            
-            self.prepareForContributionVC()
-            
+        
+            performSegue(withIdentifier: "showContributeToGoalVC", sender: self)
             
         }
-    }
-    
-    func prepareForContributionVC() -> Void {
-        
-        
-        
-        //newContributeVC.jsonOfHost = self.paymentReceiverJSON
-        //self.navigationController?.present(newContributeVC, animated: true, completion: nil)
-        
-        
-        let storyBoard = UIStoryboard(name: "AttendingGoals", bundle: nil)
-        let newContributeVC = storyBoard.instantiateViewController(withIdentifier: "ContributeToGoalViewController") as! ContributeToGoalViewController
-        
-        newContributeVC.partyItemToContributeTo = partyItemForContribution
-        
-        self.navigationController?.pushViewController(newContributeVC, animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "showEventDetail") {
             let detailVC:DetailViewController = segue.destination as! DetailViewController
             detailVC.detailEvent = attendingEvent
+            
+        }
+        
+        if (segue.identifier == "showContributeToGoalVC") {
+            
+            let newContributeVC:ContributeToGoalViewController = segue.destination as! ContributeToGoalViewController
+            
+            //send over the json as well here!!!!!!!!!
+            //newContributeVC.jsonOfHost = self.paymentReceiverJSON
+            newContributeVC.partyItemToContributeTo = partyItemForContribution
             
         }
         
