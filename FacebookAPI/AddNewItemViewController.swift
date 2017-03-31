@@ -8,12 +8,13 @@
 
 import UIKit
 
-class AddNewItemViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class AddNewItemViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     var eventToAddItemTo:Event?
     var addNewItemHost:User?
     
-    var imagePicker = UIImagePickerController()
+    var arrayOfImages = [UIImage]()
+    
 
     @IBOutlet weak var itemGoalLabel: UILabel!
     @IBOutlet weak var itemGoalSlider: UISlider!
@@ -23,47 +24,13 @@ class AddNewItemViewController: UIViewController, UINavigationControllerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationItem.title = eventToAddItemTo?.eventName
-
-        let savePartyItem = UIBarButtonItem(title: "Save", style: UIBarButtonItemStyle.plain, target: self, action: #selector(savePartyItemButton))
-        self.navigationItem.rightBarButtonItem = savePartyItem
+        setUpNavButtons()
+        addAllImagesToArray()
         
-        let cancel = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(cancelItemButton))
-        self.navigationItem.leftBarButtonItem = cancel
-        
-        let pickImage = UITapGestureRecognizer(target: self, action: #selector(pickItemImage(pickImage:)))
-        itemImageView.isUserInteractionEnabled = true
-        itemImageView.addGestureRecognizer(pickImage)
-        
-    }
-
-
-    func pickItemImage(pickImage: UITapGestureRecognizer) -> Void {
-        
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.savedPhotosAlbum) {
-            
-            imagePicker.delegate = self
-            imagePicker.sourceType = UIImagePickerControllerSourceType.savedPhotosAlbum
-            imagePicker.allowsEditing = false
-            
-            self.present(imagePicker, animated: true, completion: nil)
-            
-        }
-        
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        self.dismiss(animated: true) { 
-            //code
-        }
-        
-        itemImageView.image = info[UIImagePickerControllerOriginalImage] as! UIImage?
     }
     
     func savePartyItemButton() -> Void
     {
-        
-        
         
         //pop back to view controller and save it to database
         
@@ -104,16 +71,55 @@ class AddNewItemViewController: UIViewController, UINavigationControllerDelegate
     
     }
     
-    @IBAction func itemGoalSliderAction(_ sender: UISlider) {
+    @IBAction func itemGoalSliderAction(_ sender: UISlider)
+    {
         
         let itemGoalInt = Int(itemGoalSlider.value)
         itemGoalLabel.text = "Item Goal: $\(itemGoalInt)"
     }
-    func cancelItemButton() -> Void {
+    
+    func cancelItemButton() -> Void
+    {
         
         //pop back do not save
         _ = self.navigationController?.popViewController(animated: true)
 
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+    {
+        
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
+    {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "newItemImageCell", for: indexPath)
+        
+        return cell
+        
+    }
+    
+    func setUpNavButtons() -> Void
+    {
+        
+        self.navigationItem.title = eventToAddItemTo?.eventName
+        
+        let savePartyItem = UIBarButtonItem(title: "Save", style: UIBarButtonItemStyle.plain, target: self, action: #selector(savePartyItemButton))
+        self.navigationItem.rightBarButtonItem = savePartyItem
+        
+        let cancel = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(cancelItemButton))
+        self.navigationItem.leftBarButtonItem = cancel
+        
+    }
+    
+    func addAllImagesToArray() -> Void
+    {
+        
+        
+        
     }
 
 }
