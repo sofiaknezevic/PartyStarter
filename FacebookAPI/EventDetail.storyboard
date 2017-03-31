@@ -26,7 +26,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vZV-Ji-hKp" userLabel="CoverPhotoView">
                                 <rect key="frame" x="0.0" y="64" width="160" height="160"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="coverPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="jl8-Ls-dWh">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jl8-Ls-dWh">
                                         <rect key="frame" x="16" y="16" width="128" height="128"/>
                                     </imageView>
                                 </subviews>
@@ -108,7 +108,4 @@
             <point key="canvasLocation" x="84" y="-72.413793103448285"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="coverPhoto" width="1024" height="575"/>
-    </resources>
 </document>
