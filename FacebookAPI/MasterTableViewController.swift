@@ -23,7 +23,8 @@ class MasterTableViewController: UITableViewController {
     //these two arrays are going to populate the firebase. Maybe make a boolean for hosting on Event class
     var hostingArray = [Event]()
     var attendingArray = [Event]()
-
+    @IBOutlet weak var refreshButtonOutlet: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
        
@@ -78,6 +79,8 @@ class MasterTableViewController: UITableViewController {
     
     func refreshTableView() {
         
+        refreshButtonOutlet.isEnabled = false
+        
         self.hostingArray = []
         self.attendingArray = []
         
@@ -107,13 +110,17 @@ class MasterTableViewController: UITableViewController {
                             
                             DataManager.getEventAttendees(eventID: event.eventID!) { attendees in
                                 event.attendees = (attendees)
+                                self.refreshButtonOutlet.isEnabled = true
+
                             }
                             
                             self.tableView.reloadData()
                             print("reloaded")
                             
                         }
+
                     }
+
                     
                 }
         }
