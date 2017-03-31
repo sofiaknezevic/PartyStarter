@@ -74,7 +74,7 @@ class GoalsTableViewCell: UITableViewCell {
     func setUpProgressBarWith(partyItem:PartyItem) -> Void
     {
         
-        guard partyItem.itemAmountFunded != nil else{
+        guard partyItem.itemAmountFunded != nil && partyItem.itemAmountFunded != 0 else{
             
             attendingGoalProgressView.setProgress(0, animated: false)
             return

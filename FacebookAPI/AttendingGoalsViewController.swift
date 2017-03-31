@@ -36,7 +36,7 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
     func setUpAttendingGoalsVCWith(event:Event) -> Void {
         
         self.navigationItem.title = event.eventName
-        let detailInfoButton = UIBarButtonItem(image: #imageLiteral(resourceName: "infoVector"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(detailInformationButtonPushed))
+        let detailInfoButton = UIBarButtonItem(image: #imageLiteral(resourceName: "betterInfoVector"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(detailInformationButtonPushed))
         
         self.navigationItem.rightBarButtonItem = detailInfoButton
         

@@ -18,7 +18,7 @@ class DataManager: NSObject {
         let user = User()
         
         //what are we using this for? do we need this?
-        var parameters: [String: Any]? = ["fields": "id, name"]
+        //var parameters: [String: Any]? = ["fields": "id, name"]
 
         let connection = GraphRequestConnection()
         connection.add(GraphRequest(graphPath: "/me")) { httpResponse, result in
@@ -88,8 +88,6 @@ class DataManager: NSObject {
                     
                     newAdmin.adminEventID = eventID
                     
-//                    print("admins: \(newAdmin.adminName!)")
-                    
                     adminArray.append(newAdmin)
     
                 }
@@ -121,8 +119,6 @@ class DataManager: NSObject {
                 for attendee: [String: Any] in data! {
                     
                     let newAttendee = Attendees.parseAttendeesFromJSON(attendee)
-                    
-                    print("attending: \(newAttendee.attendeeName!)")
                     
                     attendeeArray.append(newAttendee)
                 }

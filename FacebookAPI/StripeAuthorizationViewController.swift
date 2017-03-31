@@ -62,8 +62,6 @@ class StripeAuthorizationViewController: UIViewController, UIWebViewDelegate {
             requestForStripeConnect.postToNetwork(code: authorizationToken[1])
             { response in
                 
-                print("\(authorizationToken[1])")
-                
                 self.delegate?.retrieveJSON(newCustomerJSON: self.requestForStripeConnect.currentJSON!)
                 
             }

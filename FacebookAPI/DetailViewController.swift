@@ -49,9 +49,6 @@ class DetailViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         setup()
-        
-        //print("this are the admins: \(detailEvent?.admins)")
-        //print("this are the attendees: \(detailEvent?.attendees)")
 
     }
     
@@ -62,10 +59,15 @@ class DetailViewController: UIViewController {
         
         //set the labels equal to what you pass in
         
+        let unwrappedRSVP = (detailEvent?.rsvpStatus)! as String
+        
+        
+        
+        
         detailEventNameLabel.text = detailEvent?.eventName
         detailLocationLabel.text = detailEvent?.placeName
         detailTextField.text = detailEvent?.eventDescription
-        detailrsvpLabel.text = "RSVP Status: \(detailEvent?.rsvpStatus)"
+        detailrsvpLabel.text = "RSVP Status: \(unwrappedRSVP)"
 //        detailImageView.image = detailEvent?.coverPhoto
         
 //        eventDescriptionLabel.text = detailEvent?.eventDescription

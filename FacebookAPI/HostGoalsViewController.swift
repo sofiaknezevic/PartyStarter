@@ -31,7 +31,7 @@ class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableVie
     func setUpHostGoalsVCWith(event:Event) -> Void {
         
         self.navigationItem.title = event.eventName
-        let detailInfoButton = UIBarButtonItem(image: #imageLiteral(resourceName: "infoVector"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(detailInformationButtonPushed))
+        let detailInfoButton = UIBarButtonItem(image: #imageLiteral(resourceName: "betterInfoVector"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(detailInformationButtonPushed))
         
         self.navigationItem.rightBarButtonItem = detailInfoButton
         
@@ -41,6 +41,7 @@ class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBAction func addNewItem(_ sender: UIButton) {
         
         //when this button is pressed segue to the addNewItem view controller
+        //first check if they have a stripe account hooked up and if they don't, send them to stripe and make them connect 
         performSegue(withIdentifier: "addNewItem", sender: self)
         
         
@@ -61,6 +62,7 @@ class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         
         if (segue.identifier == "addNewItem") {
+            
             //need to pass at the event item so that you can get access to the event name and eventID
             let addNewItemVC:AddNewItemViewController = segue.destination as! AddNewItemViewController
             addNewItemVC.eventToAddItemTo = hostEvent

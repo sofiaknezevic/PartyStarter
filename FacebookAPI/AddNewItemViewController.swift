@@ -56,7 +56,7 @@ class AddNewItemViewController: UIViewController, UINavigationControllerDelegate
         self.dismiss(animated: true) { 
             //code
         }
-        print("image picked")
+        
         itemImageView.image = info[UIImagePickerControllerOriginalImage] as! UIImage?
     }
     
