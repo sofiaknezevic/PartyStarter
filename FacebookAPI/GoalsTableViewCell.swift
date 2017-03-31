@@ -63,10 +63,6 @@ class GoalsTableViewCell: UITableViewCell {
             
         }
         
-
-        
-    
-        
     }
     
     func setImageView() -> Void
