@@ -13,6 +13,7 @@ class FirebaseManager: NSObject {
 
     var ref: FIRDatabaseReference!
 
+    
     // Function that writes events id to Firebase DB.
     class func writeToFirebaseDBHostingEvents(indexPath: IndexPath, hostingArray : Array<Any>?) {
         
@@ -142,7 +143,7 @@ class FirebaseManager: NSObject {
 
 
         // Writing the list of events to firebase database
-        newFirebaseManager.ref.child("party_item").child("\(firebaseUserID)").child("\(eventID)").child("\(listOfPartyItems!)").setValue(listOfPartyItems)
+        newFirebaseManager.ref.child("party_item").child("\(firebaseUserID)").child("\(eventID)").child("party_item_list").child("\(listOfPartyItems!)").setValue(listOfPartyItems)
         }
     }
     
@@ -180,6 +181,32 @@ class FirebaseManager: NSObject {
         
         
     }
+    
+    class func retrievePartyItemsFromFirebase(eventID :String) -> Array<Any> {
+        var ref: FIRDatabaseReference!
+        ref = FIRDatabase.database().reference()
+
+        var postData = [Any]()
+
+        ref.child("party_item").child((UserDefaults.standard.object(forKey: "uid") as? String)!).child("\(eventID)").child("party_item_list").observe(.childAdded, with: { (snapshot) in
+            
+            if !snapshot.exists() {
+                print("No snapshot exists")
+                return
+            }
+            
+            postData.append((snapshot.value as? String)!)
+            print(postData)
+            
+
+        })
+        print(postData)
+        return postData
+    }
+    
+
+
+    
     
 
 }
