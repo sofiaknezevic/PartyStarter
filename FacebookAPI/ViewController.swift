@@ -62,7 +62,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
             
             // handle errors here
             self.logButton.isHidden = false
-//            loadingSpinner.stopAnimating()
+ //          loadingSpinner.stopAnimating()
             
         }
         else if (result.isCancelled) {
@@ -76,12 +76,10 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
             let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
             
             FIRAuth.auth()?.signIn(with: credential) { (user, error) in
-                // ...
                 
                 UserDefaults.standard.set(FIRAuth.auth()!.currentUser!.uid, forKey: "uid")
                 
                 UserDefaults.standard.synchronize()
-                print("User logged in to Firebase App!")
                 
             }
             
@@ -91,9 +89,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
         
         // User is logged in, use 'accessToken' here.
         performSegue(withIdentifier: "tableViewSegue", sender: self)
-        print("next VC")
-        
-        print("User Logged In")
+
         
         
         self.logButton.isHidden = true

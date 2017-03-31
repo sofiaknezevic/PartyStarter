@@ -11,7 +11,7 @@ import UIKit
 class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
     //information for the event that the user is attending
-    var attendingEvent:Event?
+    var attendingEvent = Event()
 
     @IBOutlet weak var attendingTableView: UITableView!
     
@@ -30,13 +30,30 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
         
         attendingTableView.register(nib, forCellReuseIdentifier: "GoalsCell")
         
-        setUpAttendingGoalsVCWith(event: attendingEvent!)
+        setUpAttendingGoalsVCWith(event: attendingEvent)
+        
+        setUpDetailInfoButton()
     }
 
+    
+    //should refactor a little bit I think because having the same thing for two VC'S isn't very "DRY"....
     func setUpAttendingGoalsVCWith(event:Event) -> Void {
         
-        self.navigationItem.title = event.eventName
-        let detailInfoButton = UIBarButtonItem(image: #imageLiteral(resourceName: "infoVector"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(detailInformationButtonPushed))
+        let frame = CGRect(x: 0, y: 0, width: 400, height: 44)
+        let navLabel = UILabel(frame: frame)
+        navLabel.font = UIFont.systemFont(ofSize: 20.0, weight: UIFontWeightLight)
+        navLabel.textAlignment = .center
+        //I want to change this text color later, but its not really letting me right now
+        navLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        navLabel.text = event.eventName
+        
+        self.navigationItem.titleView = navLabel
+        
+    }
+    
+    func setUpDetailInfoButton() -> Void
+    {
+        let detailInfoButton = UIBarButtonItem(image: #imageLiteral(resourceName: "betterInfoVector"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(detailInformationButtonPushed))
         
         self.navigationItem.rightBarButtonItem = detailInfoButton
         
@@ -51,20 +68,20 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if attendingEvent?.partyItems.count == nil || attendingEvent?.partyItems.count == 0 {
+        if attendingEvent.partyItems.count == 0 {
             
             return 1
             
         }
         
-        return (attendingEvent?.partyItems.count)!
+        return (attendingEvent.partyItems.count)
         
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        
         let cell = tableView.dequeueReusableCell(withIdentifier: "GoalsCell", for: indexPath) as! GoalsTableViewCell
-        cell.configureCellWith(event: attendingEvent!, indexPath:indexPath.row)
+        cell.configureCellWith(event: attendingEvent, indexPath:indexPath.row)
         return cell
         
     }
@@ -72,13 +89,13 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         
-        if attendingEvent?.partyItems.count == nil || attendingEvent?.partyItems.count == 0 {
+        if attendingEvent.partyItems.count == 0 {
          
             tableView.deselectRow(at: indexPath, animated: true)
             
         }else{
             
-            partyItemForContribution = attendingEvent?.partyItems[indexPath.row]
+            partyItemForContribution = attendingEvent.partyItems[indexPath.row]
             
             stripeConnectManager.readStripeJSON()
             
@@ -86,9 +103,6 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
             
             
         }
-        
-
-        
     }
     
     func prepareForContributionVC() -> Void {
