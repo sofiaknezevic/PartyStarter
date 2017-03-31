@@ -146,13 +146,15 @@ class MasterTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
         if (indexPath.section == 0) {
+            //need to change this to something else since we are not using events array anymore
+            FirebaseManager.writeToFirebaseDBHostingEvents(indexPath: indexPath, eventsArray: self.hostingArray)
             cell.textLabel?.text = self.hostingArray[indexPath.row].eventName
         } else {
+            FirebaseManager.writeToFirebaseDBAttendingEvents(indexPath: indexPath, eventsArray: self.attendingArray)
             cell.textLabel?.text = self.attendingArray[indexPath.row].eventName
+
         }
         
-        //need to change this to something else since we are not using events array anymore
-        FirebaseManager.writeToFirebaseDBAttendingEvents(indexPath: indexPath, eventsArray: self.eventsArray)
         
         return cell
     }

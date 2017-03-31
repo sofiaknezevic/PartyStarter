@@ -14,7 +14,7 @@ class FirebaseManager: NSObject {
     var ref: FIRDatabaseReference!
 
     // Function that writes events id to Firebase DB.
-    class func writeToFirebaseDBAttendingEvents(indexPath: IndexPath, eventsArray : Array<Any>?) {
+    class func writeToFirebaseDBHostingEvents(indexPath: IndexPath, eventsArray : Array<Any>?) {
         
         let newFirebaseManager = FirebaseManager()
         
@@ -42,22 +42,68 @@ class FirebaseManager: NSObject {
         let eventZipcode = getEventsFromArray?.zipCode ?? ""
         
         // Writing the list of events to firebase database
-        let writeToFirebaseDB = newFirebaseManager.ref.child("user_profile").child("\(firebaseUserID)").child("hosting_events_array")
+        let writeHostingArrayToFirebaseDB = newFirebaseManager.ref.child("user_profile").child("\(firebaseUserID)").child("hosting_events_array")
         
-        writeToFirebaseDB.child("\(listOfEventsID!)/event_id").setValue(listOfEventsID!)
+        writeHostingArrayToFirebaseDB.child("\(listOfEventsID!)/event_id").setValue(listOfEventsID!)
         
-        writeToFirebaseDB.child("\(listOfEventsID!)/event_city").setValue(eventCity)
-        writeToFirebaseDB.child("\(listOfEventsID!)/event_country").setValue(eventCountry)
-        writeToFirebaseDB.child("\(listOfEventsID!)/event_description").setValue(eventDescription)
-        writeToFirebaseDB.child("\(listOfEventsID!)/event_name").setValue(eventName)
-        writeToFirebaseDB.child("\(listOfEventsID!)/event_latitude").setValue(eventLatitude)
-        writeToFirebaseDB.child("\(listOfEventsID!)/event_longtitude").setValue(eventLongtitude)
-        writeToFirebaseDB.child("\(listOfEventsID!)/event_placeID").setValue(eventPlaceID)
-        writeToFirebaseDB.child("\(listOfEventsID!)/event_placename").setValue(eventPlaceName)
-        writeToFirebaseDB.child("\(listOfEventsID!)/event_RSVP_status").setValue(eventRSVPStatus)
-        writeToFirebaseDB.child("\(listOfEventsID!)/event_start_time").setValue(eventStartTime)
-        writeToFirebaseDB.child("\(listOfEventsID!)/event_state").setValue(eventState)
-        writeToFirebaseDB.child("\(listOfEventsID!)/event_zipcode").setValue(eventZipcode)
+        writeHostingArrayToFirebaseDB.child("\(listOfEventsID!)/event_city").setValue(eventCity)
+        writeHostingArrayToFirebaseDB.child("\(listOfEventsID!)/event_country").setValue(eventCountry)
+        writeHostingArrayToFirebaseDB.child("\(listOfEventsID!)/event_description").setValue(eventDescription)
+        writeHostingArrayToFirebaseDB.child("\(listOfEventsID!)/event_name").setValue(eventName)
+        writeHostingArrayToFirebaseDB.child("\(listOfEventsID!)/event_latitude").setValue(eventLatitude)
+        writeHostingArrayToFirebaseDB.child("\(listOfEventsID!)/event_longtitude").setValue(eventLongtitude)
+        writeHostingArrayToFirebaseDB.child("\(listOfEventsID!)/event_placeID").setValue(eventPlaceID)
+        writeHostingArrayToFirebaseDB.child("\(listOfEventsID!)/event_placename").setValue(eventPlaceName)
+        writeHostingArrayToFirebaseDB.child("\(listOfEventsID!)/event_RSVP_status").setValue(eventRSVPStatus)
+        writeHostingArrayToFirebaseDB.child("\(listOfEventsID!)/event_start_time").setValue(eventStartTime)
+        writeHostingArrayToFirebaseDB.child("\(listOfEventsID!)/event_state").setValue(eventState)
+        writeHostingArrayToFirebaseDB.child("\(listOfEventsID!)/event_zipcode").setValue(eventZipcode)
+    
+    }
+    
+    // Function that writes events id to Firebase DB.
+    class func writeToFirebaseDBAttendingEvents(indexPath: IndexPath, eventsArray : Array<Any>?) {
+        
+        let newFirebaseManager = FirebaseManager()
+        
+        newFirebaseManager.ref = FIRDatabase.database().reference()
+        
+        guard let eventsArray = eventsArray, let firebaseUserID = UserDefaults.standard.object(forKey: "uid") as? String else {
+            print("There is an issue")
+            return
+        }
+        
+        let getEventsFromArray = (eventsArray[indexPath.row] as? Event)
+        
+        let listOfEventsID = getEventsFromArray?.eventID
+        let eventCity = getEventsFromArray?.cityName ?? ""
+        let eventCountry = getEventsFromArray?.countryName ?? ""
+        let eventDescription = getEventsFromArray?.eventDescription ?? ""
+        let eventName = getEventsFromArray?.eventName ?? ""
+        let eventLatitude = getEventsFromArray?.latitute ?? nil
+        let eventLongtitude = getEventsFromArray?.longitude ?? nil
+        let eventPlaceID = getEventsFromArray?.placeID ?? ""
+        let eventPlaceName = getEventsFromArray?.placeName ?? ""
+        let eventRSVPStatus = getEventsFromArray?.rsvpStatus ?? ""
+        let eventStartTime = getEventsFromArray?.startTime ?? ""
+        let eventState = getEventsFromArray?.state ?? ""
+        let eventZipcode = getEventsFromArray?.zipCode ?? ""
+        
+        
+        let writeAttendingArrayToFirebaseDB = newFirebaseManager.ref.child("user_profile").child("\(firebaseUserID)").child("attending_events_array")
+        
+        writeAttendingArrayToFirebaseDB.child("\(listOfEventsID!)/event_city").setValue(eventCity)
+        writeAttendingArrayToFirebaseDB.child("\(listOfEventsID!)/event_country").setValue(eventCountry)
+        writeAttendingArrayToFirebaseDB.child("\(listOfEventsID!)/event_description").setValue(eventDescription)
+        writeAttendingArrayToFirebaseDB.child("\(listOfEventsID!)/event_name").setValue(eventName)
+        writeAttendingArrayToFirebaseDB.child("\(listOfEventsID!)/event_latitude").setValue(eventLatitude)
+        writeAttendingArrayToFirebaseDB.child("\(listOfEventsID!)/event_longtitude").setValue(eventLongtitude)
+        writeAttendingArrayToFirebaseDB.child("\(listOfEventsID!)/event_placeID").setValue(eventPlaceID)
+        writeAttendingArrayToFirebaseDB.child("\(listOfEventsID!)/event_placename").setValue(eventPlaceName)
+        writeAttendingArrayToFirebaseDB.child("\(listOfEventsID!)/event_RSVP_status").setValue(eventRSVPStatus)
+        writeAttendingArrayToFirebaseDB.child("\(listOfEventsID!)/event_start_time").setValue(eventStartTime)
+        writeAttendingArrayToFirebaseDB.child("\(listOfEventsID!)/event_state").setValue(eventState)
+        writeAttendingArrayToFirebaseDB.child("\(listOfEventsID!)/event_zipcode").setValue(eventZipcode)
     }
     
     class func writeToFirebaseDBUserName(userName : String) {
