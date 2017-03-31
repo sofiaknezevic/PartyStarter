@@ -133,7 +133,7 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
         
         newContributeVC.partyItemToContributeTo = partyItemForContribution
         
-        self.present(newContributeVC, animated: true, completion: nil)
+        self.navigationController?.pushViewController(newContributeVC, animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

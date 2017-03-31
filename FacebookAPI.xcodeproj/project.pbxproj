@@ -21,6 +21,7 @@
 		5DB4B1731E89D76F00D7EF66 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB4B1721E89D76F00D7EF66 /* NetworkManager.swift */; };
 		5DB4B1751E89D91E00D7EF66 /* StripeConnectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB4B1741E89D91E00D7EF66 /* StripeConnectManager.swift */; };
 		5DD151441E8B02C100BB07DF /* ContributeToGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD151431E8B02C100BB07DF /* ContributeToGoalViewController.swift */; };
+		5DE6E0B51E8EF0750069EDA8 /* PaymentInformation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DE6E0B41E8EF0750069EDA8 /* PaymentInformation.storyboard */; };
 		70B253E3E678AC86C25BD6D5 /* Pods_FacebookAPITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3959D20BE097ED1583CA80A9 /* Pods_FacebookAPITests.framework */; };
 		D22C8F5B1E8C49B000275437 /* GoalsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D22C8F5A1E8C49B000275437 /* GoalsTableViewCell.xib */; };
 		D234F45D1E8B2B47008E0BD8 /* AddNewItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D234F45C1E8B2B47008E0BD8 /* AddNewItemViewController.swift */; };
@@ -72,6 +73,7 @@
 		5DB4B1721E89D76F00D7EF66 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		5DB4B1741E89D91E00D7EF66 /* StripeConnectManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StripeConnectManager.swift; sourceTree = "<group>"; };
 		5DD151431E8B02C100BB07DF /* ContributeToGoalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContributeToGoalViewController.swift; sourceTree = "<group>"; };
+		5DE6E0B41E8EF0750069EDA8 /* PaymentInformation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PaymentInformation.storyboard; sourceTree = "<group>"; };
 		CA0C0CDA7F39768C6F6BC99B /* Pods-FacebookAPI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FacebookAPI.release.xcconfig"; path = "Pods/Target Support Files/Pods-FacebookAPI/Pods-FacebookAPI.release.xcconfig"; sourceTree = "<group>"; };
 		D22C8F5A1E8C49B000275437 /* GoalsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoalsTableViewCell.xib; sourceTree = "<group>"; };
 		D234F45C1E8B2B47008E0BD8 /* AddNewItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewItemViewController.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 				5D3264D51E89A4CD0045B126 /* Stripe.storyboard */,
 				D2CF57921E83398C00090788 /* LaunchScreen.storyboard */,
 				5D3264E51E89B12D0045B126 /* EventDetail.storyboard */,
+				5DE6E0B41E8EF0750069EDA8 /* PaymentInformation.storyboard */,
 			);
 			name = StoryBoards;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 			files = (
 				5D3264E01E89B0340045B126 /* AttendingGoals.storyboard in Resources */,
 				D2CF57B41E84929600090788 /* Main.storyboard in Resources */,
+				5DE6E0B51E8EF0750069EDA8 /* PaymentInformation.storyboard in Resources */,
 				DAF105E91E89B498008F0FD6 /* GoogleService-Info.plist in Resources */,
 				D22C8F5B1E8C49B000275437 /* GoalsTableViewCell.xib in Resources */,
 				5D3264E61E89B12D0045B126 /* EventDetail.storyboard in Resources */,

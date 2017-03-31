@@ -41,10 +41,8 @@ class ContributeToGoalViewController: UIViewController{
     
     func setUp() -> Void {
         
-        //setup some safe unwrapping here
-        
         let unwrappedGoalAmount = (partyItemToContributeTo?.itemGoal)! as Double
-        goalAmountLabel.text = "\(unwrappedGoalAmount)"
+        goalAmountLabel.text = "PartyItem Goal: $\(unwrappedGoalAmount)"
         
         
     }
@@ -52,9 +50,11 @@ class ContributeToGoalViewController: UIViewController{
 
     @IBAction func contributionButtonPressed(_ sender: UIButton)
     {
+        //go to viewcontroller that deals with creditcard information and get it all done, using the stripeuserid from the host and the token from the credit card of the attendee
         
+        //performSegue(withIdentifier: "goToPaymentVC", sender: self)
         
-        
+        print("You gotta pay now!")
         
         
     }

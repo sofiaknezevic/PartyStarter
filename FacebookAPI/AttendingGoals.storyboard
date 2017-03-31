@@ -109,11 +109,20 @@
                         <outlet property="contributionButton" destination="LjG-Jp-hVC" id="JLZ-V8-ta6"/>
                         <outlet property="goalAmountLabel" destination="t4c-s9-VAT" id="h0u-uU-veV"/>
                         <outlet property="goalAmountMinusContributionLabel" destination="Z44-Sc-qPP" id="3Ld-eO-PRn"/>
+                        <segue destination="FUR-fe-kaQ" kind="presentation" identifier="goToPaymentVC" id="Vai-GL-upD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PIC-kU-lwR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1152.8" y="89.505247376311857"/>
+        </scene>
+        <!--Storyboard Reference-->
+        <scene sceneID="0LT-5l-lDh">
+            <objects>
+                <viewControllerPlaceholder id="FUR-fe-kaQ" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nyB-IZ-CPv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1870" y="90"/>
         </scene>
     </scenes>
 </document>
