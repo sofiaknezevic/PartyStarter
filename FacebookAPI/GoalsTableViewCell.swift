@@ -36,33 +36,19 @@ class GoalsTableViewCell: UITableViewCell {
 
     func configureCellWith(event:Event, indexPath:Int) -> Void
     {
+    
+        var arrayOfPartyItemNames = [String]()
         
-        print(FirebaseManager.retrievePartyItemsFromFirebase(eventID: event.eventID!))
-        //event.partyItems.append(FirebaseManager.retrievePartyItemsFromFirebase(eventID: event.eventID!)) as! [PartyItem]
-
-        //FirebaseManager.retrievePartyItems(eventID: event.eventID!)
-        
-        event.partyItems = FirebaseManager.retrievePartyItemsFromFirebase(eventID: event.eventID!) as Array<Any> as! [PartyItem]
-
-
-        
-        
-        var ref: FIRDatabaseReference!
-        ref = FIRDatabase.database().reference()
-        
-        var postData = [Any]()
-        
-        ref.child("party_item").child((UserDefaults.standard.object(forKey: "uid") as? String)!).child("\(String(describing: event.eventID))").child("party_item_list").observe(.childAdded, with: { (snapshot) in
+        FirebaseManager.retrievePartyItemsFromFirebase(eventID: event.eventID!) { (partyItemArray) in
             
-            if !snapshot.exists() {
-                print("No snapshot exists")
-                return
-            }
+            arrayOfPartyItemNames = partyItemArray
             
-            postData.append((snapshot.value as? String)!)
-            
-            event.partyItems = postData as! [PartyItem]
-        })
+        }
+        
+        print("\(arrayOfPartyItemNames)")
+        
+        
+
         
 
         if event.partyItems.count != 0 {
@@ -88,10 +74,6 @@ class GoalsTableViewCell: UITableViewCell {
             self.attendingGoalNameLabel.text = "Sorry, there are no PartyItems to contribute to for this event!"
             
         }
-        
-
-        
-    
         
     }
     

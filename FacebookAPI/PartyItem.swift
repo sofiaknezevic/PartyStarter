@@ -12,11 +12,13 @@ class PartyItem: NSObject {
     
     var itemName:String?
     var itemGoal:Double?
-    var itemContributors = [String]()
     var itemImage:UIImage?
+    var eventID:String?
+    
+    var itemContributors = [String]()
     var itemAmountFunded:Double?
     
-    var eventID:String?
+    
     
     init(name:String, goal:Double, image:UIImage, itemEventID:String) {
         
