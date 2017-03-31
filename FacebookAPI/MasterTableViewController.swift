@@ -15,8 +15,8 @@ class MasterTableViewController: UITableViewController {
     
 
     var eventsArray:[Event]?
-    var userID:String?
-    var user:User?
+    var userID = String()
+    var user = User()
     //var firebaseUserID : String?
     var ref: FIRDatabaseReference!
 
@@ -36,8 +36,8 @@ class MasterTableViewController: UITableViewController {
             
             self.user = user
             
-            self.userID = user.userID
-            print(self.userID!)
+            self.userID = user.userID!
+            print(self.userID)
         }
         
         
