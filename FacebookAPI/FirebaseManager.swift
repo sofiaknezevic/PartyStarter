@@ -182,11 +182,11 @@ class FirebaseManager: NSObject {
         
     }
     
-    class func retrievePartyItemsFromFirebase(eventID :String) -> Array<Any> {
+    class func retrievePartyItemsFromFirebase(eventID :String, completion:@escaping([String]) -> Void){
         var ref: FIRDatabaseReference!
         ref = FIRDatabase.database().reference()
 
-        var postData = [Any]()
+        var partyItemNameArray = [String]()
 
         ref.child("party_item").child((UserDefaults.standard.object(forKey: "uid") as? String)!).child("\(eventID)").child("party_item_list").observe(.childAdded, with: { (snapshot) in
             
@@ -195,13 +195,15 @@ class FirebaseManager: NSObject {
                 return
             }
             
-            postData.append((snapshot.value as? String)!)
-            print(postData)
+            
+            partyItemNameArray.append((snapshot.value as? String)!)
+            print(partyItemNameArray)
+            
+            completion(partyItemNameArray)
             
 
         })
-        print(postData)
-        return postData
+        
     }
     
 
