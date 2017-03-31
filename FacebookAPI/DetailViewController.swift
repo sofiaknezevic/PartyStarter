@@ -46,7 +46,10 @@ class DetailViewController: UIViewController {
             }
 
         }
-
+        
+        navigationButtonOutlet.layer.cornerRadius = 10
+        navigationButtonOutlet.clipsToBounds = true
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
