@@ -36,7 +36,7 @@ class GoalsTableViewCell: UITableViewCell {
 
     func configureCellWith(event:Event, indexPath:Int) -> Void
     {
-        
+    
         var arrayOfPartyItemNames = [String]()
         
         FirebaseManager.retrievePartyItemsFromFirebase(eventID: event.eventID!) { (partyItemArray) in
@@ -48,7 +48,7 @@ class GoalsTableViewCell: UITableViewCell {
         print("\(arrayOfPartyItemNames)")
         
         
-        //event.partyItems = FirebaseManager.retrievePartyItemsFromFirebase(eventID: event.eventID!) as Array<Any> as! [PartyItem]
+
         
 
         if event.partyItems.count != 0 {
