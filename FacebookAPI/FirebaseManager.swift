@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseDatabase
+import Firebase
 
 class FirebaseManager: NSObject {
 
@@ -18,7 +19,7 @@ class FirebaseManager: NSObject {
     class func writeToFirebaseDBHostingEvents(indexPath: IndexPath, hostingArray : Array<Any>?) {
         
         let newFirebaseManager = FirebaseManager()
-        
+
         newFirebaseManager.ref = FIRDatabase.database().reference()
 
         guard let hostingArray = hostingArray, let firebaseUserID = UserDefaults.standard.object(forKey: "uid") as? String else {
@@ -140,10 +141,22 @@ class FirebaseManager: NSObject {
             
             let getEventsFromArray = (partyItemsArray[i] as? PartyItem)
             let listOfPartyItems = getEventsFromArray?.itemName
+            let listOfGoals = getEventsFromArray?.itemGoal
+            let listOfEventID = getEventsFromArray?.eventID
+            let listOfItemImagePaths = getEventsFromArray?.itemImage
+            
+            let convertToNSNumber: NSNumber = NSNumber(value: listOfGoals!)
+            
+            //let listOfItemImages = getEventsFromArray?.itemImage
 
-
-        // Writing the list of events to firebase database
+            // Writing the list of events to firebase database
         newFirebaseManager.ref.child("party_item").child("\(firebaseUserID)").child("\(eventID)").child("party_item_list").child("\(listOfPartyItems!)").setValue(listOfPartyItems)
+        newFirebaseManager.ref.child("party_item").child("\(firebaseUserID)").child("\(eventID)").child("party_item_event_id").child("\(listOfEventID!)").setValue(listOfEventID)
+        newFirebaseManager.ref.child("party_item").child("\(firebaseUserID)").child("\(eventID)").child("party_item_goal").child("\(convertToNSNumber)").setValue(convertToNSNumber)
+        newFirebaseManager.ref.child("party_item").child("\(firebaseUserID)").child("\(eventID)").child("party_item_image_path").child("\(listOfItemImagePaths!)").setValue(listOfItemImagePaths)
+
+//        newFirebaseManager.ref.child("party_item").child("\(firebaseUserID)").child("\(eventID)").child("party_item_images").child("\(listOfPartyItems!)").setValue(listOfItemImages)
+
         }
     }
     
@@ -174,44 +187,100 @@ class FirebaseManager: NSObject {
             
             newFirebaseManager.ref.child("events").child("\(firebaseUserID)").child("\(eventID)").child("party_item_list").child("\(listOfPartyItems!)").setValue(listOfPartyItems!)
         }
-        
-
     }
-    func getFirebaseUserID(firebaseUserID : String) {
-        
-        
-    }
-    
 
     class func retrievePartyItemsFromFirebase(eventID :String, completion:@escaping([String]) -> Void){
+        
         var ref: FIRDatabaseReference!
         ref = FIRDatabase.database().reference()
 
         var partyItemNameArray = [String]()
-
-
+        var partyEventIDArray = [String]()
+        
         ref.child("party_item").child((UserDefaults.standard.object(forKey: "uid") as? String)!).child("\(eventID)").child("party_item_list").observe(.childAdded, with: { (snapshot) in
             
             if !snapshot.exists() {
                 print("No snapshot exists")
                 return
             }
-            
-
-            
             partyItemNameArray.append((snapshot.value as? String)!)
             print(partyItemNameArray)
             
             completion(partyItemNameArray)
-            
-
         })
-
+        
+        ref.child("party_item").child((UserDefaults.standard.object(forKey: "uid") as? String)!).child("\(eventID)").child("party_item_event_id").observe(.childAdded, with: { (snapshot) in
+            
+            if !snapshot.exists() {
+                print("No snapshot exists")
+                return
+            }
+            
+        
+            partyEventIDArray.append((snapshot.value as? String)!)
+            print(partyEventIDArray)
+            completion(partyEventIDArray)
+        })
     }
     
-
-
+    class func retrieveEventIDFromFirebase(eventID :String, completion:@escaping([String]) -> Void){
+        
+        var ref: FIRDatabaseReference!
+        ref = FIRDatabase.database().reference()
+        
+        var partyEventIDArray = [String]()
+        
+        ref.child("party_item").child((UserDefaults.standard.object(forKey: "uid") as? String)!).child("\(eventID)").child("party_item_event_id").observe(.childAdded, with: { (snapshot) in
+            
+            if !snapshot.exists() {
+                print("No snapshot exists")
+                return
+            }
+            
+            partyEventIDArray.append((snapshot.value as? String)!)
+            print(partyEventIDArray)
+            completion(partyEventIDArray)
+        })
+    }
     
+    class func retrievePartyItemsGoalFromFirebase(eventID :String, completion:@escaping([NSNumber]) -> Void){
+
+        var ref: FIRDatabaseReference!
+        ref = FIRDatabase.database().reference()
+        var partyItemGoalArray = [NSNumber]()
+        
+        ref.child("party_item").child((UserDefaults.standard.object(forKey: "uid") as? String)!).child("\(eventID)").child("party_item_goal").observe(.childAdded, with: { (snapshot) in
+            
+            if !snapshot.exists() {
+                print("No snapshot exists")
+                return
+            }
+            
+            partyItemGoalArray.append((snapshot.value as? NSNumber)!)
+            print(partyItemGoalArray)
+
+            completion(partyItemGoalArray)
+        })
+    }
     
+    class func retrievePartyItemsImagePathsFromFirebase(eventID :String, completion:@escaping([String]) -> Void){
+        
+        var ref: FIRDatabaseReference!
+        ref = FIRDatabase.database().reference()
+        var partyItemImagePathArray = [String]()
+        
+        ref.child("party_item").child((UserDefaults.standard.object(forKey: "uid") as? String)!).child("\(eventID)").child("party_item_image_path").observe(.childAdded, with: { (snapshot) in
+            
+            if !snapshot.exists() {
+                print("No snapshot exists")
+                return
+            }
+            
+            partyItemImagePathArray.append((snapshot.value as? String)!)
+            print(partyItemImagePathArray)
+            
+            completion(partyItemImagePathArray)
+        })
+    }
 
 }
