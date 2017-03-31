@@ -147,10 +147,10 @@ class MasterTableViewController: UITableViewController {
         
         if (indexPath.section == 0) {
             //need to change this to something else since we are not using events array anymore
-            FirebaseManager.writeToFirebaseDBHostingEvents(indexPath: indexPath, eventsArray: self.hostingArray)
+            FirebaseManager.writeToFirebaseDBHostingEvents(indexPath: indexPath, hostingArray: self.hostingArray)
             cell.textLabel?.text = self.hostingArray[indexPath.row].eventName
         } else {
-            FirebaseManager.writeToFirebaseDBAttendingEvents(indexPath: indexPath, eventsArray: self.attendingArray)
+            FirebaseManager.writeToFirebaseDBAttendingEvents(indexPath: indexPath, attendingArray: self.attendingArray)
             cell.textLabel?.text = self.attendingArray[indexPath.row].eventName
 
         }
