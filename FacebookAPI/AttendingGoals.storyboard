@@ -38,7 +38,7 @@
                         <outlet property="attendingTableView" destination="fUP-U5-RiJ" id="vwB-0b-AiY"/>
                         <outlet property="view" destination="fUP-U5-RiJ" id="zPM-IH-sgp"/>
                         <segue destination="PYf-mF-bgX" kind="show" identifier="showEventDetail" id="UQq-mX-ghj"/>
-                        <segue destination="3Sc-HJ-Wnb" kind="show" identifier="contributeToGoals" id="z1h-BL-XaW"/>
+                        <segue destination="3Sc-HJ-Wnb" kind="show" identifier="showContributeToGoalVC" id="5fz-hn-79x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Syh-t8-zZJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -56,7 +56,7 @@
         <!--Contribute To Goal View Controller-->
         <scene sceneID="DOd-af-Cp0">
             <objects>
-                <viewController id="3Sc-HJ-Wnb" customClass="ContributeToGoalViewController" customModule="FacebookAPI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ContributeToGoalViewController" id="3Sc-HJ-Wnb" customClass="ContributeToGoalViewController" customModule="FacebookAPI" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="o8z-RX-ffe"/>
                         <viewControllerLayoutGuide type="bottom" id="6Un-Zr-X5I"/>
@@ -65,7 +65,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Hjb-dw-Meh">
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Hjb-dw-Meh">
                                 <rect key="frame" x="14" y="256" width="347" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
@@ -73,7 +73,7 @@
                                 </connections>
                             </slider>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LjG-Jp-hVC">
-                                <rect key="frame" x="149" y="318" width="78" height="30"/>
+                                <rect key="frame" x="16" y="318" width="343" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Contribute!"/>
                                 <connections>
@@ -94,22 +94,36 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="siN-Hq-ZJS">
+                                <rect key="frame" x="16" y="227" width="343" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="amountToContributeLabel" destination="siN-Hq-ZJS" id="XhP-i0-YOV"/>
                         <outlet property="amountToContributeSlider" destination="Hjb-dw-Meh" id="9dn-m4-riX"/>
+                        <outlet property="contributionButton" destination="LjG-Jp-hVC" id="JLZ-V8-ta6"/>
                         <outlet property="goalAmountLabel" destination="t4c-s9-VAT" id="h0u-uU-veV"/>
                         <outlet property="goalAmountMinusContributionLabel" destination="Z44-Sc-qPP" id="3Ld-eO-PRn"/>
-                        <segue destination="PYf-mF-bgX" kind="show" identifier="showEventDetail" id="ofv-Wp-K95"/>
+                        <segue destination="FUR-fe-kaQ" kind="presentation" identifier="goToPaymentVC" id="Vai-GL-upD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PIC-kU-lwR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1152.8" y="89.505247376311857"/>
         </scene>
+        <!--PaymentInformation-->
+        <scene sceneID="0LT-5l-lDh">
+            <objects>
+                <viewControllerPlaceholder storyboardName="PaymentInformation" id="FUR-fe-kaQ" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nyB-IZ-CPv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1870" y="90"/>
+        </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="ofv-Wp-K95"/>
-    </inferredMetricsTieBreakers>
 </document>

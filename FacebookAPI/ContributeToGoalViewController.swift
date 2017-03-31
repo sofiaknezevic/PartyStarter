@@ -11,11 +11,14 @@ import Stripe
 
 class ContributeToGoalViewController: UIViewController{
     
+    @IBOutlet weak var contributionButton: UIButton!
+    
     @IBOutlet weak var goalAmountLabel: UILabel!
     @IBOutlet weak var goalAmountMinusContributionLabel: UILabel!
     
     @IBOutlet weak var amountToContributeSlider: UISlider!
     
+    @IBOutlet weak var amountToContributeLabel: UILabel!
     
     let backendBaseURL: String? = "http://localhost:4567/"
     
@@ -27,16 +30,21 @@ class ContributeToGoalViewController: UIViewController{
     
     var partyItemToContributeTo:PartyItem?
     
+    var arrayOfContributors = [String]()
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        setUp()
     
         
     }
     
     func setUp() -> Void {
         
-        goalAmountLabel.text = "\(partyItemToContributeTo?.itemGoal)"
+        let unwrappedGoalAmount = (partyItemToContributeTo?.itemGoal)! as Double
+        goalAmountLabel.text = "PartyItem Goal: $\(unwrappedGoalAmount)"
         
         
     }
@@ -44,8 +52,12 @@ class ContributeToGoalViewController: UIViewController{
 
     @IBAction func contributionButtonPressed(_ sender: UIButton)
     {
+        //go to viewcontroller that deals with creditcard information and get it all done, using the stripeuserid from the host and the token from the credit card of the attendee
         
+        performSegue(withIdentifier: "goToPaymentVC", sender: self)
         
+        //set contributors for partyitem and also the amount contributed
+   
         
         
         
@@ -53,6 +65,15 @@ class ContributeToGoalViewController: UIViewController{
     
     @IBAction func amountToContributeSlider(_ sender: UISlider)
     {
+        let itemContribution = Int(amountToContributeSlider.value)
+        
+        let partyItemGoal = Int((partyItemToContributeTo?.itemGoal)!)
+        
+        contributionButton.setTitle("Contribute $\(itemContribution)", for: UIControlState.normal)
+        
+        amountToContributeLabel.text = "$\(itemContribution)"
+
+        goalAmountMinusContributionLabel.text = "$\(partyItemGoal - itemContribution) left until goal is reached!"
         
         
         
