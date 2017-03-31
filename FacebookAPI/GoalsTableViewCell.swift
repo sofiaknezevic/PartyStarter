@@ -20,6 +20,8 @@ class GoalsTableViewCell: UITableViewCell {
     
     var cellPartyItem:PartyItem?
     
+    let fireBaseManager = FirebaseManager()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -30,15 +32,14 @@ class GoalsTableViewCell: UITableViewCell {
     }
 
 
-    func configureCellWith(event:Event?, indexPath:Int) -> Void
+    func configureCellWith(event:Event, indexPath:Int) -> Void
     {
         
-        print("*********")
-        print(event)
+     
 
-        if event?.partyItems.count != nil && event?.partyItems.count != 0 {
+        if event.partyItems.count != 0 {
             
-            cellPartyItem = event?.partyItems[indexPath]
+            cellPartyItem = event.partyItems[indexPath]
             attendingGoalNameLabel.text = cellPartyItem?.itemName
             
             let fundedString = "\(cellPartyItem?.itemAmountFunded)% there!"
@@ -72,9 +73,18 @@ class GoalsTableViewCell: UITableViewCell {
 
     func setUpProgressBarWith(partyItem:PartyItem) -> Void
     {
+        
+        guard partyItem.itemAmountFunded != nil else{
+            
+            attendingGoalProgressView.setProgress(0, animated: false)
+            return
+            
+        }
+        
         let currentProgress = partyItem.itemAmountFunded!/partyItem.itemGoal!
         
         attendingGoalProgressView.setProgress(Float(currentProgress), animated: true)
+
         
         
     }
