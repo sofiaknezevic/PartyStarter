@@ -14,18 +14,18 @@ class FirebaseManager: NSObject {
     var ref: FIRDatabaseReference!
 
     // Function that writes events id to Firebase DB.
-    class func writeToFirebaseDBHostingEvents(indexPath: IndexPath, eventsArray : Array<Any>?) {
+    class func writeToFirebaseDBHostingEvents(indexPath: IndexPath, hostingArray : Array<Any>?) {
         
         let newFirebaseManager = FirebaseManager()
         
         newFirebaseManager.ref = FIRDatabase.database().reference()
 
-        guard let eventsArray = eventsArray, let firebaseUserID = UserDefaults.standard.object(forKey: "uid") as? String else {
+        guard let hostingArray = hostingArray, let firebaseUserID = UserDefaults.standard.object(forKey: "uid") as? String else {
             print("There is an issue")
             return
         }
         
-        let getEventsFromArray = (eventsArray[indexPath.row] as? Event)
+        let getEventsFromArray = (hostingArray[indexPath.row] as? Event)
         
         let listOfEventsID = getEventsFromArray?.eventID
         let eventCity = getEventsFromArray?.cityName ?? ""
@@ -62,18 +62,18 @@ class FirebaseManager: NSObject {
     }
     
     // Function that writes events id to Firebase DB.
-    class func writeToFirebaseDBAttendingEvents(indexPath: IndexPath, eventsArray : Array<Any>?) {
+    class func writeToFirebaseDBAttendingEvents(indexPath: IndexPath, attendingArray : Array<Any>?) {
         
         let newFirebaseManager = FirebaseManager()
         
         newFirebaseManager.ref = FIRDatabase.database().reference()
         
-        guard let eventsArray = eventsArray, let firebaseUserID = UserDefaults.standard.object(forKey: "uid") as? String else {
+        guard let attendingArray = attendingArray, let firebaseUserID = UserDefaults.standard.object(forKey: "uid") as? String else {
             print("There is an issue")
             return
         }
         
-        let getEventsFromArray = (eventsArray[indexPath.row] as? Event)
+        let getEventsFromArray = (attendingArray[indexPath.row] as? Event)
         
         let listOfEventsID = getEventsFromArray?.eventID
         let eventCity = getEventsFromArray?.cityName ?? ""
@@ -165,9 +165,13 @@ class FirebaseManager: NSObject {
             let listOfPartyItems = getEventsFromArray?.itemName
             
             
+
+            
             // Writing the list of events to firebase database
             newFirebaseManager.ref.child("events").child("\(firebaseUserID)").child("\(eventID)").child("stripe_user_id").setValue("\(stripeUserID)")
-            newFirebaseManager.ref.child("events").child("\(firebaseUserID)").child("\(eventID)").child("\(listOfPartyItems!)").setValue(listOfPartyItems)
+            
+            
+            newFirebaseManager.ref.child("events").child("\(firebaseUserID)").child("\(eventID)").child("party_item_list").child("\(listOfPartyItems!)").setValue(listOfPartyItems!)
         }
         
 
