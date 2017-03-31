@@ -8,6 +8,7 @@
 
 import UIKit
 import FacebookCore
+import MapKit
 
 class DetailViewController: UIViewController {
     
@@ -30,6 +31,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var detailLocationLabel: UILabel!
     @IBOutlet weak var detailTextField: UITextView!
     @IBOutlet weak var detailrsvpLabel: UILabel!
+    @IBOutlet weak var navigationButtonOutlet: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,13 +39,14 @@ class DetailViewController: UIViewController {
         //download image and set it to the imageview
         DataManager.getEventImage(eventID: (detailEvent?.eventID)!) { image in
             
-            self.detailEvent?.coverPhoto = image.photo
-            
-            self.detailImageView.image = self.detailEvent?.coverPhoto
+            DispatchQueue.main.async {
+                self.detailEvent?.coverPhoto = image.photo
+                
+                self.detailImageView.image = self.detailEvent?.coverPhoto
+            }
+
         }
 
-        
-            
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -57,8 +60,6 @@ class DetailViewController: UIViewController {
         
         //will need to make sure that if one of these are nil, program does not crash.
         
-        //set the labels equal to what you pass in
-        
         let unwrappedRSVP = (detailEvent?.rsvpStatus)! as String
         
         
@@ -68,42 +69,28 @@ class DetailViewController: UIViewController {
         detailLocationLabel.text = detailEvent?.placeName
         detailTextField.text = detailEvent?.eventDescription
         detailrsvpLabel.text = "RSVP Status: \(unwrappedRSVP)"
-//        detailImageView.image = detailEvent?.coverPhoto
-        
-//        eventDescriptionLabel.text = detailEvent?.eventDescription
-//        eventNameLabel.text = detailEvent?.eventName
-//        placeNameLabel.text = detailEvent?.placeName
-//        
-//        let eventID = detailEvent?.eventID
-//        eventIDLabel.text = "Event ID: \(eventID!)"
-//        
-//        let rsvpStatus = detailEvent?.rsvpStatus
-//        rsvpStatusLabel.text = "RSVP Status: \(rsvpStatus!)"
-//        
-//        //need to convert this to a readable date
-//        let startTime = detailEvent?.startTime
-//        startTimeLabel.text = "Start time: \(startTime!)"
-//        
-//        //need to convert this to a readable date
-//        let endTime = detailEvent?.endTime ?? ""
-//        endTimeLabel.text = "End time: \(endTime)"
-//        
-//        //will this crash if any are nil? Need to do safe unwrap
-//        let street = detailEvent?.street ?? ""
-//        let cityName = detailEvent?.cityName ?? ""
-//        let state = detailEvent?.state ?? ""
-//        let zipCode = detailEvent?.zipCode ?? ""
-//        addresslabel.text = "\(street), \(cityName) \(state), \(zipCode)"
-//        
-//        print(addresslabel.text!)
-//        
-//        //how to get this to work?
-//        eventImageView.image = detailEvent?.coverPhoto
-//        
-//        //want to show who the name of the attendees for the event
-//        attendeesLabel.text = detailEvent?.attendees?.description
-//        adminsLabel.text = detailEvent?.admins?.description
-        
-        
+
     }
+    
+    @IBAction func mapToEvent(_ sender: UIButton) {
+        //when this button is pressed you need to check whether or not the event has valid coordinates. If so then map them
+        if (detailEvent?.latitute != nil) {
+            //do the stuff
+            print("has coordinates")
+            
+            
+            let pinCoordinates = CLLocationCoordinate2D.init(latitude: (detailEvent?.latitute)!, longitude: (detailEvent?.longitude)!)
+            let placeMark = MKPlacemark.init(coordinate: pinCoordinates)
+            let mapItem = MKMapItem.init(placemark: placeMark)
+            
+            mapItem.name = detailEvent?.eventName
+            mapItem.openInMaps(launchOptions: nil)
+    
+        } else {
+            
+            self.navigationButtonOutlet.setTitle("Not Available", for: .normal)
+            print("no coordinates")
+        }
+    }
+    
 }

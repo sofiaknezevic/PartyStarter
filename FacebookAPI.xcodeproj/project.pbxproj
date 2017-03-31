@@ -23,6 +23,7 @@
 		5DD151441E8B02C100BB07DF /* ContributeToGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD151431E8B02C100BB07DF /* ContributeToGoalViewController.swift */; };
 		70B253E3E678AC86C25BD6D5 /* Pods_FacebookAPITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3959D20BE097ED1583CA80A9 /* Pods_FacebookAPITests.framework */; };
 		D22C8F5B1E8C49B000275437 /* GoalsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D22C8F5A1E8C49B000275437 /* GoalsTableViewCell.xib */; };
+		D22C8F5D1E8EE4AD00275437 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22C8F5C1E8EE4AD00275437 /* MapKit.framework */; };
 		D234F45D1E8B2B47008E0BD8 /* AddNewItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D234F45C1E8B2B47008E0BD8 /* AddNewItemViewController.swift */; };
 		D283C5D31E88B60000A40FBC /* CoverPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = D283C5D21E88B60000A40FBC /* CoverPhoto.swift */; };
 		D2CF578A1E83398C00090788 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CF57891E83398C00090788 /* AppDelegate.swift */; };
@@ -74,6 +75,7 @@
 		5DD151431E8B02C100BB07DF /* ContributeToGoalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContributeToGoalViewController.swift; sourceTree = "<group>"; };
 		CA0C0CDA7F39768C6F6BC99B /* Pods-FacebookAPI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FacebookAPI.release.xcconfig"; path = "Pods/Target Support Files/Pods-FacebookAPI/Pods-FacebookAPI.release.xcconfig"; sourceTree = "<group>"; };
 		D22C8F5A1E8C49B000275437 /* GoalsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoalsTableViewCell.xib; sourceTree = "<group>"; };
+		D22C8F5C1E8EE4AD00275437 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		D234F45C1E8B2B47008E0BD8 /* AddNewItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewItemViewController.swift; sourceTree = "<group>"; };
 		D283C5D21E88B60000A40FBC /* CoverPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoverPhoto.swift; sourceTree = "<group>"; };
 		D2CF57861E83398C00090788 /* FacebookAPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FacebookAPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,6 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D22C8F5D1E8EE4AD00275437 /* MapKit.framework in Frameworks */,
 				3CB986E78BA17C23FC655D39 /* Pods_FacebookAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -121,6 +124,7 @@
 		0E8B13BAAD031DD5432007AD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D22C8F5C1E8EE4AD00275437 /* MapKit.framework */,
 				2E0E3DB7D652A0F501D4E82D /* Pods_FacebookAPI.framework */,
 				3959D20BE097ED1583CA80A9 /* Pods_FacebookAPITests.framework */,
 			);
@@ -294,7 +298,7 @@
 				TargetAttributes = {
 					D2CF57851E83398C00090788 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = WV7WWTD5PV;
+						DevelopmentTeam = F9J4B49FUC;
 						ProvisioningStyle = Automatic;
 					};
 					D2CF57991E83398D00090788 = {
@@ -601,7 +605,7 @@
 			baseConfigurationReference = 17F04A93C80B417EE080ED97 /* Pods-FacebookAPI.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = WV7WWTD5PV;
+				DEVELOPMENT_TEAM = F9J4B49FUC;
 				INFOPLIST_FILE = FacebookAPI/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -616,7 +620,7 @@
 			baseConfigurationReference = CA0C0CDA7F39768C6F6BC99B /* Pods-FacebookAPI.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = WV7WWTD5PV;
+				DEVELOPMENT_TEAM = F9J4B49FUC;
 				INFOPLIST_FILE = FacebookAPI/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
