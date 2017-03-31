@@ -33,6 +33,8 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
         setUpAttendingGoalsVCWith(event: attendingEvent)
         
         setUpDetailInfoButton()
+        
+        setUpFakePartyItemForTesting(event: attendingEvent)
     }
 
     
@@ -57,6 +59,17 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
         
         self.navigationItem.rightBarButtonItem = detailInfoButton
         
+        
+    }
+    
+    func setUpFakePartyItemForTesting(event:Event) -> Void {
+        
+        let newPartyItem = PartyItem(name: "balloons",
+                                     goal: 150.00,
+                                     image:#imageLiteral(resourceName: "choosePartyImage"),
+                                     itemEventID: event.eventID!)
+        
+        event.partyItems.append(newPartyItem)
         
     }
 
@@ -95,9 +108,11 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
             
         }else{
             
-            partyItemForContribution = attendingEvent.partyItems[indexPath.row]
+            //partyItemForContribution = attendingEvent.partyItems[indexPath.row]
             
-            stripeConnectManager.readStripeJSON()
+            partyItemForContribution = attendingEvent.partyItems[0]
+            
+            //stripeConnectManager.readStripeJSON()
             
             self.prepareForContributionVC()
             
@@ -107,12 +122,18 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
     
     func prepareForContributionVC() -> Void {
         
-        let newContributeVC = ContributeToGoalViewController()
+        
+        
+        //newContributeVC.jsonOfHost = self.paymentReceiverJSON
+        //self.navigationController?.present(newContributeVC, animated: true, completion: nil)
+        
+        
+        let storyBoard = UIStoryboard(name: "AttendingGoals", bundle: nil)
+        let newContributeVC = storyBoard.instantiateViewController(withIdentifier: "ContributeToGoalViewController") as! ContributeToGoalViewController
+        
         newContributeVC.partyItemToContributeTo = partyItemForContribution
-        newContributeVC.jsonOfHost = self.paymentReceiverJSON
-        self.navigationController?.present(newContributeVC, animated: true, completion: nil)
         
-        
+        self.present(newContributeVC, animated: true, completion: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

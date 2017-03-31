@@ -11,11 +11,14 @@ import Stripe
 
 class ContributeToGoalViewController: UIViewController{
     
+    @IBOutlet weak var contributionButton: UIButton!
+    
     @IBOutlet weak var goalAmountLabel: UILabel!
     @IBOutlet weak var goalAmountMinusContributionLabel: UILabel!
     
     @IBOutlet weak var amountToContributeSlider: UISlider!
     
+    @IBOutlet weak var amountToContributeLabel: UILabel!
     
     let backendBaseURL: String? = "http://localhost:4567/"
     
@@ -30,13 +33,18 @@ class ContributeToGoalViewController: UIViewController{
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        setUp()
     
         
     }
     
     func setUp() -> Void {
         
-        goalAmountLabel.text = "\(partyItemToContributeTo?.itemGoal)"
+        //setup some safe unwrapping here
+        
+        let unwrappedGoalAmount = (partyItemToContributeTo?.itemGoal)! as Double
+        goalAmountLabel.text = "\(unwrappedGoalAmount)"
         
         
     }
@@ -53,6 +61,15 @@ class ContributeToGoalViewController: UIViewController{
     
     @IBAction func amountToContributeSlider(_ sender: UISlider)
     {
+        let itemContribution = Int(amountToContributeSlider.value)
+        
+        let partyItemGoal = Int((partyItemToContributeTo?.itemGoal)!)
+        
+        contributionButton.setTitle("Contribute $\(itemContribution)", for: UIControlState.normal)
+        
+        amountToContributeLabel.text = "$\(itemContribution)"
+
+        goalAmountMinusContributionLabel.text = "$\(partyItemGoal - itemContribution) left until goal is reached!"
         
         
         
