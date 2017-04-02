@@ -118,5 +118,24 @@ class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableVie
         
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+
+        if (editingStyle == UITableViewCellEditingStyle.delete) {
+
+            if hostEvent.partyItems.count > 0 {
+                hostGoalsTableView.reloadData()
+                hostEvent.partyItems.remove(at: indexPath.row)
+                hostGoalsTableView.endUpdates()
+                
+                // ***** Need to add a line that removes the party item from Firebase DB *****
+            } else {
+                hostGoalsTableView.endUpdates()
+            }
+        }
+    }
 
 }
