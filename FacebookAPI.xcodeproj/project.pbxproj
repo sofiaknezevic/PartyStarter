@@ -15,6 +15,7 @@
 		5D3264E01E89B0340045B126 /* AttendingGoals.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D3264DF1E89B0340045B126 /* AttendingGoals.storyboard */; };
 		5D3264E21E89B0D90045B126 /* AttendingGoalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3264E11E89B0D90045B126 /* AttendingGoalsViewController.swift */; };
 		5D3264E61E89B12D0045B126 /* EventDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D3264E51E89B12D0045B126 /* EventDetail.storyboard */; };
+		5D4BCD921E92232300D0B064 /* ImagePickingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4BCD911E92232300D0B064 /* ImagePickingCollectionViewCell.swift */; };
 		5D5EC3011E8A2541000D9ADC /* GoalsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5EC3001E8A2541000D9ADC /* GoalsTableViewCell.swift */; };
 		5D5EC3031E8A27AD000D9ADC /* PartyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5EC3021E8A27AD000D9ADC /* PartyItem.swift */; };
 		5DB4B1711E89D4AD00D7EF66 /* ConnectToStripeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB4B1701E89D4AD00D7EF66 /* ConnectToStripeViewController.swift */; };
@@ -42,7 +43,7 @@
 		D2D0F1871E8894DE000F2205 /* Attendees.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D0F1861E8894DE000F2205 /* Attendees.swift */; };
 		D2D0F1891E8894ED000F2205 /* Admins.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D0F1881E8894ED000F2205 /* Admins.swift */; };
 		DA730B231E8B2D2C00F6D2A1 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA730B221E8B2D2C00F6D2A1 /* FirebaseManager.swift */; };
-		DAF105E91E89B498008F0FD6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DAF105E81E89B498008F0FD6 /* GoogleService-Info.plist */; };
+		DACD87701E902575002DC21B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DACD876F1E902575002DC21B /* GoogleService-Info.plist */; };
 		DAF105ED1E89C4F3008F0FD6 /* FirebaseUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF105EC1E89C4F3008F0FD6 /* FirebaseUser.swift */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +70,7 @@
 		5D3264DF1E89B0340045B126 /* AttendingGoals.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AttendingGoals.storyboard; sourceTree = "<group>"; };
 		5D3264E11E89B0D90045B126 /* AttendingGoalsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttendingGoalsViewController.swift; sourceTree = "<group>"; };
 		5D3264E51E89B12D0045B126 /* EventDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EventDetail.storyboard; sourceTree = "<group>"; };
+		5D4BCD911E92232300D0B064 /* ImagePickingCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickingCollectionViewCell.swift; sourceTree = "<group>"; };
 		5D5EC3001E8A2541000D9ADC /* GoalsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalsTableViewCell.swift; sourceTree = "<group>"; };
 		5D5EC3021E8A27AD000D9ADC /* PartyItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyItem.swift; sourceTree = "<group>"; };
 		5DB4B1701E89D4AD00D7EF66 /* ConnectToStripeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectToStripeViewController.swift; sourceTree = "<group>"; };
@@ -100,7 +102,7 @@
 		D2D0F1861E8894DE000F2205 /* Attendees.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attendees.swift; sourceTree = "<group>"; };
 		D2D0F1881E8894ED000F2205 /* Admins.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Admins.swift; sourceTree = "<group>"; };
 		DA730B221E8B2D2C00F6D2A1 /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
-		DAF105E81E89B498008F0FD6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DACD876F1E902575002DC21B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DAF105EC1E89C4F3008F0FD6 /* FirebaseUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseUser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -200,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				5D5EC3001E8A2541000D9ADC /* GoalsTableViewCell.swift */,
+				5D4BCD911E92232300D0B064 /* ImagePickingCollectionViewCell.swift */,
 				D22C8F5A1E8C49B000275437 /* GoalsTableViewCell.xib */,
 			);
 			name = Views;
@@ -230,7 +233,7 @@
 			children = (
 				D2CF57901E83398C00090788 /* Assets.xcassets */,
 				D2CF57951E83398C00090788 /* Info.plist */,
-				DAF105E81E89B498008F0FD6 /* GoogleService-Info.plist */,
+				DACD876F1E902575002DC21B /* GoogleService-Info.plist */,
 				5D5EC2FF1E8A2522000D9ADC /* Views */,
 				5D3264D41E899DB60045B126 /* StoryBoards */,
 				5D3264D31E899DA90045B126 /* Controllers */,
@@ -304,7 +307,9 @@
 				TargetAttributes = {
 					D2CF57851E83398C00090788 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = GKL35Z4U9P;
+
+						DevelopmentTeam = WV7WWTD5PV;
+
 						ProvisioningStyle = Automatic;
 					};
 					D2CF57991E83398D00090788 = {
@@ -342,11 +347,11 @@
 				5D3264E01E89B0340045B126 /* AttendingGoals.storyboard in Resources */,
 				D2CF57B41E84929600090788 /* Main.storyboard in Resources */,
 				5DE6E0B51E8EF0750069EDA8 /* PaymentInformation.storyboard in Resources */,
-				DAF105E91E89B498008F0FD6 /* GoogleService-Info.plist in Resources */,
 				D22C8F5B1E8C49B000275437 /* GoalsTableViewCell.xib in Resources */,
 				5D3264E61E89B12D0045B126 /* EventDetail.storyboard in Resources */,
 				D2CF57941E83398C00090788 /* LaunchScreen.storyboard in Resources */,
 				5D3264DE1E89B0250045B126 /* HostGoals.storyboard in Resources */,
+				DACD87701E902575002DC21B /* GoogleService-Info.plist in Resources */,
 				D2CF57911E83398C00090788 /* Assets.xcassets in Resources */,
 				5D3264D61E89A4CD0045B126 /* Stripe.storyboard in Resources */,
 			);
@@ -481,6 +486,7 @@
 				D2CF57B21E848C1E00090788 /* MasterTableViewController.swift in Sources */,
 				D2D0F1871E8894DE000F2205 /* Attendees.swift in Sources */,
 				5D5EC3011E8A2541000D9ADC /* GoalsTableViewCell.swift in Sources */,
+				5D4BCD921E92232300D0B064 /* ImagePickingCollectionViewCell.swift in Sources */,
 				5DE6E0B71E8F00EB0069EDA8 /* PaymentViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -613,11 +619,13 @@
 			baseConfigurationReference = 17F04A93C80B417EE080ED97 /* Pods-FacebookAPI.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = GKL35Z4U9P;
+
+				DEVELOPMENT_TEAM = WV7WWTD5PV;
+        
 				INFOPLIST_FILE = FacebookAPI/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = scott847.PartyStarter.New;
+				PRODUCT_BUNDLE_IDENTIFIER = scott847.PartyStarter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -628,11 +636,13 @@
 			baseConfigurationReference = CA0C0CDA7F39768C6F6BC99B /* Pods-FacebookAPI.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = GKL35Z4U9P;
+
+				DEVELOPMENT_TEAM = WV7WWTD5PV;
+
 				INFOPLIST_FILE = FacebookAPI/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = scott847.PartyStarter.New;
+				PRODUCT_BUNDLE_IDENTIFIER = scott847.PartyStarter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
