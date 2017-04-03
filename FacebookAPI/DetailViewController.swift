@@ -32,6 +32,8 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var detailTextField: UITextView!
     @IBOutlet weak var detailrsvpLabel: UILabel!
     @IBOutlet weak var navigationButtonOutlet: UIButton!
+    @IBOutlet weak var detailScrollView: UIScrollView!
+    @IBOutlet weak var detailDescriptionLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +51,7 @@ class DetailViewController: UIViewController {
         
         navigationButtonOutlet.layer.cornerRadius = 10
         navigationButtonOutlet.clipsToBounds = true
-        
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -67,7 +69,8 @@ class DetailViewController: UIViewController {
         
         detailEventNameLabel.text = detailEvent?.eventName
         detailLocationLabel.text = detailEvent?.placeName
-        detailTextField.text = detailEvent?.eventDescription
+//        detailTextField.text = detailEvent?.eventDescription
+        detailDescriptionLabel.text = detailEvent?.eventDescription
         detailrsvpLabel.text = "RSVP Status: \(unwrappedRSVP)"
         
         if let startTime = detailEvent?.startTime {
