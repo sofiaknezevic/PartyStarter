@@ -70,8 +70,6 @@ class StripeAuthorizationViewController: UIViewController, UIWebViewDelegate {
             
         }
         
-        
-        
         return true
         
     }
