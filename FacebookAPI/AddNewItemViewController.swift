@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddNewItemViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class AddNewItemViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITextFieldDelegate {
     
     var eventToAddItemTo:Event?
     var addNewItemHost:User?
@@ -29,30 +29,30 @@ class AddNewItemViewController: UIViewController, UICollectionViewDelegate, UICo
         setUpNavButtons()
         addAllImagesToArray()
         
+        
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        itemNameTextField.backgroundColor = UIColor.clear
     }
     
     func savePartyItemButton() -> Void
     {
         
-        //pop back to view controller and save it to database
-        
-        //save to firebase itemName -> itemNameTextField.text
-        
         //truncate after decimal place
         let itemGoal = Int(itemGoalSlider.value)
+
         let itemImage = UIImage()
-        //save to firebase itemGoal -> Double(itemGoal)
-    
-        //save to firebase itemImage -> itemImageView.image
-        
-        //POST to firebase and create a new party item on this event
-        
-        
+
+
         print(itemGoal)
         print(itemNameTextField.text!)
         
-        //must initialize new partyItem with all things we got, and gotta save to the eventsArray
-        //add error handlers
+        if itemNameTextField.text?.isEmpty ?? true {
+            //if its empty then alert the user
+            itemNameTextField.backgroundColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+        } else {
+            
         let newPartyItem = PartyItem(name: itemNameTextField.text!,
                                      goal: Double(itemGoal),
                                      image: userSelectedImage!,
@@ -73,7 +73,8 @@ class AddNewItemViewController: UIViewController, UICollectionViewDelegate, UICo
         
         //check to see if they are nil or else do not pop back
         _ = self.navigationController?.popViewController(animated: true)
-    
+            
+        }
     }
     
     @IBAction func itemGoalSliderAction(_ sender: UISlider)
