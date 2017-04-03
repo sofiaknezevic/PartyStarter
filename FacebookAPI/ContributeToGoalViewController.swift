@@ -26,12 +26,15 @@ class ContributeToGoalViewController: UIViewController{
     
     var eventToContributeTo = Event()
     
+    var hostStripeUserID : String?
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
         setUp()
     
+        getHostStripeUserID()
         
     }
     
@@ -43,7 +46,6 @@ class ContributeToGoalViewController: UIViewController{
         
     }
     
-
     @IBAction func contributionButtonPressed(_ sender: UIButton)
     {
         //go to viewcontroller that deals with creditcard information and get it all done, using the stripeuserid from the host and the token from the credit card of the attendee
@@ -52,8 +54,6 @@ class ContributeToGoalViewController: UIViewController{
 
         
     }
-    
-    
     
     @IBAction func amountToContributeSlider(_ sender: UISlider)
     {
@@ -66,11 +66,18 @@ class ContributeToGoalViewController: UIViewController{
         amountToContributeLabel.text = "$\(itemContribution)"
 
         goalAmountMinusContributionLabel.text = "$\(partyItemGoal - itemContribution) left until goal is reached!"
-        
-        
-        
     }
 
-
-
+    func getHostStripeUserID() {
+        
+        FirebaseManager.retrieveHostStripeUserID(eventID: (eventToContributeTo.eventID!)) { (returnedHostStripeUserID) -> () in
+            
+            self.hostStripeUserID = returnedHostStripeUserID
+            
+            print("HOST STRIPE-USER-ID", self.hostStripeUserID!)
+            
+            
+        }
+    }
+    
 }

@@ -418,62 +418,9 @@ class FirebaseManager: NSObject {
                 print("No snapshot exists")
                 return
             }
-            print("PRINT STRIPE_USERID---------","\(snapshot)")
-            //
-                        let enumerator = snapshot.children
-                        print("\(enumerator)")
-                        while (enumerator.nextObject() as? FIRDataSnapshot) != nil {
-                            for jsonData in snapshot.children.allObjects as! [FIRDataSnapshot] {
-                                guard let restDict = jsonData.value as? [String: AnyObject] else {
-                                    continue
-                                }
-                                let getStripeUserID = restDict["stripe_user_id"]
-                                print("PRINT STRIPE_USER_ID: ", getStripeUserID!)
-                                completion(getStripeUserID as! String)
-
-                            }
-                        }
-//
-//            partyItemImagePathArray.append((snapshot.value as? String)!)
-//            print(partyItemImagePathArray)
-//            
-//            completion(partyItemImagePathArray)
+            //print("PRINT STRIPE_USERID---------","\(snapshot.value!)")
+            completion(snapshot.value as! String)
         })
 
     }
-        
-        
-        
-        
-        
-        
-//        
-//        queryOrderedByKey().queryLimited(toFirst: 1).observeSingleEvent(of: .value, with: { snapshot in
-//            
-//            
-//            
-//            if !snapshot.exists() {
-//                print("No snapshot exists")
-//                return
-//            }
-//            
-//            print("\(snapshot)")
-//            
-//            let enumerator = snapshot.children
-//            print("\(enumerator)")
-//            while (enumerator.nextObject() as? FIRDataSnapshot) != nil {
-//                for jsonData in snapshot.children.allObjects as! [FIRDataSnapshot] {
-//                    guard let restDict = jsonData.value as? [String: AnyObject] else {
-//                        continue
-//                    }
-//                    let getStripeUserID = restDict["stripe_user_id"]
-//                    print("PRINT STRIPE_USER_ID: ", getStripeUserID!)
-//                    
-//                }
-//            }
-//        })
-    
-
-    
-   
 }
