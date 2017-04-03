@@ -36,6 +36,24 @@
                     <view key="view" contentMode="scaleToFill" id="AOI-8b-GdX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lof-YZ-K0I">
+                                <rect key="frame" x="152" y="510" width="70" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Get Token"/>
+                                <connections>
+                                    <action selector="getTokenButtonPushed:" destination="9uc-RG-LvI" eventType="touchUpInside" id="jpt-4t-4OS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GUq-lc-Vs3">
+                                <rect key="frame" x="162" y="576" width="50" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Charge"/>
+                                <connections>
+                                    <action selector="chargeTokenButtonPushed:" destination="9uc-RG-LvI" eventType="touchUpInside" id="Ef9-Bp-7r6"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="WnN-Ms-dI5"/>

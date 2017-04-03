@@ -195,6 +195,7 @@ class FirebaseManager: NSObject {
         
         
 
+        //should this say stripe_id??
         guard let partyItemsArray = partyItemsArray, let firebaseUserID = UserDefaults.standard.object(forKey: "uid") as? String, let stripeUserID = UserDefaults.standard.object(forKey: "stripe_id") as? String else {
             print("There is an issue")
             return
@@ -473,6 +474,7 @@ class FirebaseManager: NSObject {
     
 
 
-
+    
+    
 
 }

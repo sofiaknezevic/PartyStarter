@@ -20,17 +20,11 @@ class ContributeToGoalViewController: UIViewController{
     
     @IBOutlet weak var amountToContributeLabel: UILabel!
     
-    let backendBaseURL: String? = "http://localhost:4567/"
-    
-    //var paymentContext:STPPaymentContext?
-   // let paymentCurrency = "cad"
-    var jsonOfHost:[String:Any]?
-    
-    var stripePublishableKey:String?
-    
     var partyItemToContributeTo:PartyItem?
     
     var arrayOfContributors = [String]()
+    
+    var eventToContributeTo = Event()
     
     override func viewDidLoad() {
         
@@ -55,13 +49,11 @@ class ContributeToGoalViewController: UIViewController{
         //go to viewcontroller that deals with creditcard information and get it all done, using the stripeuserid from the host and the token from the credit card of the attendee
         
         performSegue(withIdentifier: "goToPaymentVC", sender: self)
-        
-        //set contributors for partyitem and also the amount contributed
-   
-        
-        
+
         
     }
+    
+    
     
     @IBAction func amountToContributeSlider(_ sender: UISlider)
     {

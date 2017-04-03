@@ -59,13 +59,14 @@ class StripeConnectManager: NSObject {
                                 
                 self.ref = FIRDatabase.database().reference()
                 
-                //let firebaseUID = UserDefaults.standard.object(forKey: "uid") as? String
                 self.ref.child("stripe_json").child("\(stripeUserID)/").setValue(self.currentJSON)
             }
             
         }.resume()
     }
     
+    
+    //do we even need this method anymore? what is it even doing?
 
     // Read stripe JSON data from Firebase DB.
     func readStripeJSON() {
@@ -95,9 +96,6 @@ class StripeConnectManager: NSObject {
                     print("PRINT STRIPE_USER_ID: ", getStripeUserID!)
                     
                 }
-                
-                // Print the whole JSON file
-                // print(jsonData.value!)
             }
         })
     }
