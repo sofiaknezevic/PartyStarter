@@ -100,13 +100,20 @@ class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if hostEvent.partyItems.count == 0 {
-            
-            return 1
-            
-        }
         
-        return (hostEvent.partyItems.count)
+
+            if arrayOfPartyItemNames.count == 0 {
+                
+                return 1
+                
+            }
+            else {
+                
+                return (arrayOfPartyItemNames.count)
+                
+            }
+            
+        
         
     }
     
@@ -114,6 +121,8 @@ class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableVie
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "GoalsCell", for: indexPath) as! GoalsTableViewCell
         cell.configureCellWith(event: hostEvent, indexPath:indexPath.row)
+        
+        //cell.dummyTest()
         return cell
         
     }
@@ -129,6 +138,10 @@ class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableVie
             if hostEvent.partyItems.count > 0 {
                 hostGoalsTableView.reloadData()
                 hostEvent.partyItems.remove(at: indexPath.row)
+                hostGoalsTableView.deleteRows(at: [indexPath], with: .automatic)
+                //eventList.removeAtIndex(indexPath.row)
+                //tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+
                 hostGoalsTableView.endUpdates()
                 
                 // ***** Need to add a line that removes the party item from Firebase DB *****
