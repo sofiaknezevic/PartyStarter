@@ -40,6 +40,8 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
     }
 
     
+
+    
     //should refactor a little bit I think because having the same thing for two VC'S isn't very "DRY"....
     func setUpAttendingGoalsVCWith(event:Event) -> Void {
         
@@ -68,12 +70,12 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
         
         let newPartyItem = PartyItem(name: "balloons",
                                      goal: 150.00,
-                                     image:#imageLiteral(resourceName: "choosePartyImage"),
+                                     image:"",
                                      itemEventID: event.eventID!)
         
         let newPartyItem2 = PartyItem(name: "tables",
                                      goal: 200.00,
-                                     image:#imageLiteral(resourceName: "choosePartyImage"),
+                                     image:"",
                                      itemEventID: event.eventID!)
         
         event.partyItems.append(newPartyItem)
@@ -110,11 +112,8 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         
-        if attendingEvent.partyItems.count == 0 {
-         
-            tableView.deselectRow(at: indexPath, animated: true)
-            
-        }else{
+        if attendingEvent.partyItems.count != 0
+        {
             
             partyItemForContribution = attendingEvent.partyItems[indexPath.row]
             
@@ -123,6 +122,8 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
             performSegue(withIdentifier: "showContributeToGoalVC", sender: self)
             
         }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

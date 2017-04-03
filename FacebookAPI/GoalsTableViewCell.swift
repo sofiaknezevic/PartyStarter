@@ -105,7 +105,7 @@ class GoalsTableViewCell: UITableViewCell {
     
         guard partyItem.itemAmountFunded != nil && partyItem.itemAmountFunded != 0 else{
             
-            attendingGoalProgressView.setProgress(0, animated: false)
+            attendingGoalProgressView.setProgress(0.0, animated: false)
             return
             
         }

@@ -8,62 +8,28 @@
 
 import UIKit
 
-class AddNewItemViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class AddNewItemViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     var eventToAddItemTo:Event?
     var addNewItemHost:User?
     
-    var imagePicker = UIImagePickerController()
+    var arrayOfImages = [UIImage]()
+    
 
     @IBOutlet weak var itemGoalLabel: UILabel!
     @IBOutlet weak var itemGoalSlider: UISlider!
     @IBOutlet weak var itemNameTextField: UITextField!
-    @IBOutlet weak var itemImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationItem.title = eventToAddItemTo?.eventName
-
-        let savePartyItem = UIBarButtonItem(title: "Save", style: UIBarButtonItemStyle.plain, target: self, action: #selector(savePartyItemButton))
-        self.navigationItem.rightBarButtonItem = savePartyItem
+        setUpNavButtons()
+        addAllImagesToArray()
         
-        let cancel = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(cancelItemButton))
-        self.navigationItem.leftBarButtonItem = cancel
-        
-        let pickImage = UITapGestureRecognizer(target: self, action: #selector(pickItemImage(pickImage:)))
-        itemImageView.isUserInteractionEnabled = true
-        itemImageView.addGestureRecognizer(pickImage)
-        
-    }
-
-
-    func pickItemImage(pickImage: UITapGestureRecognizer) -> Void {
-        
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.savedPhotosAlbum) {
-            
-            imagePicker.delegate = self
-            imagePicker.sourceType = UIImagePickerControllerSourceType.savedPhotosAlbum
-            imagePicker.allowsEditing = false
-            
-            self.present(imagePicker, animated: true, completion: nil)
-            
-        }
-        
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        self.dismiss(animated: true) { 
-            //code
-        }
-        
-        itemImageView.image = info[UIImagePickerControllerOriginalImage] as! UIImage?
     }
     
     func savePartyItemButton() -> Void
     {
-        
-        
         
         //pop back to view controller and save it to database
         
@@ -104,16 +70,74 @@ class AddNewItemViewController: UIViewController, UINavigationControllerDelegate
     
     }
     
-    @IBAction func itemGoalSliderAction(_ sender: UISlider) {
+    @IBAction func itemGoalSliderAction(_ sender: UISlider)
+    {
         
         let itemGoalInt = Int(itemGoalSlider.value)
         itemGoalLabel.text = "Item Goal: $\(itemGoalInt)"
     }
-    func cancelItemButton() -> Void {
+    
+    func cancelItemButton() -> Void
+    {
         
         //pop back do not save
         _ = self.navigationController?.popViewController(animated: true)
 
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+    {
+        
+        return arrayOfImages.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
+    {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "newItemImageCell", for: indexPath) as! ImagePickingCollectionViewCell
+        
+        cell.configureCell(partyItemImage:arrayOfImages[indexPath.item])
+        cell.alpha = 1
+        
+        return cell
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
+    {
+        let cell = collectionView.cellForItem(at: indexPath)
+        cell?.alpha = 0.5
+        
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath)
+    {
+        let cell = collectionView.cellForItem(at: indexPath)
+        cell?.alpha = 1
+        
+    }
+    
+    func setUpNavButtons() -> Void
+    {
+        
+        self.navigationItem.title = eventToAddItemTo?.eventName
+        
+        let savePartyItem = UIBarButtonItem(title: "Save", style: UIBarButtonItemStyle.plain, target: self, action: #selector(savePartyItemButton))
+        self.navigationItem.rightBarButtonItem = savePartyItem
+        
+        let cancel = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(cancelItemButton))
+        self.navigationItem.leftBarButtonItem = cancel
+        
+    }
+    
+    func addAllImagesToArray() -> Void
+    {
+        let imageArray = [#imageLiteral(resourceName: "aerosolCan"), #imageLiteral(resourceName: "balloons"), #imageLiteral(resourceName: "beer"), #imageLiteral(resourceName: "bubbles"), #imageLiteral(resourceName: "cake"), #imageLiteral(resourceName: "camcorder"), #imageLiteral(resourceName: "candle"), #imageLiteral(resourceName: "champagne"), #imageLiteral(resourceName: "clown"), #imageLiteral(resourceName: "confetti"), #imageLiteral(resourceName: "cupcake"), #imageLiteral(resourceName: "dinnerWhite"), #imageLiteral(resourceName: "discoBall"), #imageLiteral(resourceName: "dress"), #imageLiteral(resourceName: "drums"), #imageLiteral(resourceName: "eye-mask"), #imageLiteral(resourceName: "fireworks"), #imageLiteral(resourceName: "flags"), #imageLiteral(resourceName: "gamepad"), #imageLiteral(resourceName: "gift"), #imageLiteral(resourceName: "guitar"), #imageLiteral(resourceName: "hat"), #imageLiteral(resourceName: "ice-cream"), #imageLiteral(resourceName: "karaoke"), #imageLiteral(resourceName: "keyboard"), #imageLiteral(resourceName: "magic-wand"), #imageLiteral(resourceName: "martini"), #imageLiteral(resourceName: "mixer"), #imageLiteral(resourceName: "musical-note"), #imageLiteral(resourceName: "mustache"), #imageLiteral(resourceName: "party-blower"), #imageLiteral(resourceName: "photo-camera"), #imageLiteral(resourceName: "pizza"), #imageLiteral(resourceName: "soft-drink"), #imageLiteral(resourceName: "sparkler"), #imageLiteral(resourceName: "speaker"), #imageLiteral(resourceName: "suit"), #imageLiteral(resourceName: "trumpet"), #imageLiteral(resourceName: "turntable")]
+        
+        arrayOfImages.append(contentsOf: imageArray)
+        
     }
 
 }
