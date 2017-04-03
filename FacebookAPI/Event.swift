@@ -36,6 +36,8 @@ class Event: NSObject {
     //array of admin and attendee objects
     var admins: Array<Admins>?
     var attendees: Array<Attendees>?
+    
+    var stripeID = String()
 
     //this parse is used to get most of the data for the event
     class func parseDataFromJSON( _ json: [String: Any]) -> Event {

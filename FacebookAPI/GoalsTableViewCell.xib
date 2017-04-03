@@ -18,10 +18,10 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="h48-Rq-ARV" id="nAH-9L-LLk" userLabel="Cell View">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="99.666666666666671"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cake" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BPh-QD-yKg">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BPh-QD-yKg">
                         <rect key="frame" x="103" y="0.0" width="264" height="50"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="50" id="bxY-yx-tT3"/>
@@ -42,7 +42,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IkJ-Dk-50W">
                         <rect key="frame" x="8" y="10" width="80" height="80"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="spilledIceCream" translatesAutoresizingMaskIntoConstraints="NO" id="sid-WN-69H">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sid-WN-69H">
                                 <rect key="frame" x="10" y="10" width="60" height="60"/>
                             </imageView>
                         </subviews>
@@ -84,7 +84,4 @@
             </connections>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="spilledIceCream" width="114" height="203"/>
-    </resources>
 </document>

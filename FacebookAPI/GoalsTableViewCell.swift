@@ -8,6 +8,8 @@
 
 import UIKit
 
+var arrayOfPartyItemNames = [String]()
+
 class GoalsTableViewCell: UITableViewCell {
 
     @IBOutlet weak var attendingGoalNameLabel: UILabel!
@@ -24,6 +26,11 @@ class GoalsTableViewCell: UITableViewCell {
     
     var fundedString = ""
     
+    var arrayOfEventIDs = [String]()
+
+//    var arrayOfPartyItemNames = [String]()
+
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -33,14 +40,36 @@ class GoalsTableViewCell: UITableViewCell {
         
     }
 
+    func getEventIDsFromFirebase(event: Event) -> Void {
+        
+        FirebaseManager.retrieveEventIDFromFirebase(eventID: event.eventID!)  { (eventIDArray) -> () in
+            
+            self.arrayOfEventIDs = eventIDArray
+            print("List of Event IDs in DUMMY FUNCTION:","\(self.arrayOfEventIDs)")
+            
+            
+            
+            
+        }
+        
+        //return self.arrayOfEventIDs
+        
+    }
+
 
     func configureCellWith(event:Event, indexPath:Int) -> Void
     {
     
-        var arrayOfPartyItemNames = [String]()
+        //var arrayOfPartyItemNames = [String]()
         var arrayOfEventIDs = [String]()
         var arrayOfPartyItemGoals = [NSNumber]()
         
+        
+        var dummyArray = [String]()
+        
+        getEventIDsFromFirebase(event: event)
+        
+        print("\(dummyArray)")
         
         FirebaseManager.retrievePartyItemsFromFirebase(eventID: event.eventID!) { (partyItemArray) in
             
@@ -59,33 +88,65 @@ class GoalsTableViewCell: UITableViewCell {
             
         }
 
+        
+//        FirebaseManager.retrieveEventIDFromFirebase(eventID: event.eventID!)  { (eventIDArray) -> () in
+//            
+//            self.arrayOfEventIDs = eventIDArray
+//            print("List of Event IDs in DUMMY FUNCTION:","\(self.arrayOfEventIDs)")
+//            
+//            if self.arrayOfEventIDs.count != 0 {
+//
+//                //self.cellPartyItem = event.partyItems[indexPath]
+//                self.attendingGoalNameLabel.text = self.arrayOfEventIDs[0]
+//
+//            }
+//            
+//            
+//        }
+        
+        FirebaseManager.retrievePartyItemsFromFirebase(eventID: event.eventID! ) { (partyItemNameArray) -> () in
+            
+            arrayOfPartyItemNames = partyItemNameArray
+            
+            if arrayOfPartyItemNames.count != 0 {
+                
+                for i in 0..<arrayOfPartyItemNames.count {
+                    
+                self.attendingGoalNameLabel.text = arrayOfPartyItemNames[i]
+                }
+                
+            }
+            
+            
+        }
+        
         print("\(arrayOfPartyItemNames)")
         print("\(arrayOfEventIDs)")
         print("\(arrayOfPartyItemGoals)")
 
-        if event.partyItems.count != 0 {
-            
-            cellPartyItem = event.partyItems[indexPath]
-            attendingGoalNameLabel.text = cellPartyItem?.itemName
-            
-            if cellPartyItem?.itemAmountFunded == nil {
-                fundedString = "0% there!"
-                
-            }else{
-                
-                fundedString = "\(cellPartyItem?.itemAmountFunded)% there!"
-                
-            }
-            
-            attendingGoalAmountFundedLabel.text = fundedString
-            
-            setUpProgressBarWith(partyItem:cellPartyItem!)
-            
-        }else{
-            
-            self.attendingGoalNameLabel.text = "Sorry, there are no PartyItems to contribute to for this event!"
-            
-        }
+//        if event.partyItems.count != 0 {
+//            
+//            cellPartyItem = event.partyItems[indexPath]
+//            attendingGoalNameLabel.text = cellPartyItem?.itemName
+//            
+//            if cellPartyItem?.itemAmountFunded == nil {
+//                fundedString = "0% there!"
+//                
+//            }else{
+//                
+//                fundedString = "\(cellPartyItem?.itemAmountFunded)% there!"
+//                
+//            }
+//            
+//            attendingGoalAmountFundedLabel.text = fundedString
+//            
+//            setUpProgressBarWith(partyItem:cellPartyItem!)
+//            
+//        }else{
+//            
+//            self.attendingGoalNameLabel.text = "Sorry, there are no PartyItems to contribute to for this event!"
+//            
+//        }
         
     }
     

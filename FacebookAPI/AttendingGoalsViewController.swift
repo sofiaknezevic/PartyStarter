@@ -70,12 +70,12 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
         
         let newPartyItem = PartyItem(name: "balloons",
                                      goal: 150.00,
-                                     image:"",
+                                     image: #imageLiteral(resourceName: "balloons"),
                                      itemEventID: event.eventID!)
         
         let newPartyItem2 = PartyItem(name: "tables",
                                      goal: 200.00,
-                                     image:"",
+                                     image: #imageLiteral(resourceName: "beer"),
                                      itemEventID: event.eventID!)
         
         event.partyItems.append(newPartyItem)
