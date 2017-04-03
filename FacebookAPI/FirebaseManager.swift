@@ -132,6 +132,18 @@ class FirebaseManager: NSObject {
         newFirebaseManager.ref = FIRDatabase.database().reference()
         
         
+        var data: NSData = NSData()
+        
+
+        
+//        let user: NSDictionary = ["photoBase64":base64String]
+        
+        //add firebase child node
+        //let profile = firebase.ref.childByAppendingPath(name!)
+        
+        // Write data to Firebase
+        //profile.setValue(user)
+        
        guard let partyItemsArray = partyItemsArray, let firebaseUserID = UserDefaults.standard.object(forKey: "uid") as? String else {
             print("There is an issue")
             return
@@ -143,19 +155,34 @@ class FirebaseManager: NSObject {
             let listOfPartyItems = getEventsFromArray?.itemName
             let listOfGoals = getEventsFromArray?.itemGoal
             let listOfEventID = getEventsFromArray?.eventID
-            let listOfItemImagePaths = getEventsFromArray?.itemImage
+            //let listOfItemImagePaths = getEventsFromArray?.itemImage
             
             let convertToNSNumber: NSNumber = NSNumber(value: listOfGoals!)
             
-            //let listOfItemImages = getEventsFromArray?.itemImage
+            let listOfItemImages = getEventsFromArray?.itemImage
+            
+//            let imageData: NSData = UIImageJPEGRepresentation(listOfItemImages!, 0.4)! as NSData
+//            let imageStr = imageData.base64EncodedString(options: .lineLength64Characters)
+//            print("PLEASE PRINT::::::", imageStr)
+            
+            let imageData: NSData = UIImageJPEGRepresentation(listOfItemImages!, 0.4)! as NSData
+            let strBase64 = imageData.base64EncodedString(options: .init(rawValue: 0))
 
-            // Writing the list of events to firebase database
+            
         newFirebaseManager.ref.child("party_item").child("\(firebaseUserID)").child("\(eventID)").child("party_item_list").child("\(listOfPartyItems!)").setValue(listOfPartyItems)
         newFirebaseManager.ref.child("party_item").child("\(firebaseUserID)").child("\(eventID)").child("party_item_event_id").child("\(listOfEventID!)").setValue(listOfEventID)
-        newFirebaseManager.ref.child("party_item").child("\(firebaseUserID)").child("\(eventID)").child("party_item_goal").child("\(convertToNSNumber)").setValue(convertToNSNumber)
-        newFirebaseManager.ref.child("party_item").child("\(firebaseUserID)").child("\(eventID)").child("party_item_image_path").child("\(listOfItemImagePaths!)").setValue(listOfItemImagePaths)
+            
 
-//        newFirebaseManager.ref.child("party_item").child("\(firebaseUserID)").child("\(eventID)").child("party_item_images").child("\(listOfPartyItems!)").setValue(listOfItemImages)
+            
+        newFirebaseManager.ref.child("party-item").child("\(listOfPartyItems!)").child("\(eventID)").child("\(firebaseUserID)").setValue(convertToNSNumber)
+
+
+            //newFirebaseManager.ref.child("party-item").child("\(listOfPartyItems!)").child("\(eventID)").child("\(firebaseUserID)").updateChildValues(["\(firebaseUserID)": convertToNSNumber])
+
+//        newFirebaseManager.ref.child("party_item").child("\(firebaseUserID)").child("\(eventID)").child("party_item_goal").child("\(convertToNSNumber)").setValue(convertToNSNumber)
+        //newFirebaseManager.ref.child("party_item").child("\(firebaseUserID)").child("\(eventID)").child("party_item_image_path").child("\(listOfItemImagePaths!)").setValue(listOfItemImagePaths)
+
+        newFirebaseManager.ref.child("party_item").child("\(firebaseUserID)").child("\(eventID)").child("party_item_images").child("1235").setValue(strBase64)
 
         }
     }
@@ -182,20 +209,36 @@ class FirebaseManager: NSObject {
 
             
             // Writing the list of events to firebase database
-            newFirebaseManager.ref.child("events").child("\(firebaseUserID)").child("\(eventID)").child("stripe_user_id").setValue("\(stripeUserID)")
+            //newFirebaseManager.ref.child("events").child("\(firebaseUserID)").child("\(eventID)").child("stripe_user_id").setValue("\(stripeUserID)")
             
             
             newFirebaseManager.ref.child("events").child("\(firebaseUserID)").child("\(eventID)").child("party_item_list").child("\(listOfPartyItems!)").setValue(listOfPartyItems!)
         }
     }
 
+    class func writeToFirebaseDBHostStripeUserID(partyItemName : String, eventID : String) {
+        
+        let newFirebaseManager = FirebaseManager()
+        
+        newFirebaseManager.ref = FIRDatabase.database().reference()
+    
+        guard let stripeUserID = UserDefaults.standard.object(forKey: "stripe_id") as? String else {
+            print("There is an issue writing Hosts Stripe User ID to Firebase DB")
+            return
+        }
+        
+        // Writing the Stripe User ID to Firebase database
+        newFirebaseManager.ref.child("hosts-stripe-user-id").child("\(eventID)").child("stripe_user_id").setValue("\(stripeUserID)")
+        
+    }
+    
     class func retrievePartyItemsFromFirebase(eventID :String, completion:@escaping([String]) -> Void){
         
         var ref: FIRDatabaseReference!
         ref = FIRDatabase.database().reference()
 
         var partyItemNameArray = [String]()
-        var partyEventIDArray = [String]()
+        //var partyEventIDArray = [String]()
         
         ref.child("party_item").child((UserDefaults.standard.object(forKey: "uid") as? String)!).child("\(eventID)").child("party_item_list").observe(.childAdded, with: { (snapshot) in
             
@@ -204,26 +247,26 @@ class FirebaseManager: NSObject {
                 return
             }
             partyItemNameArray.append((snapshot.value as? String)!)
-            print(partyItemNameArray)
+            //print(partyItemNameArray)
             
             completion(partyItemNameArray)
         })
         
-        ref.child("party_item").child((UserDefaults.standard.object(forKey: "uid") as? String)!).child("\(eventID)").child("party_item_event_id").observe(.childAdded, with: { (snapshot) in
-            
-            if !snapshot.exists() {
-                print("No snapshot exists")
-                return
-            }
-            
-        
-            partyEventIDArray.append((snapshot.value as? String)!)
-            print(partyEventIDArray)
-            completion(partyEventIDArray)
-        })
+//        ref.child("party_item").child((UserDefaults.standard.object(forKey: "uid") as? String)!).child("\(eventID)").child("party_item_event_id").observe(.childAdded, with: { (snapshot) in
+//            
+//            if !snapshot.exists() {
+//                print("No snapshot exists")
+//                return
+//            }
+//            
+//        
+//            partyEventIDArray.append((snapshot.value as? String)!)
+//            //print(partyEventIDArray)
+//            completion(partyEventIDArray)
+//        })
     }
     
-    class func retrieveEventIDFromFirebase(eventID :String, completion:@escaping([String]) -> Void){
+    class func retrieveEventIDFromFirebase(eventID :String, completion:@escaping([String]) -> ()){
         
         var ref: FIRDatabaseReference!
         ref = FIRDatabase.database().reference()
@@ -238,7 +281,7 @@ class FirebaseManager: NSObject {
             }
             
             partyEventIDArray.append((snapshot.value as? String)!)
-            print(partyEventIDArray)
+            //print(partyEventIDArray)
             completion(partyEventIDArray)
         })
     }
@@ -249,8 +292,9 @@ class FirebaseManager: NSObject {
         ref = FIRDatabase.database().reference()
         var partyItemGoalArray = [NSNumber]()
         
+
         ref.child("party_item").child((UserDefaults.standard.object(forKey: "uid") as? String)!).child("\(eventID)").child("party_item_goal").observe(.childAdded, with: { (snapshot) in
-            
+        
             if !snapshot.exists() {
                 print("No snapshot exists")
                 return
@@ -263,6 +307,29 @@ class FirebaseManager: NSObject {
         })
     }
     
+    class func retrievePartyItemsGoalFromFirebase2(listOfPartyItems: String, eventID :String, completion:@escaping([NSNumber]) -> Void){
+        
+        var ref: FIRDatabaseReference!
+        ref = FIRDatabase.database().reference()
+        var partyItemGoalArray = [NSNumber]()
+        
+        
+        ref.child("party-item").child("\(listOfPartyItems)").child("\(eventID)").child((UserDefaults.standard.object(forKey: "uid") as? String)!).observe(.childAdded, with: { (snapshot) in
+            
+            //        ref.child("party_item").child((UserDefaults.standard.object(forKey: "uid") as? String)!).child("\(eventID)").child("party_item_goal").observe(.childAdded, with: { (snapshot) in
+            
+            if !snapshot.exists() {
+                print("No snapshot exists")
+                return
+            }
+            
+            partyItemGoalArray.append((snapshot.value as? NSNumber)!)
+            print(partyItemGoalArray)
+            
+            completion(partyItemGoalArray)
+        })
+    }
+
     class func retrievePartyItemsImagePathsFromFirebase(eventID :String, completion:@escaping([String]) -> Void){
         
         var ref: FIRDatabaseReference!
@@ -282,5 +349,130 @@ class FirebaseManager: NSObject {
             completion(partyItemImagePathArray)
         })
     }
+    
+    class func writeToFirebaseDBPartyItemImages(partyItemName : String, eventID : String, partyItemsArray : Array<Any>?) {
+        
+        let newFirebaseManager = FirebaseManager()
+        
+        newFirebaseManager.ref = FIRDatabase.database().reference()
+        
+        var data: NSData = NSData()
+        
+        guard let partyItemsArray = partyItemsArray else {
+            print("There is an issue")
+            return
+        }
+        
+        for i in 0..<partyItemsArray.count {
+            
+            let getEventsFromArray = (partyItemsArray[i] as? PartyItem)
+            let listOfPartyItems = getEventsFromArray?.itemName
+            
+            
+            let listOfItemImages = getEventsFromArray?.itemImage
+            
+            let imageData: NSData = UIImageJPEGRepresentation(listOfItemImages!, 0.4)! as NSData
+            let strBase64 = imageData.base64EncodedString(options: .init(rawValue: 0))
+            
+            
+            
+            newFirebaseManager.ref.child("party_item_images").child("\(eventID)").child("\(listOfPartyItems!)").setValue(strBase64)
+            
+        }
+    }
+    
+    class func retrievePartyItemImages(partyItemName : String, eventID : String, completion: @escaping ([String])->())
+    {
+        var partyItemImagePathArray = [String]()
+
+        var ref: FIRDatabaseReference!
+
+        ref = FIRDatabase.database().reference()
+//        
+//        ref.child("party_item").child((UserDefaults.standard.object(forKey: "uid") as? String)!).child("\(eventID)").child("party_item_goal").observe(.childAdded, with: { (snapshot) in
+        
+        ref.child("party_item_images").child("\(eventID)").observe(.childAdded, with: { snapshot in
+            
+            
+            
+            if !snapshot.exists() {
+                print("No snapshot exists")
+                return
+            }
+            
+            
+            partyItemImagePathArray.append((snapshot.value as? String)!)
+            //print(partyItemImagePathArray)
+            print(partyItemImagePathArray)
+            completion(partyItemImagePathArray)
+            //print("\(snapshot)")
+            
+//            let enumerator = snapshot.children
+//            print("\(enumerator)")
+//            while (enumerator.nextObject() as? FIRDataSnapshot) != nil {
+//                for jsonData in snapshot.children.allObjects as! [FIRDataSnapshot] {
+//                    guard let restDict = jsonData.value as? [String: AnyObject] else {
+//                        continue
+//                    }
+//                    let getStripeUserID = restDict["\(partyItemName)"]
+//                    print("PRINT PARTY ITEM IMAGE: ", getStripeUserID!)
+//                    
+//                }
+//                
+//                // Print the whole JSON file
+//                // print(jsonData.value!)
+//            }
+        })
+        
+//        
+//        var ref: FIRDatabaseReference!
+//        ref = FIRDatabase.database().reference()
+//        
+//        ref.observe(.childAdded, with: { snapshot in
+//            if let snapshotValue = snapshot.value as? [String:Any],
+//                let currentData = snapshotValue["\(eventID)"] as? [String:Any] {
+//                let userid = (currentData["Beer Keg"])! as! [String]
+//                print(userid)
+//
+//                
+//            }
+//        })
+    
+    
+        
+//        let newFirebaseManager = FirebaseManager()
+//        
+//        newFirebaseManager.ref = FIRDatabase.database().reference()
+//        
+//        var data: NSData = NSData()
+//        
+//        guard let partyItemsArray = partyItemsArray else {
+//            print("There is an issue")
+//            return
+//        }
+//        
+//        for i in 0..<partyItemsArray.count {
+//            
+//            let getEventsFromArray = (partyItemsArray[i] as? PartyItem)
+//            let listOfPartyItems = getEventsFromArray?.itemName
+//            
+//            
+//            let listOfItemImages = getEventsFromArray?.itemImage
+//            
+//            let imageData: NSData = UIImageJPEGRepresentation(listOfItemImages!, 0.4)! as NSData
+//            let strBase64 = imageData.base64EncodedString(options: .init(rawValue: 0))
+//            
+//            let dataDecoded : Data = Data(base64Encoded: strBase64, options: .ignoreUnknownCharacters)!
+//            let decodedimage = UIImage(data: dataDecoded)
+//            yourImageView.image = decodedimage
+//            
+//            newFirebaseManager.ref.child("party_item_images").child("\(eventID)").child("\(listOfPartyItems!)").setValue(strBase64)
+        
+       // }
+    }
+    
+
+
+
 
 }
