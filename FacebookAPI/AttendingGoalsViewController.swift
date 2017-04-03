@@ -136,10 +136,9 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
         if (segue.identifier == "showContributeToGoalVC") {
             
             let newContributeVC:ContributeToGoalViewController = segue.destination as! ContributeToGoalViewController
-            
-            //send over the json as well here!!!!!!!!!
-            //newContributeVC.jsonOfHost = self.paymentReceiverJSON
+
             newContributeVC.partyItemToContributeTo = partyItemForContribution
+            newContributeVC.eventToContributeTo = attendingEvent
             
         }
         
