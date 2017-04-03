@@ -36,7 +36,7 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
         setUpDetailInfoButton()
         
         //take this out before demo day... this is all fake shtuff
-        setUpFakePartyItemForTesting(event: attendingEvent)
+        //setUpFakePartyItemForTesting(event: attendingEvent)
     }
 
     
