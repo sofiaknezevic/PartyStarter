@@ -43,13 +43,7 @@ class AddNewItemViewController: UIViewController, UICollectionViewDelegate, UICo
         let itemGoal = Int(itemGoalSlider.value)
 
         let itemImage = UIImage()
-        //save to firebase itemGoal -> Double(itemGoal)
-    
-        //save to firebase itemImage -> itemImageView.image
-        
-        //POST to firebase and create a new party item on this event
-        
-        
+
 
         print(itemGoal)
         print(itemNameTextField.text!)
