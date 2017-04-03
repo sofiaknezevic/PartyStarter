@@ -15,6 +15,7 @@ class AddNewItemViewController: UIViewController, UICollectionViewDelegate, UICo
     
     var arrayOfImages = [UIImage]()
     
+    @IBOutlet weak var imagePickingCollectionView: UICollectionView!
 
     @IBOutlet weak var itemGoalLabel: UILabel!
     @IBOutlet weak var itemGoalSlider: UISlider!
@@ -23,6 +24,7 @@ class AddNewItemViewController: UIViewController, UICollectionViewDelegate, UICo
     override func viewDidLoad() {
         super.viewDidLoad()
 
+    
         setUpNavButtons()
         addAllImagesToArray()
         
@@ -59,6 +61,7 @@ class AddNewItemViewController: UIViewController, UICollectionViewDelegate, UICo
         
         FirebaseManager.writeToFirebaseDBEvents(partyItemName: itemNameTextField.text!, eventID: (eventToAddItemTo?.eventID)!, partyItemsArray: eventToAddItemTo?.partyItems)
         FirebaseManager.writeToFirebaseDBPartyItem(partyItemName: itemNameTextField.text!, eventID: (eventToAddItemTo?.eventID)!, partyItemsArray: eventToAddItemTo?.partyItems)
+        
         //name and ID of the host who posted it. Not sure if you need both but they are here
         let hostName = addNewItemHost?.name!
         let hostID = addNewItemHost?.userID!
