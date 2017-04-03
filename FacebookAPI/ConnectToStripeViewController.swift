@@ -10,7 +10,9 @@ import UIKit
 
 class ConnectToStripeViewController: UIViewController, ServerInformationDelegate {
 
+    var connectedAccountJSON:[String:Any]?
     
+    var stripeEvent = Event()
 
     override func viewDidLoad() {
    
@@ -29,7 +31,7 @@ class ConnectToStripeViewController: UIViewController, ServerInformationDelegate
         
         if segue.identifier == "authorizeStripe" {
             
-            let newAuthorizationVC = segue.destination as! StripeAuthorizationViewController
+            let newAuthorizationVC:StripeAuthorizationViewController = segue.destination as! StripeAuthorizationViewController
             newAuthorizationVC.delegate = self
             
             
@@ -40,6 +42,17 @@ class ConnectToStripeViewController: UIViewController, ServerInformationDelegate
     func retrieveJSON(newCustomerJSON: [String : Any]) {
         
         //send this JSON somewhere to store and also present if needed...
+      
+        
+        self.connectedAccountJSON = newCustomerJSON
+        
+        print("\(self.connectedAccountJSON)")
+        
+        print("\(stripeEvent.eventID)")
+        
+        stripeEvent.stripeID = self.connectedAccountJSON?["stripe_user_id"] as! String
+        
+        print("\(stripeEvent.stripeID)")
         
         self.dismiss(animated: true, completion: nil)
         

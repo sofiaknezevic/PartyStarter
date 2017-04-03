@@ -86,6 +86,15 @@ class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableVie
             addNewItemVC.eventToAddItemTo = hostEvent
             addNewItemVC.addNewItemHost = hostUser
         }
+        
+        if segue.identifier == "connectToStripe" {
+            
+         
+            let navigation = segue.destination as! UINavigationController
+            let connectToStripeVC = navigation.topViewController as! ConnectToStripeViewController
+            connectToStripeVC.stripeEvent = hostEvent
+            
+        }
     }
     
     func detailInformationButtonPushed() -> Void

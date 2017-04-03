@@ -114,7 +114,6 @@ class AddNewItemViewController: UIViewController, UICollectionViewDelegate, UICo
     {
         let cell = collectionView.cellForItem(at: indexPath)
         userSelectedImage = arrayOfImages[indexPath.item]
-        //print(userSelectedImage)
         cell?.alpha = 0.5
         
         
