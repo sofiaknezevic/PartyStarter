@@ -26,6 +26,7 @@
 		5DE6E0B71E8F00EB0069EDA8 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE6E0B61E8F00EB0069EDA8 /* PaymentViewController.swift */; };
 		70B253E3E678AC86C25BD6D5 /* Pods_FacebookAPITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3959D20BE097ED1583CA80A9 /* Pods_FacebookAPITests.framework */; };
 		D22C8F5B1E8C49B000275437 /* GoalsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D22C8F5A1E8C49B000275437 /* GoalsTableViewCell.xib */; };
+		D22C8F5D1E8EE4AD00275437 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22C8F5C1E8EE4AD00275437 /* MapKit.framework */; };
 		D234F45D1E8B2B47008E0BD8 /* AddNewItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D234F45C1E8B2B47008E0BD8 /* AddNewItemViewController.swift */; };
 		D283C5D31E88B60000A40FBC /* CoverPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = D283C5D21E88B60000A40FBC /* CoverPhoto.swift */; };
 		D2CF578A1E83398C00090788 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CF57891E83398C00090788 /* AppDelegate.swift */; };
@@ -42,7 +43,7 @@
 		D2D0F1871E8894DE000F2205 /* Attendees.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D0F1861E8894DE000F2205 /* Attendees.swift */; };
 		D2D0F1891E8894ED000F2205 /* Admins.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D0F1881E8894ED000F2205 /* Admins.swift */; };
 		DA730B231E8B2D2C00F6D2A1 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA730B221E8B2D2C00F6D2A1 /* FirebaseManager.swift */; };
-		DAF105E91E89B498008F0FD6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DAF105E81E89B498008F0FD6 /* GoogleService-Info.plist */; };
+		DACD87701E902575002DC21B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DACD876F1E902575002DC21B /* GoogleService-Info.plist */; };
 		DAF105ED1E89C4F3008F0FD6 /* FirebaseUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF105EC1E89C4F3008F0FD6 /* FirebaseUser.swift */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +81,7 @@
 		5DE6E0B61E8F00EB0069EDA8 /* PaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		CA0C0CDA7F39768C6F6BC99B /* Pods-FacebookAPI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FacebookAPI.release.xcconfig"; path = "Pods/Target Support Files/Pods-FacebookAPI/Pods-FacebookAPI.release.xcconfig"; sourceTree = "<group>"; };
 		D22C8F5A1E8C49B000275437 /* GoalsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoalsTableViewCell.xib; sourceTree = "<group>"; };
+		D22C8F5C1E8EE4AD00275437 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		D234F45C1E8B2B47008E0BD8 /* AddNewItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewItemViewController.swift; sourceTree = "<group>"; };
 		D283C5D21E88B60000A40FBC /* CoverPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoverPhoto.swift; sourceTree = "<group>"; };
 		D2CF57861E83398C00090788 /* FacebookAPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FacebookAPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,7 +102,7 @@
 		D2D0F1861E8894DE000F2205 /* Attendees.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attendees.swift; sourceTree = "<group>"; };
 		D2D0F1881E8894ED000F2205 /* Admins.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Admins.swift; sourceTree = "<group>"; };
 		DA730B221E8B2D2C00F6D2A1 /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
-		DAF105E81E89B498008F0FD6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DACD876F1E902575002DC21B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DAF105EC1E89C4F3008F0FD6 /* FirebaseUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseUser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,6 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D22C8F5D1E8EE4AD00275437 /* MapKit.framework in Frameworks */,
 				3CB986E78BA17C23FC655D39 /* Pods_FacebookAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -127,6 +130,7 @@
 		0E8B13BAAD031DD5432007AD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D22C8F5C1E8EE4AD00275437 /* MapKit.framework */,
 				2E0E3DB7D652A0F501D4E82D /* Pods_FacebookAPI.framework */,
 				3959D20BE097ED1583CA80A9 /* Pods_FacebookAPITests.framework */,
 			);
@@ -229,7 +233,7 @@
 			children = (
 				D2CF57901E83398C00090788 /* Assets.xcassets */,
 				D2CF57951E83398C00090788 /* Info.plist */,
-				DAF105E81E89B498008F0FD6 /* GoogleService-Info.plist */,
+				DACD876F1E902575002DC21B /* GoogleService-Info.plist */,
 				5D5EC2FF1E8A2522000D9ADC /* Views */,
 				5D3264D41E899DB60045B126 /* StoryBoards */,
 				5D3264D31E899DA90045B126 /* Controllers */,
@@ -341,11 +345,11 @@
 				5D3264E01E89B0340045B126 /* AttendingGoals.storyboard in Resources */,
 				D2CF57B41E84929600090788 /* Main.storyboard in Resources */,
 				5DE6E0B51E8EF0750069EDA8 /* PaymentInformation.storyboard in Resources */,
-				DAF105E91E89B498008F0FD6 /* GoogleService-Info.plist in Resources */,
 				D22C8F5B1E8C49B000275437 /* GoalsTableViewCell.xib in Resources */,
 				5D3264E61E89B12D0045B126 /* EventDetail.storyboard in Resources */,
 				D2CF57941E83398C00090788 /* LaunchScreen.storyboard in Resources */,
 				5D3264DE1E89B0250045B126 /* HostGoals.storyboard in Resources */,
+				DACD87701E902575002DC21B /* GoogleService-Info.plist in Resources */,
 				D2CF57911E83398C00090788 /* Assets.xcassets in Resources */,
 				5D3264D61E89A4CD0045B126 /* Stripe.storyboard in Resources */,
 			);
@@ -617,7 +621,7 @@
 				INFOPLIST_FILE = FacebookAPI/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = scott847.PartyStarter.New;
+				PRODUCT_BUNDLE_IDENTIFIER = scott847.PartyStarter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -632,7 +636,7 @@
 				INFOPLIST_FILE = FacebookAPI/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = scott847.PartyStarter.New;
+				PRODUCT_BUNDLE_IDENTIFIER = scott847.PartyStarter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
