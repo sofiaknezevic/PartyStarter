@@ -15,6 +15,7 @@ class AddNewItemViewController: UIViewController, UICollectionViewDelegate, UICo
     
     var arrayOfImages = [UIImage]()
     
+    var userSelectedImage:UIImage?
 
     @IBOutlet weak var itemGoalLabel: UILabel!
     @IBOutlet weak var itemGoalSlider: UISlider!
@@ -37,7 +38,7 @@ class AddNewItemViewController: UIViewController, UICollectionViewDelegate, UICo
         
         //truncate after decimal place
         let itemGoal = Int(itemGoalSlider.value)
-        let itemImage = String()
+        let itemImage = UIImage()
         //save to firebase itemGoal -> Double(itemGoal)
     
         //save to firebase itemImage -> itemImageView.image
@@ -52,13 +53,16 @@ class AddNewItemViewController: UIViewController, UICollectionViewDelegate, UICo
         //add error handlers
         let newPartyItem = PartyItem(name: itemNameTextField.text!,
                                      goal: Double(itemGoal),
-                                     image: String(itemImage),
+                                     image: userSelectedImage!,
                                      itemEventID: (eventToAddItemTo?.eventID)!)
         
         eventToAddItemTo?.partyItems.append(newPartyItem)
         
         FirebaseManager.writeToFirebaseDBEvents(partyItemName: itemNameTextField.text!, eventID: (eventToAddItemTo?.eventID)!, partyItemsArray: eventToAddItemTo?.partyItems)
+        FirebaseManager.writeToFirebaseDBHostStripeUserID(partyItemName: itemNameTextField.text!, eventID: (eventToAddItemTo?.eventID)!)
         FirebaseManager.writeToFirebaseDBPartyItem(partyItemName: itemNameTextField.text!, eventID: (eventToAddItemTo?.eventID)!, partyItemsArray: eventToAddItemTo?.partyItems)
+        FirebaseManager.writeToFirebaseDBPartyItemImages(partyItemName: itemNameTextField.text!, eventID: (eventToAddItemTo?.eventID)!, partyItemsArray: eventToAddItemTo?.partyItems)
+        
         //name and ID of the host who posted it. Not sure if you need both but they are here
         let hostName = addNewItemHost?.name!
         let hostID = addNewItemHost?.userID!
@@ -107,6 +111,8 @@ class AddNewItemViewController: UIViewController, UICollectionViewDelegate, UICo
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
         let cell = collectionView.cellForItem(at: indexPath)
+        userSelectedImage = arrayOfImages[indexPath.item]
+        //print(userSelectedImage)
         cell?.alpha = 0.5
         
         
