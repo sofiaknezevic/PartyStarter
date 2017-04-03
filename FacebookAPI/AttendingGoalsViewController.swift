@@ -66,18 +66,18 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
     
     func setUpFakePartyItemForTesting(event:Event) -> Void {
         
-//        let newPartyItem = PartyItem(name: "balloons",
-//                                     goal: 150.00,
-//                                     image:#imageLiteral(resourceName: "choosePartyImage"),
-//                                     itemEventID: event.eventID!)
-//        
-//        let newPartyItem2 = PartyItem(name: "tables",
-//                                     goal: 200.00,
-//                                     image:#imageLiteral(resourceName: "choosePartyImage"),
-//                                     itemEventID: event.eventID!)
-//        
-//        event.partyItems.append(newPartyItem)
-//        event.partyItems.append(newPartyItem2)
+        let newPartyItem = PartyItem(name: "balloons",
+                                     goal: 150.00,
+                                     image:#imageLiteral(resourceName: "choosePartyImage"),
+                                     itemEventID: event.eventID!)
+        
+        let newPartyItem2 = PartyItem(name: "tables",
+                                     goal: 200.00,
+                                     image:#imageLiteral(resourceName: "choosePartyImage"),
+                                     itemEventID: event.eventID!)
+        
+        event.partyItems.append(newPartyItem)
+        event.partyItems.append(newPartyItem2)
         
     }
 
