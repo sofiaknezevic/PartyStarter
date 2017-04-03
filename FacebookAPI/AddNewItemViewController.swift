@@ -15,6 +15,7 @@ class AddNewItemViewController: UIViewController, UICollectionViewDelegate, UICo
     
     var arrayOfImages = [UIImage]()
     
+    @IBOutlet weak var imagePickingCollectionView: UICollectionView!
 
     @IBOutlet weak var itemGoalLabel: UILabel!
     @IBOutlet weak var itemGoalSlider: UISlider!
@@ -23,6 +24,8 @@ class AddNewItemViewController: UIViewController, UICollectionViewDelegate, UICo
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.imagePickingCollectionView.allowsMultipleSelection = true
+    
         setUpNavButtons()
         addAllImagesToArray()
         

@@ -25,7 +25,7 @@ class ImagePickingCollectionViewCell: UICollectionViewCell
     {
         
         imageContainerView.layer.borderWidth = 2
-        imageContainerView.layer.masksToBounds = false
+        imageContainerView.layer.masksToBounds = true
         imageContainerView.layer.borderColor = UIColor.black.cgColor
         imageContainerView.layer.cornerRadius = partyItemImageView.frame.width
         imageContainerView.clipsToBounds = true
