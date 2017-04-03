@@ -15,6 +15,7 @@
 		5D3264E01E89B0340045B126 /* AttendingGoals.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D3264DF1E89B0340045B126 /* AttendingGoals.storyboard */; };
 		5D3264E21E89B0D90045B126 /* AttendingGoalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3264E11E89B0D90045B126 /* AttendingGoalsViewController.swift */; };
 		5D3264E61E89B12D0045B126 /* EventDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D3264E51E89B12D0045B126 /* EventDetail.storyboard */; };
+		5D4BCD921E92232300D0B064 /* ImagePickingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4BCD911E92232300D0B064 /* ImagePickingCollectionViewCell.swift */; };
 		5D5EC3011E8A2541000D9ADC /* GoalsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5EC3001E8A2541000D9ADC /* GoalsTableViewCell.swift */; };
 		5D5EC3031E8A27AD000D9ADC /* PartyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5EC3021E8A27AD000D9ADC /* PartyItem.swift */; };
 		5DB4B1711E89D4AD00D7EF66 /* ConnectToStripeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB4B1701E89D4AD00D7EF66 /* ConnectToStripeViewController.swift */; };
@@ -68,6 +69,7 @@
 		5D3264DF1E89B0340045B126 /* AttendingGoals.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AttendingGoals.storyboard; sourceTree = "<group>"; };
 		5D3264E11E89B0D90045B126 /* AttendingGoalsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttendingGoalsViewController.swift; sourceTree = "<group>"; };
 		5D3264E51E89B12D0045B126 /* EventDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EventDetail.storyboard; sourceTree = "<group>"; };
+		5D4BCD911E92232300D0B064 /* ImagePickingCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickingCollectionViewCell.swift; sourceTree = "<group>"; };
 		5D5EC3001E8A2541000D9ADC /* GoalsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalsTableViewCell.swift; sourceTree = "<group>"; };
 		5D5EC3021E8A27AD000D9ADC /* PartyItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyItem.swift; sourceTree = "<group>"; };
 		5DB4B1701E89D4AD00D7EF66 /* ConnectToStripeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectToStripeViewController.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				5D5EC3001E8A2541000D9ADC /* GoalsTableViewCell.swift */,
+				5D4BCD911E92232300D0B064 /* ImagePickingCollectionViewCell.swift */,
 				D22C8F5A1E8C49B000275437 /* GoalsTableViewCell.xib */,
 			);
 			name = Views;
@@ -477,6 +480,7 @@
 				D2CF57B21E848C1E00090788 /* MasterTableViewController.swift in Sources */,
 				D2D0F1871E8894DE000F2205 /* Attendees.swift in Sources */,
 				5D5EC3011E8A2541000D9ADC /* GoalsTableViewCell.swift in Sources */,
+				5D4BCD921E92232300D0B064 /* ImagePickingCollectionViewCell.swift in Sources */,
 				5DE6E0B71E8F00EB0069EDA8 /* PaymentViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

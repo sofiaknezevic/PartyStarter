@@ -19,7 +19,6 @@ class AddNewItemViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var itemGoalLabel: UILabel!
     @IBOutlet weak var itemGoalSlider: UISlider!
     @IBOutlet weak var itemNameTextField: UITextField!
-    @IBOutlet weak var itemImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,15 +89,33 @@ class AddNewItemViewController: UIViewController, UICollectionViewDelegate, UICo
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
         
-        return 1
+        return arrayOfImages.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "newItemImageCell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "newItemImageCell", for: indexPath) as! ImagePickingCollectionViewCell
+        
+        cell.configureCell(partyItemImage:arrayOfImages[indexPath.item])
+        cell.alpha = 1
         
         return cell
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
+    {
+        let cell = collectionView.cellForItem(at: indexPath)
+        cell?.alpha = 0.5
+        
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath)
+    {
+        let cell = collectionView.cellForItem(at: indexPath)
+        cell?.alpha = 1
         
     }
     
@@ -117,8 +134,9 @@ class AddNewItemViewController: UIViewController, UICollectionViewDelegate, UICo
     
     func addAllImagesToArray() -> Void
     {
+        let imageArray = [#imageLiteral(resourceName: "aerosolCan"), #imageLiteral(resourceName: "balloons"), #imageLiteral(resourceName: "beer"), #imageLiteral(resourceName: "bubbles"), #imageLiteral(resourceName: "cake"), #imageLiteral(resourceName: "camcorder"), #imageLiteral(resourceName: "candle"), #imageLiteral(resourceName: "champagne"), #imageLiteral(resourceName: "clown"), #imageLiteral(resourceName: "confetti"), #imageLiteral(resourceName: "cupcake"), #imageLiteral(resourceName: "dinnerWhite"), #imageLiteral(resourceName: "discoBall"), #imageLiteral(resourceName: "dress"), #imageLiteral(resourceName: "drums"), #imageLiteral(resourceName: "eye-mask"), #imageLiteral(resourceName: "fireworks"), #imageLiteral(resourceName: "flags"), #imageLiteral(resourceName: "gamepad"), #imageLiteral(resourceName: "gift"), #imageLiteral(resourceName: "guitar"), #imageLiteral(resourceName: "hat"), #imageLiteral(resourceName: "ice-cream"), #imageLiteral(resourceName: "karaoke"), #imageLiteral(resourceName: "keyboard"), #imageLiteral(resourceName: "magic-wand"), #imageLiteral(resourceName: "martini"), #imageLiteral(resourceName: "mixer"), #imageLiteral(resourceName: "musical-note"), #imageLiteral(resourceName: "mustache"), #imageLiteral(resourceName: "party-blower"), #imageLiteral(resourceName: "photo-camera"), #imageLiteral(resourceName: "pizza"), #imageLiteral(resourceName: "soft-drink"), #imageLiteral(resourceName: "sparkler"), #imageLiteral(resourceName: "speaker"), #imageLiteral(resourceName: "suit"), #imageLiteral(resourceName: "trumpet"), #imageLiteral(resourceName: "turntable")]
         
-        
+        arrayOfImages.append(contentsOf: imageArray)
         
     }
 
