@@ -110,7 +110,11 @@ class PaymentViewController: UIViewController, StripeInformationDelegate{
     {
         chargeSourceCardToConnectedAccount(connectedAccountID: self.connectedAccountID, cardJSON: self.cardJSON) { (chargeJSON) in
             
-            
+            if(chargeJSON["status"] as! String == "succeeded"){
+                
+                self.dismissSelf()
+                
+            }
         }
         
     }
