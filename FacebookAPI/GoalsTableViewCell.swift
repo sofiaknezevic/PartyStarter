@@ -27,86 +27,32 @@ class GoalsTableViewCell: UITableViewCell {
     var fundedString = ""
     
     var arrayOfEventIDs = [String]()
-
-   //var arrayOfPartyItemNames = [String]()
-
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
         setImageView()
         
-        
-        
     }
-
-    func getEventIDsFromFirebase(event: Event) -> Void {
-        
-        FirebaseManager.retrieveEventIDFromFirebase(eventID: event.eventID!)  { (eventIDArray) -> () in
-            
-            self.arrayOfEventIDs = eventIDArray
-            print("List of Event IDs in DUMMY FUNCTION:","\(self.arrayOfEventIDs)")
-            
-            
-            
-            
-        }
-        
-        
-    }
-
 
     func configureCellWith(event:Event, indexPath:Int) -> Void {
-    
-        //var arrayOfPartyItemNames = [String]()
-        var arrayOfEventIDs = [String]()
-        var arrayOfPartyItemGoals = [NSNumber]()
         
-        
-        var dummyArray = [String]()
-        
-        getEventIDsFromFirebase(event: event)
-        
-        print("\(dummyArray)")
-
-//        FirebaseManager.retrieveEventIDFromFirebase(eventID: event.eventID!)  { (eventIDArray) in
-//            
-//            arrayOfEventIDs = eventIDArray
-//
-//        var cellPartyItemName = String()
-//        var cellPartyItemGoal = Double()
-//        var cellPartyItemImage = UIImage()
-//        var cellPartyItemEventID = String()
-// 
-
-
         FirebaseManager.retrievePartyItemsFromFirebase(eventID: event.eventID! ) { (partyItemNameArray) -> () in
             
             arrayOfPartyItemNames = partyItemNameArray
-            
-
             
             DispatchQueue.main.async {
                 
                 self.attendingGoalNameLabel.text = arrayOfPartyItemNames[indexPath]
             }
-        
         }
-        
-      
-        
-
-
     }
     
-    func configureCellWithPartyItem(partyItem:PartyItem) -> Void
-    {
+    func configureCellWithPartyItem(partyItem:PartyItem) -> Void {
         
-    
     }
     
-    func setImageView() -> Void
-    {
+    func setImageView() -> Void {
         
         attendingGoalImageContainerView.layer.borderWidth = 1
         attendingGoalImageContainerView.layer.masksToBounds = false
@@ -116,22 +62,17 @@ class GoalsTableViewCell: UITableViewCell {
         
     }
 
-    func setUpProgressBarWith(partyItem:PartyItem) -> Void
-    {
+    func setUpProgressBarWith(partyItem:PartyItem) -> Void {
     
         guard partyItem.itemAmountFunded != nil && partyItem.itemAmountFunded != 0 else{
             
             attendingGoalProgressView.setProgress(0.0, animated: false)
             return
-            
         }
         
         let currentProgress = partyItem.itemAmountFunded!/partyItem.itemGoal!
         
         attendingGoalProgressView.setProgress(Float(currentProgress), animated: true)
-
-        
-        
     }
 
 }
