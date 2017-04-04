@@ -56,12 +56,15 @@ class AddNewItemViewController: UIViewController, UICollectionViewDelegate, UICo
         let newPartyItem = PartyItem(name: itemNameTextField.text!,
                                      goal: Double(itemGoal),
                                      image: userSelectedImage!,
-                                     itemEventID: (eventToAddItemTo?.eventID)!)
+                                     itemEventID: (eventToAddItemTo?.eventID)!,
+                                     amountFunded: 0)
         
         eventToAddItemTo?.partyItems.append(newPartyItem)
         
         FirebaseManager.writeToFirebaseDBEvents(partyItemName: itemNameTextField.text!, eventID: (eventToAddItemTo?.eventID)!, partyItemsArray: eventToAddItemTo?.partyItems)
-        FirebaseManager.writeToFirebaseDBHostStripeUserID(partyItemName: itemNameTextField.text!, eventID: (eventToAddItemTo?.eventID)!)
+            
+//        FirebaseManager.writeToFirebaseDBHostStripeUserID(partyItemName: itemNameTextField.text!, eventID: (eventToAddItemTo?.eventID)!)
+            
         FirebaseManager.writeToFirebaseDBPartyItem(partyItemName: itemNameTextField.text!, eventID: (eventToAddItemTo?.eventID)!, partyItemsArray: eventToAddItemTo?.partyItems)
         FirebaseManager.writeToFirebaseDBPartyItemImages(partyItemName: itemNameTextField.text!, eventID: (eventToAddItemTo?.eventID)!, partyItemsArray: eventToAddItemTo?.partyItems)
         

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VNq-5o-ai5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VNq-5o-ai5">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -23,13 +23,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3TO-8F-1wZ">
-                                <rect key="frame" x="16" y="64" width="110" height="30"/>
-                                <state key="normal" title="Add New Item +"/>
-                                <connections>
-                                    <action selector="addNewItem:" destination="VNq-5o-ai5" eventType="touchUpInside" id="g93-mf-Qns"/>
-                                </connections>
-                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Wls-43-b3W">
                                 <rect key="frame" x="0.0" y="102" width="375" height="565"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -38,11 +31,11 @@
                                     <outlet property="delegate" destination="VNq-5o-ai5" id="dcP-U3-x8B"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ieb-6B-G5E">
-                                <rect key="frame" x="318" y="64" width="41" height="30"/>
-                                <state key="normal" title="Stripe"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3TO-8F-1wZ">
+                                <rect key="frame" x="16" y="64" width="342" height="30"/>
+                                <state key="normal" title="Add New Item +"/>
                                 <connections>
-                                    <action selector="connectToStripePushed:" destination="VNq-5o-ai5" eventType="touchUpInside" id="f70-hf-5VZ"/>
+                                    <action selector="addNewItem:" destination="VNq-5o-ai5" eventType="touchUpInside" id="g93-mf-Qns"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -50,13 +43,11 @@
                         <constraints>
                             <constraint firstItem="Wls-43-b3W" firstAttribute="leading" secondItem="6XA-xR-8yJ" secondAttribute="leading" id="5Lc-C1-3hf"/>
                             <constraint firstAttribute="trailing" secondItem="Wls-43-b3W" secondAttribute="trailing" id="60t-o8-3wP"/>
-                            <constraint firstItem="Ieb-6B-G5E" firstAttribute="top" secondItem="OkQ-BO-nOs" secondAttribute="bottom" id="8Cr-aJ-9iy"/>
-                            <constraint firstItem="Wls-43-b3W" firstAttribute="top" secondItem="Ieb-6B-G5E" secondAttribute="bottom" constant="8" id="PcT-4C-ALB"/>
-                            <constraint firstItem="Ieb-6B-G5E" firstAttribute="trailing" secondItem="6XA-xR-8yJ" secondAttribute="trailingMargin" id="QrC-ZH-mFB"/>
                             <constraint firstItem="3TO-8F-1wZ" firstAttribute="leading" secondItem="6XA-xR-8yJ" secondAttribute="leadingMargin" id="WXE-t4-JyA"/>
                             <constraint firstItem="3TO-8F-1wZ" firstAttribute="top" secondItem="OkQ-BO-nOs" secondAttribute="bottom" id="avl-Ay-bkz"/>
+                            <constraint firstItem="Wls-43-b3W" firstAttribute="top" secondItem="3TO-8F-1wZ" secondAttribute="bottom" constant="8" id="bk5-aM-eqQ"/>
                             <constraint firstItem="xw0-2Z-p1r" firstAttribute="top" secondItem="Wls-43-b3W" secondAttribute="bottom" id="fos-6G-y60"/>
-                            <constraint firstItem="Wls-43-b3W" firstAttribute="top" secondItem="Ieb-6B-G5E" secondAttribute="bottom" constant="8" id="jWE-vP-8qR"/>
+                            <constraint firstItem="3TO-8F-1wZ" firstAttribute="centerX" secondItem="6XA-xR-8yJ" secondAttribute="centerX" id="rkn-ef-jjl"/>
                             <constraint firstItem="Wls-43-b3W" firstAttribute="top" secondItem="3TO-8F-1wZ" secondAttribute="bottom" constant="8" id="wEk-CG-ei1"/>
                         </constraints>
                     </view>

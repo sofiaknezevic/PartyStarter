@@ -105,7 +105,7 @@ class ContributeToGoalViewController: UIViewController, ChargeNotificationDelega
 
     func getHostStripeUserID() {
         
-        FirebaseManager.retrieveHostStripeUserID(eventID: (eventToContributeTo.eventID!)) { (returnedHostStripeUserID) -> () in
+        FirebaseManager.retrieveHostStripeUserID(event:eventToContributeTo) { (returnedHostStripeUserID) -> () in
             
             self.hostStripeUserID = returnedHostStripeUserID
             

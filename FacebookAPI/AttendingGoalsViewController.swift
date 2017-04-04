@@ -36,14 +36,13 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
         
         setUpDetailInfoButton()
         
-        //take this out before demo day... this is all fake shtuff
-        setUpFakePartyItemForTesting(event: attendingEvent)
-        
         
         FirebaseManager.retrievePartyItemsFromFirebase(eventID: attendingEvent.eventID!) { (partyItemNameArray) -> () in
             
             self.numberOfPartyItemsArray = partyItemNameArray
+            print("\(self.numberOfPartyItemsArray)")
             self.attendingTableView.reloadData()
+            
         }
     }
 
@@ -55,7 +54,7 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
         
         let frame = CGRect(x: 0, y: 0, width: 400, height: 44)
         let navLabel = UILabel(frame: frame)
-        navLabel.font = UIFont.systemFont(ofSize: 20.0, weight: UIFontWeightLight)
+        navLabel.font = UIFont.systemFont(ofSize: 15.0, weight: UIFontWeightLight)
         navLabel.textAlignment = .center
         //I want to change this text color later, but its not really letting me right now
         navLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -73,23 +72,7 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
         
         
     }
-    
-    func setUpFakePartyItemForTesting(event:Event) -> Void {
-        
-        let newPartyItem = PartyItem(name: "balloons",
-                                     goal: 150.00,
-                                     image: #imageLiteral(resourceName: "balloons"),
-                                     itemEventID: event.eventID!)
-        
-        let newPartyItem2 = PartyItem(name: "tables",
-                                     goal: 200.00,
-                                     image: #imageLiteral(resourceName: "beer"),
-                                     itemEventID: event.eventID!)
-        
-        event.partyItems.append(newPartyItem)
-        event.partyItems.append(newPartyItem2)
-        
-    }
+
 
     func numberOfSections(in tableView: UITableView) -> Int {
         
@@ -119,8 +102,7 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
         {
             
             partyItemForContribution = attendingEvent.partyItems[indexPath.row]
-            
-            //stripeConnectManager.readStripeJSON()
+
         
             performSegue(withIdentifier: "showContributeToGoalVC", sender: self)
             
