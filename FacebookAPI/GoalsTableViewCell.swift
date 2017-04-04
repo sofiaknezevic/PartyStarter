@@ -52,7 +52,6 @@ class GoalsTableViewCell: UITableViewCell {
             
         }
         
-        //return self.arrayOfEventIDs
         
     }
 
@@ -74,11 +73,19 @@ class GoalsTableViewCell: UITableViewCell {
         FirebaseManager.retrieveEventIDFromFirebase(eventID: event.eventID!)  { (eventIDArray) in
             
             arrayOfEventIDs = eventIDArray
+
+        var cellPartyItemName = String()
+        var cellPartyItemGoal = Double()
+        var cellPartyItemImage = UIImage()
+        var cellPartyItemEventID = String()
+ 
+        
+        FirebaseManager.retrievePartyItemsFromFirebase(eventID: event.eventID!) { (partyItemArray) in
             
-        }
-        FirebaseManager.retrievePartyItemsGoalFromFirebase(eventID: event.eventID!)  { (partyItemGoalArray) in
+  
             
-            arrayOfPartyItemGoals = partyItemGoalArray
+            
+            
             
         }
 
@@ -86,14 +93,7 @@ class GoalsTableViewCell: UITableViewCell {
             
             arrayOfPartyItemNames = partyItemNameArray
             
-//            if arrayOfPartyItemNames.count != 0 {
-//                
-//                for i in 0..<arrayOfPartyItemNames.count {
-//                    
-//                self.attendingGoalNameLabel.text = arrayOfPartyItemNames[i]
-//                }
-//                
-//            }
+
             
             DispatchQueue.main.async {
                 
@@ -102,34 +102,16 @@ class GoalsTableViewCell: UITableViewCell {
         
         }
         
-        print("\(arrayOfPartyItemNames)")
-        print("\(arrayOfEventIDs)")
-        print("\(arrayOfPartyItemGoals)")
-
-//        if event.partyItems.count != 0 {
-//            
-//            cellPartyItem = event.partyItems[indexPath]
-//            attendingGoalNameLabel.text = cellPartyItem?.itemName
-//            
-//            if cellPartyItem?.itemAmountFunded == nil {
-//                fundedString = "0% there!"
-//                
-//            }else{
-//                
-//                fundedString = "\(cellPartyItem?.itemAmountFunded)% there!"
-//                
-//            }
-//            
-//            attendingGoalAmountFundedLabel.text = fundedString
-//            
-//            setUpProgressBarWith(partyItem:cellPartyItem!)
-//            
-//        }else{
-//            
-//            self.attendingGoalNameLabel.text = "Sorry, there are no PartyItems to contribute to for this event!"
-//            
-//        }
+      
         
+
+
+    }
+    
+    func configureCellWithPartyItem(partyItem:PartyItem) -> Void
+    {
+        
+    
     }
     
     func setImageView() -> Void

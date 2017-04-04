@@ -131,7 +131,6 @@ class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableVie
         let cell = tableView.dequeueReusableCell(withIdentifier: "GoalsCell", for: indexPath) as! GoalsTableViewCell
         cell.configureCellWith(event: hostEvent, indexPath:indexPath.row)
         
-        //cell.dummyTest()
         return cell
         
     }
