@@ -12,6 +12,7 @@ import Stripe
 protocol StripeInformationDelegate:class {
     
     func retrieveStripeID(stripeID:String)
+    func retrieveAmount(amount:Int)
     
 }
 
@@ -35,6 +36,8 @@ class ContributeToGoalViewController: UIViewController{
     var eventToContributeTo = Event()
     
     var hostStripeUserID : String?
+    
+    var itemContribution = Int()
     
     override func viewDidLoad() {
         
@@ -63,7 +66,7 @@ class ContributeToGoalViewController: UIViewController{
     
     @IBAction func amountToContributeSlider(_ sender: UISlider)
     {
-        let itemContribution = Int(amountToContributeSlider.value)
+        itemContribution = Int(amountToContributeSlider.value)
         
         let partyItemGoal = Int((partyItemToContributeTo?.itemGoal)!)
         
@@ -81,6 +84,8 @@ class ContributeToGoalViewController: UIViewController{
             self.hostStripeUserID = returnedHostStripeUserID
             
             self.delegate?.retrieveStripeID(stripeID: self.hostStripeUserID!)
+            
+            self.delegate?.retrieveAmount(amount: self.itemContribution)
             
             print("HOST STRIPE-USER-ID", self.hostStripeUserID!)
             

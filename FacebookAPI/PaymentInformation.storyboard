@@ -55,10 +55,19 @@
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wjJ-H7-Aka">
                                 <rect key="frame" x="37.5" y="64" width="300" height="200"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="I78-bf-2pq">
+                                        <rect key="frame" x="-0.5" y="0.0" width="300" height="200"/>
+                                    </imageView>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="I78-bf-2pq" firstAttribute="height" secondItem="wjJ-H7-Aka" secondAttribute="height" id="2Du-Vj-ohn"/>
                                     <constraint firstAttribute="width" constant="300" id="ASk-az-cqI"/>
+                                    <constraint firstItem="I78-bf-2pq" firstAttribute="centerY" secondItem="wjJ-H7-Aka" secondAttribute="centerY" id="NkS-nC-Nre"/>
+                                    <constraint firstItem="I78-bf-2pq" firstAttribute="width" secondItem="wjJ-H7-Aka" secondAttribute="width" id="RHq-fO-MPi"/>
                                     <constraint firstAttribute="height" constant="200" id="etc-HX-LVf"/>
+                                    <constraint firstItem="I78-bf-2pq" firstAttribute="centerX" secondItem="wjJ-H7-Aka" secondAttribute="centerX" id="uIr-fn-MLe"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -71,6 +80,7 @@
                     <navigationItem key="navigationItem" id="WnN-Ms-dI5"/>
                     <connections>
                         <outlet property="creditCardFormView" destination="wjJ-H7-Aka" id="O6q-os-QJd"/>
+                        <outlet property="creditCardImageView" destination="I78-bf-2pq" id="tEs-PP-k6v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OYN-ee-IK2" userLabel="First Responder" sceneMemberID="firstResponder"/>

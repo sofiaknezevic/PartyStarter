@@ -14,6 +14,7 @@ import CreditCardForm
 class PaymentViewController: UIViewController, StripeInformationDelegate{
     
     @IBOutlet weak var creditCardFormView: UIView!
+    @IBOutlet weak var creditCardImageView: UIImageView!
     let paymentTextField = STPPaymentCardTextField()
     
     var connectedAccountID = String()
@@ -23,6 +24,8 @@ class PaymentViewController: UIViewController, StripeInformationDelegate{
     let expiryMonth = 9
     let expiryYear = 2020
     let cardCVC = "244"
+    
+    var amount = Int()
     
     var cardJSON = [String:Any]()
 
@@ -40,6 +43,10 @@ class PaymentViewController: UIViewController, StripeInformationDelegate{
         
     }
     
+    func retrieveAmount(amount: Int) {
+        
+        self.amount = amount*100
+    }
 
     
     func setUpPaymentVC() -> Void {
@@ -65,12 +72,19 @@ class PaymentViewController: UIViewController, StripeInformationDelegate{
             paymentTextField.heightAnchor.constraint(equalToConstant: 44)
             ])
         
+        let doneButton = UIBarButtonItem(title: "Done",
+                                         style: UIBarButtonItemStyle.done,
+                                         target: self,
+                                         action: #selector(sendPaymentTextFieldValues))
+        
         let cancelButton = UIBarButtonItem(title: "Cancel",
                                            style: UIBarButtonItemStyle.plain,
                                            target: self,
                                            action: #selector(dismissSelf))
         
         self.navigationItem.leftBarButtonItem = cancelButton
+        self.navigationItem.rightBarButtonItem = doneButton
+        
         
     }
 
@@ -101,7 +115,10 @@ class PaymentViewController: UIViewController, StripeInformationDelegate{
         
     }
     
-    
+    func sendPaymentTextFieldValues() -> Void {
+        
+        
+    }
     
     func getToken(cardNumber:String, expiryMonth:Int, expiryYear:Int, cardCVC:String, completion:@escaping ([String:Any]) -> Void) {
         
@@ -148,7 +165,7 @@ class PaymentViewController: UIViewController, StripeInformationDelegate{
         let cardSource = cardJSON["id"] as! String
         
         let params:[String:AnyObject] = [
-            "amount" : 1000 as AnyObject,
+            "amount" : self.amount as AnyObject,
             "currency" : "cad" as AnyObject,
             "source" : cardSource as AnyObject,
             "stripe_account" : connectedAccountID as AnyObject
@@ -160,7 +177,6 @@ class PaymentViewController: UIViewController, StripeInformationDelegate{
       
             
             let chargeJSON = try! JSONSerialization.jsonObject(with: data!, options:[])
-            print("\(chargeJSON)")
             
             DispatchQueue.main.async {
                 
