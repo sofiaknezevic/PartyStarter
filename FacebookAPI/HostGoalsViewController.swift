@@ -13,6 +13,7 @@ class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableVie
     //pass forward the information from the selected event. Will use some info and pass forward to detail view controller
     var hostEvent = Event()
     var hostUser = User()
+    var numberOfPartyItemsArray:Array<Any>?
     @IBOutlet weak var hostGoalsTableView: UITableView!
     
     override func viewDidLoad() {
@@ -26,6 +27,12 @@ class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableVie
         setUpHostGoalsVCWith(event: hostEvent)
         
         setUpInfoButton()
+        
+        FirebaseManager.retrievePartyItemsFromFirebase(eventID: hostEvent.eventID!) { (partyItemNameArray) -> () in
+            
+            self.numberOfPartyItemsArray = partyItemNameArray
+            self.hostGoalsTableView.reloadData()
+        }
         
         //check to see if they have a stripe account associated with them. If not then segue to the connectToStripe VC
 
@@ -110,18 +117,8 @@ class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-
-            if arrayOfPartyItemNames.count == 0 {
-                
-                return 1
-                
-            }
-            else {
-                
-                return (arrayOfPartyItemNames.count)
-                
-            }
-            
+        return self.numberOfPartyItemsArray?.count ?? 0
+        
         
         
     }
