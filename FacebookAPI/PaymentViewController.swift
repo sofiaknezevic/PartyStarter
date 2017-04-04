@@ -9,15 +9,8 @@
 import UIKit
 import Stripe
 
-protocol StripeInformationDelegate:class {
-    
-    func retrieveStripeID(stripeID:String)
-    
-}
 
-class PaymentViewController: UIViewController {
-    
-    weak var delegate:StripeInformationDelegate?
+class PaymentViewController: UIViewController, StripeInformationDelegate {
     
     var connectedAccountID = String()
     let baseURLString = "http://localhost:4567/"
@@ -27,7 +20,7 @@ class PaymentViewController: UIViewController {
     let expiryYear = 2020
     let cardCVC = "244"
     
-    var cardJSON:[String:Any]?
+    var cardJSON = [String:Any]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,12 +30,13 @@ class PaymentViewController: UIViewController {
         
     }
     
-    func getConnectedAccountJSON() -> Void
+    func retrieveStripeID(stripeID: String)
     {
-       
-        
+        self.connectedAccountID = stripeID
         
     }
+    
+
     
     func setUpPaymentVC() -> Void {
         
@@ -64,19 +58,21 @@ class PaymentViewController: UIViewController {
     
     @IBAction func getTokenButtonPushed(_ sender: UIButton)
     {
+   
         getToken(cardNumber: cardNumber, expiryMonth: expiryMonth, expiryYear: expiryYear, cardCVC: cardCVC) { (cardDetails) in
             
-            self.chargeSourceCardToConnectedAccount(connectedAccountID: self.connectedAccountID, cardJSON: self.cardJSON!, completion: { (chargeResponse) in
-                
-                
-            })
+            self.cardJSON = cardDetails
+            
         }
         
     }
     
     @IBAction func chargeTokenButtonPushed(_ sender: UIButton)
     {
-        
+        chargeSourceCardToConnectedAccount(connectedAccountID: self.connectedAccountID, cardJSON: self.cardJSON) { (chargeJSON) in
+            
+            
+        }
         
     }
     
@@ -105,7 +101,7 @@ class PaymentViewController: UIViewController {
             
             DispatchQueue.main.async {
                 
-                completion(self.cardJSON!)
+                completion(self.cardJSON)
                 
                 
             }
@@ -125,18 +121,18 @@ class PaymentViewController: UIViewController {
         let realURL = URL(string: url)
         
         let cardSource = cardJSON["id"] as! String
-        let stripeID = connectedAccountID
         
         let params:[String:AnyObject] = [
             "amount" : 1000 as AnyObject,
             "currency" : "cad" as AnyObject,
             "source" : cardSource as AnyObject,
-            "stripe_account" : stripeID as AnyObject
+            "stripe_account" : connectedAccountID as AnyObject
         ]
         
         let request = URLRequest.request(realURL!, method: .POST, params: params)
         
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+      
             
             let chargeJSON = try! JSONSerialization.jsonObject(with: data!, options:[])
             print("\(chargeJSON)")

@@ -58,10 +58,6 @@ class GoalsTableViewCell: UITableViewCell {
     func configureCellWith(event:Event, indexPath:Int) -> Void
     {
 
-        var cellPartyItemName = String()
-        var cellPartyItemGoal = Double()
-        var cellPartyItemImage = UIImage()
-        var cellPartyItemEventID = String()
  
         
         FirebaseManager.retrievePartyItemsFromFirebase(eventID: event.eventID!) { (partyItemArray) in

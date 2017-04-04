@@ -9,6 +9,12 @@
 import UIKit
 import Stripe
 
+protocol StripeInformationDelegate:class {
+    
+    func retrieveStripeID(stripeID:String)
+    
+}
+
 class ContributeToGoalViewController: UIViewController{
     
     @IBOutlet weak var contributionButton: UIButton!
@@ -19,6 +25,8 @@ class ContributeToGoalViewController: UIViewController{
     @IBOutlet weak var amountToContributeSlider: UISlider!
     
     @IBOutlet weak var amountToContributeLabel: UILabel!
+    
+    weak var delegate:StripeInformationDelegate?
     
     var partyItemToContributeTo:PartyItem?
     
@@ -33,8 +41,6 @@ class ContributeToGoalViewController: UIViewController{
         super.viewDidLoad()
         
         setUp()
-    
-        getHostStripeUserID()
         
     }
     
@@ -74,10 +80,27 @@ class ContributeToGoalViewController: UIViewController{
             
             self.hostStripeUserID = returnedHostStripeUserID
             
+            self.delegate?.retrieveStripeID(stripeID: self.hostStripeUserID!)
+            
             print("HOST STRIPE-USER-ID", self.hostStripeUserID!)
             
             
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "goToPaymentVC" {
+            
+            getHostStripeUserID()
+            
+            let navigation = segue.destination as! UINavigationController
+            let newPaymentVC = navigation.topViewController as! PaymentViewController
+            self.delegate = newPaymentVC
+            
+        }
+        
+    }
+
     
 }
