@@ -28,7 +28,7 @@ class GoalsTableViewCell: UITableViewCell {
     
     var arrayOfEventIDs = [String]()
 
-//    var arrayOfPartyItemNames = [String]()
+   //var arrayOfPartyItemNames = [String]()
 
     
     override func awakeFromNib() {
@@ -70,13 +70,7 @@ class GoalsTableViewCell: UITableViewCell {
         getEventIDsFromFirebase(event: event)
         
         print("\(dummyArray)")
-        
-        FirebaseManager.retrievePartyItemsFromFirebase(eventID: event.eventID!) { (partyItemArray) in
-            
-            arrayOfPartyItemNames = partyItemArray
-            
-        }
-        
+
         FirebaseManager.retrieveEventIDFromFirebase(eventID: event.eventID!)  { (eventIDArray) in
             
             arrayOfEventIDs = eventIDArray
@@ -88,36 +82,24 @@ class GoalsTableViewCell: UITableViewCell {
             
         }
 
-        
-//        FirebaseManager.retrieveEventIDFromFirebase(eventID: event.eventID!)  { (eventIDArray) -> () in
-//            
-//            self.arrayOfEventIDs = eventIDArray
-//            print("List of Event IDs in DUMMY FUNCTION:","\(self.arrayOfEventIDs)")
-//            
-//            if self.arrayOfEventIDs.count != 0 {
-//
-//                //self.cellPartyItem = event.partyItems[indexPath]
-//                self.attendingGoalNameLabel.text = self.arrayOfEventIDs[0]
-//
-//            }
-//            
-//            
-//        }
-        
         FirebaseManager.retrievePartyItemsFromFirebase(eventID: event.eventID! ) { (partyItemNameArray) -> () in
             
             arrayOfPartyItemNames = partyItemNameArray
             
-            if arrayOfPartyItemNames.count != 0 {
+//            if arrayOfPartyItemNames.count != 0 {
+//                
+//                for i in 0..<arrayOfPartyItemNames.count {
+//                    
+//                self.attendingGoalNameLabel.text = arrayOfPartyItemNames[i]
+//                }
+//                
+//            }
+            
+            DispatchQueue.main.async {
                 
-                for i in 0..<arrayOfPartyItemNames.count {
-                    
-                self.attendingGoalNameLabel.text = arrayOfPartyItemNames[i]
-                }
-                
+                self.attendingGoalNameLabel.text = arrayOfPartyItemNames[indexPath]
             }
-            
-            
+        
         }
         
         print("\(arrayOfPartyItemNames)")
