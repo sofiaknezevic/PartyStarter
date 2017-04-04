@@ -224,25 +224,50 @@ class FirebaseManager: NSObject {
         
     }
     
-    class func retrievePartyItemsFromFirebase(eventID :String, completion:@escaping([String]) -> Void){
+    class func retrievePartyItemsFromFirebase(eventID :String, completion:@escaping([PartyItem]) -> Void){
         
         var ref: FIRDatabaseReference!
         ref = FIRDatabase.database().reference()
 
-        var partyItemNameArray = [String]()
+//        var partyItemNameArray = [String]()
         //var partyEventIDArray = [String]()
         
+        //test these to see if the networking works
+        var partyItemName:String?
+        var partyItemGoal:NSNumber?
+//        var partyItemImage:String?
+        var partyItemArray = [PartyItem]()
+
+        
+        //get party item name
         ref.child("party_item_list").child("\(eventID)").child("party_item_name").observe(.childAdded, with: { (snapshot) in
             
             if !snapshot.exists() {
                 print("No snapshot exists")
                 return
             }
-            partyItemNameArray.append((snapshot.value as? String)!)
-            //print(partyItemNameArray)
+
+            partyItemName = snapshot.value as? String
             
-            completion(partyItemNameArray)
+            ref.child("party_item_goal").child("\(partyItemName)").child("\(eventID)").observe(.childAdded, with: { (snapshot) in
+                
+                if !snapshot.exists() {
+                    print("No snapshot exists")
+                    return
+                }
+                
+                partyItemGoal = snapshot.value as? NSNumber
+                
+                //need to add the progress as well to the new item
+                let itemGoal = Double(partyItemGoal!)
+                let newPartyItem = PartyItem.init(name: partyItemName!, goal: itemGoal, image: #imageLiteral(resourceName: "dinnerWhite"), itemEventID: eventID)
+                partyItemArray.append(newPartyItem)
+                
+                completion(partyItemArray)
+            })
+        
         })
+        
     }
     
     class func retrieveEventIDFromFirebase(eventID :String, completion:@escaping([String]) -> ()){
