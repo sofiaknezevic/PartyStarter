@@ -16,7 +16,7 @@ protocol StripeInformationDelegate:class {
     
 }
 
-class ContributeToGoalViewController: UIViewController{
+class ContributeToGoalViewController: UIViewController, ChargeNotificationDelegate{
     
     @IBOutlet weak var contributionButton: UIButton!
     
@@ -52,6 +52,32 @@ class ContributeToGoalViewController: UIViewController{
         let unwrappedGoalAmount = (partyItemToContributeTo?.itemGoal)! as Double
         goalAmountLabel.text = "PartyItem Goal: $\(unwrappedGoalAmount)"
         
+        
+    }
+    
+    func getAlert(notifier: Int) -> Void
+    {
+        
+        var title: String?
+        var message: String?
+        switch notifier {
+        case 0:
+            title = "Error"
+            message = "Something went wrong with your transaction! 🤦‍♂️"
+        case 1:
+            title = "Success"
+            message = "You've helped get this PartyStarted!! 💃"
+        default:
+            return
+       
+        }
+        
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(action)
+        self.present(alertController, animated: true, completion: nil)
+        
+        amountToContributeSlider.reloadInputViews()
         
     }
     
@@ -101,7 +127,9 @@ class ContributeToGoalViewController: UIViewController{
             
             let navigation = segue.destination as! UINavigationController
             let newPaymentVC = navigation.topViewController as! PaymentViewController
+            newPaymentVC.chargeNotificationDelegate = self
             self.delegate = newPaymentVC
+            
             
         }
         

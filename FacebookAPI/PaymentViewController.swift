@@ -10,6 +10,12 @@ import UIKit
 import Stripe
 import CreditCardForm
 
+protocol ChargeNotificationDelegate:class {
+    
+    func getAlert(notifier:Int)
+    
+}
+
 
 class PaymentViewController: UIViewController, StripeInformationDelegate{
     
@@ -17,6 +23,7 @@ class PaymentViewController: UIViewController, StripeInformationDelegate{
     @IBOutlet weak var creditCardImageView: UIImageView!
     let paymentTextField = STPPaymentCardTextField()
     
+    weak var chargeNotificationDelegate:ChargeNotificationDelegate?
     
     
     var connectedAccountID = String()
@@ -94,6 +101,8 @@ class PaymentViewController: UIViewController, StripeInformationDelegate{
         
         self.dismiss(animated: true, completion: nil)
         
+        
+        
     }
     
     func setPaymentTextValues() -> Void {
@@ -119,8 +128,13 @@ class PaymentViewController: UIViewController, StripeInformationDelegate{
                 if(chargeJSON["status"] as! String == "succeeded"){
                     
                     self.dismissSelf()
+                    self.chargeNotificationDelegate?.getAlert(notifier: 1)
                     
-                }
+                }else{
+                    
+                    self.chargeNotificationDelegate?.getAlert(notifier: 0)
+                    
+                    }
                 
             })
             
