@@ -56,8 +56,7 @@ class GoalsTableViewCell: UITableViewCell {
     }
 
 
-    func configureCellWith(event:Event, indexPath:Int) -> Void
-    {
+    func configureCellWith(event:Event, indexPath:Int) -> Void {
     
         //var arrayOfPartyItemNames = [String]()
         var arrayOfEventIDs = [String]()
@@ -70,24 +69,16 @@ class GoalsTableViewCell: UITableViewCell {
         
         print("\(dummyArray)")
 
-        FirebaseManager.retrieveEventIDFromFirebase(eventID: event.eventID!)  { (eventIDArray) in
-            
-            arrayOfEventIDs = eventIDArray
+//        FirebaseManager.retrieveEventIDFromFirebase(eventID: event.eventID!)  { (eventIDArray) in
+//            
+//            arrayOfEventIDs = eventIDArray
+//
+//        var cellPartyItemName = String()
+//        var cellPartyItemGoal = Double()
+//        var cellPartyItemImage = UIImage()
+//        var cellPartyItemEventID = String()
+// 
 
-        var cellPartyItemName = String()
-        var cellPartyItemGoal = Double()
-        var cellPartyItemImage = UIImage()
-        var cellPartyItemEventID = String()
- 
-        
-        FirebaseManager.retrievePartyItemsFromFirebase(eventID: event.eventID!) { (partyItemArray) in
-            
-  
-            
-            
-            
-            
-        }
 
         FirebaseManager.retrievePartyItemsFromFirebase(eventID: event.eventID! ) { (partyItemNameArray) -> () in
             
