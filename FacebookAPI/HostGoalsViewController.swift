@@ -16,6 +16,8 @@ class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableVie
     var numberOfPartyItemsArray:Array<Any>?
     @IBOutlet weak var hostGoalsTableView: UITableView!
     
+    var segueIdentifier:String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -66,16 +68,10 @@ class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBAction func addNewItem(_ sender: UIButton) {
         
         //when this button is pressed segue to the addNewItem view controller
-        //first check if they have a stripe account hooked up and if they don't, send them to stripe and make them connect 
-        performSegue(withIdentifier: "addNewItem", sender: self)
+        //first check if they have a stripe account hooked up and if they don't, send them to stripe and make them connect
+        checkEventStripeID()
+        performSegue(withIdentifier: segueIdentifier!, sender: self)
         
-        
-    }
-
-    
-    @IBAction func connectToStripePushed(_ sender: UIButton) {
-        
-        performSegue(withIdentifier: "connectToStripe", sender: self)
         
     }
     
@@ -102,6 +98,20 @@ class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableVie
             connectToStripeVC.stripeEvent = hostEvent
             
         }
+    }
+    
+    func checkEventStripeID() -> Void
+    {
+        if hostEvent.stripeID != "" {
+            
+            segueIdentifier = "addNewItem"
+            
+        }else{
+            
+            segueIdentifier = "connectToStripe"
+            
+        }
+        
     }
     
     func detailInformationButtonPushed() -> Void

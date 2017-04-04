@@ -208,7 +208,7 @@ class FirebaseManager: NSObject {
         }
     }
 
-    class func writeToFirebaseDBHostStripeUserID(partyItemName : String, eventID : String) {
+    class func writeToFirebaseDBHostStripeUserID(eventID : String) {
         
         let newFirebaseManager = FirebaseManager()
         
@@ -384,18 +384,19 @@ class FirebaseManager: NSObject {
         })
     }
 
-    class func retrieveHostStripeUserID(eventID :String, completion:@escaping(String) -> Void){
+    class func retrieveHostStripeUserID(event:Event, completion:@escaping(String) -> Void){
         
         var ref: FIRDatabaseReference!
         ref = FIRDatabase.database().reference()
         
-        ref.child("hosts-stripe-user-id").child("\(eventID)").observe(.childAdded, with: { (snapshot) in
+        ref.child("hosts-stripe-user-id").child("\(event.eventID)").observe(.childAdded, with: { (snapshot) in
 
             if !snapshot.exists() {
                 print("No snapshot exists")
                 return
             }
             //print("PRINT STRIPE_USERID---------","\(snapshot.value!)")
+            event.stripeID = snapshot.value as! String
             completion(snapshot.value as! String)
         })
 
