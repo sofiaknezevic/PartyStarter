@@ -9,7 +9,14 @@
 import UIKit
 import Stripe
 
-class ContributeToGoalViewController: UIViewController{
+protocol StripeInformationDelegate:class {
+    
+    func retrieveStripeID(stripeID:String)
+    func retrieveAmount(amount:Int)
+    
+}
+
+class ContributeToGoalViewController: UIViewController, ChargeNotificationDelegate{
     
     @IBOutlet weak var contributionButton: UIButton!
     
@@ -20,6 +27,8 @@ class ContributeToGoalViewController: UIViewController{
     
     @IBOutlet weak var amountToContributeLabel: UILabel!
     
+    weak var delegate:StripeInformationDelegate?
+    
     var partyItemToContributeTo:PartyItem?
     
     var arrayOfContributors = [String]()
@@ -28,13 +37,13 @@ class ContributeToGoalViewController: UIViewController{
     
     var hostStripeUserID : String?
     
+    var itemContribution = Int()
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
         setUp()
-    
-        getHostStripeUserID()
         
     }
     
@@ -43,6 +52,32 @@ class ContributeToGoalViewController: UIViewController{
         let unwrappedGoalAmount = (partyItemToContributeTo?.itemGoal)! as Double
         goalAmountLabel.text = "PartyItem Goal: $\(unwrappedGoalAmount)"
         
+        
+    }
+    
+    func getAlert(notifier: Int) -> Void
+    {
+        
+        var title: String?
+        var message: String?
+        switch notifier {
+        case 0:
+            title = "Error"
+            message = "Something went wrong with your transaction! 🤦‍♂️"
+        case 1:
+            title = "Success"
+            message = "You've helped get this PartyStarted!! 💃"
+        default:
+            return
+       
+        }
+        
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(action)
+        self.present(alertController, animated: true, completion: nil)
+        
+        amountToContributeSlider.reloadInputViews()
         
     }
     
@@ -57,7 +92,7 @@ class ContributeToGoalViewController: UIViewController{
     
     @IBAction func amountToContributeSlider(_ sender: UISlider)
     {
-        let itemContribution = Int(amountToContributeSlider.value)
+        itemContribution = Int(amountToContributeSlider.value)
         
         let partyItemGoal = Int((partyItemToContributeTo?.itemGoal)!)
         
@@ -74,10 +109,33 @@ class ContributeToGoalViewController: UIViewController{
             
             self.hostStripeUserID = returnedHostStripeUserID
             
+            self.delegate?.retrieveStripeID(stripeID: self.hostStripeUserID!)
+            
+            self.delegate?.retrieveAmount(amount: self.itemContribution)
+            
             print("HOST STRIPE-USER-ID", self.hostStripeUserID!)
             
             
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "goToPaymentVC" {
+            
+            getHostStripeUserID()
+            
+            let navigation = segue.destination as! UINavigationController
+            let newPaymentVC = navigation.topViewController as! PaymentViewController
+            newPaymentVC.chargeNotificationDelegate = self
+            self.delegate = newPaymentVC
+            
+            
+        }
+        
+    }
+    
+
+
     
 }

@@ -8,26 +8,35 @@
 
 import UIKit
 import Stripe
+import CreditCardForm
 
-protocol StripeInformationDelegate:class {
+protocol ChargeNotificationDelegate:class {
     
-    func retrieveStripeID(stripeID:String)
+    func getAlert(notifier:Int)
     
 }
 
-class PaymentViewController: UIViewController {
+
+class PaymentViewController: UIViewController, StripeInformationDelegate{
     
-    weak var delegate:StripeInformationDelegate?
+    @IBOutlet weak var creditCardFormView: UIView!
+    @IBOutlet weak var creditCardImageView: UIImageView!
+    let paymentTextField = STPPaymentCardTextField()
+    
+    weak var chargeNotificationDelegate:ChargeNotificationDelegate?
+    
     
     var connectedAccountID = String()
     let baseURLString = "http://localhost:4567/"
     
-    let cardNumber = "4242424242424242"
-    let expiryMonth = 9
-    let expiryYear = 2020
-    let cardCVC = "244"
+    var cardNumber = String()
+    var expiryMonth = UInt()
+    var expiryYear = UInt()
+    var cardCVC = String()
     
-    var cardJSON:[String:Any]?
+    var amount = Int()
+    
+    var cardJSON = [String:Any]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,14 +46,45 @@ class PaymentViewController: UIViewController {
         
     }
     
-    func getConnectedAccountJSON() -> Void
+    func retrieveStripeID(stripeID: String)
     {
-       
-        
+        self.connectedAccountID = stripeID
         
     }
     
+    func retrieveAmount(amount: Int) {
+        
+        self.amount = amount*100
+    }
+
+    
     func setUpPaymentVC() -> Void {
+        
+        paymentTextField.frame = CGRect(x: 15, y: 199, width: self.view.frame.size.width - 30, height: 44)
+        paymentTextField.translatesAutoresizingMaskIntoConstraints = false
+        paymentTextField.borderWidth = 0
+        
+        let border = CALayer()
+        let width = CGFloat(1.0)
+        border.borderColor = UIColor.darkGray.cgColor
+        border.frame = CGRect(x: 0, y: paymentTextField.frame.size.height - width, width:  paymentTextField.frame.size.width, height: paymentTextField.frame.size.height)
+        border.borderWidth = width
+        paymentTextField.layer.addSublayer(border)
+        paymentTextField.layer.masksToBounds = true
+        
+        view.addSubview(paymentTextField)
+        
+        NSLayoutConstraint.activate([
+            paymentTextField.topAnchor.constraint(equalTo: creditCardFormView.bottomAnchor, constant: 20),
+            paymentTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            paymentTextField.widthAnchor.constraint(equalToConstant: self.view.frame.size.width-20),
+            paymentTextField.heightAnchor.constraint(equalToConstant: 44)
+            ])
+        
+        let doneButton = UIBarButtonItem(title: "Done",
+                                         style: UIBarButtonItemStyle.done,
+                                         target: self,
+                                         action: #selector(setPaymentTextValues))
         
         let cancelButton = UIBarButtonItem(title: "Cancel",
                                            style: UIBarButtonItemStyle.plain,
@@ -52,6 +92,8 @@ class PaymentViewController: UIViewController {
                                            action: #selector(dismissSelf))
         
         self.navigationItem.leftBarButtonItem = cancelButton
+        self.navigationItem.rightBarButtonItem = doneButton
+        
         
     }
 
@@ -59,30 +101,50 @@ class PaymentViewController: UIViewController {
         
         self.dismiss(animated: true, completion: nil)
         
+        
+        
     }
     
-    
-    @IBAction func getTokenButtonPushed(_ sender: UIButton)
-    {
-        getToken(cardNumber: cardNumber, expiryMonth: expiryMonth, expiryYear: expiryYear, cardCVC: cardCVC) { (cardDetails) in
+    func setPaymentTextValues() -> Void {
+        
+        cardNumber = self.paymentTextField.cardNumber!
+        cardCVC = self.paymentTextField.cvc!
+        expiryYear = self.paymentTextField.expirationYear
+        expiryMonth = self.paymentTextField.expirationMonth
+        
+        getToken(cardNumber: cardNumber,
+                 expiryMonth: expiryMonth,
+                 expiryYear: expiryYear,
+                 cardCVC: cardCVC)
+        { (cardDetails) in
             
-            self.chargeSourceCardToConnectedAccount(connectedAccountID: self.connectedAccountID, cardJSON: self.cardJSON!, completion: { (chargeResponse) in
+            self.cardJSON = cardDetails
+            
+            self.chargeSourceCardToConnectedAccount(connectedAccountID: self.connectedAccountID,
+                                                    cardJSON: self.cardJSON,
+                                                    completion:
+                { (chargeJSON) in
                 
+                if(chargeJSON["status"] as! String == "succeeded"){
+                    
+                    self.dismissSelf()
+                    self.chargeNotificationDelegate?.getAlert(notifier: 1)
+                    
+                }else{
+                    
+                    self.chargeNotificationDelegate?.getAlert(notifier: 0)
+                    
+                    }
                 
             })
+            
         }
         
     }
     
-    @IBAction func chargeTokenButtonPushed(_ sender: UIButton)
-    {
-        
-        
-    }
+
     
-    
-    
-    func getToken(cardNumber:String, expiryMonth:Int, expiryYear:Int, cardCVC:String, completion:@escaping ([String:Any]) -> Void) {
+    func getToken(cardNumber:String, expiryMonth:UInt, expiryYear:UInt, cardCVC:String, completion:@escaping ([String:Any]) -> Void) {
         
         let path = "create_token"
         let url = baseURLString.appending(path)
@@ -105,7 +167,7 @@ class PaymentViewController: UIViewController {
             
             DispatchQueue.main.async {
                 
-                completion(self.cardJSON!)
+                completion(self.cardJSON)
                 
                 
             }
@@ -125,21 +187,20 @@ class PaymentViewController: UIViewController {
         let realURL = URL(string: url)
         
         let cardSource = cardJSON["id"] as! String
-        let stripeID = connectedAccountID
         
         let params:[String:AnyObject] = [
-            "amount" : 1000 as AnyObject,
+            "amount" : self.amount as AnyObject,
             "currency" : "cad" as AnyObject,
             "source" : cardSource as AnyObject,
-            "stripe_account" : stripeID as AnyObject
+            "stripe_account" : connectedAccountID as AnyObject
         ]
         
         let request = URLRequest.request(realURL!, method: .POST, params: params)
         
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+      
             
             let chargeJSON = try! JSONSerialization.jsonObject(with: data!, options:[])
-            print("\(chargeJSON)")
             
             DispatchQueue.main.async {
                 
