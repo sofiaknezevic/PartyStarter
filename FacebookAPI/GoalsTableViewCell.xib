@@ -43,14 +43,15 @@
                         <rect key="frame" x="8" y="10" width="80" height="80"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sid-WN-69H">
-                                <rect key="frame" x="10" y="10" width="60" height="60"/>
+                                <rect key="frame" x="20" y="20" width="40" height="40"/>
                             </imageView>
                         </subviews>
+                        <color key="backgroundColor" red="0.64204508069999999" green="0.65544235709999998" blue="0.82540851829999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="IkJ-Dk-50W" secondAttribute="height" multiplier="1:1" id="4Cm-PN-XAP"/>
-                            <constraint firstItem="sid-WN-69H" firstAttribute="height" secondItem="IkJ-Dk-50W" secondAttribute="height" multiplier="0.75" id="AWv-MP-rc8"/>
+                            <constraint firstItem="sid-WN-69H" firstAttribute="height" secondItem="IkJ-Dk-50W" secondAttribute="height" multiplier="0.5" id="AWv-MP-rc8"/>
                             <constraint firstItem="sid-WN-69H" firstAttribute="centerX" secondItem="IkJ-Dk-50W" secondAttribute="centerX" id="MBt-Tq-8Db"/>
-                            <constraint firstItem="sid-WN-69H" firstAttribute="width" secondItem="IkJ-Dk-50W" secondAttribute="width" multiplier="0.75" id="WAX-pG-nq3"/>
+                            <constraint firstItem="sid-WN-69H" firstAttribute="width" secondItem="IkJ-Dk-50W" secondAttribute="width" multiplier="0.5" id="WAX-pG-nq3"/>
                             <constraint firstItem="sid-WN-69H" firstAttribute="centerY" secondItem="IkJ-Dk-50W" secondAttribute="centerY" id="aZn-C4-nYn"/>
                             <constraint firstAttribute="height" constant="80" id="bnx-jP-UDb"/>
                         </constraints>

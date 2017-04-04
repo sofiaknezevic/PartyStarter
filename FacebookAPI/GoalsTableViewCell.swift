@@ -54,11 +54,12 @@ class GoalsTableViewCell: UITableViewCell {
     
     func setImageView() -> Void {
         
-        attendingGoalImageContainerView.layer.borderWidth = 1
-        attendingGoalImageContainerView.layer.masksToBounds = false
+        attendingGoalImageContainerView.layer.borderWidth = 2
+        attendingGoalImageContainerView.layer.masksToBounds = true
         attendingGoalImageContainerView.layer.borderColor = UIColor.black.cgColor
-        attendingGoalImageContainerView.layer.cornerRadius = attendingGoalImageView.frame.width/2
+        attendingGoalImageContainerView.layer.cornerRadius = attendingGoalImageView.frame.width
         attendingGoalImageContainerView.clipsToBounds = true
+        attendingGoalImageView.image = #imageLiteral(resourceName: "dress")
         
     }
 
