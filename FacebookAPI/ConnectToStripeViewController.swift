@@ -53,7 +53,7 @@ class ConnectToStripeViewController: UIViewController, ServerInformationDelegate
         stripeEvent.stripeID = self.connectedAccountJSON?["stripe_user_id"] as! String
         
         print("\(stripeEvent.stripeID)")
-        
+        FirebaseManager.writeToFirebaseDBHostStripeUserID(eventID: stripeEvent.eventID!)
         self.dismiss(animated: true, completion: nil)
         
     }

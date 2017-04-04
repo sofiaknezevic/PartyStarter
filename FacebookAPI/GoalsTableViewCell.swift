@@ -77,6 +77,7 @@ class GoalsTableViewCell: UITableViewCell {
         attendingGoalImageContainerView.layer.masksToBounds = true
         attendingGoalImageContainerView.layer.borderColor = UIColor.black.cgColor
         attendingGoalImageContainerView.layer.cornerRadius = attendingGoalImageView.frame.width
+
         attendingGoalImageContainerView.clipsToBounds = true
         
         //need to grab the image from firebase
