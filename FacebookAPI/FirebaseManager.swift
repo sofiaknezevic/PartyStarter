@@ -260,7 +260,11 @@ class FirebaseManager: NSObject {
                 
                 //need to add the progress as well to the new item
                 let itemGoal = Double(partyItemGoal!)
-                let newPartyItem = PartyItem.init(name: partyItemName!, goal: itemGoal, image: #imageLiteral(resourceName: "dinnerWhite"), itemEventID: eventID)
+                let newPartyItem = PartyItem.init(name: partyItemName!,
+                                                  goal: itemGoal,
+                                                  image: #imageLiteral(resourceName: "dinnerWhite"),
+                                                  itemEventID: eventID,
+                                                  amountFunded: 0)
                 partyItemArray.append(newPartyItem)
                 
                 completion(partyItemArray)
