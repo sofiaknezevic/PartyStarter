@@ -17,13 +17,15 @@ class PaymentViewController: UIViewController, StripeInformationDelegate{
     @IBOutlet weak var creditCardImageView: UIImageView!
     let paymentTextField = STPPaymentCardTextField()
     
+    
+    
     var connectedAccountID = String()
     let baseURLString = "http://localhost:4567/"
     
-    let cardNumber = "4242424242424242"
-    let expiryMonth = 9
-    let expiryYear = 2020
-    let cardCVC = "244"
+    var cardNumber = String()
+    var expiryMonth = UInt()
+    var expiryYear = UInt()
+    var cardCVC = String()
     
     var amount = Int()
     
@@ -75,7 +77,7 @@ class PaymentViewController: UIViewController, StripeInformationDelegate{
         let doneButton = UIBarButtonItem(title: "Done",
                                          style: UIBarButtonItemStyle.done,
                                          target: self,
-                                         action: #selector(sendPaymentTextFieldValues))
+                                         action: #selector(setPaymentTextValues))
         
         let cancelButton = UIBarButtonItem(title: "Cancel",
                                            style: UIBarButtonItemStyle.plain,
@@ -94,37 +96,41 @@ class PaymentViewController: UIViewController, StripeInformationDelegate{
         
     }
     
-    
-    @IBAction func getTokenButtonPushed(_ sender: UIButton)
-    {
-   
-        getToken(cardNumber: cardNumber, expiryMonth: expiryMonth, expiryYear: expiryYear, cardCVC: cardCVC) { (cardDetails) in
+    func setPaymentTextValues() -> Void {
+        
+        cardNumber = self.paymentTextField.cardNumber!
+        cardCVC = self.paymentTextField.cvc!
+        expiryYear = self.paymentTextField.expirationYear
+        expiryMonth = self.paymentTextField.expirationMonth
+        
+        getToken(cardNumber: cardNumber,
+                 expiryMonth: expiryMonth,
+                 expiryYear: expiryYear,
+                 cardCVC: cardCVC)
+        { (cardDetails) in
             
             self.cardJSON = cardDetails
             
-        }
-        
-    }
-    
-    @IBAction func chargeTokenButtonPushed(_ sender: UIButton)
-    {
-        chargeSourceCardToConnectedAccount(connectedAccountID: self.connectedAccountID, cardJSON: self.cardJSON) { (chargeJSON) in
+            self.chargeSourceCardToConnectedAccount(connectedAccountID: self.connectedAccountID,
+                                                    cardJSON: self.cardJSON,
+                                                    completion:
+                { (chargeJSON) in
+                
+                if(chargeJSON["status"] as! String == "succeeded"){
+                    
+                    self.dismissSelf()
+                    
+                }
+                
+            })
             
-            if(chargeJSON["status"] as! String == "succeeded"){
-                
-                self.dismissSelf()
-                
-            }
         }
         
     }
     
-    func sendPaymentTextFieldValues() -> Void {
-        
-        
-    }
+
     
-    func getToken(cardNumber:String, expiryMonth:Int, expiryYear:Int, cardCVC:String, completion:@escaping ([String:Any]) -> Void) {
+    func getToken(cardNumber:String, expiryMonth:UInt, expiryYear:UInt, cardCVC:String, completion:@escaping ([String:Any]) -> Void) {
         
         let path = "create_token"
         let url = baseURLString.appending(path)
