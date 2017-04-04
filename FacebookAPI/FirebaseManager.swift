@@ -225,11 +225,7 @@ class FirebaseManager: NSObject {
     }
     
     class func retrievePartyItemsFromFirebase(eventID :String, completion:@escaping([PartyItem]) -> Void){
-        
-        print("2")
-        
-        
-        
+   
         var ref: FIRDatabaseReference!
         ref = FIRDatabase.database().reference()
         
@@ -237,29 +233,31 @@ class FirebaseManager: NSObject {
         //var partyEventIDArray = [String]()
         
         //test these to see if the networking works
-        var partyItemName:String?
         var partyArray = [PartyItem]()
         
         
+        // Create a dispatch group
+        
+        // Dispatch Group completion:
+        // completion(partyArray)
         
         //get party item name
-        ref.child("party_item_list").child("\(eventID)").child("party_item_name").observe(.childAdded, with: { (snapshot) in
+        ref.child("party_item_list").child(eventID).child("party_item_name").observe(.childAdded, with: { (snapshot) in
+            
+            // Enter the group
             
             if !snapshot.exists() {
                 print("No snapshot exists")
                 return
             }
             
-            partyItemName = snapshot.value as? String
-            
-            print("3")
+            let partyItemName:String? = snapshot.value as? String
+ 
             
             
             retrievePartyItemGoal(partyName: partyItemName!, eventID: eventID, completion: { (partyItemGoal) in
                 
-                //print("\(partyItemArray)")
-                
-                print("6")
+        
                 
                 let itemGoal = Double(partyItemGoal)
                 let newPartyItem = PartyItem.init(name: partyItemName!,
@@ -274,9 +272,9 @@ class FirebaseManager: NSObject {
                 
                 completion(partyArray)
                 
+                // Leave the group
+                
             })
-            
-            print("ugh")
             
             
         })
@@ -285,14 +283,13 @@ class FirebaseManager: NSObject {
     
     class func retrievePartyItemGoal(partyName:String, eventID:String, completion:@escaping(NSNumber) -> Void)
     {
-        print("4")
         
         var ref: FIRDatabaseReference!
         ref = FIRDatabase.database().reference()
         
         var partyItemGoal:NSNumber?
         
-        ref.child("party_item_goal").child("\(partyName)").child("\(eventID)").observe(.childAdded, with: { (snapshot) in
+        ref.child("party_item_goal").child(partyName).child(eventID).observe(.childAdded, with: { (snapshot) in
             
             if !snapshot.exists() {
                 print("No snapshot exists")
@@ -304,7 +301,6 @@ class FirebaseManager: NSObject {
             
             completion(partyItemGoal!)
             
-            print("5")
             
         })
         
