@@ -5,6 +5,7 @@ PODS:
   - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
+  - CreditCardForm (0.1.2)
   - FacebookCore (0.2.0):
     - Bolts (~> 1.8)
     - FBSDKCoreKit (~> 4.15)
@@ -66,6 +67,7 @@ PODS:
   - Stripe (10.0.0)
 
 DEPENDENCIES:
+  - CreditCardForm
   - FacebookCore
   - FacebookLogin
   - FacebookShare
@@ -77,6 +79,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  CreditCardForm: 0a020dc75e56b45e55c956c8fba029cdcbf295d4
   FacebookCore: 2cb3f0fbff218e9d3119cec84bae983b232412de
   FacebookLogin: c9d606504735780a9e3002465a615512e0a691a5
   FacebookShare: 8e9ee8ea06505e6a1d3d719b0cc63e840fb8aaeb
@@ -94,6 +97,6 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 5c046c76a1f859bc9c187e918f18e4fc7bb57b5e
   Stripe: abf87fc01f74a2143bba1b1798dd2e4d71fd2cb3
 
-PODFILE CHECKSUM: beae236b913163044a5d80d3495285581b344f89
+PODFILE CHECKSUM: dd9542ea3294c490a5edb6d6a04fb225c330a36f
 
 COCOAPODS: 1.2.0
