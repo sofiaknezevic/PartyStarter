@@ -117,7 +117,8 @@ class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return self.numberOfPartyItemsArray?.count ?? 0
+//        return self.numberOfPartyItemsArray?.count ?? 0
+        return 1
         
         
         
