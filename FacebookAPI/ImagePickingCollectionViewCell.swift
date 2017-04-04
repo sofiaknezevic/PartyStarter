@@ -29,6 +29,7 @@ class ImagePickingCollectionViewCell: UICollectionViewCell
         imageContainerView.layer.borderColor = UIColor.black.cgColor
         imageContainerView.layer.cornerRadius = partyItemImageView.frame.width
         imageContainerView.clipsToBounds = true
+        partyItemImageView.image = partyItemImage
         
         
     }
