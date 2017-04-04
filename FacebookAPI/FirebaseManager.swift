@@ -133,19 +133,9 @@ class FirebaseManager: NSObject {
         
         
         var data: NSData = NSData()
-        
 
-        
-//        let user: NSDictionary = ["photoBase64":base64String]
-        
-        //add firebase child node
-        //let profile = firebase.ref.childByAppendingPath(name!)
-        
-        // Write data to Firebase
-        //profile.setValue(user)
-        
        guard let partyItemsArray = partyItemsArray, let firebaseUserID = UserDefaults.standard.object(forKey: "uid") as? String else {
-            print("There is an issue")
+            print("There is an issue retrieving Party Item")
             return
         }
         
@@ -167,22 +157,23 @@ class FirebaseManager: NSObject {
             
             let imageData: NSData = UIImageJPEGRepresentation(listOfItemImages!, 0.4)! as NSData
             let strBase64 = imageData.base64EncodedString(options: .init(rawValue: 0))
-
             
-        newFirebaseManager.ref.child("party_item").child("\(firebaseUserID)").child("\(eventID)").child("party_item_list").child("\(listOfPartyItems!)").setValue(listOfPartyItems)
-        newFirebaseManager.ref.child("party_item").child("\(firebaseUserID)").child("\(eventID)").child("party_item_event_id").child("\(listOfEventID!)").setValue(listOfEventID)
+            /* Writing the list of party item list under event id */
+            newFirebaseManager.ref.child("party_item_list").child("\(eventID)").child("party_item_name").child("\(listOfPartyItems!)").setValue(listOfPartyItems)
             
-
+            /* Writing the list of party item goal amount */
+            newFirebaseManager.ref.child("party_item_goal").child("\(listOfPartyItems!)").child("\(eventID)").child("\(firebaseUserID)").setValue(convertToNSNumber)
             
-        newFirebaseManager.ref.child("party-item").child("\(listOfPartyItems!)").child("\(eventID)").child("\(firebaseUserID)").setValue(convertToNSNumber)
+            /* Writing the list of party item images */
+            newFirebaseManager.ref.child("party_item_image").child("\(eventID)").child("base64_images").child("\(listOfPartyItems!)").setValue(strBase64)
 
-
+//            newFirebaseManager.ref.child("party_item").child("\(firebaseUserID)").child("\(eventID)").child("party_item_event_id").child("\(listOfEventID!)").setValue(listOfEventID)
+            
             //newFirebaseManager.ref.child("party-item").child("\(listOfPartyItems!)").child("\(eventID)").child("\(firebaseUserID)").updateChildValues(["\(firebaseUserID)": convertToNSNumber])
 
-//        newFirebaseManager.ref.child("party_item").child("\(firebaseUserID)").child("\(eventID)").child("party_item_goal").child("\(convertToNSNumber)").setValue(convertToNSNumber)
-        //newFirebaseManager.ref.child("party_item").child("\(firebaseUserID)").child("\(eventID)").child("party_item_image_path").child("\(listOfItemImagePaths!)").setValue(listOfItemImagePaths)
+            //newFirebaseManager.ref.child("party_item").child("\(firebaseUserID)").child("\(eventID)").child("party_item_goal").child("\(convertToNSNumber)").setValue(convertToNSNumber)
+            //newFirebaseManager.ref.child("party_item").child("\(firebaseUserID)").child("\(eventID)").child("party_item_image_path").child("\(listOfItemImagePaths!)").setValue(listOfItemImagePaths)
 
-        newFirebaseManager.ref.child("party_item").child("\(firebaseUserID)").child("\(eventID)").child("party_item_images").child("1235").setValue(strBase64)
 
         }
     }
@@ -213,7 +204,7 @@ class FirebaseManager: NSObject {
             //newFirebaseManager.ref.child("events").child("\(firebaseUserID)").child("\(eventID)").child("stripe_user_id").setValue("\(stripeUserID)")
             
             
-            newFirebaseManager.ref.child("events").child("\(firebaseUserID)").child("\(eventID)").child("party_item_list").child("\(listOfPartyItems!)").setValue(listOfPartyItems!)
+            newFirebaseManager.ref.child("events").child("\(eventID)").child("party_item_list").child("\(listOfPartyItems!)").setValue(listOfPartyItems!)
         }
     }
 
@@ -228,7 +219,7 @@ class FirebaseManager: NSObject {
             return
         }
         
-        // Writing the Stripe User ID to Firebase database
+        /* Writing the host's Stripe User ID to Firebase database */
         newFirebaseManager.ref.child("hosts-stripe-user-id").child("\(eventID)").child("stripe_user_id").setValue("\(stripeUserID)")
         
     }
@@ -241,7 +232,7 @@ class FirebaseManager: NSObject {
         var partyItemNameArray = [String]()
         //var partyEventIDArray = [String]()
         
-        ref.child("party_item").child((UserDefaults.standard.object(forKey: "uid") as? String)!).child("\(eventID)").child("party_item_list").observe(.childAdded, with: { (snapshot) in
+        ref.child("party_item_list").child("\(eventID)").child("party_item_name").observe(.childAdded, with: { (snapshot) in
             
             if !snapshot.exists() {
                 print("No snapshot exists")
@@ -252,19 +243,6 @@ class FirebaseManager: NSObject {
             
             completion(partyItemNameArray)
         })
-        
-//        ref.child("party_item").child((UserDefaults.standard.object(forKey: "uid") as? String)!).child("\(eventID)").child("party_item_event_id").observe(.childAdded, with: { (snapshot) in
-//            
-//            if !snapshot.exists() {
-//                print("No snapshot exists")
-//                return
-//            }
-//            
-//        
-//            partyEventIDArray.append((snapshot.value as? String)!)
-//            //print(partyEventIDArray)
-//            completion(partyEventIDArray)
-//        })
     }
     
     class func retrieveEventIDFromFirebase(eventID :String, completion:@escaping([String]) -> ()){
@@ -315,7 +293,7 @@ class FirebaseManager: NSObject {
         var partyItemGoalArray = [NSNumber]()
         
         
-        ref.child("party-item").child("\(listOfPartyItems)").child("\(eventID)").child((UserDefaults.standard.object(forKey: "uid") as? String)!).observe(.childAdded, with: { (snapshot) in
+        ref.child("party_item_goal").child("\(listOfPartyItems)").child("\(eventID)").child((UserDefaults.standard.object(forKey: "uid") as? String)!).observe(.childAdded, with: { (snapshot) in
             
             //        ref.child("party_item").child((UserDefaults.standard.object(forKey: "uid") as? String)!).child("\(eventID)").child("party_item_goal").observe(.childAdded, with: { (snapshot) in
             
@@ -405,8 +383,7 @@ class FirebaseManager: NSObject {
 
         })
     }
-    
-    
+
     class func retrieveHostStripeUserID(eventID :String, completion:@escaping(String) -> Void){
         
         var ref: FIRDatabaseReference!
