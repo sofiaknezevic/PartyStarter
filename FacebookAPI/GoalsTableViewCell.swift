@@ -28,6 +28,7 @@ class GoalsTableViewCell: UITableViewCell {
     
     var arrayOfEventIDs = [String]()
 
+   //var arrayOfPartyItemNames = [String]()
 
     
     override func awakeFromNib() {
@@ -55,18 +56,41 @@ class GoalsTableViewCell: UITableViewCell {
     }
 
 
-    func configureCellWith(event:Event, indexPath:Int) -> Void
-    {
-
- 
+    func configureCellWith(event:Event, indexPath:Int) -> Void {
+    
+        //var arrayOfPartyItemNames = [String]()
+        var arrayOfEventIDs = [String]()
+        var arrayOfPartyItemGoals = [NSNumber]()
         
-        FirebaseManager.retrievePartyItemsFromFirebase(eventID: event.eventID!) { (partyItemArray) in
+        
+        var dummyArray = [String]()
+        
+        getEventIDsFromFirebase(event: event)
+        
+        print("\(dummyArray)")
+
+//        FirebaseManager.retrieveEventIDFromFirebase(eventID: event.eventID!)  { (eventIDArray) in
+//            
+//            arrayOfEventIDs = eventIDArray
+//
+//        var cellPartyItemName = String()
+//        var cellPartyItemGoal = Double()
+//        var cellPartyItemImage = UIImage()
+//        var cellPartyItemEventID = String()
+// 
+
+
+        FirebaseManager.retrievePartyItemsFromFirebase(eventID: event.eventID! ) { (partyItemNameArray) -> () in
             
-  
+            arrayOfPartyItemNames = partyItemNameArray
             
+
             
-            
-            
+            DispatchQueue.main.async {
+                
+                self.attendingGoalNameLabel.text = arrayOfPartyItemNames[indexPath]
+            }
+        
         }
         
       
