@@ -56,7 +56,8 @@ class AddNewItemViewController: UIViewController, UICollectionViewDelegate, UICo
         let newPartyItem = PartyItem(name: itemNameTextField.text!,
                                      goal: Double(itemGoal),
                                      image: userSelectedImage!,
-                                     itemEventID: (eventToAddItemTo?.eventID)!)
+                                     itemEventID: (eventToAddItemTo?.eventID)!,
+                                     amountFunded: 0)
         
         eventToAddItemTo?.partyItems.append(newPartyItem)
         

@@ -95,6 +95,7 @@ class PaymentViewController: UIViewController, StripeInformationDelegate{
         self.navigationItem.rightBarButtonItem = doneButton
         
         
+        
     }
 
     func dismissSelf() -> Void {
