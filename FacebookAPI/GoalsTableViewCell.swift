@@ -58,9 +58,7 @@ class GoalsTableViewCell: UITableViewCell {
         attendingGoalImageContainerView.layer.masksToBounds = true
         attendingGoalImageContainerView.layer.borderColor = UIColor.black.cgColor
         attendingGoalImageContainerView.layer.cornerRadius = attendingGoalImageView.frame.width
-        attendingGoalImageContainerView.clipsToBounds = true
-        attendingGoalImageView.image = #imageLiteral(resourceName: "dress")
-        
+        attendingGoalImageContainerView.clipsToBounds = true        
     }
 
     func setUpProgressBarWith(partyItem:PartyItem) -> Void {

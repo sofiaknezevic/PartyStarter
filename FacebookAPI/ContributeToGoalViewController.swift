@@ -67,6 +67,7 @@ class ContributeToGoalViewController: UIViewController, ChargeNotificationDelega
         case 1:
             title = "Success"
             message = "You've helped get this PartyStarted!! 💃"
+            self.dismiss(animated: true, completion: nil)
         default:
             return
        
@@ -76,8 +77,7 @@ class ContributeToGoalViewController: UIViewController, ChargeNotificationDelega
         let action = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(action)
         self.present(alertController, animated: true, completion: nil)
-        
-        amountToContributeSlider.reloadInputViews()
+
         
     }
     
