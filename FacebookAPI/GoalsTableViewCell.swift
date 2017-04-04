@@ -41,33 +41,15 @@ class GoalsTableViewCell: UITableViewCell {
         
     }
     
-
-    func configureCellWith(event:Event, indexPath:Int) -> Void {
-        
-        FirebaseManager.retrievePartyItemsFromFirebase(eventID: event.eventID! ) { (partyItemArray) -> () in
-            
-            arrayOfPartyItems = partyItemArray
-            
-            DispatchQueue.main.async {
-                
-                //need to take the item info and set the appropriate labels
-                self.attendingGoalNameLabel.text = arrayOfPartyItems[indexPath].itemName
-                
-                let itemGoal = Int(arrayOfPartyItems[indexPath].itemGoal!)
-                
-                self.attendingGoalAmountFundedLabel.text = "\(itemGoal)"
-                
-                self.setImageView(itemImage: arrayOfPartyItems[indexPath].itemImage!)
-
-            }
-        }
-        
-        
-    }
     
     func configureCellWithPartyItem(partyItem:PartyItem) -> Void {
         
-        //is this where we need to set up the cell?
+        attendingGoalNameLabel.text = partyItem.itemName
+        
+        //let itemGoal = Int(partyItem.itemGoal!)
+        
+        
+        
     }
     
     //call this function when configuring the cell, pass in the item's image

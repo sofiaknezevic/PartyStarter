@@ -13,7 +13,7 @@ class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableVie
     //pass forward the information from the selected event. Will use some info and pass forward to detail view controller
     var hostEvent = Event()
     var hostUser = User()
-    var numberOfPartyItemsArray:Array<Any>?
+    var numberOfPartyItemsArray = [PartyItem]()
     @IBOutlet weak var hostGoalsTableView: UITableView!
     
     var segueIdentifier:String?
@@ -127,18 +127,15 @@ class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-//        return self.numberOfPartyItemsArray?.count ?? 0
-        return 1
-        
-        
+        return self.numberOfPartyItemsArray.count
         
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "GoalsCell", for: indexPath) as! GoalsTableViewCell
-        cell.configureCellWith(event: hostEvent, indexPath:indexPath.row)
-        
+
+        cell.configureCellWithPartyItem(partyItem: self.numberOfPartyItemsArray[indexPath.row])
         return cell
         
     }

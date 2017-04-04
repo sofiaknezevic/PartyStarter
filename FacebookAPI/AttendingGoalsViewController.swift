@@ -23,7 +23,7 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
     
     let stripeConnectManager = StripeConnectManager()
 
-    var numberOfPartyItemsArray:Array<Any>?
+    var numberOfPartyItemsArray = [PartyItem]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +40,7 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
         FirebaseManager.retrievePartyItemsFromFirebase(eventID: attendingEvent.eventID!) { (partyItemNameArray) -> () in
             
             self.numberOfPartyItemsArray = partyItemNameArray
-            print("\(self.numberOfPartyItemsArray)")
+            
             self.attendingTableView.reloadData()
             
         }
@@ -82,7 +82,7 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return self.numberOfPartyItemsArray?.count ?? 0
+        return self.numberOfPartyItemsArray.count 
 
         
     }
@@ -90,7 +90,7 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        
         let cell = tableView.dequeueReusableCell(withIdentifier: "GoalsCell", for: indexPath) as! GoalsTableViewCell
-        cell.configureCellWith(event: attendingEvent, indexPath:indexPath.row)
+        cell.configureCellWithPartyItem(partyItem: self.numberOfPartyItemsArray[indexPath.row])
         return cell
         
     }
