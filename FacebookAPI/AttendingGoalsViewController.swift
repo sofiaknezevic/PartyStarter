@@ -23,6 +23,7 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
     
     let stripeConnectManager = StripeConnectManager()
 
+    var numberOfPartyItemsArray:Array<Any>?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +38,13 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
         
         //take this out before demo day... this is all fake shtuff
         setUpFakePartyItemForTesting(event: attendingEvent)
+        
+        
+        FirebaseManager.retrievePartyItemsFromFirebase(eventID: attendingEvent.eventID!) { (partyItemNameArray) -> () in
+            
+            self.numberOfPartyItemsArray = partyItemNameArray
+            self.attendingTableView.reloadData()
+        }
     }
 
     
@@ -91,13 +99,8 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if attendingEvent.partyItems.count == 0 {
-            
-            return 1
-            
-        }
-        
-        return (attendingEvent.partyItems.count)
+        return self.numberOfPartyItemsArray?.count ?? 0
+
         
     }
     
