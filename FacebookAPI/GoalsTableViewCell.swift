@@ -31,13 +31,12 @@ class GoalsTableViewCell: UITableViewCell {
     
     var arrayOfEventIDs = [String]()
     
+    @IBOutlet weak var fundedLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        //setImageView(itemImage: #imageLiteral(resourceName: "aerosolCan"))
-        
-        //where do we set up the cell?
+        fundedLabel.isHidden = true
         
     }
     
@@ -45,11 +44,21 @@ class GoalsTableViewCell: UITableViewCell {
     func configureCellWithPartyItem(partyItem:PartyItem) -> Void {
         
         attendingGoalNameLabel.text = partyItem.itemName
+        setImageView(itemImage: partyItem.itemImage!)
         
-        attendingGoalImageView.image = partyItem.itemImage
-        //let itemGoal = Int(partyItem.itemGoal!)
+        //hard coded until we can get the actual value
+        let amountFunded:Int = 60
+        let itemGoal = Int(partyItem.itemGoal!)
+        print(itemGoal)
+        let progress = Double(amountFunded)/Double(itemGoal)
+        self.attendingGoalProgressView.setProgress(Float(progress), animated: true)
+        self.attendingGoalAmountFundedLabel.text = "Funded: $\(amountFunded) Goal: $\(itemGoal)"
         
-        
+        //when the amount funded is greater than or equal to the goal put a checkmark in the cell
+        if (amountFunded >= itemGoal) {
+            fundedLabel.isHidden = false
+        }
+
         
     }
     
