@@ -54,10 +54,7 @@ class AddNewItemViewController: UIViewController, UICollectionViewDelegate, UICo
         } else {
             
             //no-image
-            if userSelectedImage?.images?.isEmpty ?? true {
-                userSelectedImage = #imageLiteral(resourceName: "no-image")
-                
-            }
+
 
         let newPartyItem = PartyItem(name: itemNameTextField.text!,
                                      goal: Double(itemGoal),
