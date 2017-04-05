@@ -154,10 +154,10 @@ class MasterTableViewController: UITableViewController {
         
         if (indexPath.section == 0) {
             //need to change this to something else since we are not using events array anymore
-            FirebaseManager.writeToFirebaseDBHostingEvents(indexPath: indexPath, hostingArray: self.hostingArray)
+           // FirebaseManager.writeToFirebaseDBHostingEvents(indexPath: indexPath, hostingArray: self.hostingArray)
             cell.textLabel?.text = self.hostingArray[indexPath.row].eventName
         } else {
-            FirebaseManager.writeToFirebaseDBAttendingEvents(indexPath: indexPath, attendingArray: self.attendingArray)
+           // FirebaseManager.writeToFirebaseDBAttendingEvents(indexPath: indexPath, attendingArray: self.attendingArray)
             cell.textLabel?.text = self.attendingArray[indexPath.row].eventName
 
         }
@@ -166,6 +166,17 @@ class MasterTableViewController: UITableViewController {
         return cell
     }
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if (indexPath.section == 0) {
+            self.performSegue(withIdentifier: "showHostGoals", sender: nil)
+        } else {
+            self.performSegue(withIdentifier: "showAttendingGoals", sender: nil)
+        }
+        
+    }
+
+    
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -197,13 +208,4 @@ class MasterTableViewController: UITableViewController {
         
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-            if (indexPath.section == 0) {
-                self.performSegue(withIdentifier: "showHostGoals", sender: nil)
-            } else {
-                self.performSegue(withIdentifier: "showAttendingGoals", sender: nil)
-            }
-    
-    }
 }
