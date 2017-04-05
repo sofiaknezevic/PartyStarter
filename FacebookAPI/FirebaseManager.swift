@@ -236,15 +236,23 @@ class FirebaseManager: NSObject {
         var partyArray = [PartyItem]()
         
         
-        // Create a dispatch group
+        //I HAVE NO IDEA HOW DISPATCH GROUPS WORK! The completion block is still getting called a bajillion times :(
         
-        // Dispatch Group completion:
-        // completion(partyArray)
+        // Create a dispatch group
+        let partyItemArrayDispatchGroup = DispatchGroup()
+        
+        
+    
+        partyItemArrayDispatchGroup.wait()
+        
+
+    
         
         //get party item name
         ref.child("party_item_list").child(eventID).child("party_item_name").observe(.childAdded, with: { (snapshot) in
             
-            // Enter the group
+            
+           
             
             if !snapshot.exists() {
                 print("No snapshot exists")
@@ -257,6 +265,7 @@ class FirebaseManager: NSObject {
             
             retrievePartyItemGoal(partyName: partyItemName!, eventID: eventID, completion: { (partyItemGoal) in
                 
+                partyItemArrayDispatchGroup.enter()
         
                 
                 let itemGoal = Double(partyItemGoal)
@@ -268,15 +277,19 @@ class FirebaseManager: NSObject {
                 
                 partyArray.append(newPartyItem)
                 
-                print("\(partyArray)")
+                partyItemArrayDispatchGroup.leave()
                 
-                completion(partyArray)
                 
-                // Leave the group
+                partyItemArrayDispatchGroup.notify(queue: DispatchQueue.main){
+                    
+                    completion(partyArray)
+                    
+                }
+                
                 
             })
             
-            
+   
         })
         
     }
