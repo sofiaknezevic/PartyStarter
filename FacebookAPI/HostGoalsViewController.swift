@@ -152,7 +152,8 @@ class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableVie
                 self.numberOfPartyItemsArray.remove(at: indexPath.row)
                 hostGoalsTableView.reloadData()
                 
-                // ***** Need to add a line that removes the party item from Firebase DB *****
+                FirebaseManager.deletePartyItemListOfItem(firstTree: hostEvent.eventID!, secondTree: "party_item_name", childIWantToRemove: self.numberOfPartyItemsArray[indexPath.row].itemName!)
+                FirebaseManager.deletePartyItemImage(firstTree: hostEvent.eventID!, secondTree: "base64_images", childIWantToRemove: self.numberOfPartyItemsArray[indexPath.row].itemName!)
             } else {
                 hostGoalsTableView.endUpdates()
             }
