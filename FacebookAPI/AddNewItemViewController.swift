@@ -32,6 +32,11 @@ class AddNewItemViewController: UIViewController, UICollectionViewDelegate, UICo
         
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        itemNameTextField.resignFirstResponder()
+        return true
+    }
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         itemNameTextField.backgroundColor = UIColor.clear
     }
