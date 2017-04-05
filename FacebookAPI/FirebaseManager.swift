@@ -220,7 +220,7 @@ class FirebaseManager: NSObject {
         }
         
         /* Writing the host's Stripe User ID to Firebase database */
-        newFirebaseManager.ref.child("hosts-stripe-user-id").child(eventID).child("stripe_user_id").setValue("\(stripeUserID)")
+        newFirebaseManager.ref.child("hosts-stripe-user-id").child(eventID).child("stripe_user_id").setValue(stripeUserID)
         
     }
     
