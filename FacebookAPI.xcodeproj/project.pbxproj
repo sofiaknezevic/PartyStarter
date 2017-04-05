@@ -318,7 +318,7 @@
 				TargetAttributes = {
 					D2CF57851E83398C00090788 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = WV7WWTD5PV;
+						DevelopmentTeam = SKGXTRK4EB;
 						ProvisioningStyle = Automatic;
 					};
 					D2CF57991E83398D00090788 = {
@@ -629,7 +629,7 @@
 			baseConfigurationReference = 17F04A93C80B417EE080ED97 /* Pods-FacebookAPI.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = WV7WWTD5PV;
+				DEVELOPMENT_TEAM = SKGXTRK4EB;
 				INFOPLIST_FILE = FacebookAPI/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -644,7 +644,7 @@
 			baseConfigurationReference = CA0C0CDA7F39768C6F6BC99B /* Pods-FacebookAPI.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = WV7WWTD5PV;
+				DEVELOPMENT_TEAM = SKGXTRK4EB;
 				INFOPLIST_FILE = FacebookAPI/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
