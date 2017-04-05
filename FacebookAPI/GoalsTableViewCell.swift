@@ -35,7 +35,7 @@ class GoalsTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-//        setImageView()
+        //setImageView(itemImage: #imageLiteral(resourceName: "aerosolCan"))
         
         //where do we set up the cell?
         
@@ -46,6 +46,7 @@ class GoalsTableViewCell: UITableViewCell {
         
         attendingGoalNameLabel.text = partyItem.itemName
         
+        attendingGoalImageView.image = partyItem.itemImage
         //let itemGoal = Int(partyItem.itemGoal!)
         
         
