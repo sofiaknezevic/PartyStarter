@@ -48,8 +48,16 @@ class PaymentViewController: UIViewController, StripeInformationDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUpPaymentVC()
+       
         
+    }
+
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        super.viewDidAppear(true)
+        
+        setUpPaymentVC()
         setUpLabels()
         
     }
@@ -67,6 +75,7 @@ class PaymentViewController: UIViewController, StripeInformationDelegate{
         let doubleAmount = Double(amount)
         
         self.stripeFee = ((doubleAmount*0.029)+0.3)
+        
     }
 
     
@@ -196,7 +205,6 @@ class PaymentViewController: UIViewController, StripeInformationDelegate{
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             
             self.cardJSON = try! JSONSerialization.jsonObject(with: data!, options:[]) as! [String:Any]
-            print("\(self.cardJSON)")
             
             
             DispatchQueue.main.async {

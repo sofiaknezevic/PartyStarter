@@ -98,7 +98,6 @@ class ContributeToGoalViewController: UIViewController, ChargeNotificationDelega
     
     @IBAction func contributionButtonPressed(_ sender: UIButton)
     {
-        //go to viewcontroller that deals with creditcard information and get it all done, using the stripeuserid from the host and the token from the credit card of the attendee
         
         partyItemToContributeTo?.itemAmountFunded = Double(itemContribution) + (partyItemToContributeTo?.itemAmountFunded)!
         
@@ -131,18 +130,18 @@ class ContributeToGoalViewController: UIViewController, ChargeNotificationDelega
             self.delegate?.retrieveStripeID(stripeID: self.hostStripeUserID!)
             
             self.delegate?.retrieveAmount(amount: self.itemContribution)
-            
-            print("HOST STRIPE-USER-ID", self.hostStripeUserID!)
-            
-            
+
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        
+        
         if segue.identifier == "goToPaymentVC" {
             
             getHostStripeUserID()
+            
             
             let navigation = segue.destination as! UINavigationController
             let newPaymentVC = navigation.topViewController as! PaymentViewController

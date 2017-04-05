@@ -27,33 +27,26 @@ class ConnectToStripeViewController: UIViewController, ServerInformationDelegate
         
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
         
         if segue.identifier == "authorizeStripe" {
             
             let newAuthorizationVC:StripeAuthorizationViewController = segue.destination as! StripeAuthorizationViewController
             newAuthorizationVC.delegate = self
-            
-            
         }
         
     }
     
-    func retrieveJSON(newCustomerJSON: [String : Any]) {
-        
-        //send this JSON somewhere to store and also present if needed...
-      
+    func retrieveJSON(newCustomerJSON: [String : Any])
+    {
         
         self.connectedAccountJSON = newCustomerJSON
-        
-        print("\(self.connectedAccountJSON)")
-        
-        print("\(stripeEvent.eventID)")
-        
+
         stripeEvent.stripeID = self.connectedAccountJSON?["stripe_user_id"] as! String
-        
-        print("\(stripeEvent.stripeID)")
+
         FirebaseManager.writeToFirebaseDBHostStripeUserID(eventID: stripeEvent.eventID!)
+        
         self.dismiss(animated: true, completion: nil)
         
     }
