@@ -21,7 +21,6 @@ class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
         let nib = UINib(nibName: "GoalsTableViewCell", bundle: nil)
         
         hostGoalsTableView.register(nib, forCellReuseIdentifier: "GoalsCell")
@@ -148,14 +147,10 @@ class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableVie
 
         if (editingStyle == UITableViewCellEditingStyle.delete) {
 
-            if hostEvent.partyItems.count > 0 {
+            if self.numberOfPartyItemsArray.count > 0 {
+                
+                self.numberOfPartyItemsArray.remove(at: indexPath.row)
                 hostGoalsTableView.reloadData()
-                hostEvent.partyItems.remove(at: indexPath.row)
-                hostGoalsTableView.deleteRows(at: [indexPath], with: .automatic)
-                //eventList.removeAtIndex(indexPath.row)
-                //tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-
-                hostGoalsTableView.endUpdates()
                 
                 // ***** Need to add a line that removes the party item from Firebase DB *****
             } else {
@@ -163,5 +158,4 @@ class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableVie
             }
         }
     }
-
 }
