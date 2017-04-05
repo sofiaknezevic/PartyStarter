@@ -58,6 +58,9 @@ class AddNewItemViewController: UIViewController, UICollectionViewDelegate, UICo
             itemNameTextField.backgroundColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
         } else {
             
+            //no-image
+
+
         let newPartyItem = PartyItem(name: itemNameTextField.text!,
                                      goal: Double(itemGoal),
                                      image: userSelectedImage!,

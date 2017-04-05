@@ -7,7 +7,6 @@
 //
 
 import UIKit
-
 class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     //pass forward the information from the selected event. Will use some info and pass forward to detail view controller
@@ -43,7 +42,7 @@ class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableVie
         
         let frame = CGRect(x: 0, y: 0, width: 400, height: 44)
         let navLabel = UILabel(frame: frame)
-        navLabel.font = UIFont.systemFont(ofSize: 20.0, weight: UIFontWeightUltraLight)
+        navLabel.font = UIFont(name: "Congratulations DEMO", size: 20.00)
         navLabel.textAlignment = .center
         //I want to change this text color later, but its not really letting me right now
         navLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -151,9 +150,8 @@ class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableVie
                 
                 FirebaseManager.deletePartyItemListOfItem(firstTree: hostEvent.eventID!, secondTree: "party_item_name", childIWantToRemove: self.numberOfPartyItemsArray[indexPath.row].itemName!)
                 FirebaseManager.deletePartyItemImage(firstTree: hostEvent.eventID!, secondTree: "base64_images", childIWantToRemove: self.numberOfPartyItemsArray[indexPath.row].itemName!)
-                //FirebaseManager.deletePartyItemGoal(childIWantToRemove: self.numberOfPartyItemsArray[indexPath.row].itemName!)
+                FirebaseManager.deletePartyItemGoal(childIWantToRemove: self.numberOfPartyItemsArray[indexPath.row].itemName!)
                 
-                FirebaseManager.myDeleteFunction(childIWantToRemove: self.numberOfPartyItemsArray[indexPath.row].itemName!)
                 self.numberOfPartyItemsArray.remove(at: indexPath.row)
                 hostGoalsTableView.reloadData()
                 
