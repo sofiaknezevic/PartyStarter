@@ -138,20 +138,27 @@ class FirebaseManager: NSObject {
         
     }
     
-    class func retrieveAmountFunded(partyItem:PartyItem, completion:@escaping(NSNumber) -> Void)
+    class func retrieveAmountFunded(partyItemName:String, eventID:String, completion:@escaping(NSNumber) -> Void)
     {
         var ref: FIRDatabaseReference!
         ref = FIRDatabase.database().reference()
+        
+        var partyItemAmountFunded:NSNumber?
 
-        ref.child("party_item_amountFunded").child(partyItem.itemName!).child(partyItem.eventID!).observe(.value, with: { (snapshot) in
+        ref.child("party_item_amountFunded").child(partyItemName).child(eventID).observe(.value, with: { (snapshot) in
             
             if !snapshot.exists(){
                 
                 print("No amount funded exists!!")
-                return
+                
+                partyItemAmountFunded = 0
+   
+            }else{
+                
+                partyItemAmountFunded = snapshot.value as? NSNumber
+                
             }
             
-            let partyItemAmountFunded:NSNumber? = snapshot.value as? NSNumber
 
             
             completion(partyItemAmountFunded!)
@@ -290,9 +297,17 @@ class FirebaseManager: NSObject {
  
             retrievePartyItemGoal(partyName: partyItemName!, eventID: eventID, completion: { (partyItemGoal) in
                 
+                
                 retrievePartyItemImages(eventID: eventID, partyItemName: partyItemName!) { (partyItemImageString) -> () in
                     
+                 
+                    retrieveAmountFunded(partyItemName: partyItemName!, eventID: eventID) { (partyItemAmountFunded) -> () in
+  
+                    //set the itemamounthere
+                    
                     let partyItemImageString = String(partyItemImageString)
+                        
+                    let realAmountFunded = Double(partyItemAmountFunded)
                     
                     let strBase64 = partyItemImageString
                     let dataDecoded:NSData = NSData(base64Encoded: strBase64!, options: NSData.Base64DecodingOptions(rawValue: 0))!
@@ -300,18 +315,21 @@ class FirebaseManager: NSObject {
                     print("DECODED IMAGE", decodedImage)
                 
                     let itemGoal = Double(partyItemGoal)
+                    
                     let newPartyItem = PartyItem.init(name: partyItemName!,
                                                       goal: itemGoal,
                                                       image: decodedImage,
                                                       itemEventID: eventID,
-                                                      amountFunded: 0)
+                                                      amountFunded: realAmountFunded)
                     
                     partyArray.append(newPartyItem)
                     
                     completion(partyArray)
+                        
+                    }
 
                 }
-//                completion(partyArray)
+                    
             })
             
    

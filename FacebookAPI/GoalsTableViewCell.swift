@@ -47,7 +47,7 @@ class GoalsTableViewCell: UITableViewCell {
         setImageView(itemImage: partyItem.itemImage!)
         
         //hard coded until we can get the actual value
-        let amountFunded:Int = 60
+        let amountFunded:Int = Int(partyItem.itemAmountFunded!)
         let itemGoal = Int(partyItem.itemGoal!)
         print(itemGoal)
         let progress = Double(amountFunded)/Double(itemGoal)
