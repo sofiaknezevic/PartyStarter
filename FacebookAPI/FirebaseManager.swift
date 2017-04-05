@@ -126,6 +126,41 @@ class FirebaseManager: NSObject {
         writeToFirebaseDB.setValue(userName)
     }
     
+    //MARK: AmountFunded
+    
+    class func writeToFirebaseDBAmountFunded(partyItem:PartyItem)
+    {
+        let newFirebaseManager = FirebaseManager()
+        
+        newFirebaseManager.ref = FIRDatabase.database().reference()
+        
+        newFirebaseManager.ref.child("party_item_amountFunded").child(partyItem.itemName!).child(partyItem.eventID!).setValue(partyItem.itemAmountFunded)
+        
+    }
+    
+    class func retrieveAmountFunded(partyItem:PartyItem, completion:@escaping(NSNumber) -> Void)
+    {
+        var ref: FIRDatabaseReference!
+        ref = FIRDatabase.database().reference()
+
+        ref.child("party_item_amountFunded").child(partyItem.itemName!).child(partyItem.eventID!).observe(.value, with: { (snapshot) in
+            
+            if !snapshot.exists(){
+                
+                print("No amount funded exists!!")
+                return
+            }
+            
+            let partyItemAmountFunded:NSNumber? = snapshot.value as? NSNumber
+
+            
+            completion(partyItemAmountFunded!)
+            
+        })
+    }
+    
+
+
     class func writeToFirebaseDBPartyItem(partyItemName : String, eventID : String, partyItemsArray : Array<Any>?) {
         
         let newFirebaseManager = FirebaseManager()
@@ -231,7 +266,7 @@ class FirebaseManager: NSObject {
         
     }
     
-    class func retrievePartyItemsFromFirebase(eventID :String, completion:@escaping([PartyItem]) -> Void){
+    class func retrievePartyItemsFromFirebase(eventID :String, completion:@escaping([PartyItem]) -> Void) {
    
         var ref: FIRDatabaseReference!
         ref = FIRDatabase.database().reference()
@@ -241,25 +276,10 @@ class FirebaseManager: NSObject {
         
         //test these to see if the networking works
         var partyArray = [PartyItem]()
-        
-        
-        //I HAVE NO IDEA HOW DISPATCH GROUPS WORK! The completion block is still getting called a bajillion times :(
-        
-        // Create a dispatch group
-        let partyItemArrayDispatchGroup = DispatchGroup()
-        
-        
-    
-        partyItemArrayDispatchGroup.wait()
-        
-
     
         
         //get party item name
         ref.child("party_item_list").child(eventID).child("party_item_name").observe(.childAdded, with: { (snapshot) in
-            
-            
-           
             
             if !snapshot.exists() {
                 print("No snapshot exists")
@@ -268,45 +288,30 @@ class FirebaseManager: NSObject {
             
             let partyItemName:String? = snapshot.value as? String
  
-            
             retrievePartyItemGoal(partyName: partyItemName!, eventID: eventID, completion: { (partyItemGoal) in
                 
-                retrievePartyItemImages(eventID: eventID) { (partyItemImageString) -> () in
+                retrievePartyItemImages(eventID: eventID, partyItemName: partyItemName!) { (partyItemImageString) -> () in
                     
                     let partyItemImageString = String(partyItemImageString)
                     
-
-                        let strBase64 = partyItemImageString
-                        let dataDecoded:NSData = NSData(base64Encoded: strBase64!, options: NSData.Base64DecodingOptions(rawValue: 0))!
-                        let decodedimage:UIImage = UIImage(data: dataDecoded as Data)!
-                        print("DECODED IMAGE", decodedimage)
-        
+                    let strBase64 = partyItemImageString
+                    let dataDecoded:NSData = NSData(base64Encoded: strBase64!, options: NSData.Base64DecodingOptions(rawValue: 0))!
+                    let decodedImage:UIImage = UIImage(data: dataDecoded as Data)!
+                    print("DECODED IMAGE", decodedImage)
                 
-                
-                partyItemArrayDispatchGroup.enter()
-        
-                
-                let itemGoal = Double(partyItemGoal)
-                let newPartyItem = PartyItem.init(name: partyItemName!,
-                                                  goal: itemGoal,
-                                                  image: decodedimage,
-                                                  itemEventID: eventID,
-                                                  amountFunded: 0)
-                
-                partyArray.append(newPartyItem)
-                
-                partyItemArrayDispatchGroup.leave()
-                
-                
-                partyItemArrayDispatchGroup.notify(queue: DispatchQueue.main){
+                    let itemGoal = Double(partyItemGoal)
+                    let newPartyItem = PartyItem.init(name: partyItemName!,
+                                                      goal: itemGoal,
+                                                      image: decodedImage,
+                                                      itemEventID: eventID,
+                                                      amountFunded: 0)
+                    
+                    partyArray.append(newPartyItem)
                     
                     completion(partyArray)
-                    
+
                 }
-                
-                // Leave the group
-                }
-                
+//                completion(partyArray)
             })
             
    
@@ -454,7 +459,7 @@ class FirebaseManager: NSObject {
             
         }
     }
-    class func retrievePartyItemImages(eventID : String, completion: @escaping (String)->())
+    class func retrievePartyItemImages(eventID : String, partyItemName: String, completion: @escaping (String)->())
     {
         var partyItemImagePath = String()
         
@@ -462,8 +467,8 @@ class FirebaseManager: NSObject {
         
         ref = FIRDatabase.database().reference()
 
-
-        ref.child("party_item_image").child(eventID).child("base64_images").observe(.childAdded, with: { snapshot in
+        
+        ref.child("party_item_image").child(eventID).child("base64_images").child(partyItemName).observe(.value, with: { snapshot in
 
             
             if !snapshot.exists() {
@@ -473,6 +478,7 @@ class FirebaseManager: NSObject {
             
             partyItemImagePath = snapshot.value as! String
             print(partyItemImagePath)
+            
             completion(partyItemImagePath)
     
         })
