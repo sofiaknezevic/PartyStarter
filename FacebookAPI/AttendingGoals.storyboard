@@ -32,10 +32,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="sF5-QR-S0A" firstAttribute="top" secondItem="fUP-U5-RiJ" secondAttribute="bottom" id="3t5-hD-blr"/>
-                            <constraint firstAttribute="trailing" secondItem="fUP-U5-RiJ" secondAttribute="trailing" id="JzQ-bc-axT"/>
-                            <constraint firstItem="fUP-U5-RiJ" firstAttribute="leading" secondItem="r7a-ZO-cX5" secondAttribute="leading" id="a6i-oo-0hK"/>
-                            <constraint firstItem="fUP-U5-RiJ" firstAttribute="top" secondItem="r7a-ZO-cX5" secondAttribute="top" id="rRX-LY-CO5"/>
+                            <constraint firstItem="sF5-QR-S0A" firstAttribute="top" secondItem="fUP-U5-RiJ" secondAttribute="bottom" id="GUX-c5-H1M"/>
+                            <constraint firstItem="fUP-U5-RiJ" firstAttribute="leading" secondItem="r7a-ZO-cX5" secondAttribute="leading" id="gwM-B1-R1o"/>
+                            <constraint firstItem="fUP-U5-RiJ" firstAttribute="top" secondItem="r7a-ZO-cX5" secondAttribute="top" id="hYk-kr-2NU"/>
+                            <constraint firstAttribute="trailing" secondItem="fUP-U5-RiJ" secondAttribute="trailing" id="zxh-e0-gyk"/>
                         </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>

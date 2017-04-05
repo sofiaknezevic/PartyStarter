@@ -44,7 +44,7 @@ class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableVie
         
         let frame = CGRect(x: 0, y: 0, width: 400, height: 44)
         let navLabel = UILabel(frame: frame)
-        navLabel.font = UIFont.systemFont(ofSize: 20.0, weight: UIFontWeightUltraLight)
+        navLabel.font = UIFont(name: "Congratulations DEMO", size: 20.00)
         navLabel.textAlignment = .center
         //I want to change this text color later, but its not really letting me right now
         navLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
