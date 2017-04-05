@@ -57,7 +57,7 @@ class ContributeToGoalViewController: UIViewController, ChargeNotificationDelega
         
         FirebaseManager.retrieveAmountFunded(partyItem: partyItemToContributeTo!) { (partyItemAmountFunded) in
             
-            self.partyItemToContributeTo?.itemAmountFunded = (partyItemAmountFunded as Double?)! + (self.partyItemToContributeTo?.itemAmountFunded)!
+            self.partyItemToContributeTo?.itemAmountFunded = (partyItemAmountFunded as Double?)!
             
             let unwrappedFundedAmount = (self.partyItemToContributeTo?.itemAmountFunded)!
             self.amountFundedLabel.text = "$\(unwrappedFundedAmount) funded so far!"
