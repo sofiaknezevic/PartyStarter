@@ -462,6 +462,7 @@ class FirebaseManager: NSObject {
         
         ref = FIRDatabase.database().reference()
 
+
         ref.child("party_item_image").child(eventID).child("base64_images").observe(.childAdded, with: { snapshot in
 
             
