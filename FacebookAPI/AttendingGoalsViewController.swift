@@ -98,10 +98,10 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         
-        if attendingEvent.partyItems.count != 0
+        if self.numberOfPartyItemsArray.count != 0
         {
             
-            partyItemForContribution = attendingEvent.partyItems[indexPath.row]
+            partyItemForContribution = self.numberOfPartyItemsArray[indexPath.row]
 
         
             performSegue(withIdentifier: "showContributeToGoalVC", sender: self)
