@@ -142,8 +142,8 @@ class FirebaseManager: NSObject {
     {
         var ref: FIRDatabaseReference!
         ref = FIRDatabase.database().reference()
-        
-        ref.child("party_item_amountFunded").child(partyItem.itemName!).child(partyItem.eventID!).observe(.childAdded, with: { (snapshot) in
+
+        ref.child("party_item_amountFunded").child(partyItem.itemName!).child(partyItem.eventID!).observe(.value, with: { (snapshot) in
             
             if !snapshot.exists(){
                 
@@ -151,7 +151,8 @@ class FirebaseManager: NSObject {
                 return
             }
             
-            let partyItemAmountFunded = snapshot.value as? NSNumber
+            let partyItemAmountFunded:NSNumber? = snapshot.value as? NSNumber
+
             
             completion(partyItemAmountFunded!)
             

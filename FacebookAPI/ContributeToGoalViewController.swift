@@ -27,6 +27,7 @@ class ContributeToGoalViewController: UIViewController, ChargeNotificationDelega
     
     @IBOutlet weak var amountToContributeLabel: UILabel!
     
+    @IBOutlet weak var amountFundedLabel: UILabel!
     weak var delegate:StripeInformationDelegate?
     
     var partyItemToContributeTo:PartyItem?
@@ -56,10 +57,10 @@ class ContributeToGoalViewController: UIViewController, ChargeNotificationDelega
         
         FirebaseManager.retrieveAmountFunded(partyItem: partyItemToContributeTo!) { (partyItemAmountFunded) in
             
-            self.partyItemToContributeTo?.itemAmountFunded = partyItemAmountFunded as Double?
+            self.partyItemToContributeTo?.itemAmountFunded = (partyItemAmountFunded as Double?)! + (self.partyItemToContributeTo?.itemAmountFunded)!
             
             let unwrappedFundedAmount = (self.partyItemToContributeTo?.itemAmountFunded)!
-            self.amountToContributeLabel.text = "$\(unwrappedFundedAmount) funded so far!"
+            self.amountFundedLabel.text = "$\(unwrappedFundedAmount) funded so far!"
             
         }
 
@@ -111,11 +112,13 @@ class ContributeToGoalViewController: UIViewController, ChargeNotificationDelega
         
         let partyItemGoal = Int((partyItemToContributeTo?.itemGoal)!)
         
+        let newAmountFunded = Int((partyItemToContributeTo?.itemAmountFunded)!)
+        
         contributionButton.setTitle("Contribute $\(itemContribution)", for: UIControlState.normal)
         
         amountToContributeLabel.text = "$\(itemContribution)"
 
-        goalAmountMinusContributionLabel.text = "$\(partyItemGoal - itemContribution) left until goal is reached!"
+        goalAmountMinusContributionLabel.text = "$\(partyItemGoal - newAmountFunded - itemContribution) left until goal is reached!"
     }
 
     func getHostStripeUserID() {
