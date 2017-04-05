@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="SPG-AQ-6oK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="SPG-AQ-6oK">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -41,7 +41,6 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="attendingTableView" destination="fUP-U5-RiJ" id="vwB-0b-AiY"/>
-                        <outlet property="view" destination="fUP-U5-RiJ" id="zPM-IH-sgp"/>
                         <segue destination="PYf-mF-bgX" kind="show" identifier="showEventDetail" id="UQq-mX-ghj"/>
                         <segue destination="3Sc-HJ-Wnb" kind="show" identifier="showContributeToGoalVC" id="5fz-hn-79x"/>
                     </connections>
