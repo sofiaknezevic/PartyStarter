@@ -200,25 +200,6 @@ class FirebaseManager: NSObject {
         }
     }
     
-    class func writeToFirebaseDBEvents(partyItemName : String, eventID : String, partyItemsArray : Array<Any>?) {
-        
-        let newFirebaseManager = FirebaseManager()
-        
-        newFirebaseManager.ref = FIRDatabase.database().reference()
-        
-        guard let partyItemsArray = partyItemsArray else {
-            return
-        }
-        
-        for i in 0..<partyItemsArray.count {
-            
-            let getEventsFromArray = (partyItemsArray[i] as? PartyItem)
-            let listOfPartyItems = getEventsFromArray?.itemName
-            
-            newFirebaseManager.ref.child("events").child(eventID).child("party_item_list").child(listOfPartyItems!).setValue(listOfPartyItems!)
-        }
-    }
-    
     class func writeToFirebaseDBHostStripeUserID(eventID : String) {
         
         let newFirebaseManager = FirebaseManager()
@@ -375,6 +356,28 @@ class FirebaseManager: NSObject {
                 print("error \(error)")
             }
         }
+    }
+    
+    class func deletePartyItemGoal(childIWantToRemove: String) {
+        
+        var ref: FIRDatabaseReference!
+        ref = FIRDatabase.database().reference()
+        
+        ref.child("party_item_goal").child(childIWantToRemove).removeValue { (error, ref) in
+            if error != nil {
+                print("error \(error)")
+            }
+        }
+    }
+    
+     class func myDeleteFunction(childIWantToRemove: String) {
+        
+        var ref: FIRDatabaseReference!
+        ref = FIRDatabase.database().reference()
+        
+        ref.child("party_item_goal").child(childIWantToRemove).removeAllObservers()
+        
+        
     }
 
 }
