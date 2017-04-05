@@ -237,14 +237,17 @@ class FirebaseManager: NSObject {
         
         
         // Create a dispatch group
+        let partyItemArrayDispatchGroup = DispatchGroup()
         
-        // Dispatch Group completion:
-        // completion(partyArray)
+        
+    
+        partyItemArrayDispatchGroup.wait()
+    
         
         //get party item name
         ref.child("party_item_list").child(eventID).child("party_item_name").observe(.childAdded, with: { (snapshot) in
             
-            // Enter the group
+            partyItemArrayDispatchGroup.enter()
             
             if !snapshot.exists() {
                 print("No snapshot exists")
@@ -270,13 +273,19 @@ class FirebaseManager: NSObject {
                 
                 print("\(partyArray)")
                 
-                completion(partyArray)
                 
-                // Leave the group
+                partyItemArrayDispatchGroup.leave()
+                
+           
+                partyItemArrayDispatchGroup.notify(queue: DispatchQueue.main){
+                    
+                    completion(partyArray)
+                    
+                }
                 
             })
             
-            
+         
         })
         
     }
