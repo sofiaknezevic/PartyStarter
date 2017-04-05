@@ -21,7 +21,6 @@ class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
         let nib = UINib(nibName: "GoalsTableViewCell", bundle: nil)
         
         hostGoalsTableView.register(nib, forCellReuseIdentifier: "GoalsCell")
@@ -148,20 +147,19 @@ class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableVie
 
         if (editingStyle == UITableViewCellEditingStyle.delete) {
 
-            if hostEvent.partyItems.count > 0 {
-                hostGoalsTableView.reloadData()
-                hostEvent.partyItems.remove(at: indexPath.row)
-                hostGoalsTableView.deleteRows(at: [indexPath], with: .automatic)
-                //eventList.removeAtIndex(indexPath.row)
-                //tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-
-                hostGoalsTableView.endUpdates()
+            if self.numberOfPartyItemsArray.count > 0 {
                 
-                // ***** Need to add a line that removes the party item from Firebase DB *****
+                FirebaseManager.deletePartyItemListOfItem(firstTree: hostEvent.eventID!, secondTree: "party_item_name", childIWantToRemove: self.numberOfPartyItemsArray[indexPath.row].itemName!)
+                FirebaseManager.deletePartyItemImage(firstTree: hostEvent.eventID!, secondTree: "base64_images", childIWantToRemove: self.numberOfPartyItemsArray[indexPath.row].itemName!)
+                //FirebaseManager.deletePartyItemGoal(childIWantToRemove: self.numberOfPartyItemsArray[indexPath.row].itemName!)
+                
+                FirebaseManager.myDeleteFunction(childIWantToRemove: self.numberOfPartyItemsArray[indexPath.row].itemName!)
+                self.numberOfPartyItemsArray.remove(at: indexPath.row)
+                hostGoalsTableView.reloadData()
+                
             } else {
                 hostGoalsTableView.endUpdates()
             }
         }
     }
-
 }
