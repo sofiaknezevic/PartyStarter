@@ -10,8 +10,6 @@ import UIKit
 import FirebaseDatabase
 import Firebase
 
-var arrayOfPartyItemImageString = [String]()
-
 
 class FirebaseManager: NSObject {
     
@@ -158,8 +156,14 @@ class FirebaseManager: NSObject {
             //            let imageStr = imageData.base64EncodedString(options: .lineLength64Characters)
             //            print("PLEASE PRINT::::::", imageStr)
             
-            let imageData: NSData = UIImageJPEGRepresentation(listOfItemImages!, 0.4)! as NSData
+            
+            let imageData:NSData = UIImagePNGRepresentation(listOfItemImages!)! as NSData
+            
+            
+            
             let strBase64 = imageData.base64EncodedString(options: .init(rawValue: 0))
+            print(strBase64)
+            
             
             /* Writing the list of party item list under event id */
             newFirebaseManager.ref.child("party_item_list").child("\(eventID)").child("party_item_name").child("\(listOfPartyItems!)").setValue(listOfPartyItems)
@@ -267,20 +271,16 @@ class FirebaseManager: NSObject {
             
             retrievePartyItemGoal(partyName: partyItemName!, eventID: eventID, completion: { (partyItemGoal) in
                 
-//                retrievePartyItemImages(eventID: eventID) { (partyItemImageStringArray) -> () in
-//                    
-//                    arrayOfPartyItemImageString = partyItemImageStringArray
-//                    
-////                    DispatchQueue.main.async {
-//                    
-//                        let strBase64 = arrayOfPartyItemImageString[0]
-//                        let dataDecoded:NSData = NSData(base64Encoded: strBase64, options: NSData.Base64DecodingOptions(rawValue: 0))!
-//                        let decodedimage:UIImage = UIImage(data: dataDecoded as Data)!
-//                        print("DECODED IMAGE", decodedimage)
-//                        //self.attendingGoalImageView.image = decodedimage
-//                    //}
-              
-                
+                retrievePartyItemImages(eventID: eventID) { (partyItemImageString) -> () in
+                    
+                    let partyItemImageString = String(partyItemImageString)
+                    
+
+                        let strBase64 = partyItemImageString
+                        let dataDecoded:NSData = NSData(base64Encoded: strBase64!, options: NSData.Base64DecodingOptions(rawValue: 0))!
+                        let decodedimage:UIImage = UIImage(data: dataDecoded as Data)!
+                        print("DECODED IMAGE", decodedimage)
+        
                 
                 
                 partyItemArrayDispatchGroup.enter()
@@ -289,7 +289,7 @@ class FirebaseManager: NSObject {
                 let itemGoal = Double(partyItemGoal)
                 let newPartyItem = PartyItem.init(name: partyItemName!,
                                                   goal: itemGoal,
-                                                  image: #imageLiteral(resourceName: "aerosolCan"),
+                                                  image: decodedimage,
                                                   itemEventID: eventID,
                                                   amountFunded: 0)
                 
@@ -305,7 +305,7 @@ class FirebaseManager: NSObject {
                 }
                 
                 // Leave the group
-                //}
+                }
                 
             })
             
@@ -454,10 +454,9 @@ class FirebaseManager: NSObject {
             
         }
     }
-    
-    class func retrievePartyItemImages(eventID : String, completion: @escaping ([String])->())
+    class func retrievePartyItemImages(eventID : String, completion: @escaping (String)->())
     {
-        var partyItemImagePathArray = [String]()
+        var partyItemImagePath = String()
         
         var ref: FIRDatabaseReference!
         
@@ -470,9 +469,10 @@ class FirebaseManager: NSObject {
                 return
             }
             
-            partyItemImagePathArray.append((snapshot.value)! as! String)
-            print(partyItemImagePathArray)
-            completion(partyItemImagePathArray)
+            partyItemImagePath = snapshot.value as! String
+            print(partyItemImagePath)
+            completion(partyItemImagePath)
+    
         })
     }
     
