@@ -7,7 +7,6 @@
 //
 
 import UIKit
-
 class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     //pass forward the information from the selected event. Will use some info and pass forward to detail view controller
@@ -151,9 +150,8 @@ class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableVie
                 
                 FirebaseManager.deletePartyItemListOfItem(firstTree: hostEvent.eventID!, secondTree: "party_item_name", childIWantToRemove: self.numberOfPartyItemsArray[indexPath.row].itemName!)
                 FirebaseManager.deletePartyItemImage(firstTree: hostEvent.eventID!, secondTree: "base64_images", childIWantToRemove: self.numberOfPartyItemsArray[indexPath.row].itemName!)
-                //FirebaseManager.deletePartyItemGoal(childIWantToRemove: self.numberOfPartyItemsArray[indexPath.row].itemName!)
+                FirebaseManager.deletePartyItemGoal(childIWantToRemove: self.numberOfPartyItemsArray[indexPath.row].itemName!)
                 
-                FirebaseManager.myDeleteFunction(childIWantToRemove: self.numberOfPartyItemsArray[indexPath.row].itemName!)
                 self.numberOfPartyItemsArray.remove(at: indexPath.row)
                 hostGoalsTableView.reloadData()
                 
