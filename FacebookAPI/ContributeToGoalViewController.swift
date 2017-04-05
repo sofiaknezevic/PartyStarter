@@ -27,6 +27,7 @@ class ContributeToGoalViewController: UIViewController, ChargeNotificationDelega
     
     @IBOutlet weak var amountToContributeLabel: UILabel!
     
+    @IBOutlet weak var amountFundedLabel: UILabel!
     weak var delegate:StripeInformationDelegate?
     
     var partyItemToContributeTo:PartyItem?
@@ -49,11 +50,22 @@ class ContributeToGoalViewController: UIViewController, ChargeNotificationDelega
     
     func setUp() -> Void {
         
-        let unwrappedGoalAmount = (partyItemToContributeTo?.itemGoal)! as Double
+        //setup better error-handling for safely unwrapping and whatnot
+        
+        let unwrappedGoalAmount = (partyItemToContributeTo?.itemGoal)!
         goalAmountLabel.text = "PartyItem Goal: $\(unwrappedGoalAmount)"
         
-        
+        FirebaseManager.retrieveAmountFunded(partyItem: partyItemToContributeTo!) { (partyItemAmountFunded) in
+            
+            self.partyItemToContributeTo?.itemAmountFunded = (partyItemAmountFunded as Double?)!
+            
+            let unwrappedFundedAmount = (self.partyItemToContributeTo?.itemAmountFunded)!
+            self.amountFundedLabel.text = "$\(unwrappedFundedAmount) funded so far!"
+            
+        }
+
     }
+ 
     
     func getAlert(notifier: Int) -> Void
     {
@@ -85,6 +97,10 @@ class ContributeToGoalViewController: UIViewController, ChargeNotificationDelega
     {
         //go to viewcontroller that deals with creditcard information and get it all done, using the stripeuserid from the host and the token from the credit card of the attendee
         
+        partyItemToContributeTo?.itemAmountFunded = Double(itemContribution) + (partyItemToContributeTo?.itemAmountFunded)!
+        
+        FirebaseManager.writeToFirebaseDBAmountFunded(partyItem: partyItemToContributeTo!)
+        
         performSegue(withIdentifier: "goToPaymentVC", sender: self)
 
         
@@ -96,11 +112,13 @@ class ContributeToGoalViewController: UIViewController, ChargeNotificationDelega
         
         let partyItemGoal = Int((partyItemToContributeTo?.itemGoal)!)
         
+        let newAmountFunded = Int((partyItemToContributeTo?.itemAmountFunded)!)
+        
         contributionButton.setTitle("Contribute $\(itemContribution)", for: UIControlState.normal)
         
         amountToContributeLabel.text = "$\(itemContribution)"
 
-        goalAmountMinusContributionLabel.text = "$\(partyItemGoal - itemContribution) left until goal is reached!"
+        goalAmountMinusContributionLabel.text = "$\(partyItemGoal - newAmountFunded - itemContribution) left until goal is reached!"
     }
 
     func getHostStripeUserID() {

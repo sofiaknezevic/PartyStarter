@@ -126,6 +126,41 @@ class FirebaseManager: NSObject {
         writeToFirebaseDB.setValue(userName)
     }
     
+    //MARK: AmountFunded
+    
+    class func writeToFirebaseDBAmountFunded(partyItem:PartyItem)
+    {
+        let newFirebaseManager = FirebaseManager()
+        
+        newFirebaseManager.ref = FIRDatabase.database().reference()
+        
+        newFirebaseManager.ref.child("party_item_amountFunded").child(partyItem.itemName!).child(partyItem.eventID!).setValue(partyItem.itemAmountFunded)
+        
+    }
+    
+    class func retrieveAmountFunded(partyItem:PartyItem, completion:@escaping(NSNumber) -> Void)
+    {
+        var ref: FIRDatabaseReference!
+        ref = FIRDatabase.database().reference()
+
+        ref.child("party_item_amountFunded").child(partyItem.itemName!).child(partyItem.eventID!).observe(.value, with: { (snapshot) in
+            
+            if !snapshot.exists(){
+                
+                print("No amount funded exists!!")
+                return
+            }
+            
+            let partyItemAmountFunded:NSNumber? = snapshot.value as? NSNumber
+
+            
+            completion(partyItemAmountFunded!)
+            
+        })
+    }
+    
+
+
     class func writeToFirebaseDBPartyItem(partyItemName : String, eventID : String, partyItemsArray : Array<Any>?) {
         
         let newFirebaseManager = FirebaseManager()
