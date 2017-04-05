@@ -358,26 +358,26 @@ class FirebaseManager: NSObject {
         }
     }
     
-    class func deletePartyItemGoal(childIWantToRemove: String) {
-        
-        var ref: FIRDatabaseReference!
-        ref = FIRDatabase.database().reference()
-        
-        ref.child("party_item_goal").child(childIWantToRemove).removeValue { (error, ref) in
-            if error != nil {
-                print("error \(error)")
-            }
-        }
-    }
+//    class func deletePartyItemGoal(childIWantToRemove: String) {
+//        
+//        var ref: FIRDatabaseReference!
+//        ref = FIRDatabase.database().reference()
+//        
+//        ref.child("party_item_goal").child(childIWantToRemove).removeValue { (error, ref) in
+//            if error != nil {
+//                print("error \(error)")
+//            }
+//        }
+//    }
     
-     class func myDeleteFunction(childIWantToRemove: String) {
+    
+     class func deletePartyItemGoal(childIWantToRemove: String) {
         
         var ref: FIRDatabaseReference!
         ref = FIRDatabase.database().reference()
         
-        ref.child("party_item_goal").child(childIWantToRemove).removeAllObservers()
-        
-        
+        ref.child("party_item_goal/\(childIWantToRemove)").removeValue()
+
     }
 
 }
