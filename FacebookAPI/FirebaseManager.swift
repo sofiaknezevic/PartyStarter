@@ -10,6 +10,9 @@ import UIKit
 import FirebaseDatabase
 import Firebase
 
+var arrayOfPartyItemImageString = [String]()
+
+
 class FirebaseManager: NSObject {
     
     var ref: FIRDatabaseReference!
@@ -254,15 +257,30 @@ class FirebaseManager: NSObject {
             let partyItemName:String? = snapshot.value as? String
  
             
-            
             retrievePartyItemGoal(partyName: partyItemName!, eventID: eventID, completion: { (partyItemGoal) in
+                
+//                retrievePartyItemImages(eventID: eventID) { (partyItemImageStringArray) -> () in
+//                    
+//                    arrayOfPartyItemImageString = partyItemImageStringArray
+//                    
+////                    DispatchQueue.main.async {
+//                    
+//                        let strBase64 = arrayOfPartyItemImageString[0]
+//                        let dataDecoded:NSData = NSData(base64Encoded: strBase64, options: NSData.Base64DecodingOptions(rawValue: 0))!
+//                        let decodedimage:UIImage = UIImage(data: dataDecoded as Data)!
+//                        print("DECODED IMAGE", decodedimage)
+//                        //self.attendingGoalImageView.image = decodedimage
+//                    //}
+              
+                
+                
                 
         
                 
                 let itemGoal = Double(partyItemGoal)
                 let newPartyItem = PartyItem.init(name: partyItemName!,
                                                   goal: itemGoal,
-                                                  image: #imageLiteral(resourceName: "dinnerWhite"),
+                                                  image: #imageLiteral(resourceName: "aerosolCan"),
                                                   itemEventID: eventID,
                                                   amountFunded: 0)
                 
@@ -273,7 +291,7 @@ class FirebaseManager: NSObject {
                 completion(partyArray)
                 
                 // Leave the group
-                
+                //}
             })
             
             
@@ -422,7 +440,7 @@ class FirebaseManager: NSObject {
         }
     }
     
-    class func retrievePartyItemImages(partyItemName : String, eventID : String, completion: @escaping ([String])->())
+    class func retrievePartyItemImages(eventID : String, completion: @escaping ([String])->())
     {
         var partyItemImagePathArray = [String]()
         
@@ -430,19 +448,16 @@ class FirebaseManager: NSObject {
         
         ref = FIRDatabase.database().reference()
         
-        ref.child("party_item_images").child("\(eventID)").observe(.childAdded, with: { snapshot in
-            
-            
+        ref.child("party_item_image").child(eventID).child("base64_images").observe(.childAdded, with: { snapshot in
             
             if !snapshot.exists() {
                 print("No snapshot exists")
                 return
             }
             
-            partyItemImagePathArray.append((snapshot.value as? String)!)
+            partyItemImagePathArray.append((snapshot.value)! as! String)
             print(partyItemImagePathArray)
             completion(partyItemImagePathArray)
-            
         })
     }
     
