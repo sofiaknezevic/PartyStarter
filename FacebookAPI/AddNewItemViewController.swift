@@ -27,6 +27,7 @@ class AddNewItemViewController: UIViewController, UICollectionViewDelegate, UICo
 
     
         setUpNavButtons()
+        setUpNavTitle()
         addAllImagesToArray()
         
     }
@@ -142,13 +143,24 @@ class AddNewItemViewController: UIViewController, UICollectionViewDelegate, UICo
     func setUpNavButtons() -> Void
     {
         
-        self.navigationItem.title = eventToAddItemTo?.eventName
-        
         let savePartyItem = UIBarButtonItem(title: "Save", style: UIBarButtonItemStyle.plain, target: self, action: #selector(savePartyItemButton))
         self.navigationItem.rightBarButtonItem = savePartyItem
         
         let cancel = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(cancelItemButton))
         self.navigationItem.leftBarButtonItem = cancel
+        
+    }
+    
+    func setUpNavTitle() -> Void {
+        
+        let frame = CGRect(x: 0, y: 0, width: 200, height: 44)
+        let navLabel = UILabel(frame: frame)
+        navLabel.font = UIFont(name: "Congratulations DEMO", size: 20.00)
+        navLabel.textAlignment = .center
+        navLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        navLabel.text = eventToAddItemTo?.eventName
+        
+        self.navigationItem.titleView = navLabel
         
     }
     

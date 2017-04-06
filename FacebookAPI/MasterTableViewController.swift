@@ -135,7 +135,7 @@ class MasterTableViewController: UITableViewController {
     func setUp() -> Void
     {
         
-        let frame = CGRect(x: 0, y: 0, width: 400, height: 44)
+        let frame = CGRect(x: 0, y: 0, width: 200, height: 44)
         let navLabel = UILabel(frame: frame)
         navLabel.font = UIFont(name: "Congratulations DEMO", size: 30.00)
         navLabel.textAlignment = .center

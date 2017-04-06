@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VNq-5o-ai5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VNq-5o-ai5">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -37,8 +37,9 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3TO-8F-1wZ">
-                                <rect key="frame" x="16" y="64" width="343" height="30"/>
+                                <rect key="frame" x="16" y="78" width="343" height="37"/>
                                 <color key="backgroundColor" red="0.97678083181381226" green="0.98358243703842163" blue="0.77891916036605835" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="CongratulationsDEMO" family="Congratulations DEMO" pointSize="25"/>
                                 <state key="normal" title="Add New Item +">
                                     <color key="titleColor" red="0.35477744152423413" green="0.73916723720948274" blue="0.78900301395939088" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -53,7 +54,7 @@
                             <constraint firstItem="3TO-8F-1wZ" firstAttribute="centerX" secondItem="6XA-xR-8yJ" secondAttribute="centerX" id="HeN-ae-U9C"/>
                             <constraint firstItem="3TO-8F-1wZ" firstAttribute="trailing" secondItem="6XA-xR-8yJ" secondAttribute="trailingMargin" id="Lzf-l7-jqE"/>
                             <constraint firstAttribute="trailing" secondItem="Wls-43-b3W" secondAttribute="trailing" id="RNm-vx-Kbc"/>
-                            <constraint firstItem="3TO-8F-1wZ" firstAttribute="top" secondItem="OkQ-BO-nOs" secondAttribute="bottom" id="YUr-4s-t5g"/>
+                            <constraint firstItem="3TO-8F-1wZ" firstAttribute="top" secondItem="OkQ-BO-nOs" secondAttribute="bottom" constant="14" id="YUr-4s-t5g"/>
                             <constraint firstItem="xw0-2Z-p1r" firstAttribute="top" secondItem="Wls-43-b3W" secondAttribute="bottom" id="h29-84-hsd"/>
                             <constraint firstItem="3TO-8F-1wZ" firstAttribute="leading" secondItem="6XA-xR-8yJ" secondAttribute="leadingMargin" id="prC-v5-gH6"/>
                             <constraint firstItem="Wls-43-b3W" firstAttribute="leading" secondItem="6XA-xR-8yJ" secondAttribute="leading" id="yHb-Zc-Tze"/>
@@ -118,6 +119,24 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="250" translatesAutoresizingMaskIntoConstraints="NO" id="HRw-nt-ta9">
+                                <rect key="frame" x="22" y="214" width="347" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="IrP-3N-8SC"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="itemGoalSliderAction:" destination="RTL-ed-IIG" eventType="valueChanged" id="7Zu-EY-NbK"/>
+                                </connections>
+                            </slider>
+                            <textField opaque="NO" clipsSubviews="YES" alpha="0.29999999999999999" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter item name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jIq-l9-wpe">
+                                <rect key="frame" x="24" y="119" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="RTL-ed-IIG" id="qB5-nb-jRz"/>
+                                </connections>
+                            </textField>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8my-aL-a8b">
                                 <rect key="frame" x="16" y="312" width="343" height="347"/>
                                 <color key="backgroundColor" red="0.91902416944503784" green="0.85848349332809448" blue="0.86616736650466919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -165,24 +184,6 @@
                                     <outlet property="delegate" destination="RTL-ed-IIG" id="A5f-Hk-fnD"/>
                                 </connections>
                             </collectionView>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="250" translatesAutoresizingMaskIntoConstraints="NO" id="HRw-nt-ta9">
-                                <rect key="frame" x="22" y="214" width="347" height="31"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="IrP-3N-8SC"/>
-                                </constraints>
-                                <connections>
-                                    <action selector="itemGoalSliderAction:" destination="RTL-ed-IIG" eventType="valueChanged" id="7Zu-EY-NbK"/>
-                                </connections>
-                            </slider>
-                            <textField opaque="NO" clipsSubviews="YES" alpha="0.29999999999999999" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter item name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jIq-l9-wpe">
-                                <rect key="frame" x="24" y="119" width="343" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="RTL-ed-IIG" id="qB5-nb-jRz"/>
-                                </connections>
-                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.91902416944503784" green="0.85848349332809448" blue="0.86616736650466919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
