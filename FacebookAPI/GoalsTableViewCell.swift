@@ -72,7 +72,8 @@ class GoalsTableViewCell: UITableViewCell {
         setImageView(itemImage: partyItem.itemImage!)
         
         if (partyItem.eventID == "attendingEvent") {
-        attendingGoalAmountFundedLabel.text = "No party items!"
+        
+        attendingGoalAmountFundedLabel.text = ""
             fundedLabel.text = "👎"
             fundedLabel.isHidden = false
         } else {
