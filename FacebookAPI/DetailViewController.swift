@@ -45,6 +45,10 @@ class DetailViewController: UIViewController {
                 self.detailEvent?.coverPhoto = image.photo
                 
                 self.detailImageView.image = self.detailEvent?.coverPhoto
+                self.detailImageView.layer.borderColor = #colorLiteral(red: 0.9764705882, green: 0.9803921569, blue: 0.7882352941, alpha: 1).cgColor
+                self.detailImageView.layer.borderWidth = 4
+                self.detailImageView.layer.cornerRadius = 4
+                self.detailImageView.layer.masksToBounds = true
             }
 
         }
