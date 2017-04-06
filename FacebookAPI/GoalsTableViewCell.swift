@@ -43,6 +43,8 @@ class GoalsTableViewCell: UITableViewCell {
     
     func configureCellWithPartyItem(partyItem:PartyItem) -> Void {
         
+        fundedLabel.isHidden = true
+
         attendingGoalNameLabel.text = partyItem.itemName
         setImageView(itemImage: partyItem.itemImage!)
         
@@ -56,9 +58,27 @@ class GoalsTableViewCell: UITableViewCell {
         
         //when the amount funded is greater than or equal to the goal put a checkmark in the cell
         if (amountFunded >= itemGoal) {
+            fundedLabel.text = "👍"
             fundedLabel.isHidden = false
+            attendingGoalAmountFundedLabel.text = "Fully Funded! $\(amountFunded)"
         }
 
+        
+    }
+    
+    func configureCellWithSadClown(partyItem:PartyItem) -> Void {
+        
+        attendingGoalNameLabel.text = partyItem.itemName
+        setImageView(itemImage: partyItem.itemImage!)
+        
+        if (partyItem.eventID == "attendingEvent") {
+        attendingGoalAmountFundedLabel.text = "No party items!"
+            fundedLabel.text = "👎"
+            fundedLabel.isHidden = false
+        } else {
+          attendingGoalAmountFundedLabel.text = "Get the party started! 👆"
+        fundedLabel.isHidden = true
+        }
         
     }
     
