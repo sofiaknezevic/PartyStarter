@@ -9,6 +9,8 @@
 import UIKit
 import Stripe
 
+//MARK: - Protocol -
+
 protocol StripeInformationDelegate:class {
     
     func retrieveStripeID(stripeID:String)
@@ -18,7 +20,7 @@ protocol StripeInformationDelegate:class {
 
 class ContributeToGoalViewController: UIViewController, ChargeNotificationDelegate{
     
-    @IBOutlet weak var contributionButton: UIButton!
+    //MARK: - Outlets -
     
     @IBOutlet weak var goalAmountLabel: UILabel!
     @IBOutlet weak var goalAmountMinusContributionLabel: UILabel!
@@ -28,11 +30,12 @@ class ContributeToGoalViewController: UIViewController, ChargeNotificationDelega
     @IBOutlet weak var amountToContributeLabel: UILabel!
     
     @IBOutlet weak var amountFundedLabel: UILabel!
+    
+    //MARK: - Properties -
+    
     weak var delegate:StripeInformationDelegate?
     
     var partyItemToContributeTo:PartyItem?
-    
-    var arrayOfContributors = [String]()
     
     var eventToContributeTo = Event()
     
@@ -40,17 +43,22 @@ class ContributeToGoalViewController: UIViewController, ChargeNotificationDelega
     
     var itemContribution = Int()
     
+    //MARK: - View Cycle -
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
         setUp()
         
+        setUpNavTitle()
+        
     }
     
+    
+    //MARK: - General Setup -
+    
     func setUp() -> Void {
-        
-        //setup better error-handling for safely unwrapping and whatnot
         
         let unwrappedGoalAmount = (partyItemToContributeTo?.itemGoal)!
         goalAmountLabel.text = "PartyItem Goal: $\(unwrappedGoalAmount)"
@@ -64,8 +72,25 @@ class ContributeToGoalViewController: UIViewController, ChargeNotificationDelega
             let unwrappedFundedAmount = (self.partyItemToContributeTo?.itemAmountFunded)!
             self.amountFundedLabel.text = "$\(unwrappedFundedAmount) funded so far!"
             
+            self.amountToContributeSlider.maximumValue = Float(((self.partyItemToContributeTo?.itemGoal)!-unwrappedFundedAmount))
+            
         }
 
+    }
+    
+    func setUpNavTitle() -> Void
+    {
+        
+        let frame = CGRect(x: 0, y: 0, width: 200, height: 44)
+        let navLabel = UILabel(frame: frame)
+        navLabel.font = UIFont(name: "Congratulations DEMO", size: 20.00)
+        navLabel.textAlignment = .center
+        navLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        navLabel.text = partyItemToContributeTo?.itemName
+        
+        self.navigationItem.titleView = navLabel
+    
+        
     }
  
     
@@ -96,6 +121,8 @@ class ContributeToGoalViewController: UIViewController, ChargeNotificationDelega
         
     }
     
+    //MARK: - Actions -
+    
     @IBAction func contributionButtonPressed(_ sender: UIButton)
     {
         
@@ -114,29 +141,13 @@ class ContributeToGoalViewController: UIViewController, ChargeNotificationDelega
         
         let newAmountFunded = Int((partyItemToContributeTo?.itemAmountFunded)!)
         
-        contributionButton.setTitle("Contribute $\(itemContribution)", for: UIControlState.normal)
-        
         amountToContributeLabel.text = "$\(itemContribution)"
 
         goalAmountMinusContributionLabel.text = "$\(partyItemGoal - newAmountFunded - itemContribution) left until goal is reached!"
     }
-
-    func getHostStripeUserID() {
-        
-        FirebaseManager.retrieveHostStripeUserID(event:eventToContributeTo) { (returnedHostStripeUserID) -> () in
-            
-            self.hostStripeUserID = returnedHostStripeUserID
-            
-            self.delegate?.retrieveStripeID(stripeID: self.hostStripeUserID!)
-            
-            self.delegate?.retrieveAmount(amount: self.itemContribution)
-
-        }
-    }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
         
         if segue.identifier == "goToPaymentVC" {
             
@@ -148,12 +159,24 @@ class ContributeToGoalViewController: UIViewController, ChargeNotificationDelega
             newPaymentVC.chargeNotificationDelegate = self
             self.delegate = newPaymentVC
             
-            
         }
         
     }
     
+    //MARK: - Stripe -
 
+    func getHostStripeUserID()
+    {
+        
+        FirebaseManager.retrieveHostStripeUserID(event:eventToContributeTo) { (returnedHostStripeUserID) -> () in
+            
+            self.hostStripeUserID = returnedHostStripeUserID
+            
+            self.delegate?.retrieveStripeID(stripeID: self.hostStripeUserID!)
+            
+            self.delegate?.retrieveAmount(amount: self.itemContribution)
 
+        }
+    }
     
 }

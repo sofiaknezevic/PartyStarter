@@ -47,12 +47,9 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
     }
 
     
-
-    
-    //should refactor a little bit I think because having the same thing for two VC'S isn't very "DRY"....
     func setUpAttendingGoalsVCWith(event:Event) -> Void {
         
-        let frame = CGRect(x: 0, y: 0, width: 400, height: 44)
+        let frame = CGRect(x: 0, y: 0, width: 200, height: 44)
         let navLabel = UILabel(frame: frame)
         navLabel.font = UIFont(name: "Congratulations DEMO", size: 20.00)
         navLabel.textAlignment = .center
