@@ -9,6 +9,7 @@
 import UIKit
 import Stripe
 import CreditCardForm
+import PKHUD
 
 protocol ChargeNotificationDelegate:class {
     
@@ -49,6 +50,9 @@ class PaymentViewController: UIViewController, StripeInformationDelegate{
     {
         
         super.viewDidLoad()
+        
+        HUD.dimsBackground = false
+        HUD.allowsInteraction = false
     }
 
     
@@ -61,6 +65,7 @@ class PaymentViewController: UIViewController, StripeInformationDelegate{
         setUpLabels()
         
     }
+    
     
     func retrieveStripeID(stripeID: String)
     {
@@ -153,6 +158,8 @@ class PaymentViewController: UIViewController, StripeInformationDelegate{
     
     func setPaymentTextValues() -> Void
     {
+        HUD.show(.progress)
+
         
         cardNumber = self.paymentTextField.cardNumber!
         cardCVC = self.paymentTextField.cvc!
@@ -172,13 +179,26 @@ class PaymentViewController: UIViewController, StripeInformationDelegate{
                                                     completion:
                 { (chargeJSON) in
                 
+
                 if(chargeJSON["status"] as! String == "succeeded"){
+                    
+                    
+                    // Now some long running task starts...
+                    self.delay(1.0) {
+                        // ...and once it finishes we flash the HUD for a second.
+                        HUD.flash(.success, delay: 0.5)
+                    }
                     
                     self.dismissSelf()
                     self.chargeNotificationDelegate?.getAlert(notifier: 1)
                     
+                    
                 }else{
                     
+                    self.delay(1.0) {
+                        // ...and once it finishes we flash the HUD for a second.
+                        HUD.flash(.success, delay: 0.5)
+                    }
                     self.chargeNotificationDelegate?.getAlert(notifier: 0)
                     
                     }
@@ -267,6 +287,19 @@ class PaymentViewController: UIViewController, StripeInformationDelegate{
         
         task.resume()
         
+    }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.allButUpsideDown
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    func delay(_ delay: Double, closure:@escaping () -> Void) {
+        DispatchQueue.main.asyncAfter(
+            deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: closure)
     }
 
 }

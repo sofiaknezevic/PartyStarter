@@ -18,7 +18,10 @@ pod 'Firebase/Database'
 pod 'Firebase/Storage'
 
 #Pod for CreditCardForm
-pod ‘CreditCardForm’  
+pod ‘CreditCardForm’ 
+
+#Pod for HUD Activity Indicator
+pod 'PKHUD', '~> 4.0' 
 
   target 'FacebookAPITests' do
     inherit! :search_paths
