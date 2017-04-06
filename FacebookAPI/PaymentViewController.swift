@@ -20,14 +20,20 @@ protocol ChargeNotificationDelegate:class {
 class PaymentViewController: UIViewController, StripeInformationDelegate{
     
     @IBOutlet weak var creditCardFormView: UIView!
-    @IBOutlet weak var creditCardImageView: UIImageView!
+    
+    @IBOutlet weak var contributionAmountLabel: UILabel!
+    
+    @IBOutlet weak var stripeFeeLabel: UILabel!
+    
+    @IBOutlet weak var grandTotalLabel: UILabel!
+    
     let paymentTextField = STPPaymentCardTextField()
     
     weak var chargeNotificationDelegate:ChargeNotificationDelegate?
     
     
     var connectedAccountID = String()
-    let baseURLString = "http://localhost:4567/"
+    let baseURLString = "https://party-starter-app.herokuapp.com/"
     
     var cardNumber = String()
     var expiryMonth = UInt()
@@ -35,14 +41,24 @@ class PaymentViewController: UIViewController, StripeInformationDelegate{
     var cardCVC = String()
     
     var amount = Int()
+    var stripeFee = Double()
     
     var cardJSON = [String:Any]()
 
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
+        
         super.viewDidLoad()
+    }
+
+    
+    override func viewDidAppear(_ animated: Bool)
+    {
+        
+        super.viewDidAppear(true)
         
         setUpPaymentVC()
-        
+        setUpLabels()
         
     }
     
@@ -52,13 +68,24 @@ class PaymentViewController: UIViewController, StripeInformationDelegate{
         
     }
     
-    func retrieveAmount(amount: Int) {
+    func retrieveAmount(amount: Int)
+    {
         
-        self.amount = amount*100
+        self.amount = amount
+        
+        let doubleAmount = Double(amount)
+        
+        self.stripeFee = ((doubleAmount*0.029)+0.3)
+        
     }
 
     
-    func setUpPaymentVC() -> Void {
+    func setUpPaymentVC() -> Void
+    {
+        
+        
+        creditCardFormView.layer.cornerRadius = creditCardFormView.layer.cornerRadius/2
+        creditCardFormView.layer.masksToBounds = false
         
         paymentTextField.frame = CGRect(x: 15, y: 199, width: self.view.frame.size.width - 30, height: 44)
         paymentTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -98,15 +125,34 @@ class PaymentViewController: UIViewController, StripeInformationDelegate{
         
     }
 
-    func dismissSelf() -> Void {
+    func dismissSelf() -> Void
+    {
         
         self.dismiss(animated: true, completion: nil)
+
+    }
+    
+    func setUpLabels() -> Void
+    {
         
+        let newNumberFormatter = NumberFormatter()
+        newNumberFormatter.numberStyle = .currency
+        newNumberFormatter.locale = Locale(identifier: Locale.current.identifier)
         
+        let totalAmount = Double(amount) + stripeFee
+        
+        let contributionString = newNumberFormatter.string(from: NSNumber(value: amount))
+        let stripeFeeString = newNumberFormatter.string(from: NSNumber(value: stripeFee))
+        let totalAmountString = newNumberFormatter.string(from: NSNumber(value: totalAmount))
+        
+        contributionAmountLabel.text = contributionString!
+        stripeFeeLabel.text = stripeFeeString!
+        grandTotalLabel.text = totalAmountString!
         
     }
     
-    func setPaymentTextValues() -> Void {
+    func setPaymentTextValues() -> Void
+    {
         
         cardNumber = self.paymentTextField.cardNumber!
         cardCVC = self.paymentTextField.cvc!
@@ -145,7 +191,12 @@ class PaymentViewController: UIViewController, StripeInformationDelegate{
     
 
     
-    func getToken(cardNumber:String, expiryMonth:UInt, expiryYear:UInt, cardCVC:String, completion:@escaping ([String:Any]) -> Void) {
+    func getToken(cardNumber:String,
+                  expiryMonth:UInt,
+                  expiryYear:UInt,
+                  cardCVC:String,
+                  completion:@escaping ([String:Any]) -> Void)
+    {
         
         let path = "create_token"
         let url = baseURLString.appending(path)
@@ -163,7 +214,6 @@ class PaymentViewController: UIViewController, StripeInformationDelegate{
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             
             self.cardJSON = try! JSONSerialization.jsonObject(with: data!, options:[]) as! [String:Any]
-            print("\(self.cardJSON)")
             
             
             DispatchQueue.main.async {
@@ -173,7 +223,6 @@ class PaymentViewController: UIViewController, StripeInformationDelegate{
                 
             }
             
-            
         }
         
         task.resume()
@@ -181,7 +230,10 @@ class PaymentViewController: UIViewController, StripeInformationDelegate{
         
     }
 
-    func chargeSourceCardToConnectedAccount(connectedAccountID:String, cardJSON:[String:Any], completion:@escaping([String:Any]) -> Void) {
+    func chargeSourceCardToConnectedAccount(connectedAccountID:String,
+                                            cardJSON:[String:Any],
+                                            completion:@escaping([String:Any]) -> Void)
+    {
         
         let path = "charge_connected_account"
         let url = baseURLString.appending(path)
@@ -189,8 +241,10 @@ class PaymentViewController: UIViewController, StripeInformationDelegate{
         
         let cardSource = cardJSON["id"] as! String
         
+        let realAmount = self.amount*100
+        
         let params:[String:AnyObject] = [
-            "amount" : self.amount as AnyObject,
+            "amount" : realAmount as AnyObject,
             "currency" : "cad" as AnyObject,
             "source" : cardSource as AnyObject,
             "stripe_account" : connectedAccountID as AnyObject

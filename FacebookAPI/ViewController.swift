@@ -20,9 +20,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
     var logButton : FBSDKLoginButton = FBSDKLoginButton()
 
     override func viewDidLoad() {
-  
 
-        
         logButton.readPermissions = ["email", "public_profile", "user_friends", "user_events"]
 
         logButton.center = view.center
@@ -35,40 +33,32 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        
-//        AccessToken.current = nil
-        
+
         if let accessToken = AccessToken.current {
             
-            // User is logged in, use 'accessToken' here.
             performSegue(withIdentifier: "tableViewSegue", sender: self)
-            //print("this is the token: \(accessToken)")
+            
             id = accessToken.userId
-            //print("this is user id: \(id!)")
             
         }
     }
     
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
-        //keep them on the same page
+        
         print("logged out")
+        
     }
     
-    
-    //this needs to be changed
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
         
         if(error != nil) {
             
-            // handle errors here
             self.logButton.isHidden = false
- //          loadingSpinner.stopAnimating()
             
         }
         else if (result.isCancelled) {
-            //handle the cancel event
+            
             self.logButton.isHidden = false
-//            loadingSpinner.stopAnimating()
             
         }
             
@@ -87,13 +77,9 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
         
         
         
-        // User is logged in, use 'accessToken' here.
         performSegue(withIdentifier: "tableViewSegue", sender: self)
 
-        
-        
         self.logButton.isHidden = true
-        //        loadingSpinner.startAnimating()
         
     }
 

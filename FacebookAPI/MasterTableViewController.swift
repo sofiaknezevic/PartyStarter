@@ -28,6 +28,8 @@ class MasterTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        
+        
+        //this is a problem, we can't put this in the viewdidload!!!!
         //print name
         DataManager.getUserInfo
         { user in
@@ -56,6 +58,8 @@ class MasterTableViewController: UITableViewController {
                 print("No user is signed in.")
             }
         }
+        
+        setUp()
         
     }
     
@@ -125,20 +129,39 @@ class MasterTableViewController: UITableViewController {
                 }
         }
     }
+    
+    // MARK: - Initial Setup -
+    
+    func setUp() -> Void
+    {
+        
+        let frame = CGRect(x: 0, y: 0, width: 400, height: 44)
+        let navLabel = UILabel(frame: frame)
+        navLabel.font = UIFont(name: "Congratulations DEMO", size: 30.00)
+        navLabel.textAlignment = .center
+        navLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        navLabel.text = "PartyStarter"
+        self.navigationItem.titleView = navLabel
+        
+    }
 
-    // MARK: - Table view data source
+    // MARK: - Table view data source -
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int
+    {
         return 2
     }
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?
+    {
         if (section == 0) {
             return "Hosting"
         } else {
             return "Attending"
         }
     }
+    
+
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (section == 0) {
@@ -153,11 +176,11 @@ class MasterTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
         if (indexPath.section == 0) {
-            //need to change this to something else since we are not using events array anymore
-           // FirebaseManager.writeToFirebaseDBHostingEvents(indexPath: indexPath, hostingArray: self.hostingArray)
+ 
             cell.textLabel?.text = self.hostingArray[indexPath.row].eventName
+            
         } else {
-           // FirebaseManager.writeToFirebaseDBAttendingEvents(indexPath: indexPath, attendingArray: self.attendingArray)
+            
             cell.textLabel?.text = self.attendingArray[indexPath.row].eventName
 
         }
