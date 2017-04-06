@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -61,9 +61,8 @@
                             <constraint firstAttribute="height" constant="80" id="bnx-jP-UDb"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="👍" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vOJ-sq-aIX">
-                        <rect key="frame" x="329" y="69" width="23" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="👍" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vOJ-sq-aIX">
+                        <rect key="frame" x="329" y="68" width="23" height="23.666666666666671"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -77,10 +76,13 @@
                 </subviews>
                 <color key="backgroundColor" red="0.97678083181381226" green="0.98358243703842163" blue="0.77891916036605835" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
+                    <constraint firstAttribute="bottomMargin" secondItem="vOJ-sq-aIX" secondAttribute="bottom" id="I6W-ze-kkA"/>
                     <constraint firstItem="CXw-GO-AXc" firstAttribute="trailing" secondItem="nAH-9L-LLk" secondAttribute="trailingMargin" constant="-15" id="J0p-PR-uOI"/>
                     <constraint firstItem="KfQ-pg-NAt" firstAttribute="bottom" secondItem="nAH-9L-LLk" secondAttribute="bottomMargin" id="XpM-v3-Q3s"/>
                     <constraint firstItem="CXw-GO-AXc" firstAttribute="leading" secondItem="nAH-9L-LLk" secondAttribute="leadingMargin" constant="95" id="iFa-cz-zL1"/>
                     <constraint firstAttribute="leadingMargin" secondItem="IkJ-Dk-50W" secondAttribute="leading" id="inq-Yy-apg"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="vOJ-sq-aIX" secondAttribute="trailing" constant="15" id="kTW-rI-2EL"/>
+                    <constraint firstItem="vOJ-sq-aIX" firstAttribute="top" secondItem="CXw-GO-AXc" secondAttribute="bottom" constant="15" id="kgg-nU-QuS"/>
                     <constraint firstItem="BPh-QD-yKg" firstAttribute="top" secondItem="nAH-9L-LLk" secondAttribute="top" id="pHY-WW-LJr"/>
                     <constraint firstItem="IkJ-Dk-50W" firstAttribute="centerY" secondItem="nAH-9L-LLk" secondAttribute="centerY" id="qFk-Lh-4qW"/>
                     <constraint firstItem="KfQ-pg-NAt" firstAttribute="top" secondItem="CXw-GO-AXc" secondAttribute="bottom" constant="18" id="tc0-VH-SVR"/>
