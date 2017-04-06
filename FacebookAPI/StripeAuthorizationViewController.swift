@@ -64,10 +64,10 @@ class StripeAuthorizationViewController: UIViewController, UIWebViewDelegate {
                 
                 self.delegate?.retrieveJSON(newCustomerJSON: self.requestForStripeConnect.currentJSON!)
                 
+                
             }
         }
         
-        self.dismiss(animated: true, completion: nil)
         
         return true
         

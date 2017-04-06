@@ -7,7 +7,7 @@
 //
 
 import UIKit
-class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, GoToAddItemDelegate {
     
     //pass forward the information from the selected event. Will use some info and pass forward to detail view controller
     var hostEvent = Event()
@@ -15,6 +15,7 @@ class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableVie
     var noItems:Bool?
     
     var numberOfPartyItemsArray = [PartyItem]()
+    
     @IBOutlet weak var hostGoalsTableView: UITableView!
     
     var segueIdentifier:String?
@@ -47,7 +48,7 @@ class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         
     }
-    
+  
     override func viewDidAppear(_ animated: Bool) {
         
         super.viewDidAppear(true)
@@ -56,9 +57,18 @@ class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableVie
             
             self.noItems = true
             self.hostGoalsTableView.reloadData()
+
             
         }
         
+    }
+  
+      func retrieveNotifier(notifier: Int) {
+
+        if notifier == 1 {
+            
+            performSegue(withIdentifier: "addNewItem", sender: self)
+        }
     }
     
     //MARK: - General UI Setup -
@@ -116,9 +126,8 @@ class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableVie
         if segue.identifier == "connectToStripe"
         {
             
-         
-            let navigation = segue.destination as! UINavigationController
-            let connectToStripeVC = navigation.topViewController as! ConnectToStripeViewController
+            let connectToStripeVC = segue.destination as! ConnectToStripeViewController
+            connectToStripeVC.addItemDelegate = self
             connectToStripeVC.stripeEvent = hostEvent
             
         }
@@ -145,6 +154,7 @@ class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     //MARK: - TableView Delegate & Data Source -
+    
     func numberOfSections(in tableView: UITableView) -> Int
     {
         return 1
