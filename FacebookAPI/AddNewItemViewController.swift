@@ -9,7 +9,7 @@
 import UIKit
 
 class AddNewItemViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITextFieldDelegate {
-    
+
     var eventToAddItemTo:Event?
     var addNewItemHost:User?
     
@@ -21,6 +21,8 @@ class AddNewItemViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var itemGoalLabel: UILabel!
     @IBOutlet weak var itemGoalSlider: UISlider!
     @IBOutlet weak var itemNameTextField: UITextField!
+    
+    @IBOutlet weak var chooseImageLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,8 +54,6 @@ class AddNewItemViewController: UIViewController, UICollectionViewDelegate, UICo
         //truncate after decimal place
         let itemGoal = Int(itemGoalSlider.value)
 
-        let itemImage = UIImage()
-
 
         print(itemGoal)
         print(itemNameTextField.text!)
@@ -63,9 +63,10 @@ class AddNewItemViewController: UIViewController, UICollectionViewDelegate, UICo
             itemNameTextField.backgroundColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
         } else {
             
-            //no-image
             if(userSelectedImage == nil) {
-                print("no image")
+                
+                chooseImageLabel.textColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+                
             } else {
                 
                 let newPartyItem = PartyItem(name: itemNameTextField.text!,

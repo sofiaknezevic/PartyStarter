@@ -38,6 +38,8 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationButtonOutlet.isHidden = true
+        
         //download image and set it to the imageview
         DataManager.getEventImage(eventID: (detailEvent?.eventID)!) { image in
             
@@ -49,6 +51,7 @@ class DetailViewController: UIViewController {
                 self.detailImageView.layer.borderWidth = 4
                 self.detailImageView.layer.cornerRadius = 4
                 self.detailImageView.layer.masksToBounds = true
+                self.navigationButtonOutlet.isHidden = false
             }
 
         }

@@ -7,12 +7,15 @@
 //
 
 import UIKit
-class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, GoToAddItemDelegate {
     
     //pass forward the information from the selected event. Will use some info and pass forward to detail view controller
     var hostEvent = Event()
     var hostUser = User()
+    var noItems:Bool?
+    
     var numberOfPartyItemsArray = [PartyItem]()
+    
     @IBOutlet weak var hostGoalsTableView: UITableView!
     
     var segueIdentifier:String?
@@ -28,22 +31,44 @@ class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableVie
         
         setUpInfoButton()
         
-
-        
-
         //check to see if they have a stripe account associated with them. If not then segue to the connectToStripe VC
 
     }
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(true)
+
+        
         
         FirebaseManager.retrievePartyItemsFromFirebase(eventID: hostEvent.eventID!) { (partyItemNameArray) -> () in
             
             self.numberOfPartyItemsArray = partyItemNameArray
+            self.noItems = false
             self.hostGoalsTableView.reloadData()
         }
         
+    }
+  
+    override func viewDidAppear(_ animated: Bool) {
+        
+        super.viewDidAppear(true)
+        
+        if self.numberOfPartyItemsArray.count == 0 {
+            
+            self.noItems = true
+            self.hostGoalsTableView.reloadData()
+
+            
+        }
+        
+    }
+  
+      func retrieveNotifier(notifier: Int) {
+
+        if notifier == 1 {
+            
+            performSegue(withIdentifier: "addNewItem", sender: self)
+        }
     }
     
     //MARK: - General UI Setup -
@@ -101,9 +126,8 @@ class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableVie
         if segue.identifier == "connectToStripe"
         {
             
-         
-            let navigation = segue.destination as! UINavigationController
-            let connectToStripeVC = navigation.topViewController as! ConnectToStripeViewController
+            let connectToStripeVC = segue.destination as! ConnectToStripeViewController
+            connectToStripeVC.addItemDelegate = self
             connectToStripeVC.stripeEvent = hostEvent
             
         }
@@ -130,6 +154,7 @@ class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     //MARK: - TableView Delegate & Data Source -
+    
     func numberOfSections(in tableView: UITableView) -> Int
     {
         return 1
@@ -137,18 +162,30 @@ class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
+        if (self.noItems == true) {
+            return 1
+        } else {
         
         return self.numberOfPartyItemsArray.count
-        
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "GoalsCell", for: indexPath) as! GoalsTableViewCell
+        
+        if (self.noItems == true) {
+            
+            let noPartyItems = PartyItem.init(name: "No Party Items", goal: 0, image: #imageLiteral(resourceName: "sadClown"), itemEventID: "hostingEvent", amountFunded: 0)
+            cell.configureCellWithSadClown(partyItem: noPartyItems)
+            return cell
+            
+        } else {
 
         cell.configureCellWithPartyItem(partyItem: self.numberOfPartyItemsArray[indexPath.row])
         return cell
+        }
         
     }
     

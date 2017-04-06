@@ -8,7 +8,15 @@
 
 import UIKit
 
+protocol GoToAddItemDelegate:class {
+    
+    func retrieveNotifier(notifier:Int)
+    
+}
+
 class ConnectToStripeViewController: UIViewController, ServerInformationDelegate {
+    
+    weak var addItemDelegate:GoToAddItemDelegate?
 
     var connectedAccountJSON:[String:Any]?
     
@@ -46,9 +54,18 @@ class ConnectToStripeViewController: UIViewController, ServerInformationDelegate
         stripeEvent.stripeID = self.connectedAccountJSON?["stripe_user_id"] as! String
 
         FirebaseManager.writeToFirebaseDBHostStripeUserID(eventID: stripeEvent.eventID!)
-        
-        self.dismiss(animated: true, completion: nil)
-        
+    
+        self.presentedViewController?.dismiss(animated: true, completion: { 
+            
+            
+            self.dismiss(animated: true, completion: nil)
+            
+            self.addItemDelegate?.retrieveNotifier(notifier: 1)
+            
+        })
+
     }
+    
+    
 
 }
