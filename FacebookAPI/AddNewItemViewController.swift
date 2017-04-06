@@ -71,10 +71,11 @@ class AddNewItemViewController: UIViewController, UICollectionViewDelegate, UICo
                                      itemEventID: (eventToAddItemTo?.eventID)!,
                                      amountFunded: 0)
         
+            
         eventToAddItemTo?.partyItems.append(newPartyItem)
                     
         FirebaseManager.writeToFirebaseDBPartyItem(partyItemName: itemNameTextField.text!, eventID: (eventToAddItemTo?.eventID)!, partyItemsArray: eventToAddItemTo?.partyItems)
-        
+         eventToAddItemTo?.partyItems.removeAll()
         //name and ID of the host who posted it. Not sure if you need both but they are here
         let hostName = addNewItemHost?.name!
         let hostID = addNewItemHost?.userID!
