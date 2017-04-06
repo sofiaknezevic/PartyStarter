@@ -1,4 +1,4 @@
-//
+ //
 //  HostGoalsViewController.swift
 //  FacebookAPI
 //
@@ -27,6 +27,16 @@ class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableVie
         setUpHostGoalsVCWith(event: hostEvent)
         
         setUpInfoButton()
+        
+
+        
+
+        //check to see if they have a stripe account associated with them. If not then segue to the connectToStripe VC
+
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        
+        super.viewWillAppear(true)
         
         FirebaseManager.retrievePartyItemsFromFirebase(eventID: hostEvent.eventID!) { (partyItemNameArray) -> () in
             
