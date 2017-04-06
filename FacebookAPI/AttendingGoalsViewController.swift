@@ -24,6 +24,7 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
     let stripeConnectManager = StripeConnectManager()
 
     var numberOfPartyItemsArray = [PartyItem]()
+    var noItems:Bool?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,14 +36,24 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
         setUpAttendingGoalsVCWith(event: attendingEvent)
         
         setUpDetailInfoButton()
-        
-        
+                
         FirebaseManager.retrievePartyItemsFromFirebase(eventID: attendingEvent.eventID!) { (partyItemNameArray) -> () in
             
             self.numberOfPartyItemsArray = partyItemNameArray
             
+            self.noItems = false
+            
             self.attendingTableView.reloadData()
             
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        if self.numberOfPartyItemsArray.count == 0 {
+            self.noItems = true
+            self.attendingTableView.reloadData()
         }
     }
 
@@ -79,16 +90,31 @@ class AttendingGoalsViewController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return self.numberOfPartyItemsArray.count 
+        if (self.noItems == true) {
+            return 1
+        } else {
+        
+        return self.numberOfPartyItemsArray.count
+        }
 
         
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "GoalsCell", for: indexPath) as! GoalsTableViewCell
+        
+        if (self.noItems == true) {
+
+            let noPartyItems = PartyItem.init(name: "No Party Items", goal: 0, image: #imageLiteral(resourceName: "sadClown"), itemEventID: "attendingEvent", amountFunded: 0)
+            cell.configureCellWithSadClown(partyItem: noPartyItems)
+            return cell
+            
+        } else {
         cell.configureCellWithPartyItem(partyItem: self.numberOfPartyItemsArray[indexPath.row])
         return cell
+        }
         
     }
     

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VNq-5o-ai5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VNq-5o-ai5">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -36,8 +36,8 @@
                                     <outlet property="delegate" destination="VNq-5o-ai5" id="dcP-U3-x8B"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3TO-8F-1wZ">
-                                <rect key="frame" x="16" y="78" width="343" height="37"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3TO-8F-1wZ">
+                                <rect key="frame" x="0.0" y="64" width="375" height="63"/>
                                 <color key="backgroundColor" red="0.97678083181381226" green="0.98358243703842163" blue="0.77891916036605835" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="CongratulationsDEMO" family="Congratulations DEMO" pointSize="25"/>
                                 <state key="normal" title="Add New Item +">
@@ -52,11 +52,11 @@
                         <constraints>
                             <constraint firstItem="Wls-43-b3W" firstAttribute="top" secondItem="6XA-xR-8yJ" secondAttribute="top" constant="64" id="Fo2-io-CLy"/>
                             <constraint firstItem="3TO-8F-1wZ" firstAttribute="centerX" secondItem="6XA-xR-8yJ" secondAttribute="centerX" id="HeN-ae-U9C"/>
-                            <constraint firstItem="3TO-8F-1wZ" firstAttribute="trailing" secondItem="6XA-xR-8yJ" secondAttribute="trailingMargin" id="Lzf-l7-jqE"/>
+                            <constraint firstItem="3TO-8F-1wZ" firstAttribute="trailing" secondItem="6XA-xR-8yJ" secondAttribute="trailingMargin" constant="16" id="Lzf-l7-jqE"/>
                             <constraint firstAttribute="trailing" secondItem="Wls-43-b3W" secondAttribute="trailing" id="RNm-vx-Kbc"/>
-                            <constraint firstItem="3TO-8F-1wZ" firstAttribute="top" secondItem="OkQ-BO-nOs" secondAttribute="bottom" constant="14" id="YUr-4s-t5g"/>
+                            <constraint firstItem="3TO-8F-1wZ" firstAttribute="top" secondItem="OkQ-BO-nOs" secondAttribute="bottom" id="YUr-4s-t5g"/>
                             <constraint firstItem="xw0-2Z-p1r" firstAttribute="top" secondItem="Wls-43-b3W" secondAttribute="bottom" id="h29-84-hsd"/>
-                            <constraint firstItem="3TO-8F-1wZ" firstAttribute="leading" secondItem="6XA-xR-8yJ" secondAttribute="leadingMargin" id="prC-v5-gH6"/>
+                            <constraint firstItem="3TO-8F-1wZ" firstAttribute="leading" secondItem="6XA-xR-8yJ" secondAttribute="leadingMargin" constant="-16" id="prC-v5-gH6"/>
                             <constraint firstItem="Wls-43-b3W" firstAttribute="leading" secondItem="6XA-xR-8yJ" secondAttribute="leading" id="yHb-Zc-Tze"/>
                         </constraints>
                     </view>
