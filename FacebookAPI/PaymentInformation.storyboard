@@ -18,7 +18,7 @@
         <scene sceneID="35p-xO-1NI">
             <objects>
                 <navigationController id="yE6-zX-dw8" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="GnY-2A-vum">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="GnY-2A-vum">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

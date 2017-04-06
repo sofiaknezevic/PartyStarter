@@ -29,9 +29,9 @@ class AddNewItemViewController: UIViewController, UICollectionViewDelegate, UICo
         setUpNavButtons()
         addAllImagesToArray()
         
-        
     }
     
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         itemNameTextField.resignFirstResponder()
         return true
@@ -40,6 +40,10 @@ class AddNewItemViewController: UIViewController, UICollectionViewDelegate, UICo
     func textFieldDidBeginEditing(_ textField: UITextField) {
         itemNameTextField.backgroundColor = UIColor.clear
     }
+    
+    
+    
+    
     
     func savePartyItemButton() -> Void
     {
@@ -132,6 +136,8 @@ class AddNewItemViewController: UIViewController, UICollectionViewDelegate, UICo
         cell?.alpha = 1
         
     }
+    
+    //MARK: - General Setup -
     
     func setUpNavButtons() -> Void
     {
