@@ -64,30 +64,38 @@ class AddNewItemViewController: UIViewController, UICollectionViewDelegate, UICo
         } else {
             
             //no-image
+            if(userSelectedImage == nil) {
+                print("no image")
+            } else {
+                
+                let newPartyItem = PartyItem(name: itemNameTextField.text!,
+                                             goal: Double(itemGoal),
+                                             image: userSelectedImage!,
+                                             itemEventID: (eventToAddItemTo?.eventID)!,
+                                             amountFunded: 0)
+                
+                
+                eventToAddItemTo?.partyItems.append(newPartyItem)
+                
+                FirebaseManager.writeToFirebaseDBPartyItem(partyItemName: itemNameTextField.text!, eventID: (eventToAddItemTo?.eventID)!, partyItemsArray: eventToAddItemTo?.partyItems)
+                eventToAddItemTo?.partyItems.removeAll()
+                //name and ID of the host who posted it. Not sure if you need both but they are here
+                let hostName = addNewItemHost?.name!
+                let hostID = addNewItemHost?.userID!
+                print(hostName!)
+                print(hostID!)
+                
+                //check to see if they are nil or else do not pop back
+                _ = self.navigationController?.popViewController(animated: true)
+                
+            }
+
+                
+            }
+            
 
 
-        let newPartyItem = PartyItem(name: itemNameTextField.text!,
-                                     goal: Double(itemGoal),
-                                     image: userSelectedImage!,
-                                     itemEventID: (eventToAddItemTo?.eventID)!,
-                                     amountFunded: 0)
-        
-            
-        eventToAddItemTo?.partyItems.append(newPartyItem)
-                    
-        FirebaseManager.writeToFirebaseDBPartyItem(partyItemName: itemNameTextField.text!, eventID: (eventToAddItemTo?.eventID)!, partyItemsArray: eventToAddItemTo?.partyItems)
-         eventToAddItemTo?.partyItems.removeAll()
-        //name and ID of the host who posted it. Not sure if you need both but they are here
-        let hostName = addNewItemHost?.name!
-        let hostID = addNewItemHost?.userID!
-        print(hostName!)
-        print(hostID!)
-        
-        //check to see if they are nil or else do not pop back
-        _ = self.navigationController?.popViewController(animated: true)
-            
-        }
-    }
+            }
     
     @IBAction func itemGoalSliderAction(_ sender: UISlider)
     {
