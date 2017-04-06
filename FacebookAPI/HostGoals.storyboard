@@ -212,6 +212,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="chooseImageLabel" destination="jHq-Gg-occ" id="Ukm-Fn-VyX"/>
                         <outlet property="imagePickingCollectionView" destination="8my-aL-a8b" id="h3u-Zh-D8b"/>
                         <outlet property="itemGoalLabel" destination="Iwo-UM-l0L" id="Rgy-mR-JD9"/>
                         <outlet property="itemGoalSlider" destination="HRw-nt-ta9" id="845-nq-cED"/>
