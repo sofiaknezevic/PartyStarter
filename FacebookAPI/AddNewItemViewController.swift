@@ -29,12 +29,15 @@ class AddNewItemViewController: UIViewController, UICollectionViewDelegate, UICo
         setUpNavButtons()
         addAllImagesToArray()
         
-        
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         itemNameTextField.backgroundColor = UIColor.clear
     }
+    
+    
+    
+    
     
     func savePartyItemButton() -> Void
     {
@@ -124,6 +127,8 @@ class AddNewItemViewController: UIViewController, UICollectionViewDelegate, UICo
         cell?.alpha = 1
         
     }
+    
+    //MARK: - General Setup -
     
     func setUpNavButtons() -> Void
     {

@@ -34,9 +34,9 @@ class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableVie
             self.hostGoalsTableView.reloadData()
         }
         
-        //check to see if they have a stripe account associated with them. If not then segue to the connectToStripe VC
-
     }
+    
+    //MARK: - General UI Setup -
     
     func setUpHostGoalsVCWith(event:Event) -> Void {
         
@@ -64,9 +64,7 @@ class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableVie
     }
 
     @IBAction func addNewItem(_ sender: UIButton) {
-        
-        //when this button is pressed segue to the addNewItem view controller
-        //first check if they have a stripe account hooked up and if they don't, send them to stripe and make them connect
+
         checkEventStripeID()
         performSegue(withIdentifier: segueIdentifier!, sender: self)
         
