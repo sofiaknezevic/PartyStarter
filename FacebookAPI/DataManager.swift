@@ -50,7 +50,6 @@ class DataManager: NSObject {
                 
                 let data = response.dictionaryValue?["data"] as? [[String: Any]]
                 
-                //make new events from every event in the json
                 for event: [String: Any] in data! {
                     
                     let newEvent = Event.parseDataFromJSON(event)
@@ -58,7 +57,6 @@ class DataManager: NSObject {
                     eventArray.append(newEvent)
                    
                 }
-                //print("data manager: \(eventArray)")
                 completion(eventArray)
                 
             case .failed(let error):

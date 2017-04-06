@@ -50,7 +50,7 @@ class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func setUpHostGoalsVCWith(event:Event) -> Void {
         
-        let frame = CGRect(x: 0, y: 0, width: 400, height: 44)
+        let frame = CGRect(x: 0, y: 0, width: 200, height: 44)
         let navLabel = UILabel(frame: frame)
         navLabel.font = UIFont(name: "Congratulations DEMO", size: 20.00)
         navLabel.textAlignment = .center
@@ -82,13 +82,15 @@ class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "showEventDetail") {
+        if (segue.identifier == "showEventDetail")
+        {
             let detailVC:DetailViewController = segue.destination as! DetailViewController
             detailVC.detailEvent = hostEvent
             
         }
         
-        if (segue.identifier == "addNewItem") {
+        if (segue.identifier == "addNewItem")
+        {
             
             //need to pass at the event item so that you can get access to the event name and eventID
             let addNewItemVC:AddNewItemViewController = segue.destination as! AddNewItemViewController
@@ -96,7 +98,8 @@ class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableVie
             addNewItemVC.addNewItemHost = hostUser
         }
         
-        if segue.identifier == "connectToStripe" {
+        if segue.identifier == "connectToStripe"
+        {
             
          
             let navigation = segue.destination as! UINavigationController
@@ -126,24 +129,33 @@ class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableVie
         
     }
     
-    //MARK: Table View Data Source
-    func numberOfSections(in tableView: UITableView) -> Int {
+    //MARK: - TableView Delegate & Data Source -
+    func numberOfSections(in tableView: UITableView) -> Int
+    {
         return 1
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
         
         return self.numberOfPartyItemsArray.count
         
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "GoalsCell", for: indexPath) as! GoalsTableViewCell
 
         cell.configureCellWithPartyItem(partyItem: self.numberOfPartyItemsArray[indexPath.row])
         return cell
         
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        tableView.deselectRow(at: indexPath, animated: true)
+
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -156,8 +168,14 @@ class HostGoalsViewController: UIViewController, UITableViewDelegate, UITableVie
 
             if self.numberOfPartyItemsArray.count > 0 {
                 
-                FirebaseManager.deletePartyItemListOfItem(firstTree: hostEvent.eventID!, secondTree: "party_item_name", childIWantToRemove: self.numberOfPartyItemsArray[indexPath.row].itemName!)
-                FirebaseManager.deletePartyItemImage(firstTree: hostEvent.eventID!, secondTree: "base64_images", childIWantToRemove: self.numberOfPartyItemsArray[indexPath.row].itemName!)
+                FirebaseManager.deletePartyItemListOfItem(firstTree: hostEvent.eventID!,
+                                                          secondTree: "party_item_name",
+                                                          childIWantToRemove: self.numberOfPartyItemsArray[indexPath.row].itemName!)
+                
+                FirebaseManager.deletePartyItemImage(firstTree: hostEvent.eventID!,
+                                                     secondTree: "base64_images",
+                                                     childIWantToRemove: self.numberOfPartyItemsArray[indexPath.row].itemName!)
+                
                 FirebaseManager.deletePartyItemGoal(childIWantToRemove: self.numberOfPartyItemsArray[indexPath.row].itemName!)
                 
                 self.numberOfPartyItemsArray.remove(at: indexPath.row)

@@ -6,8 +6,14 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Congratulations_DEMO.ttf">
+            <string>CongratulationsDEMO</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Attending Goals View Controller-->
         <scene sceneID="L5c-ZJ-mjn">
@@ -21,9 +27,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fUP-U5-RiJ">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fUP-U5-RiJ">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.97678083179999997" green="0.98358243700000003" blue="0.77891916039999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="SPG-AQ-6oK" id="BkI-Kx-E8K"/>
                                     <outlet property="delegate" destination="SPG-AQ-6oK" id="fND-Bf-a8o"/>
@@ -69,57 +75,85 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Hjb-dw-Meh">
-                                <rect key="frame" x="58" y="256" width="261" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Hjb-dw-Meh">
+                                <rect key="frame" x="57" y="320" width="261" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="e0S-EW-2N0"/>
+                                </constraints>
                                 <connections>
                                     <action selector="amountToContributeSlider:" destination="3Sc-HJ-Wnb" eventType="valueChanged" id="XLn-jA-hL2"/>
                                 </connections>
                             </slider>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LjG-Jp-hVC">
-                                <rect key="frame" x="16" y="318" width="343" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LjG-Jp-hVC">
+                                <rect key="frame" x="129" y="415" width="118" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="DLi-Rn-7Fo"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="CongratulationsDEMO" family="Congratulations DEMO" pointSize="30"/>
                                 <state key="normal" title="Contribute!"/>
                                 <connections>
                                     <action selector="contributionButtonPressed:" destination="3Sc-HJ-Wnb" eventType="touchUpInside" id="MsW-wA-7tC"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t4c-s9-VAT">
-                                <rect key="frame" x="16" y="128" width="343" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="25"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z44-Sc-qPP">
+                                <rect key="frame" x="16" y="533" width="343" height="0.0"/>
+                                <fontDescription key="fontDescription" name="CongratulationsDEMO" family="Congratulations DEMO" pointSize="27"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z44-Sc-qPP">
-                                <rect key="frame" x="16" y="456" width="343" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="25"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="siN-Hq-ZJS">
+                                <rect key="frame" x="16" y="255" width="343" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="g3r-Sz-mLH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="siN-Hq-ZJS">
-                                <rect key="frame" x="16" y="227" width="343" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XHx-AI-cnp">
+                                <rect key="frame" x="16" y="177" width="343" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="BD4-BY-UFH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="CongratulationsDEMO" family="Congratulations DEMO" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XHx-AI-cnp">
-                                <rect key="frame" x="16" y="157" width="343" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t4c-s9-VAT">
+                                <rect key="frame" x="16" y="119" width="343" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="y67-qg-K22"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="CongratulationsDEMO" family="Congratulations DEMO" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.91902416944503784" green="0.85848349332809448" blue="0.86616736650466919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Z44-Sc-qPP" firstAttribute="leading" secondItem="BlU-cC-WOo" secondAttribute="leadingMargin" id="04p-fp-3X5"/>
+                            <constraint firstItem="XHx-AI-cnp" firstAttribute="trailing" secondItem="BlU-cC-WOo" secondAttribute="trailingMargin" id="4sX-V8-0u5"/>
+                            <constraint firstItem="XHx-AI-cnp" firstAttribute="leading" secondItem="BlU-cC-WOo" secondAttribute="leadingMargin" id="9wL-nA-BCp"/>
+                            <constraint firstItem="Hjb-dw-Meh" firstAttribute="leading" secondItem="BlU-cC-WOo" secondAttribute="leadingMargin" constant="43" id="LUN-PO-yJS"/>
+                            <constraint firstItem="LjG-Jp-hVC" firstAttribute="centerX" secondItem="BlU-cC-WOo" secondAttribute="centerX" id="P7P-aY-LSA"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Z44-Sc-qPP" secondAttribute="trailing" id="PNY-5W-7wY"/>
+                            <constraint firstItem="XHx-AI-cnp" firstAttribute="top" secondItem="t4c-s9-VAT" secondAttribute="bottom" constant="8" id="T8K-cH-LXD"/>
+                            <constraint firstItem="LjG-Jp-hVC" firstAttribute="top" secondItem="Hjb-dw-Meh" secondAttribute="bottom" constant="65" id="U3s-qQ-G9w"/>
+                            <constraint firstItem="siN-Hq-ZJS" firstAttribute="leading" secondItem="BlU-cC-WOo" secondAttribute="leadingMargin" id="UhP-6D-y98"/>
+                            <constraint firstItem="t4c-s9-VAT" firstAttribute="top" secondItem="o8z-RX-ffe" secondAttribute="bottom" constant="55" id="VOV-tU-Aor"/>
+                            <constraint firstItem="siN-Hq-ZJS" firstAttribute="top" secondItem="XHx-AI-cnp" secondAttribute="bottom" constant="28" id="btX-TN-lDf"/>
+                            <constraint firstItem="Hjb-dw-Meh" firstAttribute="top" secondItem="siN-Hq-ZJS" secondAttribute="bottom" constant="25" id="dfh-g3-EGe"/>
+                            <constraint firstItem="siN-Hq-ZJS" firstAttribute="trailing" secondItem="BlU-cC-WOo" secondAttribute="trailingMargin" id="dqv-7X-dGS"/>
+                            <constraint firstItem="t4c-s9-VAT" firstAttribute="leading" secondItem="BlU-cC-WOo" secondAttribute="leadingMargin" id="dzt-NA-iXV"/>
+                            <constraint firstItem="t4c-s9-VAT" firstAttribute="trailing" secondItem="BlU-cC-WOo" secondAttribute="trailingMargin" id="fOC-SI-IzC"/>
+                            <constraint firstItem="Hjb-dw-Meh" firstAttribute="centerX" secondItem="BlU-cC-WOo" secondAttribute="centerX" id="gVY-ag-VPI"/>
+                            <constraint firstItem="Z44-Sc-qPP" firstAttribute="top" secondItem="LjG-Jp-hVC" secondAttribute="bottom" constant="88" id="hKQ-Rg-POm"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="amountFundedLabel" destination="XHx-AI-cnp" id="HjW-IU-u6u"/>
                         <outlet property="amountToContributeLabel" destination="siN-Hq-ZJS" id="XhP-i0-YOV"/>
                         <outlet property="amountToContributeSlider" destination="Hjb-dw-Meh" id="9dn-m4-riX"/>
-                        <outlet property="contributionButton" destination="LjG-Jp-hVC" id="JLZ-V8-ta6"/>
                         <outlet property="goalAmountLabel" destination="t4c-s9-VAT" id="h0u-uU-veV"/>
                         <outlet property="goalAmountMinusContributionLabel" destination="Z44-Sc-qPP" id="3Ld-eO-PRn"/>
                         <segue destination="FUR-fe-kaQ" kind="presentation" identifier="goToPaymentVC" id="Vai-GL-upD"/>
