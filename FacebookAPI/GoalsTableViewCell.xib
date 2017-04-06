@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -11,6 +11,11 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Congratulations_DEMO.ttf">
+            <string>CongratulationsDEMO</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -18,15 +23,15 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="h48-Rq-ARV" id="nAH-9L-LLk" userLabel="Cell View">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="99.666666666666671"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BPh-QD-yKg">
-                        <rect key="frame" x="103" y="0.0" width="264" height="50"/>
+                        <rect key="frame" x="103" y="0.0" width="264" height="40"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="50" id="bxY-yx-tT3"/>
+                            <constraint firstAttribute="height" constant="40" id="bxY-yx-tT3"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="20"/>
+                        <fontDescription key="fontDescription" name="CongratulationsDEMO" family="Congratulations DEMO" pointSize="20"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -56,12 +61,6 @@
                             <constraint firstAttribute="height" constant="80" id="bnx-jP-UDb"/>
                         </constraints>
                     </view>
-                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CXw-GO-AXc">
-                        <rect key="frame" x="103" y="58" width="249" height="5"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="5" id="hUQ-YC-aDh"/>
-                        </constraints>
-                    </progressView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="👍" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vOJ-sq-aIX">
                         <rect key="frame" x="329" y="69" width="23" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -69,7 +68,14 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CXw-GO-AXc">
+                        <rect key="frame" x="103" y="48" width="249" height="5"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="5" id="hUQ-YC-aDh"/>
+                        </constraints>
+                    </progressView>
                 </subviews>
+                <color key="backgroundColor" red="0.97678083181381226" green="0.98358243703842163" blue="0.77891916036605835" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="CXw-GO-AXc" firstAttribute="trailing" secondItem="nAH-9L-LLk" secondAttribute="trailingMargin" constant="-15" id="J0p-PR-uOI"/>
                     <constraint firstItem="KfQ-pg-NAt" firstAttribute="bottom" secondItem="nAH-9L-LLk" secondAttribute="bottomMargin" id="XpM-v3-Q3s"/>
@@ -77,7 +83,7 @@
                     <constraint firstAttribute="leadingMargin" secondItem="IkJ-Dk-50W" secondAttribute="leading" id="inq-Yy-apg"/>
                     <constraint firstItem="BPh-QD-yKg" firstAttribute="top" secondItem="nAH-9L-LLk" secondAttribute="top" id="pHY-WW-LJr"/>
                     <constraint firstItem="IkJ-Dk-50W" firstAttribute="centerY" secondItem="nAH-9L-LLk" secondAttribute="centerY" id="qFk-Lh-4qW"/>
-                    <constraint firstItem="KfQ-pg-NAt" firstAttribute="top" secondItem="CXw-GO-AXc" secondAttribute="bottom" constant="8" id="tc0-VH-SVR"/>
+                    <constraint firstItem="KfQ-pg-NAt" firstAttribute="top" secondItem="CXw-GO-AXc" secondAttribute="bottom" constant="18" id="tc0-VH-SVR"/>
                     <constraint firstAttribute="trailing" secondItem="BPh-QD-yKg" secondAttribute="trailing" constant="8" id="vt0-Nn-b3F"/>
                     <constraint firstItem="KfQ-pg-NAt" firstAttribute="leading" secondItem="IkJ-Dk-50W" secondAttribute="trailing" constant="15" id="xoV-2c-lnX"/>
                     <constraint firstItem="BPh-QD-yKg" firstAttribute="leading" secondItem="IkJ-Dk-50W" secondAttribute="trailing" constant="15" id="ydB-v3-Xns"/>
@@ -91,6 +97,7 @@
                 <outlet property="attendingGoalProgressView" destination="CXw-GO-AXc" id="CEu-yr-nR0"/>
                 <outlet property="fundedLabel" destination="vOJ-sq-aIX" id="DbF-QZ-kgz"/>
             </connections>
+            <point key="canvasLocation" x="33.5" y="93"/>
         </tableViewCell>
     </objects>
 </document>
