@@ -31,6 +31,7 @@ class AddNewItemViewController: UIViewController, UICollectionViewDelegate, UICo
         
     }
     
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         itemNameTextField.resignFirstResponder()
         return true
