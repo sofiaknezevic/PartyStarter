@@ -267,6 +267,7 @@ class FirebaseManager: NSObject {
                     completion(partyArray)
                         
                     }
+                    partyArray.removeAll()
                 }
             })
         })
