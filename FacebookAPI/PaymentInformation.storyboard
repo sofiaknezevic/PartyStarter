@@ -46,54 +46,54 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="200"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contribution" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BLS-nF-ON4">
-                                        <rect key="frame" x="8" y="8" width="113" height="100"/>
+                                        <rect key="frame" x="8" y="8" width="112.5" height="100"/>
                                         <fontDescription key="fontDescription" name="CongratulationsDEMO" family="Congratulations DEMO" pointSize="25"/>
-                                        <color key="textColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.55804818930923195" green="0.57592349565585099" blue="0.7260399309511717" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="stripe fee" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fOG-m6-twQ">
-                                        <rect key="frame" x="8" y="116" width="68" height="30"/>
+                                        <rect key="frame" x="8" y="116" width="67.5" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="jJJ-oP-MSM"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="CongratulationsDEMO" family="Congratulations DEMO" pointSize="20"/>
-                                        <color key="textColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.52587401356117591" green="0.54542325949069148" blue="0.69661232965246678" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="grand total" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S1d-Qw-rl9">
-                                        <rect key="frame" x="8" y="154" width="122" height="35"/>
+                                        <rect key="frame" x="8" y="154" width="121.5" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="IYK-RT-fMU"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="CongratulationsDEMO" family="Congratulations DEMO" pointSize="30"/>
-                                        <color key="textColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.55562174320220947" green="0.57746785879135132" blue="0.72675192356109619" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DEo-KI-jFb">
-                                        <rect key="frame" x="129" y="8" width="238" height="100"/>
+                                        <rect key="frame" x="128.5" y="8" width="238.5" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="bBL-ci-gbq"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="25"/>
-                                        <color key="textColor" red="0.63806051015853882" green="0.65574747323989868" blue="0.81330651044845581" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" red="0.6646825900498774" green="0.68267716136530177" blue="0.84963265258043552" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vkx-By-g12">
-                                        <rect key="frame" x="84" y="116" width="283" height="25"/>
+                                        <rect key="frame" x="83.5" y="116" width="283.5" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="dku-tf-fNX"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
-                                        <color key="textColor" red="0.64196580648422241" green="0.65957581996917725" blue="0.82127708196640015" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" red="0.65406461933669757" green="0.67501550792501197" blue="0.85096061623035957" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ST-VO-C68">
-                                        <rect key="frame" x="138" y="157" width="229" height="35"/>
+                                        <rect key="frame" x="137.5" y="157" width="229.5" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="RTy-Pe-gys"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="30"/>
-                                        <color key="textColor" red="0.64196580648422241" green="0.65957581996917725" blue="0.82127708196640015" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" red="0.65254054901880132" green="0.67344261884137457" blue="0.84897774821005501" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>

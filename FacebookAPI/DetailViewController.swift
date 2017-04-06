@@ -62,14 +62,11 @@ class DetailViewController: UIViewController {
     
     
     func setup() -> Void {
-        
-        //will need to make sure that if one of these are nil, program does not crash.
-        
+
         let unwrappedRSVP = (detailEvent?.rsvpStatus)! as String
         
         detailEventNameLabel.text = detailEvent?.eventName
         detailLocationLabel.text = detailEvent?.placeName
-//        detailTextField.text = detailEvent?.eventDescription
         detailDescriptionLabel.text = detailEvent?.eventDescription
         detailrsvpLabel.text = "RSVP Status: \(unwrappedRSVP)"
         

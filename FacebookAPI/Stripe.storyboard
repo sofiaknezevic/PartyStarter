@@ -9,13 +9,17 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Congratulations_DEMO.ttf">
+            <string>CongratulationsDEMO</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Navigation Controller-->
         <scene sceneID="oBi-z2-Til">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="c1c-Rj-cVA" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="h5p-dO-nFj" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="JSu-bx-SH8">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="JSu-bx-SH8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -23,6 +27,7 @@
                         <segue destination="Ecg-OJ-O0r" kind="relationship" relationship="rootViewController" id="m1S-CF-tAq"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c1c-Rj-cVA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3767" y="-1043"/>
         </scene>
@@ -39,26 +44,39 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n7h-ZC-xJt">
-                                <rect key="frame" x="92" y="317" width="190" height="33"/>
+                                <rect key="frame" x="92.5" y="317" width="190" height="33"/>
                                 <state key="normal" image="light-on-light"/>
                                 <connections>
                                     <action selector="connectToStripePushed:" destination="Ecg-OJ-O0r" eventType="touchUpInside" id="Z0r-0j-IQQ"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In order to receive payments from other users you must connect with Stripe. Tap the button below and get your partyON! 🎉 " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ioj-nt-I8X">
-                                <rect key="frame" x="49" y="186.5" width="277" height="95.5"/>
-                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In order to receive payments from other users you must connect with Stripe. Tap the button below and get your partyON! " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ioj-nt-I8X">
+                                <rect key="frame" x="49" y="190" width="277" height="92"/>
+                                <fontDescription key="fontDescription" name="CongratulationsDEMO" family="Congratulations DEMO" pointSize="23"/>
+                                <color key="textColor" red="0.51279211044311523" green="0.52690261602401733" blue="0.65543627738952637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🎉🎉🎉" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yj8-9x-D8d">
+                                <rect key="frame" x="16" y="130" width="343" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="CIV-zA-ryH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.99612253904342651" green="0.99705570936203003" blue="0.94280725717544556" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="Ioj-nt-I8X" secondAttribute="trailing" constant="33" id="9mI-mI-qam"/>
                             <constraint firstItem="Ioj-nt-I8X" firstAttribute="leading" secondItem="Xq3-eW-fAU" secondAttribute="leadingMargin" constant="33" id="MiQ-nB-AUn"/>
+                            <constraint firstItem="Yj8-9x-D8d" firstAttribute="centerX" secondItem="Xq3-eW-fAU" secondAttribute="centerX" id="O0S-Nc-yBr"/>
                             <constraint firstItem="Ioj-nt-I8X" firstAttribute="centerX" secondItem="Xq3-eW-fAU" secondAttribute="centerX" id="Q63-j7-LAr"/>
+                            <constraint firstItem="Ioj-nt-I8X" firstAttribute="top" secondItem="Yj8-9x-D8d" secondAttribute="bottom" constant="40" id="U0Z-fy-pct"/>
                             <constraint firstItem="n7h-ZC-xJt" firstAttribute="centerY" secondItem="Xq3-eW-fAU" secondAttribute="centerY" id="f1s-VC-PaV"/>
+                            <constraint firstItem="Yj8-9x-D8d" firstAttribute="trailing" secondItem="Xq3-eW-fAU" secondAttribute="trailingMargin" id="kxi-Rv-KMA"/>
                             <constraint firstItem="n7h-ZC-xJt" firstAttribute="centerX" secondItem="Xq3-eW-fAU" secondAttribute="centerX" id="vaa-Zx-7CY"/>
+                            <constraint firstItem="Yj8-9x-D8d" firstAttribute="leading" secondItem="Xq3-eW-fAU" secondAttribute="leadingMargin" id="xUf-YR-iT7"/>
                             <constraint firstItem="n7h-ZC-xJt" firstAttribute="top" secondItem="Ioj-nt-I8X" secondAttribute="bottom" constant="35" id="xe9-cO-MiJ"/>
                         </constraints>
                     </view>
