@@ -1,0 +1,7 @@
+# Integrates with Facebook’s API to help organize more detailed event planning. 
+The user can see the events that they are attending on Facebook and add items to be crowdfunded for the event such as food, beverages, party hats etc. 
+In addition to this, users attending can also pledge money via in app Stripe payments and view the item's progress.
+
+<img src="Image1.PNG" alt="Pic1" width ="250">
+<img src="Image2.PNG" alt="Pic1" width ="250">
+<img src="Image3.PNG" alt="Pic1" width ="250">
