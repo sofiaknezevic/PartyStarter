@@ -73,6 +73,11 @@
 			<key>orderHint</key>
 			<integer>10</integer>
 		</dict>
+		<key>PKHUD.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>16</integer>
+		</dict>
 		<key>Pods-FacebookAPI.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -125,6 +130,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>369E7251631DBE46F32E7ECE77701478</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>3CF655B011633A862AA8F91F1E9CCDE8</key>
 		<dict>
 			<key>primary</key>
@@ -170,6 +180,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>632D8FE310D959AF0430A8BAC78A6156</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>7335E9C9689F3B8A16F063A884748533</key>
 		<dict>
 			<key>primary</key>
@@ -200,6 +215,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>D7A75F149082140741FC1E0B5B2863C8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>DBF05E55663FEAD16252F3E3D9CDC0DD</key>
 		<dict>
 			<key>primary</key>
@@ -211,6 +231,11 @@
 			<true/>
 		</dict>
 		<key>EA73DDBBCB7E31C83A5680FA8016AF13</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F6422C37F7116D83E2ED7E86DB63D90B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

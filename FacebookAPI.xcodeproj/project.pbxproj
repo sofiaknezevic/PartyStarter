@@ -26,6 +26,9 @@
 		5DE6E0B51E8EF0750069EDA8 /* PaymentInformation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DE6E0B41E8EF0750069EDA8 /* PaymentInformation.storyboard */; };
 		5DE6E0B71E8F00EB0069EDA8 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE6E0B61E8F00EB0069EDA8 /* PaymentViewController.swift */; };
 		70B253E3E678AC86C25BD6D5 /* Pods_FacebookAPITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3959D20BE097ED1583CA80A9 /* Pods_FacebookAPITests.framework */; };
+		D22253761E971A0A00C9DEEE /* image3.png in Resources */ = {isa = PBXBuildFile; fileRef = D22253731E971A0A00C9DEEE /* image3.png */; };
+		D22253771E971A0A00C9DEEE /* image2.png in Resources */ = {isa = PBXBuildFile; fileRef = D22253741E971A0A00C9DEEE /* image2.png */; };
+		D22253781E971A0A00C9DEEE /* image1.png in Resources */ = {isa = PBXBuildFile; fileRef = D22253751E971A0A00C9DEEE /* image1.png */; };
 		D22C8F5B1E8C49B000275437 /* GoalsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D22C8F5A1E8C49B000275437 /* GoalsTableViewCell.xib */; };
 		D22C8F5D1E8EE4AD00275437 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22C8F5C1E8EE4AD00275437 /* MapKit.framework */; };
 		D234F45D1E8B2B47008E0BD8 /* AddNewItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D234F45C1E8B2B47008E0BD8 /* AddNewItemViewController.swift */; };
@@ -82,6 +85,9 @@
 		5DE6E0B41E8EF0750069EDA8 /* PaymentInformation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PaymentInformation.storyboard; sourceTree = "<group>"; };
 		5DE6E0B61E8F00EB0069EDA8 /* PaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		CA0C0CDA7F39768C6F6BC99B /* Pods-FacebookAPI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FacebookAPI.release.xcconfig"; path = "Pods/Target Support Files/Pods-FacebookAPI/Pods-FacebookAPI.release.xcconfig"; sourceTree = "<group>"; };
+		D22253731E971A0A00C9DEEE /* image3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = image3.png; path = ../../../image3.png; sourceTree = "<group>"; };
+		D22253741E971A0A00C9DEEE /* image2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = image2.png; path = ../../../image2.png; sourceTree = "<group>"; };
+		D22253751E971A0A00C9DEEE /* image1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = image1.png; path = ../../../image1.png; sourceTree = "<group>"; };
 		D22C8F5A1E8C49B000275437 /* GoalsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoalsTableViewCell.xib; sourceTree = "<group>"; };
 		D22C8F5C1E8EE4AD00275437 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		D234F45C1E8B2B47008E0BD8 /* AddNewItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewItemViewController.swift; sourceTree = "<group>"; };
@@ -244,6 +250,9 @@
 		D2CF57881E83398C00090788 /* FacebookAPI */ = {
 			isa = PBXGroup;
 			children = (
+				D22253731E971A0A00C9DEEE /* image3.png */,
+				D22253741E971A0A00C9DEEE /* image2.png */,
+				D22253751E971A0A00C9DEEE /* image1.png */,
 				5D99B6861E955A000079D1EA /* Assets */,
 				5D5EC2FF1E8A2522000D9ADC /* Views */,
 				5D3264D41E899DB60045B126 /* StoryBoards */,
@@ -355,10 +364,13 @@
 				5D99B6851E95496B0079D1EA /* Congratulations_DEMO.ttf in Resources */,
 				5D3264E01E89B0340045B126 /* AttendingGoals.storyboard in Resources */,
 				D2CF57B41E84929600090788 /* Main.storyboard in Resources */,
+				D22253771E971A0A00C9DEEE /* image2.png in Resources */,
 				5DE6E0B51E8EF0750069EDA8 /* PaymentInformation.storyboard in Resources */,
 				D22C8F5B1E8C49B000275437 /* GoalsTableViewCell.xib in Resources */,
 				5D3264E61E89B12D0045B126 /* EventDetail.storyboard in Resources */,
+				D22253781E971A0A00C9DEEE /* image1.png in Resources */,
 				D2CF57941E83398C00090788 /* LaunchScreen.storyboard in Resources */,
+				D22253761E971A0A00C9DEEE /* image3.png in Resources */,
 				5D3264DE1E89B0250045B126 /* HostGoals.storyboard in Resources */,
 				DACD87701E902575002DC21B /* GoogleService-Info.plist in Resources */,
 				D2CF57911E83398C00090788 /* Assets.xcassets in Resources */,
