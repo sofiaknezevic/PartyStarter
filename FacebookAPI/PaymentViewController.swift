@@ -36,6 +36,10 @@ class PaymentViewController: UIViewController, StripeInformationDelegate{
     var connectedAccountID = String()
     let baseURLString = "https://party-starter-app.herokuapp.com/"
     
+    var totalAmount = Double()
+    
+    let newNumberFormatter = NumberFormatter()
+    
     var cardNumber = String()
     var expiryMonth = UInt()
     var expiryYear = UInt()
@@ -138,11 +142,10 @@ class PaymentViewController: UIViewController, StripeInformationDelegate{
     func setUpLabels() -> Void
     {
         
-        let newNumberFormatter = NumberFormatter()
+        totalAmount = Double(amount) + stripeFee
+        
         newNumberFormatter.numberStyle = .currency
         newNumberFormatter.locale = Locale(identifier: Locale.current.identifier)
-        
-        let totalAmount = Double(amount) + stripeFee
         
         let contributionString = newNumberFormatter.string(from: NSNumber(value: amount))
         let stripeFeeString = newNumberFormatter.string(from: NSNumber(value: stripeFee))
@@ -255,14 +258,17 @@ class PaymentViewController: UIViewController, StripeInformationDelegate{
         
         let cardSource = cardJSON["id"] as! String
         
-        let realAmount = self.amount*100
+        let realAmount = Int(totalAmount*100)
+        
         
         let params:[String:AnyObject] = [
             "amount" : realAmount as AnyObject,
             "currency" : "cad" as AnyObject,
             "source" : cardSource as AnyObject,
             "stripe_account" : connectedAccountID as AnyObject
-        ]
+            ]
+        
+        
         
         let request = URLRequest.request(realURL!, method: .POST, params: params)
         

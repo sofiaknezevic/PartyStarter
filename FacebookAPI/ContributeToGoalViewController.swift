@@ -41,6 +41,8 @@ class ContributeToGoalViewController: UIViewController, ChargeNotificationDelega
     
     var hostStripeUserID : String?
     
+    var accessToken : String?
+    
     var itemContribution = Int()
     
     //MARK: - View Cycle -
@@ -153,7 +155,6 @@ class ContributeToGoalViewController: UIViewController, ChargeNotificationDelega
             
             getHostStripeUserID()
             
-            
             let navigation = segue.destination as! UINavigationController
             let newPaymentVC = navigation.topViewController as! PaymentViewController
             newPaymentVC.chargeNotificationDelegate = self
@@ -175,8 +176,12 @@ class ContributeToGoalViewController: UIViewController, ChargeNotificationDelega
             self.delegate?.retrieveStripeID(stripeID: self.hostStripeUserID!)
             
             self.delegate?.retrieveAmount(amount: self.itemContribution)
+            
+
 
         }
     }
+    
+
     
 }
