@@ -13,16 +13,29 @@ import FirebaseDatabase
 class StripeConnectManager: NSObject {
     
     var currentJSON:[String:Any]?
+    var clientSecretKey = String()
     
     var ref: FIRDatabaseReference!
     
     let connectURL = URL(string: "https://connect.stripe.com/oauth/token")
     
+
+    
+    func getClientSecretKey() -> Void {
+        
+        FirebaseManager.retrieveSecretKey { (secretKey) in
+            
+            self.clientSecretKey = secretKey
+            
+        }
+        
+    }
+    
     
     func postToNetwork(code:String, completion:@escaping ([String:Any]) -> Void) -> Void  {
         
         let parameters: [String:String] = [
-            "client_secret":"sk_test_Jjjc1jknwZWhIyW9OlBRA6eK",
+            "client_secret": self.clientSecretKey,
             "code":code,
             "grant_type":"authorization_code"
             
@@ -41,7 +54,7 @@ class StripeConnectManager: NSObject {
                 let newJSON = try? JSONSerialization.jsonObject(with: data!, options: []) as! [String:Any]
                 self.currentJSON = newJSON!
                 
-                //print("\(self.currentJSON)")
+                print("\(self.currentJSON)")
                 
                 DispatchQueue.main.async {
                     
@@ -64,6 +77,7 @@ class StripeConnectManager: NSObject {
             
         }.resume()
     }
+
     
     
     //do we even need this method anymore? what is it even doing?

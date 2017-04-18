@@ -26,10 +26,15 @@ class StripeAuthorizationViewController: UIViewController, UIWebViewDelegate {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-
-        let authURL = URL(string: "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_AKvPJVtMwPNyOtjb04bHnsxiQUCamFqV&scope=read_write")
         
-        stripeWebView.loadRequest(URLRequest(url: authURL!))
+        requestForStripeConnect.getClientSecretKey()
+        
+        let authURL = URL(string: "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_AKvPxe7TnmTyUoWAevS9NCTQweaEV1Zr&scope=read_write")
+        
+        self.stripeWebView.loadRequest(URLRequest(url: authURL!))
+            
+        
+        
        
     }
     

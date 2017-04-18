@@ -151,6 +151,8 @@ class FirebaseManager: NSObject {
    
             }else{
                 
+                print("\(snapshot.value)")
+                
                 partyItemAmountFunded = snapshot.value as? NSNumber
                 
             }
@@ -160,6 +162,32 @@ class FirebaseManager: NSObject {
             completion(partyItemAmountFunded!)
             
         })
+    }
+    
+    class func retrieveSecretKey(completion:@escaping(String) -> Void)
+    {
+        
+        var ref: FIRDatabaseReference!
+        ref = FIRDatabase.database().reference()
+        
+        var clientSecretKey:String?
+        
+        ref.child("client_secret_key").observe(.value, with: { (snapshot) in
+            
+            if !snapshot.exists(){
+                
+                print("no secret key!")
+                
+            }else{
+                
+                clientSecretKey = snapshot.value as? String
+                
+            }
+            
+            completion(clientSecretKey!)
+            
+        })
+        
     }
     
     class func writeToFirebaseDBPartyItem(partyItemName : String, eventID : String, partyItemsArray : Array<Any>?) {
